@@ -1,0 +1,8 @@
+@import "./custom-colors.scss";
+
+.title-text-color {
+  color: $abcall-title-text-color;
+  font-weight: bold;
+  font-family: 'Lato', sans-serif;
+  font-size: 3em;
+}

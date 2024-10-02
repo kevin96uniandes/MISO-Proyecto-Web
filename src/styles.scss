@@ -1,1 +1,15 @@
+
+
+// Comment out the line below if you want to use the pre-defined typography utility classes.
+// For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
+// @include mat.typography-hierarchy($ABCall-web-theme);
+
+// Comment out the line below if you want to use the deprecated `color` inputs.
+// @include mat.color-variants-backwards-compatibility($ABCall-web-theme);
 /* You can add global styles to this file, and also import other style files */
+@import './theme/custom-palette.scss';
+@import "./theme/custom-components-classes.scss";
+@import "./theme/custom-style.scss";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

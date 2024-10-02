@@ -1,0 +1,64 @@
+<div class="container-login w-100 d-flex flex-row align-items-center justify-content-center h-100">
+  <div class="container-components w-100">
+    <div class="row">
+      <div class="col-6 d-flex flex-row align-items-center justify-content-center">
+        <img ngSrc="assets/images/logo.svg" alt="logo" height="293" width="400">
+      </div>
+      <div class="col-6 d-flex flex-row align-items-center justify-content-center container-right">
+        <div>
+          <div class="row pe-2 mt-2">
+            <div class="col-12 d-flex flex-row justify-content-end">
+              <mat-form-field>
+                <mat-label>Idioma</mat-label>
+                <mat-select [(ngModel)]="selectedValue" name="food">
+                  @for (language of languages; track language) {
+                    <mat-option [value]="language.value">{{language.viewValue}}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div>
+            <div class="row">
+              <div class="col-12 text-center">
+                <h2 class="title-text-color">Iniciar sesión</h2>
+              </div>
+            </div>
+            <div class="container-form-components">
+              <div class="row mt-3">
+                <div class="col-12">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Usuario</mat-label>
+                    <input matInput placeholder="Placeholder" name="username" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-12">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput placeholder="Placeholder"  name="password" type="password" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-12">
+                  <button mat-flat-button class="btn-abc-primary w-100">
+                    INGRESAR
+                  </button>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-12">
+                  <button mat-stroked-button class="w-100">
+                    REGISTRARSE
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

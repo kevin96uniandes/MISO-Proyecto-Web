@@ -1,0 +1,6 @@
+@import "./custom-colors.scss";
+
+.btn-abc-primary {
+  --mdc-filled-button-container-color: var($abcall-primary-color) !important;
+  --mdc-filled-button-label-text-color: #fff;
+}

@@ -1,0 +1,34 @@
+@import "../../../theme/custom-colors.scss";
+
+.container-login {
+  height: 100vh !important;
+}
+
+.container-components {
+  height: 100vh !important;
+}
+
+.container-components > .row {
+  height: 100vh;
+}
+
+.container-right {
+  background-color: $abcall-primary-color;
+}
+
+/*Contenedor de todos los componentes de la derecha*/
+.container-right > div {
+  background-color: white;
+  height: 92%;
+  width: 95% !important;
+  border-radius: 10px;
+}
+
+/*Formulario*/
+.container-right > div > div:nth-child(2){
+  padding: 7% 20% 0 20%;
+}
+
+.container-form-components {
+  margin-top: 60px;
+}

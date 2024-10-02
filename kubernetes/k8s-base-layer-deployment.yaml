@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: abcallfront-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: abcallfront
+  template:
+    metadata:
+      labels:
+        app: abcallfront
+    spec:
+      containers:
+        - name: abcallfront-contenedor
+          image: us-central1-docker.pkg.dev/experimentos-435400/uniandes-misw-proyecto-grado-19/abcall-front:1.0
+          ports:
+            - containerPort: 4200
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: abcallfront-service
+spec:
+  selector:
+    app: abcallfront
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 4200
+  type: LoadBalancer

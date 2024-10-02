@@ -21,7 +21,7 @@ jobs:
     - name: Pruebas unitarias y cobertura de código
       run: |
         # npm ci
-        # npm run test
+        # npm run test:prod
 
   merge-develop:
     needs: workflow_angular

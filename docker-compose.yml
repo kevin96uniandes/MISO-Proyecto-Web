@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  frontend:
+    build: .
+    ports:
+      - "4100:4200"
+    networks:
+      - app_net
+      - frontend_net
+
+networks:
+  frontend_net:
+  app_net:

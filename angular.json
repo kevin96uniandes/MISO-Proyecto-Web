@@ -21,7 +21,8 @@
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -68,6 +69,20 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "es": {
+              "aot": true,
+              "outputPath": "dist/abcall-web/es/",
+              "i18nFile": "src/locale/messages.es.xlf",
+              "i18nLocale": "es",
+              "i18nMissingTranslation": "warning"
+            },
+            "en": {
+              "aot": true,
+              "outputPath": "dist/abcall-web/en/",
+              "i18nFile": "src/locale/messages.en.xlf",
+              "i18nLocale": "en",
+              "i18nMissingTranslation": "warning"
             }
           },
           "defaultConfiguration": "production"
@@ -85,14 +100,18 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n"
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "outputPath": "src/locale"
+          }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "polyfills": [
               "zone.js",
-              "zone.js/testing"
+              "zone.js/testing",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
@@ -105,9 +124,11 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "codeCoverage": true
           }
         }
+
       }
     }
   },

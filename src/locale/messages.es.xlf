@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="1500181871307171807" datatype="html">
+        <source>Idioma</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/login/login.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4311569858228721961" datatype="html">
+        <source>Iniciar sesión</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/login/login.component.html</context>
+          <context context-type="linenumber">28,29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9016536884183098576" datatype="html">
+        <source>Usuario</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/login/login.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7132730488496169673" datatype="html">
+        <source>Contraseña</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/login/login.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3082603990703396732" datatype="html">
+        <source> INGRESAR </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/login/login.component.html</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4833319397975343280" datatype="html">
+        <source> REGISTRARSE </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/login/login.component.html</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

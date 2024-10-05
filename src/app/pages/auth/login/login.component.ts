@@ -10,7 +10,7 @@ import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, V
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { StorageService } from '../../../common/storage.service';
 import Swal from 'sweetalert2';
-import {LoginService} from "./login.service";
+import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
 import {EMPTY, merge} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
@@ -49,7 +49,7 @@ export class LoginComponent {
   helper = new JwtHelperService();
 
   constructor(
-    private loginService: LoginService,
+    private loginService: AuthService,
     private storageService: StorageService,
     private router: Router,
     private formBuilder: FormBuilder

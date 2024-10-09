@@ -1,0 +1,20 @@
+<div class="row"
+    (drop)="onFileDropped($event)"
+    (dragover)="onDragOver($event)" >
+    <div class="file-upload-section text-center my-3">
+        <p *ngIf="errorMessage" class="alert alert-warning" [innerHTML]="errorMessage"></p>
+
+        <mat-icon aria-hidden="false" fontIcon="upload" class="upload-icon"></mat-icon>
+        <p class="text-upload">En esta sección podrás cargar tus archivos adjuntos</p>
+        <button type="button" (click)="fileInput.click()" [disabled]="files.length >= 3" mat-raised-button class="btn-form-primary mat-raised-button">IMPORTAR ARCHIVOS</button>
+        <input #fileInput type="file" multiple hidden (change)="onFileSelected($event)">
+        <p class="file-limit mt-2 text-upload">{{files.length}} de 3 archivos cargados</p>
+
+        <div *ngFor="let file of files; let i = index" class="file-item">
+            <span class="file-limit mt-2 text-upload">{{file.name}}</span>
+            <button type="button" class="mat-mdc-icon-button" (click)="removeFile(i)" mat-icon-button aria-label="Eliminar archivo">
+                <mat-icon class="trash-icon">delete</mat-icon>
+              </button>
+         </div>
+    </div>
+</div>

@@ -5,6 +5,7 @@ import {HomeComponent} from "./pages/dashboard/home/home.component";
 import {DashboardComponent} from "./pages/dashboard/dashboard.component";
 import {AuthGuard} from "./pages/auth/auth.guard";
 import {DashboardGuard} from "./pages/dashboard/dashboard.guard";
+import { FormComponent } from './pages/incident/form/form.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
@@ -18,6 +19,7 @@ export const routes: Routes = [
       { path: '**', redirectTo: 'dashboard/home' }
     ]
   },
+  { path: 'incident', component: FormComponent },
   { path: '', redirectTo:'/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' },
 ];

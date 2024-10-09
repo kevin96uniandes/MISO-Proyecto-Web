@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FormComponent } from './incident/form/form.component';
 import { LoginComponent } from './pages/auth/login/login.component';
+import { FormComponent } from './pages/incident/form/form.component';
 
 @Component({
   selector: 'app-root',

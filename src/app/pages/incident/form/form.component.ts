@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { IncidentService } from '../incident.service';
 import { UploadFilesComponent } from '../upload-files/upload-files.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form',
@@ -64,10 +65,18 @@ export class FormComponent {
     });
 
     this.incidentService.createIncident(formData).subscribe({
-      next: (response) => {
+      next: (response: any) => {
         console.log(response);
+        Swal.fire({
+          icon: 'success',
+          title: `Se ha creado la incidencia ${response['codigo']} con exito`,
+        });
       },
       error: (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Se ha presentado un error a la hora de crear la incidencia',
+        });
         console.log(error);
       }
     });  

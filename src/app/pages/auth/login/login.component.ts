@@ -7,7 +7,6 @@ import { TextFieldModule } from '@angular/cdk/text-field';
 import {MatButtonModule} from '@angular/material/button';
 import {NgOptimizedImage} from "@angular/common";
 import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import { JwtHelperService } from "@auth0/angular-jwt";
 import { StorageService } from '../../../common/storage.service';
 import Swal from 'sweetalert2';
 import {AuthService} from "../auth.service";
@@ -15,6 +14,7 @@ import {Router} from "@angular/router";
 import {EMPTY, merge} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {Login} from "./login";
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 interface Language {
   value: string;

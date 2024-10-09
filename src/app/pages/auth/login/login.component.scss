@@ -1,4 +1,4 @@
-@import "../../../theme/custom-colors.scss";
+@import "../../../../theme/custom-colors";
 
 .container-login {
   height: 100vh !important;
@@ -17,7 +17,7 @@
 }
 
 /*Contenedor de todos los componentes de la derecha*/
-.container-right > div {
+.container-right > div{
   background-color: white;
   height: 92%;
   width: 95% !important;
@@ -25,10 +25,11 @@
 }
 
 /*Formulario*/
-.container-right > div > div:nth-child(2){
+.container-right > div > form > div:nth-child(2){
   padding: 7% 20% 0 20%;
 }
 
 .container-form-components {
   margin-top: 60px;
 }
+

@@ -1,0 +1,28 @@
+.user-query-container {
+    text-align: center;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.title-section {
+    padding-top: 16%;
+}
+
+.subtitle {
+    color: #126173;
+    font-size: 1.3em;
+}
+
+.btn-form-primary {
+    background-color:#82BDAE !important; /* Aplica el color de fondo */
+    color: #fff !important; /* Aplica el color del texto */
+    border-style: groove;
+    border-color: #d2cece;
+    width: 225px;
+  }
+
+.error-container {
+    width: 27% !important;
+    margin-left: 36% !important;
+    padding: 7px !important;
+}

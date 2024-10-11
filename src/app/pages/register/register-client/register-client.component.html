@@ -1,0 +1,176 @@
+<div class="container-login w-100 d-flex flex-row align-items-center justify-content-center h-100">
+  <div class="container-components w-100">
+    <div class="row">
+      <div class="col-6 d-flex flex-row align-items-center justify-content-center">
+        <img ngSrc="../../../../assets/images/logo.svg" alt="logo" height="293" width="400">
+      </div>
+      <div class="col-6 d-flex flex-row align-items-center justify-content-center container-right">
+        <div>
+          <div class="row pe-2 mt-2">
+            <div class="col-12 d-flex flex-row justify-content-end">
+              <mat-form-field>
+                <mat-label i18n>Idioma</mat-label>
+                <mat-select [(ngModel)]="selectedValue" name="food">
+                  @for (language of languages; track language) {
+                    <mat-option [value]="language.value">{{language.viewValue}}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <form id="register-client" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-12 text-center">
+                <h2 class="title-text-color" i18n>Registro</h2>
+              </div>
+            </div>
+            <div class="container-form-components">
+              <div class="row mt-3">
+                <div class="col-12">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label i18n>Nombre Completo</mat-label>
+                    <input matInput
+                           placeholder="Coloque su nombre completo"
+                           formControlName="nombre-completo"
+                           required
+                           id="nombre-completo"
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-12">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label i18n>Email</mat-label>
+                    <input matInput
+                           placeholder="Coloque su correo electrónico"
+                           formControlName="email"
+                           required
+                           id="email"
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-12">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label i18n>Tipo de documento</mat-label>
+                    <input matInput
+                           placeholder="Coloque el tipo de su documento"
+                           formControlName="tipo_documento"
+                           required
+                           id="tipo_documento"
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-12">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label i18n>Número de documento</mat-label>
+                    <input matInput
+                           placeholder="Coloque el número de su documento"
+                           formControlName="numero_documento"
+                           required
+                           id="numero_documento"
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-12">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label i18n>Sector</mat-label>
+                    <input matInput
+                           placeholder="Coloque el sector de su empresa"
+                           formControlName="sector"
+                           required
+                           id="sector"
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-12">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label i18n>Teléfono</mat-label>
+                    <input matInput
+                           placeholder="Coloque su teléfono"
+                           formControlName="telefono"
+                           required
+                           id="telefono"
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-12">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label i18n>País</mat-label>
+                    <input matInput
+                           placeholder="Coloque el país donde se encuentra su empresa"
+                           formControlName="pais"
+                           required
+                           id="pais"
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-12">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label i18n>Usuario</mat-label>
+                    <input matInput
+                           placeholder="Coloque su usuario"
+                           formControlName="usuario"
+                           required
+                           id="usuario"
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-12">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label i18n>Contraseña</mat-label>
+                    <input matInput
+                           placeholder="Coloque su contraseña"
+                           formControlName="contrasena"
+                           required
+                           id="contrasena"
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-12">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label i18n>Confirmar contraseña</mat-label>
+                    <input matInput
+                           placeholder="Confirme su contraseña"
+                           formControlName="confirmar_contrasena"
+                           required
+                           id="confirmar_contrasena"
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-12">
+                  <button
+                    mat-flat-button
+                    class="btn-abc-primary w-100"
+                    [disabled]="!registerForm.valid"
+                    i18n
+                  >
+                    REGISTRAR
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

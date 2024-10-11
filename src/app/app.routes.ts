@@ -6,6 +6,7 @@ import {DashboardComponent} from "./pages/dashboard/dashboard.component";
 import {AuthGuard} from "./pages/auth/auth.guard";
 import {DashboardGuard} from "./pages/dashboard/dashboard.guard";
 import { FormComponent } from './pages/incident/form/form.component';
+import { RegisterClientComponent } from './pages/register/register-client/register-client.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
@@ -20,6 +21,7 @@ export const routes: Routes = [
     ]
   },
   { path: 'incident', component: FormComponent },
+  { path: 'register/client', component: RegisterClientComponent },
   { path: '', redirectTo:'/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' },
 ];

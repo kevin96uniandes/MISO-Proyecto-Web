@@ -18,12 +18,12 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: 'home', component: HomeComponent },
-      { path: '**', redirectTo: 'dashboard/home' }
+      { path: '**', redirectTo: 'dashboard/home' },
+      { path: 'user-query', component: UserQueryComponent },
+      { path: 'incident', component: FormComponent },
+      { path: 'ranking', component: RankingComponent },
     ]
   },
-  { path: 'incident', component: FormComponent },
-  { path: 'user-query', component: UserQueryComponent },
-  { path: 'ranking', component: RankingComponent },
   { path: '', redirectTo:'/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' },
 ];

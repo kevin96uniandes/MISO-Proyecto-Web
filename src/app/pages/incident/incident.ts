@@ -10,6 +10,7 @@ export interface Incident {
     usuario_asignado_id: number;        
     persona_id: number;                 
     estado_id: number;                
-    tipo_id: number;                   
+    tipo_id: number;   
+    estado_nombre?: string;                
   }
   

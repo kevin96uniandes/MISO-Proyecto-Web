@@ -1,5 +1,8 @@
 export interface Product {
-    name: string;
-    company_name: string;
-    date_of_acquisition: string;
-  }
+  descripcion: string;
+  fecha_actualizacion: string; 
+  fecha_creacion: string;     
+  id: number;
+  nombre_producto: string;
+  tipo: string;
+}

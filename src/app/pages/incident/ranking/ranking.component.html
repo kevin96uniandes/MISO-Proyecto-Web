@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: right; margin-top: 1%">
-      <button type="submit" mat-raised-button class="btn-form-primary" style="margin-left: 10px">CREAR INCIDENCIA</button>
+      <button mat-raised-button class="btn-form-primary" style="margin-left: 10px" (click)="createIncident()">CREAR INCIDENCIA</button>
     </div>
   </div>
   <div class="row" style="margin-top: 1%">
@@ -10,16 +10,15 @@
       <div class="user-box">
         <div class="d-flex mb-3 div-user-name">
           <mat-icon>account_circle</mat-icon>
-          <span class="ms-2">Jhon Doe</span>
+          <span class="ms-2">{{ person.nombres }} {{ person.apellidos }}</span>
         </div>
-        <p>Ranking: 4 pts</p>
+        <p>Ranking: {{ ranking }} pts</p>
         <mat-progress-bar mode="determinate" [value]="ranking"></mat-progress-bar>
         <br/>
-        <p><strong>Tipo de documento:</strong> Cédula de ciudadanía</p>
-        <p><strong>Número de documento:</strong> 12345678</p>
-        <p><strong>Dirección:</strong> 742 Evergreen Terrace</p>
-        <p><strong>Teléfono:</strong> 3111111111</p>
-        <p><strong>Correo electrónico:</strong> uniandes.edu.co</p>
+        <p><strong>Tipo de documento:</strong> {{person.tipo_identificacion }}</p>
+        <p><strong>Número de documento:</strong> {{ person.numero_identificacion }}</p>
+        <p><strong>Teléfono:</strong> {{ person.telefono }}</p>
+        <p><strong>Correo electrónico:</strong> {{person.correo_electronico}}</p>
       </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12">
@@ -29,19 +28,19 @@
           <!-- Position Column -->
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef style="text-align: center;">Nombre Producto</th>
-            <td mat-cell *matCellDef="let element" style="text-align: center;">{{ element.name }}</td>
+            <td mat-cell *matCellDef="let product" style="text-align: center;">{{ product.nombre_producto }}</td>
           </ng-container>
 
           <!-- Name Column -->
-          <ng-container matColumnDef="company_name">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;">Empresa</th>
-            <td mat-cell *matCellDef="let element" style="text-align: center;">{{ element.company_name }}</td>
+          <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;">Categoria</th>
+            <td mat-cell *matCellDef="let product" style="text-align: center;">{{ product.tipo }}</td>
           </ng-container>
 
           <!-- Symbol Column -->
           <ng-container matColumnDef="date_of_acquisition">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;">Fecha de acquision</th>
-            <td mat-cell *matCellDef="let element" style="text-align: center;">{{ element.date_of_acquisition }}</td>
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;">Fecha de adquisición</th>
+            <td mat-cell *matCellDef="let product" style="text-align: center;">{{ product.fecha_creacion | date: 'dd/MM/yyyy' }}</td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumnsProducts"></tr>
@@ -117,7 +116,7 @@
 
           <ng-container matColumnDef="status">
             <th mat-header-cell *matHeaderCellDef style="text-align: center;">Estado</th>
-            <td mat-cell *matCellDef="let incident" style="text-align: center;">{{ incident.estado_id }}</td>
+            <td mat-cell *matCellDef="let incident" style="text-align: center;">{{ incident.estado_nombre }}</td>
           </ng-container>
 
           <ng-container matColumnDef="creation_date">

@@ -8,9 +8,9 @@
         <mat-form-field appearance="outline" style="width: 20%">
           <mat-label>Tipo de documento</mat-label>
           <mat-select formControlName="identityType" required>
-            <mat-option value="cedula">Cédula de ciudadanía</mat-option>
-            <mat-option value="pasaporte">Pasaporte</mat-option>
-            <mat-option value="nit">NIT</mat-option>
+            <mat-option value="Cédula_Cuidadania">Cédula de ciudadanía</mat-option>
+            <mat-option value="Pasaporte">Pasaporte</mat-option>
+            <mat-option value="Cédula_Extrangeria">Cédula de extrangeria</mat-option>
           </mat-select>
         </mat-form-field>
         <div class="error-container alert alert-danger alert-dismissible fade show" *ngIf="userQueryForm.get('identityType')!.hasError('required') && userQueryForm.get('identityType')!.touched">

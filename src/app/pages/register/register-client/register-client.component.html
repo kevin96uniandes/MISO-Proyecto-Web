@@ -31,10 +31,14 @@
                     <mat-label i18n>Nombre Completo</mat-label>
                     <input matInput
                            placeholder="Coloque su nombre completo"
-                           formControlName="nombre-completo"
+                           formControlName="nombre_completo"
                            required
-                           id="nombre-completo"
+                           (blur)="updateErrorRequiredMessage('nombre_completo')"
+                           id="nombre_completo"
                     >
+                    @if (registerForm.get("nombre_completo")?.invalid) {
+                      <mat-error>{{getErrorRequiredMessage('nombre_completo')}}</mat-error>
+                    }
                   </mat-form-field>
                 </div>
               </div>
@@ -46,21 +50,27 @@
                            placeholder="Coloque su correo electrónico"
                            formControlName="email"
                            required
+                           (blur)="updateErrorRequiredMessage('email')"
                            id="email"
                     >
+                    @if (registerForm.get("email")?.invalid) {
+                      <mat-error>{{getErrorRequiredMessage('email')}}</mat-error>
+                    }
                   </mat-form-field>
                 </div>
               </div>
               <div class="row mt-3">
                 <div class="col-12">
                   <mat-form-field appearance="outline" class="w-100">
-                    <mat-label i18n>Tipo de documento</mat-label>
-                    <input matInput
-                           placeholder="Coloque el tipo de su documento"
-                           formControlName="tipo_documento"
-                           required
-                           id="tipo_documento"
-                    >
+                    <mat-label>Tipo de documento</mat-label>
+                    <mat-select formControlName="tipo_documento" placeholder="Coloque el tipo de su documento" required (blur)="updateErrorRequiredMessage('tipo_documento')" id="tipo_documento">
+                      <mat-option value="1">NIT</mat-option>
+                      <mat-option value="2">Cédula de ciudadanía</mat-option>
+                      <mat-option value="3">Cédula de extranjería</mat-option>
+                    </mat-select>
+                    @if (registerForm.get("tipo_documento")?.invalid) {
+                      <mat-error>{{getErrorRequiredMessage('tipo_documento')}}</mat-error>
+                    }
                   </mat-form-field>
                 </div>
               </div>
@@ -72,8 +82,12 @@
                            placeholder="Coloque el número de su documento"
                            formControlName="numero_documento"
                            required
+                           (blur)="updateErrorRequiredMessage('numero_documento')"
                            id="numero_documento"
                     >
+                    @if (registerForm.get("numero_documento")?.invalid) {
+                      <mat-error>{{getErrorRequiredMessage('numero_documento')}}</mat-error>
+                    }
                   </mat-form-field>
                 </div>
               </div>
@@ -85,8 +99,12 @@
                            placeholder="Coloque el sector de su empresa"
                            formControlName="sector"
                            required
+                           (blur)="updateErrorRequiredMessage('sector')"
                            id="sector"
                     >
+                    @if (registerForm.get("sector")?.invalid) {
+                      <mat-error>{{getErrorRequiredMessage('sector')}}</mat-error>
+                    }
                   </mat-form-field>
                 </div>
               </div>
@@ -98,8 +116,12 @@
                            placeholder="Coloque su teléfono"
                            formControlName="telefono"
                            required
+                           (blur)="updateErrorRequiredMessage('telefono')"
                            id="telefono"
                     >
+                    @if (registerForm.get("telefono")?.invalid) {
+                      <mat-error>{{getErrorRequiredMessage('telefono')}}</mat-error>
+                    }
                   </mat-form-field>
                 </div>
               </div>
@@ -111,8 +133,12 @@
                            placeholder="Coloque el país donde se encuentra su empresa"
                            formControlName="pais"
                            required
+                           (blur)="updateErrorRequiredMessage('pais')"
                            id="pais"
                     >
+                    @if (registerForm.get("pais")?.invalid) {
+                      <mat-error>{{getErrorRequiredMessage('pais')}}</mat-error>
+                    }
                   </mat-form-field>
                 </div>
               </div>
@@ -124,8 +150,12 @@
                            placeholder="Coloque su usuario"
                            formControlName="usuario"
                            required
+                           (blur)="updateErrorRequiredMessage('usuario')"
                            id="usuario"
                     >
+                    @if (registerForm.get("usuario")?.invalid) {
+                      <mat-error>{{getErrorRequiredMessage('usuario')}}</mat-error>
+                    }
                   </mat-form-field>
                 </div>
               </div>
@@ -136,9 +166,24 @@
                     <input matInput
                            placeholder="Coloque su contraseña"
                            formControlName="contrasena"
+                           [type]="hide() ? 'password' : 'text'"
                            required
+                           (blur)="updateErrorRequiredMessage('contrasena')"
                            id="contrasena"
                     >
+                    <button
+                      mat-icon-button
+                      matSuffix
+                      type="button"
+                      (click)="clickEvent($event)"
+                      [attr.aria-label]="'Hide password'"
+                      [attr.aria-pressed]="hide()"
+                    >
+                      <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    @if (registerForm.get("contrasena")?.invalid) {
+                      <mat-error>{{getErrorRequiredMessage('contrasena')}}</mat-error>
+                    }
                   </mat-form-field>
                 </div>
               </div>
@@ -149,9 +194,24 @@
                     <input matInput
                            placeholder="Confirme su contraseña"
                            formControlName="confirmar_contrasena"
+                           [type]="hide() ? 'password' : 'text'"
                            required
+                           (blur)="updateErrorRequiredMessage('confirmar_contrasena')"
                            id="confirmar_contrasena"
                     >
+                    <button
+                      mat-icon-button
+                      matSuffix
+                      type="button"
+                      (click)="clickEvent($event)"
+                      [attr.aria-label]="'Hide password'"
+                      [attr.aria-pressed]="hide()"
+                    >
+                      <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    @if (registerForm.get("confirmar_contrasena")?.invalid) {
+                      <mat-error>{{getErrorRequiredMessage('confirmar_contrasena')}}</mat-error>
+                    }
                   </mat-form-field>
                 </div>
               </div>

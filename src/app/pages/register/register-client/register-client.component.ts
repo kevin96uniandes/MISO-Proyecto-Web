@@ -9,6 +9,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import { RegisterService } from '../register.service';
 import { RegisterClient } from './register-client';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import {Router} from "@angular/router";
+import Swal from 'sweetalert2';
 
 interface Language {
   value: string;
@@ -51,7 +54,9 @@ export class RegisterClientComponent {
 
   constructor(
     private RegisterClientService: RegisterService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar,
+    private router: Router,
   ) {
     this.selectedValue = "es";
 
@@ -133,8 +138,21 @@ export class RegisterClientComponent {
 
       this.RegisterClientService.registerClient(registerClient).subscribe(response => {
         console.log('Registro exitoso', response);
+        this.snackBar.open('REGISTRO EXITOSO', '', {
+          duration: 3000,
+          panelClass: ['success-snackbar']
+        });
+        this.router.navigate(['/login']);
       }, error => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Usuario o contraseña incorrectos',
+        });
         console.error('Error en el registro', error);
+        this.snackBar.open('Error en el registro', '', {
+          duration: 3000,
+          panelClass: ['error-snackbar']
+        });
       });
     }
   }

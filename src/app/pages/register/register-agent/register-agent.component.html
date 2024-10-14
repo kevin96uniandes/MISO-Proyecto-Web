@@ -18,10 +18,10 @@
               </mat-form-field>
             </div>
           </div>
-          <form id="register-client" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <form id="register-agent" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div class="row">
               <div class="col-12 text-center">
-                <h2 class="title-text-color" i18n>Registro</h2>
+                <h2 class="title-text-color" i18n>Registro de agente</h2>
               </div>
             </div>
             <div class="container-form-components">
@@ -31,13 +31,13 @@
                     <mat-label i18n>Nombre Completo</mat-label>
                     <input matInput
                            placeholder="Coloque su nombre completo"
-                           formControlName="nombre_empresa"
+                           formControlName="nombre_completo"
                            required
-                           (blur)="updateErrorRequiredMessage('nombre_empresa')"
-                           id="nombre_empresa"
+                           (blur)="updateErrorRequiredMessage('nombre_completo')"
+                           id="nombre_completo"
                     >
-                    @if (registerForm.get("nombre_empresa")?.invalid) {
-                      <mat-error>{{getErrorRequiredMessage('nombre_empresa')}}</mat-error>
+                    @if (registerForm.get("nombre_completo")?.invalid) {
+                      <mat-error>{{getErrorRequiredMessage('nombre_completo')}}</mat-error>
                     }
                   </mat-form-field>
                 </div>
@@ -48,13 +48,13 @@
                     <mat-label i18n>Email</mat-label>
                     <input matInput
                            placeholder="Coloque su correo electrónico"
-                           formControlName="email"
+                           formControlName="correo_electronico"
                            required
-                           (blur)="updateErrorRequiredMessage('email')"
-                           id="email"
+                           (blur)="updateErrorRequiredMessage('correo_electronico')"
+                           id="correo_electronico"
                     >
-                    @if (registerForm.get("email")?.invalid) {
-                      <mat-error>{{getErrorRequiredMessage('email')}}</mat-error>
+                    @if (registerForm.get("correo_electronico")?.invalid) {
+                      <mat-error>{{getErrorRequiredMessage('correo_electronico')}}</mat-error>
                     }
                   </mat-form-field>
                 </div>
@@ -94,23 +94,6 @@
               <div class="row mt-3">
                 <div class="col-12">
                   <mat-form-field appearance="outline" class="w-100">
-                    <mat-label i18n>Sector</mat-label>
-                    <input matInput
-                           placeholder="Coloque el sector de su empresa"
-                           formControlName="sector"
-                           required
-                           (blur)="updateErrorRequiredMessage('sector')"
-                           id="sector"
-                    >
-                    @if (registerForm.get("sector")?.invalid) {
-                      <mat-error>{{getErrorRequiredMessage('sector')}}</mat-error>
-                    }
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row mt-3">
-                <div class="col-12">
-                  <mat-form-field appearance="outline" class="w-100">
                     <mat-label i18n>Teléfono</mat-label>
                     <input matInput
                            placeholder="Coloque su teléfono"
@@ -121,23 +104,6 @@
                     >
                     @if (registerForm.get("telefono")?.invalid) {
                       <mat-error>{{getErrorRequiredMessage('telefono')}}</mat-error>
-                    }
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row mt-3">
-                <div class="col-12">
-                  <mat-form-field appearance="outline" class="w-100">
-                    <mat-label i18n>País</mat-label>
-                    <input matInput
-                           placeholder="Coloque el país donde se encuentra su empresa"
-                           formControlName="pais"
-                           required
-                           (blur)="updateErrorRequiredMessage('pais')"
-                           id="pais"
-                    >
-                    @if (registerForm.get("pais")?.invalid) {
-                      <mat-error>{{getErrorRequiredMessage('pais')}}</mat-error>
                     }
                   </mat-form-field>
                 </div>

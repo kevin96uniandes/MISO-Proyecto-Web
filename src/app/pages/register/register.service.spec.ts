@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { RegisterService } from './register.service';
 import { environment } from '../../../environments/environment';
 import { RegisterClient } from './register-client/register-client';
+import { RegisterAgent } from './register-agent/register-agent';
 
 describe('RegisterService', () => {
   let service: RegisterService;
@@ -27,10 +28,10 @@ describe('RegisterService', () => {
 
   it('should register a client', () => {
     const mockRegisterClient: RegisterClient = {
-      nombre_completo: 'John Doe',
+      nombre_empresa: 'John Doe',
       email: 'john.doe@example.com',
-      tipo_documento: 1,
-      numero_documento: 123456789,
+      tipo_identificacion: 1,
+      numero_identificacion: 123456789,
       sector: 'IT',
       telefono: 1234567890,
       pais: 'Country',
@@ -46,10 +47,10 @@ describe('RegisterService', () => {
     const req = httpMock.expectOne(`${environment.apiUrl}/user/register/client`);
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual({
-      nombre_completo: 'John Doe',
+      nombre_empresa: 'John Doe',
       email: 'john.doe@example.com',
-      tipo_documento: 1,
-      numero_documento: 123456789,
+      tipo_identificacion: 1,
+      numero_identificacion: 123456789,
       sector: 'IT',
       telefono: 1234567890,
       pais: 'Country',

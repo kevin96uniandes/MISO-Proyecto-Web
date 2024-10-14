@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RegisterClientComponent } from './register-client.component';
+import { RegisterAgentComponent } from './register-agent.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RegisterService } from '../register.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -14,22 +14,25 @@ class MockRegisterService {
   registerClient() {
     return of({});
   }
+  registerAgent() {
+    return of({});
+  }
 }
 
 class MockRouter {
   navigate = jasmine.createSpy('navigate');
 }
 
-describe('RegisterClientComponent', () => {
-  let component: RegisterClientComponent;
-  let fixture: ComponentFixture<RegisterClientComponent>;
+describe('RegisterAgentComponent', () => {
+  let component: RegisterAgentComponent;
+  let fixture: ComponentFixture<RegisterAgentComponent>;
   let registerService: RegisterService;
   let router: Router;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RegisterClientComponent,
+        RegisterAgentComponent,
         ReactiveFormsModule,
         FormsModule,
         MatSnackBarModule,
@@ -46,7 +49,7 @@ describe('RegisterClientComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegisterClientComponent);
+    fixture = TestBed.createComponent(RegisterAgentComponent);
     component = fixture.componentInstance;
     registerService = TestBed.inject(RegisterService);
     router = TestBed.inject(Router);
@@ -60,20 +63,18 @@ describe('RegisterClientComponent', () => {
   it('should initialize the registerForm with empty values', () => {
     const registerForm = component.registerForm;
     expect(registerForm).toBeDefined();
-    expect(registerForm.get('nombre_empresa')?.value).toEqual('');
-    expect(registerForm.get('email')?.value).toEqual('');
+    expect(registerForm.get('nombre_completo')?.value).toEqual('');
+    expect(registerForm.get('correo_electronico')?.value).toEqual('');
     expect(registerForm.get('tipo_identificacion')?.value).toEqual('');
   });
 
   it('should make the registerForm invalid when fields are empty', () => {
     component.registerForm.patchValue({
-      nombre_empresa: '',
-      email: '',
+      nombre_completo: '',
+      correo_electronico: '',
       tipo_identificacion: '',
       numero_identificacion: '',
-      sector: '',
       telefono: '',
-      pais: '',
       usuario: '',
       contrasena: '',
       confirmar_contrasena: '',
@@ -83,13 +84,11 @@ describe('RegisterClientComponent', () => {
 
   it('should make the registerForm valid when all fields are correctly filled', () => {
     component.registerForm.patchValue({
-      nombre_empresa: 'Test User',
-      email: 'test@example.com',
+      nombre_completo: 'Test User',
+      correo_electronico: 'test@example.com',
       tipo_identificacion: '1',
       numero_identificacion: '12345678',
-      sector: 'IT',
       telefono: '1234567890',
-      pais: 'Country',
       usuario: 'testuser',
       contrasena: 'Password1',
       confirmar_contrasena: 'Password1',
@@ -107,33 +106,29 @@ describe('RegisterClientComponent', () => {
     expect(confirmPasswordControl?.hasError('mismatch')).toBeTrue();
   });
 
-  it('should call registerClient on RegisterService when form is valid', () => {
-    spyOn(registerService, 'registerClient').and.callThrough();
+  it('should call registerAgent on RegisterService when form is valid', () => {
+    spyOn(registerService, 'registerAgent').and.callThrough();
     component.registerForm.patchValue({
-      nombre_empresa: 'Test User',
-      email: 'test@example.com',
+      nombre_completo: 'Test User',
+      correo_electronico: 'test@example.com',
       tipo_identificacion: '1',
       numero_identificacion: '12345678',
-      sector: 'IT',
       telefono: '1234567890',
-      pais: 'Country',
       usuario: 'testuser',
       contrasena: 'Password1',
       confirmar_contrasena: 'Password1',
     });
     component.onSubmit();
-    expect(registerService.registerClient).toHaveBeenCalled();
+    expect(registerService.registerAgent).toHaveBeenCalled();
   });
 
   it('should navigate to /login on successful registration', () => {
     component.registerForm.patchValue({
-      nombre_empresa: 'Test User',
-      email: 'test@example.com',
+      nombre_completo: 'Test User',
+      correo_electronico: 'test@example.com',
       tipo_identificacion: '1',
       numero_identificacion: '12345678',
-      sector: 'IT',
       telefono: '1234567890',
-      pais: 'Country',
       usuario: 'testuser',
       contrasena: 'Password1',
       confirmar_contrasena: 'Password1',
@@ -143,16 +138,14 @@ describe('RegisterClientComponent', () => {
   });
 
   it('should show an error message on registration failure', () => {
-    spyOn(registerService, 'registerClient').and.returnValue(throwError({ error: 'Error' }));
+    spyOn(registerService, 'registerAgent').and.returnValue(throwError({ error: 'Error' }));
     spyOn(component, 'updateErrorRequiredMessage');
     component.registerForm.patchValue({
-      nombre_empresa: 'Test User',
-      email: 'test@example.com',
+      nombre_completo: 'Test User',
+      correo_electronico: 'test@example.com',
       tipo_identificacion: '1',
       numero_identificacion: '12345678',
-      sector: 'IT',
       telefono: '1234567890',
-      pais: 'Country',
       usuario: 'testuser',
       contrasena: 'Password1',
       confirmar_contrasena: 'Password1',

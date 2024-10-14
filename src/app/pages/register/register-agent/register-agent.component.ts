@@ -8,7 +8,7 @@ import {NgOptimizedImage} from "@angular/common";
 import {MatSelectModule} from '@angular/material/select';
 import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import { RegisterService } from '../register.service';
-import { RegisterClient } from './register-client';
+import { RegisterAgent } from './register-agent';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {Router} from "@angular/router";
 import Swal from 'sweetalert2';
@@ -24,7 +24,7 @@ interface DocumentType {
 }
 
 @Component({
-  selector: 'app-register-client',
+  selector: 'app-register-agent',
   standalone: true,
   imports: [
     MatFormFieldModule,
@@ -37,11 +37,11 @@ interface DocumentType {
     FormsModule,
     ReactiveFormsModule,
   ],
-  templateUrl: './register-client.component.html',
-  styleUrls: ['./register-client.component.scss'],
+  templateUrl: './register-agent.component.html',
+  styleUrls: ['./register-agent.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegisterClientComponent {
+export class RegisterAgentComponent {
   registerForm: FormGroup;
   selectedValue: string = '';
   errorRequiredMessage: Map<string, string> = new Map<string, string>();
@@ -53,21 +53,19 @@ export class RegisterClientComponent {
   ];
 
   constructor(
-    private RegisterClientService: RegisterService,
+    private RegisterAgentService: RegisterService,
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
     private router: Router,
-  ) {
+  ){
     this.selectedValue = "es";
 
     this.registerForm = this.formBuilder.group({
-      nombre_empresa: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
+      nombre_completo: ['', [Validators.required]],
+      correo_electronico: ['', [Validators.required, Validators.email]],
       tipo_identificacion: ['', [Validators.required]],
       numero_identificacion: ['', [Validators.required]],
-      sector: ['', [Validators.required]],
       telefono: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      pais: ['', [Validators.required]],
       usuario: ['', [Validators.required]],
       contrasena: ['', [
         Validators.required,
@@ -81,7 +79,7 @@ export class RegisterClientComponent {
   languages: Language[] = [
     {value: 'en', viewValue: 'English'},
     {value: 'es', viewValue: 'Español'},
-  ]
+  ];
 
   passwordMatchValidator(form: FormGroup) {
     const password = form.get('contrasena');
@@ -98,7 +96,7 @@ export class RegisterClientComponent {
     if (control?.hasError('required')) {
       this.errorRequiredMessage.set(fieldName, 'Campo requerido');
     } else if (control?.hasError('email')){
-      this.errorRequiredMessage.set(fieldName, 'Email no tiene el formato correcto');
+      this.errorRequiredMessage.set(fieldName, 'Correo electrónico no tiene el formato correcto');
     }
     else if (this.registerForm.get("telefono")?.hasError('pattern')){
       this.errorRequiredMessage.set(fieldName, 'Teléfono debe contener solo números');
@@ -123,20 +121,18 @@ export class RegisterClientComponent {
 
   onSubmit() {
     if(this.registerForm?.valid){
-      const registerClient = new RegisterClient(
-        this.registerForm.value.nombre_empresa,
-        this.registerForm.value.email,
+      const registerAgent = new RegisterAgent(
+        this.registerForm.value.nombre_completo,
+        this.registerForm.value.correo_electronico,
         this.registerForm.value.tipo_identificacion,
         this.registerForm.value.numero_identificacion,
-        this.registerForm.value.sector,
         this.registerForm.value.telefono,
-        this.registerForm.value.pais,
         this.registerForm.value.usuario,
         this.registerForm.value.contrasena,
         this.registerForm.value.confirmar_contrasena
       );
 
-      this.RegisterClientService.registerClient(registerClient).subscribe(response => {
+      this.RegisterAgentService.registerAgent(registerAgent).subscribe(response => {
         console.log('Registro exitoso', response);
         this.snackBar.open('REGISTRO EXITOSO', '', {
           duration: 3000,

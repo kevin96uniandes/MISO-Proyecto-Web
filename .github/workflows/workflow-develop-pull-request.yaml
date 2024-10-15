@@ -9,6 +9,7 @@ permissions:
 
 jobs:
   workflow_angular:
+    if: ${{ contains(github.event.head_commit.message, 'release') || contains(github.event.head_commit.message, 'develop') }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -20,8 +21,8 @@ jobs:
       run: npm install
     - name: Pruebas unitarias y cobertura de código
       run: |
-        # npm ci
-        # npm run test:prod
+        npm ci
+        npm run test:prod
 
   merge-develop:
     needs: workflow_angular

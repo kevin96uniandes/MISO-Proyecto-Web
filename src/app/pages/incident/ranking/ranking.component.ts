@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { IncidentService } from '../incident.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
@@ -43,10 +43,14 @@ export class RankingComponent implements AfterViewInit {
   dataIncidents!: MatTableDataSource<Incident>;
 
   constructor(private incidentService: IncidentService, 
-    private router: Router) { }
+    private router: Router,
+    private cdr: ChangeDetectorRef) { }
+
 
   ngOnInit(): void {
-    this.person = history.state?.person;
+    if(history.state){
+      this.person = history.state?.person;
+    }
 
   }
 
@@ -56,6 +60,7 @@ export class RankingComponent implements AfterViewInit {
       next: (incidents: Incident[]) => {
         this.dataIncidents = new MatTableDataSource<Incident>(incidents);
         this.dataIncidents.paginator = this.paginatorIncidents;
+        this.cdr.detectChanges();
       }
     })
 
@@ -64,6 +69,7 @@ export class RankingComponent implements AfterViewInit {
       next: (calls: Call[]) => {
         this.dataCalls = new MatTableDataSource<Call>(calls);
         this.dataCalls.paginator = this.paginatorCalls;
+        this.cdr.detectChanges();
       }
     })
 
@@ -72,6 +78,7 @@ export class RankingComponent implements AfterViewInit {
         this.dataProducts = new MatTableDataSource<Product>(products);
         this.dataProducts.paginator = this.paginatorProducts;
         this.ranking = products.length;
+        this.cdr.detectChanges();
       }
     })
 

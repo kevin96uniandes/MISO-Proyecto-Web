@@ -13,7 +13,7 @@
           <span class="ms-2">{{ person.nombres }} {{ person.apellidos }}</span>
         </div>
         <p>Ranking: {{ ranking }} pts</p>
-        <mat-progress-bar mode="determinate" [value]="ranking"></mat-progress-bar>
+        <mat-progress-bar mode="determinate" [value]="ranking" aria-label="ranking de usuario"></mat-progress-bar>
         <br/>
         <p><strong>Tipo de documento:</strong> {{person.tipo_identificacion }}</p>
         <p><strong>Número de documento:</strong> {{ person.numero_identificacion }}</p>
@@ -65,7 +65,7 @@
           <ng-container matColumnDef="watch">
             <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Ver </th>
             <td mat-cell *matCellDef="let call" style="text-align: center;">
-              <button mat-icon-button class="search-button" (click)="watchCallDetail(call)">
+              <button mat-icon-button class="search-button" (click)="watchCallDetail(call)" aria-label="Buscar">
                 <mat-icon>search</mat-icon>
               </button>
             </td>
@@ -103,7 +103,7 @@
           <ng-container matColumnDef="watch">
             <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Ver </th>
             <td mat-cell *matCellDef="let incident" style="text-align: center;">
-              <button mat-icon-button class="search-button" (click)="watchIncidentDetail(incident)">
+              <button mat-icon-button class="search-button" (click)="watchIncidentDetail(incident)" aria-label="Buscar">
                 <mat-icon>search</mat-icon>
               </button>
             </td>

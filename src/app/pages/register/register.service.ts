@@ -28,3 +28,4 @@ export class RegisterService {
       "contrasena": registerAgent.contrasena, "confirmar_contrasena": registerAgent.confirmar_contrasena});
   }
 }
+

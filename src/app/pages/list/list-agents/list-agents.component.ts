@@ -1,4 +1,4 @@
-import { Component, ViewChild, NgModule } from '@angular/core';
+import { Component, ViewChild, NgModule, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
@@ -41,7 +41,7 @@ const AGENTES_DATA: Agente[] = [
   templateUrl: './list-agents.component.html',
   styleUrls: ['./list-agents.component.scss']
 })
-export class ListAgentsComponent {
+export class ListAgentsComponent implements AfterViewInit {
   displayedColumns: string[] = ['acciones', 'identificacion', 'nombreCompleto', 'correoElectronico', 'telefono'];
   dataSource = new MatTableDataSource<Agente>(AGENTES_DATA);
 
@@ -51,9 +51,11 @@ export class ListAgentsComponent {
   constructor(
     private router: Router
   ) { }
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+  }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 

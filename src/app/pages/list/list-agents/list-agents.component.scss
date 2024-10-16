@@ -1,0 +1,61 @@
+@import "../../../../theme/custom-colors";
+@import "../../../../theme/custom-style";
+@import "../../../../theme/custom-components-classes";
+
+.container-login {
+  height: 100vh !important;
+}
+
+.container-components {
+  height: 100vh !important;
+}
+
+.container-components > .row {
+  height: 100vh;
+}
+
+.container-right {
+  background-color: $abcall-primary-color;
+}
+
+/*Contenedor de todos los componentes de la derecha*/
+.container-right > div{
+  background-color: white;
+  height: 95%;
+  width: 95% !important;
+  border-radius: 10px;
+}
+
+/*Formulario*/
+.container-right > div > form > div:nth-child(2){
+  padding: 0% 20% 11% 20%;
+}
+
+.container-form-components {
+  margin-top: 60px;
+}
+
+#btn-create-agent {
+  background-color: $abcall-primary-color;
+  font-weight: bold;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.938em;
+  color: white;
+  border-radius: 0.25em;
+  --mdc-filled-button-label-text-color: #fff;
+  height: var(--mdc-filled-button-container-height);
+  border-color: $abcall-primary-color;
+}
+
+#detail-agent{
+  border: transparent;
+  background: transparent;
+}
+
+#color-eye {
+  color: $abcall-primary-color;
+}
+
+th, td {
+  border-color: #96D4D4;
+}

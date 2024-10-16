@@ -145,7 +145,7 @@ export class RegisterAgentComponent {
           title: 'Usuario o contraseña incorrectos',
         });
         console.error('Error en el registro', error);
-        this.snackBar.open('Error en el registro', '', {
+        this.snackBar.open('Error en el registro del agente', '', {
           duration: 3000,
           panelClass: ['error-snackbar']
         });

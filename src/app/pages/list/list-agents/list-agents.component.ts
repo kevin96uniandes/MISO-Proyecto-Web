@@ -72,4 +72,3 @@ export class ListAgentsComponent implements AfterViewInit {
     }
   }
 }
-

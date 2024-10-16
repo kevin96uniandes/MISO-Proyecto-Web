@@ -61,4 +61,36 @@ describe('RegisterService', () => {
 
     req.flush({ success: true });
   });
+
+  it('should register a agent', () => {
+    const mockRegisterAgent: RegisterAgent = {
+      nombre_completo: 'John Doe',
+      correo_electronico: 'john.doe@example.com',
+      tipo_identificacion: 1,
+      numero_identificacion: 123456789,
+      telefono: 1234567890,
+      usuario: 'johndoe',
+      contrasena: 'Password123',
+      confirmar_contrasena: 'Password123'
+    };
+
+    service.registerAgent(mockRegisterAgent).subscribe(response => {
+      expect(response).toEqual({ success: true });
+    });
+
+    const req = httpMock.expectOne(`${environment.apiUrl}/user/register/agent`);
+    expect(req.request.method).toBe('POST');
+    expect(req.request.body).toEqual({
+      nombre_completo: 'John Doe',
+      correo_electronico: 'john.doe@example.com',
+      tipo_identificacion: 1,
+      numero_identificacion: 123456789,
+      telefono: 1234567890,
+      usuario: 'johndoe',
+      contrasena: 'Password123',
+      confirmar_contrasena: 'Password123'
+    });
+
+    req.flush({ success: true });
+  });
 });

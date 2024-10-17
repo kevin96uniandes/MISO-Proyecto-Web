@@ -1,0 +1,84 @@
+@import "../../../theme/custom-colors";
+
+.menu-container {
+  height: 100vh; // Mantener el menú a toda la altura de la pantalla
+}
+
+.sidebar-color-item {
+  color: $abcall-primary-color !important;
+}
+
+.menu-drawer {
+  width: 90px !important; // Asegurarse que el drawer tenga suficiente ancho
+  background-color: white;
+  padding: 10px 0; // Agregar un poco de padding superior e inferior
+  -webkit-box-shadow: 1px 0px 5px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 1px 0px 5px 0px rgba(0,0,0,0.2);
+  box-shadow: 1px 0px 5px 0px rgba(0,0,0,0.2);
+
+  .menu-item {
+    display: flex;
+    flex-direction: column; // Colocar ícono y texto en columna
+    align-items: center; // Centrar horizontalmente
+    justify-content: center; // Centrar verticalment
+    color: #5e8277;
+    text-decoration: none;
+    transition: background-color 0.3s ease; // Transición suave para hover
+    margin-bottom: 35px;
+
+    &:hover {
+      background-color: $abcall-primary-color;
+      cursor: pointer;
+      .sidebar-color-item {
+        color: black !important;
+      }
+    }
+
+    mat-icon {
+      font-size: 1.5em; // Ajuste de tamaño del ícono
+      margin-bottom: 5px; // Espacio entre ícono y texto
+      color: #333; // Asegurar un color adecuado
+      display: block;
+      overflow: inherit;
+      height: auto;
+      width: auto;
+      line-height: inherit !important;
+
+      &.active {
+        background-color: #9ad1c1 !important;
+        color: red !important;
+
+        mat-icon {
+          color: yellow;
+        }
+
+        span {
+          color: green;
+        }
+      }
+    }
+
+    span {
+      font-size: 13px;
+      font-weight: 500;
+      text-align: center;
+      color: #5e8277;
+    }
+  }
+}
+
+.mat-mdc-nav-list .mat-mdc-list-item {
+  border-radius: inherit !important;
+}
+
+.mat-drawer-inner-container {
+  width: inherit !important;
+}
+
+.mat-drawer-content {
+  background-color: white !important;
+}
+
+.mdc-list-item.mdc-list-item--with-one-line {
+  height: auto !important;
+}

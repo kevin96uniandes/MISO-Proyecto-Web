@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+  <file source-language="es" datatype="plaintext" original="ng2.template">
     <body>
       <trans-unit id="1500181871307171807" datatype="html">
         <source>Idioma</source>
@@ -42,6 +42,515 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/auth/login/login.component.html</context>
           <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5158314856941087699" datatype="html">
+        <source>Datos de contacto</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4743156365764866968" datatype="html">
+        <source>Nombres</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1869294918319072092" datatype="html">
+        <source> El campo nombre es requerido </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">124</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4838046547980213141" datatype="html">
+        <source> El tamaño del nombre debe ser de minimo 2 y maximo 100 caracteres </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6759367372427181151" datatype="html">
+        <source>Apellidos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8835845321648458362" datatype="html">
+        <source> El campo apellidos es requerido </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="941171522615311619" datatype="html">
+        <source> El tamaño del apellido debe ser de minimo 2 y maximo 100 caracteres </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4401057011206112121" datatype="html">
+        <source>Correo electrónico</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="492753210165038310" datatype="html">
+        <source> El campo correo electronico es requerido </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2590174418843517255" datatype="html">
+        <source> El tamaño del correo electrónico debe ser de minimo 2 y maximo 100 caracteres </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1620752693126947612" datatype="html">
+        <source> El correo electronico debe tener un formato valido </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1664616424500561753" datatype="html">
+        <source>Tipo de documento</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/user-query/user-query.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1519761999759695516" datatype="html">
+        <source>Cédula de ciudadanía</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/user-query/user-query.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6147729534105299487" datatype="html">
+        <source>Cédula de extranjería</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1568315179528969756" datatype="html">
+        <source>Pasaporte</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/user-query/user-query.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2201906652882717785" datatype="html">
+        <source> El campo tipo de documento es requerido </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/user-query/user-query.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1470060895279107030" datatype="html">
+        <source>Número de documento</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/user-query/user-query.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1177792832695490736" datatype="html">
+        <source> el numero de documento es requerido </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/user-query/user-query.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3900938493873258185" datatype="html">
+        <source> el numero de documento debe tener un tamaño de 2 a 12 caracteres </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/user-query/user-query.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8849041915529180949" datatype="html">
+        <source> El numero de identificación debe ser un valor numérico </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/user-query/user-query.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3781438632710432904" datatype="html">
+        <source>Celular</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7998285135243015811" datatype="html">
+        <source> el celular es requerido </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2108329757716402387" datatype="html">
+        <source> el celular debe tener un tamaño de 2 a 12 caracteres </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4286094570945940624" datatype="html">
+        <source> El celular debe ser un valor numérico </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9060661934912598431" datatype="html">
+        <source>Datos de tu incidencia</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">97,98</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="478245468830980756" datatype="html">
+        <source>Tipo de incidencia</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">103</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1137577732452916245" datatype="html">
+        <source>Petición</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1180995852795335847" datatype="html">
+        <source>Queja/Reclamo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">106</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8387905439490694058" datatype="html">
+        <source>Sugerencia</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">107</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1947171172229581556" datatype="html">
+        <source> El campo tipo de incidencia es requerido </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">111</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6254525022265217477" datatype="html">
+        <source>Canal</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3438777742118768037" datatype="html">
+        <source>Llamada Telefónica</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">118</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4868888201950564133" datatype="html">
+        <source>Correo Electrónico</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">119</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4647520942925657882" datatype="html">
+        <source>App Movil</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">120</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8013744119479468097" datatype="html">
+        <source>Asunto</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">131</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9148558498307504013" datatype="html">
+        <source> El asunto es requerido </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">135</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7214070822230888085" datatype="html">
+        <source> el asunto debe tener un tamaño de 2 a 100 caracteres </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">138</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7755175912432604936" datatype="html">
+        <source>Observaciones de la incidencia</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">145</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6549471688515313758" datatype="html">
+        <source> El detalle de la incidencia es requerido </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">149</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7265835076048188527" datatype="html">
+        <source> el detalle de la incidencia debe tener un tamaño de 2 a 100 caracteres </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">152</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2487144874485991380" datatype="html">
+        <source>VOLVER</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">159,160</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8149926475492516914" datatype="html">
+        <source>GUARDAR INCIDENCIA</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/form/form.component.html</context>
+          <context context-type="linenumber">160,161</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="989047124559577132" datatype="html">
+        <source>CREAR INCIDENCIA</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/ranking/ranking.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="99190041010817482" datatype="html">
+        <source>Información personal</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/ranking/ranking.component.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6034718963206255383" datatype="html">
+        <source>Tipo de documento:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/ranking/ranking.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1060650392392054619" datatype="html">
+        <source>Número de documento:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/ranking/ranking.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7987388837571654186" datatype="html">
+        <source>Teléfono:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/ranking/ranking.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7337010589991836518" datatype="html">
+        <source>Correo electrónico:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/ranking/ranking.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2808158639521819529" datatype="html">
+        <source>Productos asociados</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/ranking/ranking.component.html</context>
+          <context context-type="linenumber">25,26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7468042687045743666" datatype="html">
+        <source>Nombre Producto</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/ranking/ranking.component.html</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5923041569817566400" datatype="html">
+        <source>Categoria</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/ranking/ranking.component.html</context>
+          <context context-type="linenumber">36,37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="305027509372921683" datatype="html">
+        <source>Fecha de adquisición</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/ranking/ranking.component.html</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="359117695459725817" datatype="html">
+        <source>Registro de llamadas</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/ranking/ranking.component.html</context>
+          <context context-type="linenumber">61,62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3153621994728276952" datatype="html">
+        <source> Ver </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/ranking/ranking.component.html</context>
+          <context context-type="linenumber">66,67</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/ranking/ranking.component.html</context>
+          <context context-type="linenumber">104,105</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7621423567406868751" datatype="html">
+        <source>Duración</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/ranking/ranking.component.html</context>
+          <context context-type="linenumber">76,77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1459686669245637488" datatype="html">
+        <source>Fecha de llamada</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/ranking/ranking.component.html</context>
+          <context context-type="linenumber">82,83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6170149764404325797" datatype="html">
+        <source>Registro de incidencias</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/ranking/ranking.component.html</context>
+          <context context-type="linenumber">99,100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1168733027719793680" datatype="html">
+        <source>Incidencia</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/ranking/ranking.component.html</context>
+          <context context-type="linenumber">113,114</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4963172891871550734" datatype="html">
+        <source>Estado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/ranking/ranking.component.html</context>
+          <context context-type="linenumber">118,119</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8924416159082124740" datatype="html">
+        <source>Fecha de apertura</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/ranking/ranking.component.html</context>
+          <context context-type="linenumber">123,124</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5698038751879528507" datatype="html">
+        <source>En esta sección podrás cargar tus archivos adjuntos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/upload-files/upload-files.component.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2924109345754582156" datatype="html">
+        <source>IMPORTAR ARCHIVOS</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/upload-files/upload-files.component.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="779249781667594947" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{files.length}}"/> de 3 archivos cargados</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/upload-files/upload-files.component.html</context>
+          <context context-type="linenumber">11,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5826199160405288595" datatype="html">
+        <source>Consulta información del usuario</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/user-query/user-query.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8831685574209355250" datatype="html">
+        <source>Ingresa tu tipo y número de documento</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/user-query/user-query.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4469759344124579042" datatype="html">
+        <source>Cédula de extrangeria</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/user-query/user-query.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4130809658808408574" datatype="html">
+        <source> CONSULTAR </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/incident/user-query/user-query.component.html</context>
+          <context context-type="linenumber">46,47</context>
         </context-group>
       </trans-unit>
     </body>

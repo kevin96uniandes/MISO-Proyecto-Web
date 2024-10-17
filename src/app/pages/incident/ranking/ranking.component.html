@@ -1,0 +1,140 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: right; margin-top: 1%">
+      <button i18n mat-raised-button class="btn-form-primary" style="margin-left: 10px" (click)="createIncident()">{{ 'CREATE_INCIDENT' | translate }}</button>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 1%">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <h5 class="title title-right">{{ 'PERSONAL_INFORMATION_TITLE' | translate }}</h5>
+      <div class="user-box">
+        <div class="d-flex mb-3 div-user-name">
+          <mat-icon>account_circle</mat-icon>
+          <span class="ms-2">{{ person.nombres }} {{ person.apellidos }}</span>
+        </div>
+        <p>Ranking: {{ ranking }} pts</p>
+        <mat-progress-bar mode="determinate" [value]="ranking" aria-label="ranking de usuario"></mat-progress-bar>
+        <br/>
+        <p><strong i18n>{{ 'IDENTITY_TYPE' | translate }}:</strong> {{person.tipo_identificacion | translateDocumentType }}</p>
+        <p><strong i18n>{{ 'IDENTITY_NUMBER' | translate }}:</strong> {{ person.numero_identificacion }}</p>
+        <p><strong i18n>{{ 'PHONE' | translate }}:</strong> {{ person.telefono }}</p>
+        <p><strong i18n>{{ 'EMAIL' | translate }}:</strong> {{person.correo_electronico}}</p>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <h5 class="title">{{ 'ASSOCIATED_PRODUCTS' | translate}}</h5>
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataProducts">
+          <!-- Position Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;">{{ 'PRODUCT_NAME' | translate}}</th>
+            <td mat-cell *matCellDef="let product" style="text-align: center;">{{ product.nombre_producto }}</td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;">{{ 'CATEGORY' | translate}}</th>
+            <td mat-cell *matCellDef="let product" style="text-align: center;">{{ product.tipo }}</td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="date_of_acquisition">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;">{{ 'DATE_ADQUISITION' | translate}}</th>
+            <td mat-cell *matCellDef="let product" style="text-align: center;">{{ product.fecha_creacion | date: 'dd/MM/yyyy' }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsProducts"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsProducts"></tr>
+        </table>
+
+        <mat-paginator
+          #paginatorProducts
+          [pageSizeOptions]="[4]"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements">
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 1%">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <h5 class="title title-right">{{ 'CALLS_LOG' | translate }}</h5>
+      <div class="mat-elevation-z8" style="margin-left: 2%">
+        <table mat-table [dataSource]="dataCalls">
+          <!-- Position Column -->
+          <ng-container matColumnDef="watch">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> {{ 'WATCH' | translate }} </th>
+            <td mat-cell *matCellDef="let call" style="text-align: center;">
+              <button mat-icon-button class="search-button" (click)="watchCallDetail(call)" [attr.aria-label]="'SEARCH' | translate">
+                <mat-icon>search</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="duration">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> {{ 'DURATION' | translate }} </th>
+            <td mat-cell *matCellDef="let call" style="text-align: center;">{{ call.duracion }}</td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="call_date">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;">{{ 'CALL_DATE' | translate }}</th>
+            <td mat-cell *matCellDef="let call" style="text-align: center;">{{ call.fecha_hora_llamada | date: 'dd/MM/yyyy' }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsCalls"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsCalls"></tr>
+        </table>
+
+        <mat-paginator
+          #paginatorCalls
+          [pageSizeOptions]="[4]"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements">
+        </mat-paginator>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <h5 class="title title-right">{{ 'INCIDENTS_LOG' | translate }}</h5>
+      <div class="mat-elevation-z8" style="margin-left: 2%">
+        <table mat-table [dataSource]="dataIncidents">
+          <!-- Position Column -->
+          <ng-container matColumnDef="watch">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> {{ 'WATCH' | translate }} </th>
+            <td mat-cell *matCellDef="let incident" style="text-align: center;">
+              <button mat-icon-button class="search-button" (click)="watchIncidentDetail(incident)" [attr.aria-label]="'SEARCH' | translate">
+                <mat-icon>search</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="subject_incident">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;">{{ 'INCIDENT' | translate }}</th>
+            <td mat-cell *matCellDef="let incident" style="text-align: center;">{{ incident.asunto }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;">{{ 'STATUS' | translate }}</th>
+            <td mat-cell *matCellDef="let incident" style="text-align: center;">{{ incident.estado_nombre }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="creation_date">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;">{{ 'OPENING_DATE' | translate }}</th>
+            <td mat-cell *matCellDef="let incident" style="text-align: center;">{{ incident.fecha_creacion | date: 'dd/MM/yyyy' }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsIncidents"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsIncidents"></tr>
+        </table>
+
+        <mat-paginator
+          #paginatorIncidents
+          [pageSizeOptions]="[4]"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements">
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

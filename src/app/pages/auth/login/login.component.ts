@@ -7,14 +7,17 @@ import { TextFieldModule } from '@angular/cdk/text-field';
 import {MatButtonModule} from '@angular/material/button';
 import {NgOptimizedImage} from "@angular/common";
 import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import { JwtHelperService } from "@auth0/angular-jwt";
 import { StorageService } from '../../../common/storage.service';
 import Swal from 'sweetalert2';
-import {LoginService} from "./login.service";
+import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
 import {EMPTY, merge} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {Login} from "./login";
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
+
 
 interface Language {
   value: string;
@@ -34,6 +37,7 @@ interface Language {
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
+    TranslateModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
@@ -49,12 +53,15 @@ export class LoginComponent {
   helper = new JwtHelperService();
 
   constructor(
-    private loginService: LoginService,
+    private loginService: AuthService,
     private storageService: StorageService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private translate: TranslateService
   ) {
     this.selectedValue = "es";
+
+    this.translate.setDefaultLang(this.selectedValue);
 
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]],
@@ -114,6 +121,12 @@ export class LoginComponent {
   clickEvent(event: MouseEvent) {
     this.hide.set(!this.hide());
     event.stopPropagation();
+  }
+  changeLanguage(lang: string) {
+    console.log(lang)
+    this.selectedValue = lang;
+    this.translate.use(lang);
+    this.storageService.setItem("language", lang)
   }
 
 }

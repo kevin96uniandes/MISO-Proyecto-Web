@@ -1,39 +1,39 @@
 <div class="container-fluid user-query-container">
     <div class="title-section">
-      <h1 class="title-text-color">Consulta información del usuario</h1>
-      <p class="subtitle">Ingresa tu tipo y número de documento</p>
+      <h1 class="title-text-color">{{ 'USER_QUERY_TITLE' | translate }}</h1>
+      <p class="subtitle">{{ 'USER_QUERY_DETAIL' | translate }}</p>
     </div>
     <form [formGroup]="userQueryForm" (ngSubmit)="userQuery()">
       <div>
         <mat-form-field appearance="outline" style="width: 20%">
-          <mat-label>Tipo de documento</mat-label>
+          <mat-label>{{ 'IDENTITY_TYPE' | translate }}</mat-label>
           <mat-select formControlName="identityType" required>
-            <mat-option value="Cédula_Cuidadania">Cédula de ciudadanía</mat-option>
-            <mat-option value="Pasaporte">Pasaporte</mat-option>
-            <mat-option value="Cédula_Extrangeria">Cédula de extrangeria</mat-option>
+            <mat-option value="Cédula_Cuidadania">{{ 'CC' | translate }}</mat-option>
+            <mat-option value="Pasaporte">{{ 'PASAPORTE' | translate }}</mat-option>
+            <mat-option value="Cédula_Extrangeria">{{ 'CE' | translate }}</mat-option>
           </mat-select>
         </mat-form-field>
-        <div class="error-container alert alert-danger alert-dismissible fade show" *ngIf="userQueryForm.get('identityType')!.hasError('required') && userQueryForm.get('identityType')!.touched">
-          El campo tipo de documento es requerido
+        <div class="error-container alert alert-danger alert-dismissible fade show" *ngIf="userQueryForm.get('identityType')!.hasError('required') && userQueryForm.get('identityType')!.touched" i18n>
+          {{ 'IDENTITY_TYPE_REQUIRED' | translate }} 
        </div>
       </div>
       <div>
           <mat-form-field appearance="outline" style="width: 20%">
-              <mat-label>Número de documento</mat-label>
+              <mat-label>{{ 'IDENTITY_NUMBER' | translate }} </mat-label>
               <input
                 formControlName="identityNumber"
                 matInput
-                placeholder="Numero de documento"
+                [placeholder]="'IDENTITY_NUMBER' | translate"
               />
           </mat-form-field>
-          <div class="error-container alert alert-danger alert-dismissible fade show" *ngIf="userQueryForm.get('identityNumber')!.hasError('required') && userQueryForm.get('identityNumber')!.touched">
-              el numero de documento es requerido
+          <div class="error-container alert alert-danger alert-dismissible fade show" *ngIf="userQueryForm.get('identityNumber')!.hasError('required') && userQueryForm.get('identityNumber')!.touched" i18n>
+            {{ 'IDENTITY_NUMBER_REQUIRED' | translate }}
             </div>
-            <div class="error-container alert alert-danger alert-dismissible fade show" *ngIf="(userQueryForm.get('identityNumber')!.hasError('minlength') || userQueryForm.get('identityNumber')!.hasError('maxlength'))">
-              el numero de documento debe tener un tamaño de 2 a 12 caracteres
+            <div class="error-container alert alert-danger alert-dismissible fade show" *ngIf="(userQueryForm.get('identityNumber')!.hasError('minlength') || userQueryForm.get('identityNumber')!.hasError('maxlength'))" i18n>
+              {{ 'IDENTITY_NUMBER_SIZE' | translate }}
            </div>
-           <div class="error-container alert alert-danger alert-dismissible fade show" *ngIf="(userQueryForm.get('identityNumber')!.hasError('pattern'))">
-              El numero de identificación debe ser un valor numérico
+           <div class="error-container alert alert-danger alert-dismissible fade show" *ngIf="(userQueryForm.get('identityNumber')!.hasError('pattern'))" i18n>
+            {{ 'IDENTITY_NUMBER_FORMAT' | translate }}
           </div>
       </div>
       <button
@@ -42,7 +42,7 @@
         class="btn-form-primary"
         style="margin-left: 10px"
       >
-        CONSULTAR
+      {{ 'SEARCH' | translate }}
       </button>
     </form>
   </div>

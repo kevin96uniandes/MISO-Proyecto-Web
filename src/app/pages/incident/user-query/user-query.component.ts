@@ -8,6 +8,8 @@ import { IncidentService } from '../incident.service';
 import { Person } from '../../auth/person';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { StorageService } from '../../../common/storage.service';
 
 @Component({
   selector: 'app-user-query',
@@ -17,7 +19,8 @@ import Swal from 'sweetalert2';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    TranslateModule
   ],
   templateUrl: './user-query.component.html',
   styleUrl: './user-query.component.scss'
@@ -27,10 +30,16 @@ export class UserQueryComponent {
   userQueryForm!: FormGroup
 
  constructor(private formBuilder: FormBuilder,
+  private storageService: StorageService,
+  private translate: TranslateService,
   private incidentService: IncidentService,
   private router: Router){}
 
   ngOnInit(): void { 
+
+    const lang = this.storageService.getItem("language")
+    this.translate.use(lang || 'es')
+
     this.userQueryForm = this.formBuilder.group({
       identityType: ["", Validators.required],
       identityNumber: ["", [Validators.required, Validators.minLength(2), Validators.maxLength(12), Validators.pattern('^[0-9]*$') ]]

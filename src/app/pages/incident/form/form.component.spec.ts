@@ -14,6 +14,8 @@ import { StorageService } from '../../../common/storage.service';
 import Swal from 'sweetalert2';
 import { of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { LangChangeEvent, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { EventEmitter } from '@angular/core';
 
 describe('FormComponent', () => {
 
@@ -22,22 +24,41 @@ describe('FormComponent', () => {
   let mockIncidentService: jasmine.SpyObj<IncidentService>;
   let mockStorageService: jasmine.SpyObj<StorageService>;
   let mockRouter: jasmine.SpyObj<Router>;
+  let translateServiceMock: any;
+  let translateService: any;
+
 
 
   beforeEach(async () => {
 
     mockIncidentService = jasmine.createSpyObj('IncidentService', ['createIncident']);
-    const mockStorageService = {
-      getItem: jasmine.createSpy('getItem').and.returnValue(JSON.stringify({ id: faker.datatype.uuid() }))
-    };
+    mockStorageService = jasmine.createSpyObj('StorageService', ['getItem']);
+    mockStorageService.getItem.and.returnValue(JSON.stringify({ id: faker.datatype.uuid() })); 
     mockRouter = jasmine.createSpyObj('Router', ['navigate']); 
 
+    
+    translateService = jasmine.createSpyObj('TranslateService', ['use', 'get']);
+    translateServiceMock = {
+      currentLang: 'es',
+      onLangChange: new EventEmitter<LangChangeEvent>(),
+      use: translateService.get,
+      get: translateService.get.and.returnValue(of('')),
+      onTranslationChange: new EventEmitter(),
+      onDefaultLangChange: new EventEmitter()
+    };
+
+    translateServiceMock.get.and.returnValue(of({})); 
+    translateServiceMock.use.and.returnValue(of({}));
+
+
     await TestBed.configureTestingModule({
-      imports: [FormComponent, ReactiveFormsModule, BrowserAnimationsModule],
+      imports: [FormComponent, ReactiveFormsModule, BrowserAnimationsModule, TranslateModule.forRoot() 
+      ],
       providers: [
         { provide: IncidentService, useValue: mockIncidentService },
-        { provide: StorageService, useValue: mockStorageService },
         { provide: Router, useValue: mockRouter },
+        { provide: TranslateService, useValue: translateServiceMock },  
+        { provide: StorageService, useValue: mockStorageService },
         provideHttpClient(),
         provideHttpClientTesting(),
         {
@@ -268,6 +289,11 @@ describe('FormComponent', () => {
   it('should call createIncident and display success message on successful creation', () => {
     const mockResponse = { codigo: 'INC1234' };
     mockIncidentService.createIncident.and.returnValue(of(mockResponse));
+    translateServiceMock.get.and.returnValue(of({
+      'SAVE_INCIDENT_SUCCESS_MESSAGE': 'Se ha creado la incidencia INC1234 con éxito',
+      'CONFIRM_BUTTON_TEXT': 'Aceptar'
+    }));
+
     spyOn(Swal, 'fire').and.returnValue(Promise.resolve({
       isConfirmed: true,
       isDenied: false,
@@ -291,7 +317,7 @@ describe('FormComponent', () => {
     expect(mockIncidentService.createIncident).toHaveBeenCalled();
      expect(Swal.fire).toHaveBeenCalledWith(jasmine.objectContaining({
       icon: 'success',
-      title: `Se ha creado la incidencia ${mockResponse['codigo']} con exito`,
+      title: `Se ha creado la incidencia INC1234 con éxito`,
       confirmButtonText: 'Aceptar',
       confirmButtonColor: '#82BDAE',
     }));
@@ -300,6 +326,9 @@ describe('FormComponent', () => {
 it('should call createIncident and display error message on failure', () => {
   const mockError = { message: 'Error creating incident' };
   mockIncidentService.createIncident.and.returnValue(throwError(() => mockError));
+  translateServiceMock.get.and.returnValue(of({
+    'SAVE_INCIDENT_ERROR_MESSAGE': 'Se ha presentado un error a la hora de crear la incidencia',
+  }));
 
   spyOn(Swal, 'fire').and.returnValue(Promise.resolve({
     isConfirmed: true,

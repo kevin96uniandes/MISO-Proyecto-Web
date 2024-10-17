@@ -8,12 +8,16 @@ import { of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { Person } from '../../auth/person';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EventEmitter } from '@angular/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 
 describe('UserQueryComponent', () => {
   let component: UserQueryComponent;
   let fixture: ComponentFixture<UserQueryComponent>;
   let incidentServiceSpy: jasmine.SpyObj<IncidentService>;
   let routerSpy: jasmine.SpyObj<Router>;
+  let translateService: any;
+  let translateServiceMock: any;
 
 
   beforeEach(async () => {
@@ -21,12 +25,26 @@ describe('UserQueryComponent', () => {
     const incidentServiceMock = jasmine.createSpyObj('IncidentService', ['getPersonByIdentity']);
     const routerMock = jasmine.createSpyObj('Router', ['navigate']);
 
+    translateService = jasmine.createSpyObj('TranslateService', ['use', 'get']);
+    translateServiceMock = {
+      currentLang: 'es',
+      onLangChange: new EventEmitter<LangChangeEvent>(),
+      use: translateService.get,
+      get: translateService.get.and.returnValue(of('')),
+      onTranslationChange: new EventEmitter(),
+      onDefaultLangChange: new EventEmitter()
+    };
+
+    translateServiceMock.get.and.returnValue(of({})); 
+    translateServiceMock.use.and.returnValue(of({}));
+
     await TestBed.configureTestingModule({
       imports: [UserQueryComponent,  ReactiveFormsModule, BrowserAnimationsModule],
       providers: [
         FormBuilder,
         { provide: IncidentService, useValue: incidentServiceMock },
-        { provide: Router, useValue: routerMock }
+        { provide: Router, useValue: routerMock },
+        { provide: TranslateService, useValue: translateServiceMock }  
       ]
     })
     .compileComponents();

@@ -11,22 +11,45 @@ import { Person } from '../../auth/person';
 import { Product } from '../product';
 import { Call } from '../calls';
 import { Incident } from '../incident';
+import { TranslateService, TranslateModule, LangChangeEvent } from '@ngx-translate/core';
+import { StorageService } from '../../../common/storage.service';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { EventEmitter } from '@angular/core';
 
 describe('RankingComponent', () => {
   let component: RankingComponent;
   let fixture: ComponentFixture<RankingComponent>;
   let incidentServiceMock: any;
   let routerMock: any;
+  let translateService: any;
+  let translateServiceMock: any;
+  let storageServiceMock: any;
+
 
   beforeEach(waitForAsync(() => {
     incidentServiceMock = jasmine.createSpyObj('IncidentService', ['getIncidentByIdPerson', 'getCallsByIdPerson', 'getProductsByPerson']);
-    routerMock = jasmine.createSpyObj('Router', ['navigate']);
-
     incidentServiceMock.getIncidentByIdPerson.and.returnValue(of([]));  
     incidentServiceMock.getCallsByIdPerson.and.returnValue(of([]));    
-    incidentServiceMock.getProductsByPerson.and.returnValue(of([])); 
+    incidentServiceMock.getProductsByPerson.and.returnValue(of([]));
+
+    routerMock = jasmine.createSpyObj('Router', ['navigate']);
+
+    translateService = jasmine.createSpyObj('TranslateService', ['use', 'get']);
+    translateServiceMock = {
+      currentLang: 'es',
+      onLangChange: new EventEmitter<LangChangeEvent>(),
+      use: translateService.get,
+      get: translateService.get.and.returnValue(of('')),
+      onTranslationChange: new EventEmitter(),
+      onDefaultLangChange: new EventEmitter()
+    };
+
+    translateServiceMock.get.and.returnValue(of({})); 
+    translateServiceMock.use.and.returnValue(of({}));
+
+    storageServiceMock = jasmine.createSpyObj('StorageService', ['getItem']);
+    storageServiceMock.getItem.and.returnValue('en');  
 
     TestBed.configureTestingModule({
       imports: [
@@ -34,11 +57,14 @@ describe('RankingComponent', () => {
         MatPaginatorModule,
         MatTableModule,
         MatCardModule,
-        MatIconModule
+        MatIconModule,
+        TranslateModule.forRoot() 
       ],
       providers: [
         { provide: IncidentService, useValue: incidentServiceMock },
         { provide: Router, useValue: routerMock },
+        { provide: TranslateService, useValue: translateServiceMock }, 
+        { provide: StorageService, useValue: storageServiceMock },
         provideHttpClient(),
         provideHttpClientTesting()
       ]
@@ -73,6 +99,7 @@ describe('RankingComponent', () => {
         tipo_id: 1 
       }
     ];
+
     incidentServiceMock.getIncidentByIdPerson.and.returnValue(of(mockIncidents));
 
     component.ngAfterViewInit();

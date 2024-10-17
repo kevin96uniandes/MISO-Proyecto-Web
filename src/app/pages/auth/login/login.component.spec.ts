@@ -7,8 +7,11 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { of, throwError } from 'rxjs';
 import Swal from 'sweetalert2';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, provideHttpClient} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { EventEmitter } from '@angular/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -17,21 +20,41 @@ describe('LoginComponent', () => {
   let storageService: jasmine.SpyObj<StorageService>;
   let router: jasmine.SpyObj<Router>;
   let jwtHelper: jasmine.SpyObj<JwtHelperService>;
+  let translateServiceMock: any;
+  let translateService: any;
 
   beforeEach(async () => {
+
+    translateService = jasmine.createSpyObj('TranslateService', ['use', 'get', 'setDefaultLang']);
+    translateServiceMock = {
+      currentLang: 'es',
+      onLangChange: new EventEmitter<LangChangeEvent>(),
+      setDefaultLang: translateService.setDefaultLang.and.returnValue(of({})),
+      use: translateService.get,
+      get: translateService.get.and.returnValue(of('')),
+      onTranslationChange: new EventEmitter(),
+      onDefaultLangChange: new EventEmitter()
+    };
+
+    translateServiceMock.get.and.returnValue(of({})); 
+    translateServiceMock.use.and.returnValue(of({}));
+
     jwtHelper = jasmine.createSpyObj('JwtHelperService', ['decodeToken']);
     storageService = jasmine.createSpyObj('StorageService', ['setItem']);
     loginService = jasmine.createSpyObj('LoginService', ['login']);
     router = jasmine.createSpyObj('Router', ['navigate']);
 
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule],
+      imports: [ReactiveFormsModule, BrowserAnimationsModule],
       declarations: [],
       providers: [
         { provide: AuthService, useValue: loginService },
         { provide: StorageService, useValue: storageService },
         { provide: Router, useValue: router },
         { provide: JwtHelperService, useValue: jwtHelper },
+        { provide: TranslateService, useValue: translateServiceMock }, 
+        provideHttpClient(),
+        provideHttpClientTesting() 
       ]
     }).compileComponents();
 

@@ -11,17 +11,22 @@ import { Call } from '../calls';
 import { Incident } from '../incident';
 import { Person } from '../../auth/person';
 import { Router } from '@angular/router';
+import { TranslateDocumentTypePipe } from '../pipe/translate-document-type.pipe';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { StorageService } from '../../../common/storage.service';
 
 @Component({
   selector: 'app-ranking',
   standalone: true,
   imports: [
     CommonModule,
+    TranslateModule,
     MatIconModule,
     MatCardModule,
     MatTableModule,
     MatPaginatorModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    TranslateDocumentTypePipe
   ],
   templateUrl: './ranking.component.html',
   styleUrl: './ranking.component.scss'
@@ -44,14 +49,21 @@ export class RankingComponent implements AfterViewInit {
 
   constructor(private incidentService: IncidentService, 
     private router: Router,
+    private storageService: StorageService,
+    private translate: TranslateService,
     private cdr: ChangeDetectorRef) { }
 
 
   ngOnInit(): void {
+
+    const lang = this.storageService.getItem("language")
+    console.log(lang)
+
+    this.translate.use(lang || 'es')
+
     if(history.state){
       this.person = history.state?.person;
     }
-
   }
 
   ngAfterViewInit() {

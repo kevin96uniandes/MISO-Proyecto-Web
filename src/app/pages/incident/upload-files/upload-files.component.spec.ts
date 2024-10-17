@@ -1,14 +1,37 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UploadFilesComponent } from './upload-files.component';
+import { StorageService } from '../../../common/storage.service';
+import { EventEmitter } from '@angular/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { of } from 'rxjs';
 
 
 describe('UploadFilesComponent', () => {
   let component: UploadFilesComponent;
   let fixture: ComponentFixture<UploadFilesComponent>;
+  let translateServiceMock: any;
+  let translateService: any;
 
   beforeEach(async () => {
+
+    translateService = jasmine.createSpyObj('TranslateService', ['use', 'get']);
+    translateServiceMock = {
+      currentLang: 'es',
+      onLangChange: new EventEmitter<LangChangeEvent>(),
+      use: translateService.get,
+      get: translateService.get.and.returnValue(of('')),
+      onTranslationChange: new EventEmitter(),
+      onDefaultLangChange: new EventEmitter()
+    };
+
+    translateServiceMock.get.and.returnValue(of({})); 
+    translateServiceMock.use.and.returnValue(of({}));
+
     await TestBed.configureTestingModule({
       imports: [UploadFilesComponent],
+      providers: [
+        { provide: TranslateService, useValue: translateServiceMock }  
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(UploadFilesComponent);
@@ -66,6 +89,10 @@ describe('UploadFilesComponent', () => {
   
 
   it('should not add a file that exceeds the maximum size', () => {
+
+    translateServiceMock.get.and.returnValue(of({
+      'FILE_SIZE_ERROR': 'El archivo excede el tamaño máximo permitido de 25 MB. <br/>',
+    }));
 
     const largeFile = new File([new Uint8Array(component.MAX_SIZE + 1)], 'largeFile.txt', {
       type: 'text/plain'

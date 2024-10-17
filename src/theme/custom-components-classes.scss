@@ -4,3 +4,11 @@
   --mdc-filled-button-container-color: var($abcall-primary-color) !important;
   --mdc-filled-button-label-text-color: #fff;
 }
+
+.abc-color-primary {
+  color: $abcall-primary-color !important;
+}
+
+.abc-title-text-color {
+  color: $abcall-title-text-color !important;
+}

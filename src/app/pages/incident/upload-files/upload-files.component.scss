@@ -1,0 +1,40 @@
+
+.file-upload-section {
+    padding: 20px;
+    border-radius: 10px;
+    border-style: groove;
+  }
+
+  .upload-icon {
+    font-size: 50px;
+    width: 50px;
+    height: 50px;
+    color: #82BDAE;
+  }
+
+  .text-upload {
+    color: #82BDAE;
+  }
+
+  .btn-form-primary {
+    background-color:#82BDAE !important; /* Aplica el color de fondo */
+    color: #fff !important; /* Aplica el color del texto */
+    border-style: groove;
+    border-color: gray;
+  }
+
+  .mat-mdc-icon-button{
+    border: none;
+    background-color: white;
+  }
+
+ .trash-icon:hover {
+    color: #e57373; /* Color de hover rojo suave */
+  }
+  
+ .mat-raised-button[disabled] {
+    background-color: #e0e0e0 !important;  /* Color gris claro para el fondo */
+    color: #9e9e9e !important;             /* Color gris oscuro para el texto */
+    box-shadow: none;            /* Eliminar la sombra */
+    cursor: not-allowed;         /* Cambiar el cursor cuando esté deshabilitado */
+  }

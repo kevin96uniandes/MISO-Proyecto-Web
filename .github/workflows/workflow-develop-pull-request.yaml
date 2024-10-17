@@ -24,10 +24,10 @@ jobs:
         # npm run test:prod
 
   merge-develop:
+    if: ${{ contains(github.event.head_commit.message, 'develop') }}
     needs: workflow_angular
     runs-on: ubuntu-latest
     steps:
-      - if: ${{ contains(github.event.head_commit.message, 'develop') }}
       - name: Getting branch name for merge
         id: branch-name
         uses: tj-actions/branch-names@v6

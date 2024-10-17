@@ -50,6 +50,7 @@
                   <mat-form-field appearance="outline" class="w-100">
                     <mat-label i18n>{{ 'CONTRASENA' | translate }}</mat-label>
                     <input
+                      id="txt-password"
                       matInput
                       [placeholder]="'CONTRASENA' | translate"
                       [type]="hide() ? 'password' : 'text'"
@@ -76,10 +77,10 @@
               <div class="row mt-3">
                 <div class="col-12">
                   <button
+                    id="btn-signin"
                     mat-flat-button
                     class="btn-abc-primary w-100"
                     [disabled]="!loginForm.valid"
-                    i18n
                   >
                     {{ 'INGRESAR' | translate }}
                   </button>

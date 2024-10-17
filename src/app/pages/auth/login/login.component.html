@@ -9,8 +9,8 @@
           <div class="row pe-2 mt-2">
             <div class="col-12 d-flex flex-row justify-content-end">
               <mat-form-field>
-                <mat-label>Idioma</mat-label>
-                <mat-select [(ngModel)]="selectedValue" name="language" id="s-language">
+                <mat-label i18n>{{ 'IDIOMA' | translate }}</mat-label>
+                <mat-select [(ngModel)]="selectedValue" (selectionChange)="changeLanguage(selectedValue)" name="food">
                   @for (language of languages; track language) {
                     <mat-option [value]="language.value">{{language.viewValue}}</mat-option>
                   }
@@ -25,21 +25,19 @@
           >
             <div class="row">
               <div class="col-12 text-center">
-                <h2 class="title-text-color" i18n>Iniciar sesión</h2>
+                <h2 class="title-text-color">{{ 'INICIAR_SESION_TITULO' | translate }}</h2>
               </div>
             </div>
             <div class="container-form-components">
               <div class="row mt-3">
                 <div class="col-12">
                   <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Usuario</mat-label>
-                    <input
-                      id="txt-username"
-                      matInput
-                      placeholder="example"
-                      formControlName="username"
-                      (blur)="updateErrorUsernameMessage()"
-                      required
+                    <mat-label i18n>{{ 'USUARIO' | translate }}</mat-label>
+                    <input matInput
+                           [placeholder]="'USUARIO' | translate"
+                           formControlName="username"
+                           (blur)="updateErrorUsernameMessage()"
+                           required
                     >
                     @if (loginForm.get("username")?.invalid) {
                       <mat-error>{{errorUsernameMessage()}}</mat-error>
@@ -50,11 +48,11 @@
               <div class="row mt-3">
                 <div class="col-12">
                   <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Contraseña</mat-label>
+                    <mat-label i18n>{{ 'CONTRASENA' | translate }}</mat-label>
                     <input
                       id="txt-password"
                       matInput
-                      placeholder="Placeholder"
+                      [placeholder]="'CONTRASENA' | translate"
                       [type]="hide() ? 'password' : 'text'"
                       formControlName="password"
                       (blur)="updateErrorPasswordMessage()"
@@ -84,16 +82,14 @@
                     class="btn-abc-primary w-100"
                     [disabled]="!loginForm.valid"
                   >
-                    INGRESAR
+                    {{ 'INGRESAR' | translate }}
                   </button>
                 </div>
               </div>
               <div class="row mt-3">
                 <div class="col-12">
-                  <button
-                    id="btn-register"
-                    mat-stroked-button class="w-100">
-                    REGISTRARSE
+                  <button mat-stroked-button class="w-100" i18n>
+                    {{ 'REGISTRARSE' | translate }}
                   </button>
                 </div>
               </div>

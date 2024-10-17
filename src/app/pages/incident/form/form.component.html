@@ -3,162 +3,165 @@
     (ngSubmit)="createIncident()">
         <div class="row">
         <div class="col-12 text-center">
-            <h4 class="title-text-color title-size">Datos de contacto</h4>
+            <h4 class="title-text-color title-size">{{ 'CONTACT_INFORMATION' | translate }}</h4>
         </div>
         </div>
         <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-12">
             <mat-form-field appearance="outline" class="w-100">
-              <mat-label>Nombres</mat-label>
-              <input formControlName="name" matInput placeholder="Nombre cliente">
+              <mat-label>{{ 'NAME' | translate }}</mat-label>
+              <input formControlName="name" matInput [placeholder]="'NAME_PLACEHOLDER' | translate">
             </mat-form-field>
             <div class="alert alert-danger alert-dismissible fade show" *ngIf="incidentForm.get('name')!.hasError('required') && incidentForm.get('name')!.touched">
-                El campo nombre es requerido
+                 {{ 'REQUIRED_NAME' | translate }} 
             </div>
             <div class="alert alert-danger alert-dismissible fade show" *ngIf="(incidentForm.get('name')!.hasError('minlength') || incidentForm.get('name')!.hasError('maxlength'))">
-                El tamaño del nombre debe ser de minimo 2 y maximo 100 caracteres
+              {{ 'REQUIRED_NAME_SIZE' | translate }}
             </div>
           </div>
           <div class="col-lg-4 col-md-6 col-sm-12">
             <mat-form-field appearance="outline" class="w-100">
-              <mat-label>Apellidos</mat-label>
-              <input formControlName="lastName" matInput placeholder="Apellido cliente">
+              <mat-label>{{ 'LASTNAME' | translate }}</mat-label>
+              <input formControlName="lastName" matInput [placeholder]="'LASTNAME_PLACEHOLDER' | translate">
             </mat-form-field>
-            <div class="alert alert-danger alert-dismissible fade show" *ngIf="incidentForm.get('lastName')!.hasError('required') && incidentForm.get('lastName')!.touched">
-                El campo apellidos es requerido
+            <div i18n class="alert alert-danger alert-dismissible fade show" *ngIf="incidentForm.get('lastName')!.hasError('required') && incidentForm.get('lastName')!.touched">
+              {{ 'REQUIRED_LASTNAME' | translate }} 
             </div>
             <div class="alert alert-danger alert-dismissible fade show" *ngIf="(incidentForm.get('lastName')!.hasError('minlength') || incidentForm.get('lastName')!.hasError('maxlength'))">
-                El tamaño del apellido debe ser de minimo 2 y maximo 100 caracteres
+              {{ 'REQUIRED_LASTNAME_SIZE' | translate }}
             </div>
           </div>
           <div class="col-lg-4 col-md-6 col-sm-12">
             <mat-form-field appearance="outline" class="w-100">
-              <mat-label>Correo electrónico</mat-label>
+              <mat-label>{{ 'EMAIL' | translate }}</mat-label>
               <input formControlName="emailClient" matInput placeholder="xxxxxxxx@xxx.xxx">
             </mat-form-field>
             <div class="alert alert-danger alert-dismissible fade show" *ngIf="incidentForm.get('emailClient')!.hasError('required') && incidentForm.get('emailClient')!.touched">
-                El campo correo electronico es requerido
+              {{ 'REQUIRED_EMAIL' | translate }}
             </div>
             <div class="alert alert-danger alert-dismissible fade show" *ngIf="(incidentForm.get('emailClient')!.hasError('minlength') || incidentForm.get('emailClient')!.hasError('maxlength'))">
-                El tamaño del correo electrónico debe ser de minimo 2 y maximo 100 caracteres
+              {{ 'REQUIRED_EMAIL_SIZE' | translate }}
             </div>
-            <div class="alert alert-danger alert-dismissible fade show" *ngIf="(incidentForm.get('emailClient')!.hasError('pattern'))">
-                El correo electronico debe tener un formato valido 
+            <div i18n class="alert alert-danger alert-dismissible fade show" *ngIf="(incidentForm.get('emailClient')!.hasError('pattern'))">
+              {{ 'REQUIRED_EMAIL_SIZE' | translate }}  
             </div>
           </div>
         </div>
         <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-12">
             <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Tipo de documento</mat-label>
+                <mat-label>{{ 'IDENTITY_TYPE' | translate }}</mat-label>
                 <mat-select formControlName="identityType">
-                  <mat-option value="cc">Cédula de ciudadanía</mat-option>
-                  <mat-option value="ce">Cédula de extranjería</mat-option>
-                  <mat-option value="pasaporte">Pasaporte</mat-option>
+                  <mat-option value="Cédula_Cuidadania">{{ 'CC' | translate }}</mat-option>
+                  <mat-option value="Cédula_Extrangeria">{{ 'CE' | translate }}</mat-option>
+                  <mat-option value="Pasaporte">{{ 'PASAPORTE' | translate }}</mat-option>
                 </mat-select>
               </mat-form-field>
               <div class="alert alert-danger alert-dismissible fade show" *ngIf="incidentForm.get('identityType')!.hasError('required') && incidentForm.get('identityType')!.touched">
-                El campo nombre es requerido
+                {{ 'IDENTITY_TYPE_REQUIRED' | translate }}
              </div>
           </div>
           <div class="col-lg-4 col-md-6 col-sm-12">
             <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Número de documento</mat-label>
-                <input formControlName="identityNumber" matInput placeholder="Numero de documento">
+                <mat-label>{{ 'IDENTITY_NUMBER' | translate }}</mat-label>
+                <input formControlName="identityNumber" matInput [placeholder]="'REQUIRED_IDENTITY_TYPE_PLACEHOLDER' | translate">
               </mat-form-field>
               <div class="alert alert-danger alert-dismissible fade show" *ngIf="incidentForm.get('identityNumber')!.hasError('required') && incidentForm.get('identityNumber')!.touched">
-                el numero de documento es requerido
+                {{ 'IDENTITY_TYPE_REQUIRED' | translate }}
               </div>
-              <div class="alert alert-danger alert-dismissible fade show" *ngIf="(incidentForm.get('identityNumber')!.hasError('minlength') || incidentForm.get('identityNumber')!.hasError('maxlength'))">
-                el numero de documento debe tener un tamaño de 2 a 12 caracteres
+              <div i18n class="alert alert-danger alert-dismissible fade show" *ngIf="(incidentForm.get('identityNumber')!.hasError('minlength') || incidentForm.get('identityNumber')!.hasError('maxlength'))">
+                {{ 'REQUIRED_IDENTITY_TYPE_SIZE' | translate }} 
              </div>
-             <div class="alert alert-danger alert-dismissible fade show" *ngIf="(incidentForm.get('identityNumber')!.hasError('pattern'))">
-                El numero de identificación debe ser un valor numérico
+             <div i18n class="alert alert-danger alert-dismissible fade show" *ngIf="(incidentForm.get('identityNumber')!.hasError('pattern'))">
+              {{ 'REQUIRED_IDENTITY_TYPE_FORMAT' | translate }}  
             </div>
           </div>
           <div class="col-lg-4 col-md-6 col-sm-12">
             <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Celular</mat-label>
-                <input formControlName="cellPhone" matInput placeholder="Celular del cliente">
+                <mat-label>{{ 'CELLPHONE' | translate }}</mat-label>
+                <input formControlName="cellPhone" matInput [placeholder]="'CELLPHONE_PLACEHOLDER' | translate">
               </mat-form-field>
               <div class="alert alert-danger alert-dismissible fade show" *ngIf="incidentForm.get('cellPhone')!.hasError('required') && incidentForm.get('cellPhone')!.touched">
-                el celular es requerido
+                {{ 'REQUIRED_CELLPHONE' | translate }} 
               </div>
-              <div class="alert alert-danger alert-dismissible fade show" *ngIf="(incidentForm.get('cellPhone')!.hasError('minlength') || incidentForm.get('cellPhone')!.hasError('maxlength'))">
-                el celular debe tener un tamaño de 2 a 12 caracteres
+              <div i18n class="alert alert-danger alert-dismissible fade show" *ngIf="(incidentForm.get('cellPhone')!.hasError('minlength') || incidentForm.get('cellPhone')!.hasError('maxlength'))">
+                {{ 'REQUIRED_CELLPHONE_SIZE' | translate }}
              </div>
-             <div class="alert alert-danger alert-dismissible fade show" *ngIf="(incidentForm.get('cellPhone')!.hasError('pattern'))">
-                El celular debe ser un valor numérico
+             <div i18n class="alert alert-danger alert-dismissible fade show" *ngIf="(incidentForm.get('cellPhone')!.hasError('pattern'))">
+              {{ 'REQUIRED_CELLPHONE_FORMAT' | translate }}
             </div>
           </div>
         </div>
         <div class="row">
             <div class="col-12 text-center">
-                <h4 class="title-text-color title-size">Datos de tu incidencia</h4>
+                <h4 class="title-text-color title-size">{{ 'INCIDENT_DETAIL' | translate }}</h4>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Tipo de incidencia</mat-label>
+                    <mat-label>{{ 'INCIDENT_DETAIL' | translate }}</mat-label>
                     <mat-select formControlName="incidentType">
-                      <mat-option value="Petición">Petición</mat-option>
-                      <mat-option value="Queja/Reclamo">Queja/Reclamo</mat-option>
-                      <mat-option value="Sugerencia">Sugerencia</mat-option>
+                      <mat-option i18n value="Petición">{{ 'REQUEST' | translate }}</mat-option>
+                      <mat-option i18n value="Queja/Reclamo">{{ 'COMPLAIN-CLAIM' | translate }} </mat-option>
+                      <mat-option i18n value="Sugerencia">{{ 'SUGGESTION' | translate }}</mat-option>
                     </mat-select>
                   </mat-form-field>
                   <div class="alert alert-danger alert-dismissible fade show" *ngIf="incidentForm.get('incidentType')!.hasError('required') && incidentForm.get('incidentType')!.touched">
-                    El campo tipo de incidencia es requerido
+                    {{ 'INCIDENT_TYPE_REQUIRED' | translate }}
                  </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Canal</mat-label>
+                    <mat-label>{{ 'INCIDENT_CHANNEL' | translate }}</mat-label>
                     <mat-select formControlName="incidentChannel">
-                      <mat-option value="Llamada Telefónica">Llamada Telefónica</mat-option>
-                      <mat-option value="Correo Electrónico">Correo Electrónico</mat-option>
-                      <mat-option value="App Movil">App Movil</mat-option>
+                      <mat-option value="Llamada Telefónica">{{ 'INCIDENT_CHANNEL_CALL' | translate }}</mat-option>
+                      <mat-option value="Correo Electrónico">{{ 'INCIDENT_CHANNEL_EMAIL' | translate }}</mat-option>
+                      <mat-option value="App Movil">{{ 'INCIDENT_CHANNEL_APP' | translate }}</mat-option>
                     </mat-select>
                   </mat-form-field>
                   <div class="alert alert-danger alert-dismissible fade show" *ngIf="incidentForm.get('incidentChannel')!.hasError('required') && incidentForm.get('incidentChannel')!.touched">
-                    El campo nombre es requerido
+                    {{ 'REQUIRED_INCIDENT_CHANNEL' | translate }}
                  </div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Asunto</mat-label>
-                    <input formControlName="incidentSubject" matInput placeholder="Asunto de la incidencia">
+                    <mat-label>{{ 'INCIDENT_SUBJECT' | translate }}</mat-label>
+                    <input formControlName="incidentSubject" matInput [placeholder]="'INCIDENT_SUBJECT_PLACEHOLDER' | translate">
                 </mat-form-field>
                 <div class="alert alert-danger alert-dismissible fade show" *ngIf="incidentForm.get('incidentSubject')!.hasError('required') && incidentForm.get('incidentSubject')!.touched">
-                    El asunto es requerido
+                  {{ 'REQUIRED_INCIDENT_SUBJECT' | translate }}
                   </div>
                   <div class="alert alert-danger alert-dismissible fade show" *ngIf="(incidentForm.get('incidentSubject')!.hasError('minlength') || incidentForm.get('incidentSubject')!.hasError('maxlength'))">
-                    el asunto debe tener un tamaño de 2 a 100 caracteres
+                    {{ 'REQUIRED_INCIDENT_SUBJECT_SIZE' | translate }}
                  </div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Observaciones de la incidencia</mat-label>
-                    <textarea formControlName="incidentDetail" matInput placeholder="Este es el detalle de la incidencia" style="height: 150px;"></textarea>
+                    <mat-label>{{ 'INCIDENT_DETAIL' | translate }}</mat-label>
+                    <textarea formControlName="incidentDetail" matInput [placeholder]="'INCIDENT_DETAIL_PLACEHOLDER' | translate " style="height: 150px;"></textarea>
                 </mat-form-field>
                 <div class="alert alert-danger alert-dismissible fade show" *ngIf="(incidentForm.get('incidentDetail')!.hasError('required') && incidentForm.get('incidentDetail')!.touched)">
-                    El detalle de la incidencia es requerido
+                  {{ 'REQUIRED_INCIDENT_DETAIL' | translate }}
                   </div>
-                  <div class="alert alert-danger alert-dismissible fade show" *ngIf="(incidentForm.get('incidentDetail')!.hasError('minlength') || incidentForm.get('incidentDetail')!.hasError('maxlength'))">
-                    el detalle de la incidencia debe tener un tamaño de 2 a 100 caracteres
+                  <div i18n class="alert alert-danger alert-dismissible fade show" *ngIf="(incidentForm.get('incidentDetail')!.hasError('minlength') || incidentForm.get('incidentDetail')!.hasError('maxlength'))">
+                    {{ 'REQUIRED_INCIDENT_DETAIL_SIZE' | translate }}
                  </div>
             </div>
         </div>
         <app-upload-files (filesChanged)="onFilesChanged($event)"></app-upload-files>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: center; margin-bottom: 10px">
-                <button mat-raised-button class="btn-form-secondary" style="width: 180px;">VOLVER</button>
-                <button type="submit" mat-raised-button class="btn-form-primary" style="margin-left: 10px">GUARDAR INCIDENCIA</button>
+                <button i18n mat-raised-button (click)="goBack()" class="btn-form-secondary" style="width: 180px;">{{ 'GO_BACK' | translate }}</button>
+                <button i18n type="submit" mat-raised-button class="btn-form-primary" style="margin-left: 10px">{{ 'SAVE_INCIDENT' | translate }}</button>
             </div>
         </div>
     </form>
+</div>
+<div *ngIf="isLoading" class="loading-overlay">
+  <mat-spinner></mat-spinner>
 </div>

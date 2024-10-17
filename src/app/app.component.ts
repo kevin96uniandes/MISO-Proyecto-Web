@@ -6,6 +6,7 @@ import { FormComponent } from './pages/incident/form/form.component';
 @Component({
   selector: 'app-root',
   standalone: true,
+  providers: [],
   imports: [RouterOutlet, LoginComponent, FormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

@@ -11,7 +11,7 @@ import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-transla
 import Swal from 'sweetalert2';
 import { Person } from '../../auth/person';
 import { StorageService } from '../../../common/storage.service';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-form',
@@ -48,7 +48,7 @@ export class FormComponent {
   ngOnInit(): void {
 
     const lang = this.storageService.getItem("language")
-    this.translate.use(lang || 'es')
+    this.translate.use(lang ?? 'es')
 
     this.person = history.state?.person;
     console.log('form ' + this.person)

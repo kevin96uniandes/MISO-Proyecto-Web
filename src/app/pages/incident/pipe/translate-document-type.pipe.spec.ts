@@ -28,19 +28,19 @@ describe('TranslateDocumentTypePipe', () => {
 
   it('debería traducir "Cédula_Cuidadania" correctamente al español', () => {
     storageServiceMock.getItem.and.returnValue('es');  
-    expect(pipe.transform('Cédula_Cuidadania')).toBe('Cédula de Ciudadanía');
+    expect(pipe.transform('1')).toBe('Cédula de Ciudadanía');
   });
 
   it('debería traducir "Cédula_Extrangeria" correctamente al inglés', () => {
     storageServiceMock.getItem.and.returnValue('en');  
     pipe.lang = storageServiceMock.getItem('language');
     
-    expect(pipe.transform('Cédula_Extrangeria')).toBe('Foreigner ID');
+    expect(pipe.transform('2')).toBe('Foreigner ID');
 });
 
   it('debería usar el idioma por defecto si no hay valor en storageService', () => {
     storageServiceMock.getItem.and.returnValue(null);  
-    expect(pipe.transform('Pasaporte')).toBe('Pasaporte');
+    expect(pipe.transform('4')).toBe('Pasaporte');
   });
 
   it('debería devolver el valor original si no encuentra una traducción', () => {

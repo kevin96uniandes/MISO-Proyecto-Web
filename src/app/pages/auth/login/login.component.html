@@ -34,6 +34,7 @@
                   <mat-form-field appearance="outline" class="w-100">
                     <mat-label i18n>{{ 'USUARIO' | translate }}</mat-label>
                     <input matInput
+                           id="txt-username"
                            [placeholder]="'USUARIO' | translate"
                            formControlName="username"
                            (blur)="updateErrorUsernameMessage()"

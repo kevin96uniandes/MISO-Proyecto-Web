@@ -26,10 +26,10 @@ export const routes: Routes = [
       { path: 'list/agents', component: ListAgentsComponent }
     ]
   },
-  { path: '', redirectTo:'/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/login' },
   { path: 'register/client', component: RegisterClientComponent },
   { path: 'register/agent', component: RegisterAgentComponent },
+  { path: '', redirectTo:'/login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/login' }
 ];
 
 @NgModule({

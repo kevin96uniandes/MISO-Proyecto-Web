@@ -12,11 +12,11 @@
         <mat-icon matListIcon class="sidebar-color-item">build</mat-icon>
         <span matLine class="sidebar-color-item">{{ 'INCIDENTS' | translate }}</span>
       </a>
-      <a *ngIf="currentMenuUser.agentes" mat-list-item routerLink="/agentes" class="menu-item text-center">
+      <a *ngIf="currentMenuUser.agentes" mat-list-item [routerLink]="['/dashboard/list/agents']" class="menu-item text-center">
         <mat-icon matListIcon class="sidebar-color-item">person</mat-icon>
         <span matLine class="sidebar-color-item">{{ 'AGENTS' | translate }}</span>
       </a>
-      <a *ngIf="currentMenuUser.planes" mat-list-item routerLink="/planes" class="menu-item text-center active">
+      <a *ngIf="currentMenuUser.planes" mat-list-item [routerLink]="['/dashboard/plans']" class="menu-item text-center active">
         <mat-icon matListIcon class="sidebar-color-item">store</mat-icon>
         <span matLine class="sidebar-color-item">{{ 'PLANS' | translate }}</span>
       </a>

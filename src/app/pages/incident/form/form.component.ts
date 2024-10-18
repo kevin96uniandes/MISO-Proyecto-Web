@@ -48,7 +48,7 @@ export class FormComponent {
   ngOnInit(): void {
 
     const lang = this.storageService.getItem("language")
-    this.translate.use(lang || 'es')
+    this.translate.use(lang ?? 'es')
 
     this.person = history.state?.person;
     console.log('form ' + this.person)

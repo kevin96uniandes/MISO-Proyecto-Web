@@ -20,14 +20,14 @@ export class TranslateDocumentTypePipe implements PipeTransform {
   transform(value: string): string {
     const translations: any = {
       es: {
-        'Cédula_Cuidadania': 'Cédula de Ciudadanía',
-        'Cédula_Extrangeria': 'Cédula de Extranjería',
-        'Pasaporte': 'Pasaporte'
+        '1': 'Cédula de Ciudadanía',
+        '2': 'Cédula de Extranjería',
+        '4': 'Pasaporte'
       },
       en: {
-        'Cédula_Cuidadania': 'Citizenship ID',
-        'Cédula_Extrangeria': 'Foreigner ID',
-        'Pasaporte': 'Passport'
+        '1': 'Citizenship ID',
+        '2': 'Foreigner ID',
+        '4': 'Passport'
       }
     };
 

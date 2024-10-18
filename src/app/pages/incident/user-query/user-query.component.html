@@ -1,16 +1,16 @@
 <div class="container-fluid user-query-container">
     <div class="title-section">
-      <h1 class="title-text-color">{{ 'USER_QUERY_TITLE' | translate }}</h1>
+      <h1 id="user-query-title" class="title-text-color">{{ 'USER_QUERY_TITLE' | translate }}</h1>
       <p class="subtitle">{{ 'USER_QUERY_DETAIL' | translate }}</p>
     </div>
     <form [formGroup]="userQueryForm" (ngSubmit)="userQuery()">
       <div>
-        <mat-form-field appearance="outline" style="width: 20%">
+        <mat-form-field appearance="outline" style="width: 20%" id="identity-type">
           <mat-label>{{ 'IDENTITY_TYPE' | translate }}</mat-label>
-          <mat-select formControlName="identityType" required>
-            <mat-option value="Cédula_Cuidadania">{{ 'CC' | translate }}</mat-option>
-            <mat-option value="Pasaporte">{{ 'PASAPORTE' | translate }}</mat-option>
-            <mat-option value="Cédula_Extrangeria">{{ 'CE' | translate }}</mat-option>
+          <mat-select id="identity-type" formControlName="identityType" required>
+            <mat-option value="1">{{ 'CC' | translate }}</mat-option>
+            <mat-option value="4">{{ 'PASAPORTE' | translate }}</mat-option>
+            <mat-option value="2">{{ 'CE' | translate }}</mat-option>
           </mat-select>
         </mat-form-field>
         <div class="error-container alert alert-danger alert-dismissible fade show" *ngIf="userQueryForm.get('identityType')!.hasError('required') && userQueryForm.get('identityType')!.touched" i18n>
@@ -21,6 +21,7 @@
           <mat-form-field appearance="outline" style="width: 20%">
               <mat-label>{{ 'IDENTITY_NUMBER' | translate }} </mat-label>
               <input
+                id="identity-number"
                 formControlName="identityNumber"
                 matInput
                 [placeholder]="'IDENTITY_NUMBER' | translate"
@@ -37,6 +38,7 @@
           </div>
       </div>
       <button
+        id="search-ranking"
         type="submit"
         mat-raised-button
         class="btn-form-primary"

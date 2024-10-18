@@ -1,0 +1,54 @@
+@import "../../../../theme/custom-colors";
+@import "../../../../theme/custom-style";
+
+.container-login {
+  height: 100vh !important;
+}
+
+.container-components {
+  height: 100vh !important;
+}
+
+.container-components > .row {
+  height: 100vh;
+}
+
+.container-right {
+  background-color: $abcall-primary-color;
+}
+
+/*Contenedor de todos los componentes de la derecha*/
+.container-right > div{
+  background-color: white;
+  height: 95%;
+  width: 95% !important;
+  border-radius: 10px;
+}
+
+/*Formulario*/
+.container-right > div > form > div:nth-child(2){
+  padding: 0% 20% 11% 20%;
+}
+
+.container-form-components {
+  margin-top: 60px;
+}
+
+#register-agent > div.container-form-components > div:nth-child(9) > div > button {
+  background-color: $abcall-primary-color;
+  font-weight: bold;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.938em;
+  color: white;
+  border-radius: 0.25em;
+}
+
+.success-snackbar {
+  background-color: #4caf50; /* Verde para éxito */
+  color: #fff;
+}
+
+.error-snackbar {
+  background-color: #f44336; /* Rojo para error */
+  color: #fff;
+}

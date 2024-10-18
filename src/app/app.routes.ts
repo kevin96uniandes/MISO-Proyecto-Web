@@ -27,7 +27,9 @@ export const routes: Routes = [
     ]
   },
   { path: '', redirectTo:'/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/login' }
+  { path: '**', redirectTo: '/login' },
+  { path: 'register/client', component: RegisterClientComponent },
+  { path: 'register/agent', component: RegisterAgentComponent },
 ];
 
 @NgModule({

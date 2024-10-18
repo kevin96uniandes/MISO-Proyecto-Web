@@ -9,6 +9,8 @@ import { FormComponent } from './pages/incident/form/form.component';
 import { RankingComponent } from './pages/incident/ranking/ranking.component';
 import { UserQueryComponent } from './pages/incident/user-query/user-query.component';
 import { ListAgentsComponent } from './pages/list/list-agents/list-agents.component';
+import { RegisterAgentComponent } from './pages/register/register-agent/register-agent.component';
+import { RegisterClientComponent } from './pages/register/register-client/register-client.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },

@@ -1,6 +1,7 @@
 export const environment = {
     production: false,
     incidentUrl: 'http://localhost:3004/incident/',
-    apiUrl: 'http://192.168.18.14:3000'
+    plansUrl: 'http://localhost:3003/plan/',
+    apiUrl: 'http://localhost:3000',
   };
 

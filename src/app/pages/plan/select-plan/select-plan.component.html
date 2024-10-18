@@ -1,0 +1,147 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-6">
+      <h4 class="title-text-color title-size">Elige tu plan:</h4>
+    </div>
+    <div class="col-6" style="text-align: right; margin-top: 1%">
+      <mat-form-field appearance="fill">
+        <mat-label>Cambio de moneda</mat-label>
+        <mat-select>
+          <mat-option value="COP">COP - Peso colombiano</mat-option>
+          <mat-option value="USD">USD - Dólar estadounidense</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <mat-grid-list cols="3">
+        <!-- Plan Emprendedor -->
+        <mat-grid-tile>
+          <mat-card class="plan-card">
+            <mat-card-header>
+              <mat-card-title>Plan Emprendedor</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>Ideal para empresas que desean ofrecer servicios de atención telefónica personalizada y mejorar la experiencia del cliente.</p>
+              <h2>
+                <span class="price-symbol">$</span><span class="price-amount">200</span><span class="price-unit">mil/mes</span>
+              </h2>
+              <ul>
+                <li class="icon-list-item">
+                  <mat-icon id="color-eye">check_circle</mat-icon> Registro de PQRs (Preguntas, Quejas, Reclamos)
+                </li>
+                <li class="icon-list-item">
+                  <mat-icon id="color-eye">check_circle</mat-icon> Base de conocimientos de la empresa
+                </li>
+                <li class="icon-list-item">
+                  <mat-icon id="color-eye">check_circle</mat-icon> Automatización del proceso de escalamiento
+                </li>
+                <li class="icon-list-item">
+                  <mat-icon id="color-eye">check_circle</mat-icon> Asignación automática de incidentes
+                </li>
+                <li class="icon-list-item">
+                  <mat-icon id="color-eye">check_circle</mat-icon> Notificación de solución al cliente por varios canales
+                </li>
+                <li class="icon-list-item">
+                  <mat-icon id="color-eye">check_circle</mat-icon> Reportes e interacción con incidentes abiertos
+                </li>
+                <li class="icon-list-item">
+                  <mat-icon id="color-eye">check_circle</mat-icon> Monitoreo continuo de incidentes
+                </li>
+              </ul>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-flat-button class="btn-abc-primary w-100" i18n (click)="openDialog('Plan Emprendedor')">
+                OBTENER
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+
+        <!-- Plan Empresario -->
+        <mat-grid-tile>
+          <mat-card class="plan-card">
+            <mat-card-header>
+              <mat-card-title>Plan Empresario</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>Ideal para empresas que desean ofrecer múltiples canales de comunicación y mejorar la satisfacción de sus clientes.</p>
+              <h2>
+                <span class="price-symbol">$</span><span class="price-amount">300</span><span class="price-unit">mil/mes</span>
+              </h2>
+              <ul>
+                <li class="icon-list-item">
+                  <mat-icon id="color-eye">check_circle</mat-icon> Multicanalidad: línea telefónica, correo electrónico, chatbot y app móvil
+                </li>
+                <li class="icon-list-item">
+                  <mat-icon id="color-eye">check_circle</mat-icon> Registro de PQRs a través de todos los canales
+                </li>
+                <li class="icon-list-item">
+                  <mat-icon id="color-eye">check_circle</mat-icon> Automatización del proceso de escalamiento
+                </li>
+                <li class="icon-list-item">
+                  <mat-icon id="color-eye">check_circle</mat-icon> Llamadas de salida para telemercadeo y encuestas
+                </li>
+                <li class="icon-list-item">
+                  <mat-icon id="color-eye">check_circle</mat-icon> Tablero de control para análisis de comportamiento e incidentes
+                </li>
+                <li class="icon-list-item">
+                  <mat-icon id="color-eye">check_circle</mat-icon> Indicadores de gestión y niveles de servicio
+                </li>
+              </ul>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-flat-button class="btn-abc-primary w-100" i18n (click)="openDialog('Plan Emprendedor')">
+                OBTENER
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+
+        <!-- Plan Empresario Plus -->
+        <mat-grid-tile>
+          <mat-card class="plan-card">
+            <mat-card-header>
+              <mat-card-title>Plan Empresario Plus</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>Ideal para empresas que desean aprovechar inteligencia artificial y analítica predictiva para mejorar la experiencia de sus clientes.</p>
+              <h2>
+                <span class="price-symbol">$</span><span class="price-amount">500</span><span class="price-unit">mil/mes</span>
+              </h2>
+              <ul>
+                <li class="icon-list-item">
+                  <mat-icon id="color-eye">check_circle</mat-icon> Multicanalidad: línea telefónica, correo electrónico, chatbot y app móvil
+                </li>
+                <li class="icon-list-item">
+                  <mat-icon id="color-eye">check_circle</mat-icon> Registro de PQRs con analítica predictiva
+                </li>
+                <li class="icon-list-item">
+                  <mat-icon id="color-eye">check_circle</mat-icon> Respuestas automáticas basadas en IA generativa
+                </li>
+                <li class="icon-list-item">
+                  <mat-icon id="color-eye">check_circle</mat-icon> Modelos de predicción de riesgo en tiempo real
+                </li>
+                <li class="icon-list-item">
+                  <mat-icon id="color-eye">check_circle</mat-icon> Tablero de control con analítica avanzada y predicción
+                </li>
+                <li class="icon-list-item">
+                  <mat-icon id="color-eye">check_circle</mat-icon> Importación de datos de clientes para entrenar modelos
+                </li>
+                <li class="icon-list-item">
+                  <mat-icon id="color-eye">check_circle</mat-icon> Llamadas de salida para telemercadeo y encuestas
+                </li>
+              </ul>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-flat-button class="btn-abc-primary w-100" i18n (click)="openDialog('Plan Emprendedor')">
+                OBTENER
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div>
+</div>

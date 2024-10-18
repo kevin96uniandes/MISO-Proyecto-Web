@@ -11,7 +11,7 @@ import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-transla
 import Swal from 'sweetalert2';
 import { Person } from '../../auth/person';
 import { StorageService } from '../../../common/storage.service';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-form',

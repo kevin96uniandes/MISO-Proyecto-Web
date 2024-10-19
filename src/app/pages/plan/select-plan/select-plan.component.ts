@@ -78,17 +78,32 @@ export class SelectPlanComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        const contractUpdate = {
-          empresa_id: result.empresaId,
-          new_plan_id: result.planId
-        };
+        if (!planId) {
+          const contractUpdate = {
+            empresa_id: result.empresaId,
+            new_plan_id: result.planId
+          };
 
-        this.planService.updateContract(contractUpdate).subscribe(response => {
-          console.log('Plan actualizado correctamente', response);
-          this.activePlanId = response['plan_id'];
-        }, error => {
-          console.error('Error al actualizar el plan', error);
-        });
+          this.planService.updateContract(contractUpdate).subscribe(response => {
+            console.log('Plan actualizado correctamente', response);
+            this.activePlanId = response['plan_id'];
+          }, error => {
+            console.error('Error al actualizar el plan', error);
+          });
+        }else{
+          const contractCreate = {
+            empresa_id: result.empresaId,
+            new_plan_id: result.planId
+          };
+
+          this.planService.createContract(contractCreate).subscribe(response => {
+            console.log('Plan creado correctamente', response);
+            this.activePlanId = response['plan_id'];
+          }, error => {
+            console.error('Error al actualizar el plan', error);
+          });
+        }
+
       } else {
         console.log('Selección cancelada');
       }

@@ -40,7 +40,7 @@ describe('LoginComponent', () => {
     translateServiceMock.use.and.returnValue(of({}));
 
     jwtHelper = jasmine.createSpyObj('JwtHelperService', ['decodeToken']);
-    storageService = jasmine.createSpyObj('StorageService', ['setItem']);
+    storageService = jasmine.createSpyObj('StorageService', ['setItem', 'getItem']);
     loginService = jasmine.createSpyObj('LoginService', ['login']);
     router = jasmine.createSpyObj('Router', ['navigate']);
 

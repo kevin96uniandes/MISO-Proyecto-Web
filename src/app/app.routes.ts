@@ -27,12 +27,12 @@ export const routes: Routes = [
       { path: 'incident', component: FormComponent },
       { path: 'ranking', component: RankingComponent },
       { path: 'list/agents', component: ListAgentsComponent },
-      { path: 'plans', component: SelectPlanComponent },
+      { path: 'register/agent', component: RegisterAgentComponent },
+      { path: 'plans', component: SelectPlanComponent }
     ]
   },
   { path: 'plans', component: SelectPlanComponent },
   { path: 'register/client', component: RegisterClientComponent },
-  { path: 'register/agent', component: RegisterAgentComponent },
   { path: '', redirectTo:'/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' }
 ];

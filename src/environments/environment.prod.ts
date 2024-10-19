@@ -1,4 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://misw4201-202314-backend-grupo4-7c318ef624ac.herokuapp.com'
+  incidentUrl: 'http://34.111.136.182/incident/',
+  planUrl: 'http://34.111.136.182/plan/',
+  apiUrl: 'http://34.111.136.182'
 };

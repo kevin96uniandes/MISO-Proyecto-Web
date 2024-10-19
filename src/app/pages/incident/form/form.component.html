@@ -10,7 +10,7 @@
         <div class="col-lg-4 col-md-6 col-sm-12">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>{{ 'NAME' | translate }}</mat-label>
-              <input formControlName="name" matInput [placeholder]="'NAME_PLACEHOLDER' | translate">
+              <input id="name-person" formControlName="name" matInput [placeholder]="'NAME_PLACEHOLDER' | translate">
             </mat-form-field>
             <div class="alert alert-danger alert-dismissible fade show" *ngIf="incidentForm.get('name')!.hasError('required') && incidentForm.get('name')!.touched">
                  {{ 'REQUIRED_NAME' | translate }} 
@@ -22,7 +22,7 @@
           <div class="col-lg-4 col-md-6 col-sm-12">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>{{ 'LASTNAME' | translate }}</mat-label>
-              <input formControlName="lastName" matInput [placeholder]="'LASTNAME_PLACEHOLDER' | translate">
+              <input id="lastname-person" formControlName="lastName" matInput [placeholder]="'LASTNAME_PLACEHOLDER' | translate">
             </mat-form-field>
             <div i18n class="alert alert-danger alert-dismissible fade show" *ngIf="incidentForm.get('lastName')!.hasError('required') && incidentForm.get('lastName')!.touched">
               {{ 'REQUIRED_LASTNAME' | translate }} 
@@ -34,7 +34,7 @@
           <div class="col-lg-4 col-md-6 col-sm-12">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>{{ 'EMAIL' | translate }}</mat-label>
-              <input formControlName="emailClient" matInput placeholder="xxxxxxxx@xxx.xxx">
+              <input id="email-person" formControlName="emailClient" matInput placeholder="xxxxxxxx@xxx.xxx">
             </mat-form-field>
             <div class="alert alert-danger alert-dismissible fade show" *ngIf="incidentForm.get('emailClient')!.hasError('required') && incidentForm.get('emailClient')!.touched">
               {{ 'REQUIRED_EMAIL' | translate }}
@@ -49,7 +49,7 @@
         </div>
         <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-12">
-            <mat-form-field appearance="outline" class="w-100">
+            <mat-form-field appearance="outline" class="w-100" id="identity-type-person">
                 <mat-label>{{ 'IDENTITY_TYPE' | translate }}</mat-label>
                 <mat-select formControlName="identityType">
                   <mat-option value="1">{{ 'CC' | translate }}</mat-option>
@@ -64,7 +64,7 @@
           <div class="col-lg-4 col-md-6 col-sm-12">
             <mat-form-field appearance="outline" class="w-100">
                 <mat-label>{{ 'IDENTITY_NUMBER' | translate }}</mat-label>
-                <input formControlName="identityNumber" matInput [placeholder]="'REQUIRED_IDENTITY_TYPE_PLACEHOLDER' | translate">
+                <input id="identity-number-person" formControlName="identityNumber" matInput [placeholder]="'REQUIRED_IDENTITY_TYPE_PLACEHOLDER' | translate">
               </mat-form-field>
               <div class="alert alert-danger alert-dismissible fade show" *ngIf="incidentForm.get('identityNumber')!.hasError('required') && incidentForm.get('identityNumber')!.touched">
                 {{ 'IDENTITY_TYPE_REQUIRED' | translate }}
@@ -79,7 +79,7 @@
           <div class="col-lg-4 col-md-6 col-sm-12">
             <mat-form-field appearance="outline" class="w-100">
                 <mat-label>{{ 'CELLPHONE' | translate }}</mat-label>
-                <input formControlName="cellPhone" matInput [placeholder]="'CELLPHONE_PLACEHOLDER' | translate">
+                <input id="cellphone-person" formControlName="cellPhone" matInput [placeholder]="'CELLPHONE_PLACEHOLDER' | translate">
               </mat-form-field>
               <div class="alert alert-danger alert-dismissible fade show" *ngIf="incidentForm.get('cellPhone')!.hasError('required') && incidentForm.get('cellPhone')!.touched">
                 {{ 'REQUIRED_CELLPHONE' | translate }} 

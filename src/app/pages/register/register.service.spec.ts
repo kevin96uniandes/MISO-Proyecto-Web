@@ -64,14 +64,16 @@ describe('RegisterService', () => {
 
   it('should register a agent', () => {
     const mockRegisterAgent: RegisterAgent = {
-      nombre_completo: 'John Doe',
+      nombres: 'John Doe',
+      apellidos: 'Doe',
       correo_electronico: 'john.doe@example.com',
       tipo_identificacion: 1,
       numero_identificacion: 123456789,
       telefono: 1234567890,
       usuario: 'johndoe',
       contrasena: 'Password123',
-      confirmar_contrasena: 'Password123'
+      confirmar_contrasena: 'Password123',
+      id_empresa: '2'
     };
 
     service.registerAgent(mockRegisterAgent).subscribe(response => {
@@ -81,14 +83,16 @@ describe('RegisterService', () => {
     const req = httpMock.expectOne(`${environment.apiUrl}/user/register/agent`);
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual({
-      nombre_completo: 'John Doe',
+      nombres: 'John Doe',
+      apellidos: 'John Doe',
       correo_electronico: 'john.doe@example.com',
       tipo_identificacion: 1,
       numero_identificacion: 123456789,
       telefono: 1234567890,
       usuario: 'johndoe',
       contrasena: 'Password123',
-      confirmar_contrasena: 'Password123'
+      confirmar_contrasena: 'Password123',
+      id_empresa: '2'
     });
 
     req.flush({ success: true });

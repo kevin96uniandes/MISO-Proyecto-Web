@@ -6,12 +6,14 @@ import { TextFieldModule } from '@angular/cdk/text-field';
 import {MatButtonModule} from '@angular/material/button';
 import {NgOptimizedImage} from "@angular/common";
 import {MatSelectModule} from '@angular/material/select';
-import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import { RegisterService } from '../register.service';
 import { RegisterClient } from './register-client';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {Router} from "@angular/router";
+import {Router, RouterModule} from "@angular/router";
 import Swal from 'sweetalert2';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { StorageService } from '../../../common/storage.service';
 
 interface Language {
   value: string;
@@ -35,7 +37,9 @@ interface DocumentType {
     NgOptimizedImage,
     MatSelectModule,
     FormsModule,
+    RouterModule,
     ReactiveFormsModule,
+    TranslateModule
   ],
   templateUrl: './register-client.component.html',
   styleUrls: ['./register-client.component.scss'],
@@ -46,6 +50,11 @@ export class RegisterClientComponent {
   selectedValue: string = '';
   errorRequiredMessage: Map<string, string> = new Map<string, string>();
 
+  languages: Language[] = [
+    {value: 'en', viewValue: 'English'},
+    {value: 'es', viewValue: 'Español'},
+  ]
+
   documentTypes: DocumentType[] = [
     {value: 1, viewValue: 'CC'},
     {value: 2, viewValue: 'TI'},
@@ -53,10 +62,13 @@ export class RegisterClientComponent {
   ];
 
   constructor(
+    private storageService: StorageService,
     private RegisterClientService: RegisterService,
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
     private router: Router,
+    private translate: TranslateService
+
   ) {
     this.selectedValue = "es";
 
@@ -78,10 +90,12 @@ export class RegisterClientComponent {
     }, {validator: this.passwordMatchValidator});
   }
 
-  languages: Language[] = [
-    {value: 'en', viewValue: 'English'},
-    {value: 'es', viewValue: 'Español'},
-  ]
+  ngOnInit(){
+    const lang = this.storageService.getItem("language")
+    this.selectedValue = lang || 'es';
+    this.translate.use(this.selectedValue)
+
+  }
 
   passwordMatchValidator(form: FormGroup) {
     const password = form.get('contrasena');
@@ -96,21 +110,33 @@ export class RegisterClientComponent {
   updateErrorRequiredMessage(fieldName: string) {
     const control = this.registerForm.get(fieldName);
     if (control?.hasError('required')) {
-      this.errorRequiredMessage.set(fieldName, 'Campo requerido');
+      this.translate.get(['REQUIRED_FILE']).subscribe(translations => {
+        this.errorRequiredMessage.set(fieldName, translations['REQUIRED_FILE']);
+       });
     } else if (control?.hasError('email')){
-      this.errorRequiredMessage.set(fieldName, 'Email no tiene el formato correcto');
+      this.translate.get(['REQUIRED_EMAIL']).subscribe(translations => {
+        this.errorRequiredMessage.set(fieldName, translations['REQUIRED_EMAIL']);
+       });
     }
     else if (this.registerForm.get("telefono")?.hasError('pattern')){
-      this.errorRequiredMessage.set(fieldName, 'Teléfono debe contener solo números');
+      this.translate.get(['REQUIRED_PHONE_FORMAT']).subscribe(translations => {
+        this.errorRequiredMessage.set(fieldName, translations['REQUIRED_PHONE_FORMAT']);
+       });
     }
     else if (this.registerForm.get("contrasena")?.hasError('pattern')){
-      this.errorRequiredMessage.set(fieldName, 'Contraseña debe tener al menos una letra mayúscula, una minúscula y un número');
+      this.translate.get(['REQUIRED_PASSWORD_FORMAT']).subscribe(translations => {
+        this.errorRequiredMessage.set(fieldName, translations['REQUIRED_PASSWORD_FORMAT']);
+       });
     }
     else if (control?.hasError('minLength')){
-      this.errorRequiredMessage.set(fieldName, 'Contraseña debe tener al menos 8 caracteres');
+      this.translate.get(['REQUIRED_PASSWORD_SIZE']).subscribe(translations => {
+        this.errorRequiredMessage.set(fieldName, translations['REQUIRED_PASSWORD_SIZE']);
+       });
     }
     else if (control?.hasError('mismatch')){
-      this.errorRequiredMessage.set(fieldName, 'Las contraseñas no coinciden');
+      this.translate.get(['REQUIRED_PASSWORD_MISMATCH']).subscribe(translations => {
+        this.errorRequiredMessage.set(fieldName, translations['REQUIRED_PASSWORD_MISMATCH']);
+       });
     }
     else {
       this.errorRequiredMessage.set(fieldName, '');
@@ -137,22 +163,31 @@ export class RegisterClientComponent {
       );
 
       this.RegisterClientService.registerClient(registerClient).subscribe(response => {
-        console.log('Registro exitoso', response);
-        this.snackBar.open('REGISTRO EXITOSO', '', {
-          duration: 3000,
-          panelClass: ['success-snackbar']
+
+        this.translate.get(['REGISTER_SUCCESFULLY']).subscribe(translations => { 
+          console.log(translations['REGISTER_SUCCESFULLY'], response);
+          this.snackBar.open(translations['REGISTER_SUCCESFULLY'], '', {
+            duration: 3000,
+            panelClass: ['success-snackbar']
+          });
+          this.router.navigate(['/login']);
         });
-        this.router.navigate(['/login']);
+
       }, error => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Usuario o contraseña incorrectos',
-        });
-        console.error('Error en el registro', error);
-        this.snackBar.open('Error en el registro', '', {
+
+        this.translate.get(['REGISTER_ERROR']).subscribe(translations => {
+          Swal.fire({
+            icon: 'error',
+            title: translations['REGISTER_ERROR'],
+          });
+
+                 
+        console.error(translations['REGISTER_ERROR'], error);
+        this.snackBar.open(translations['REGISTER_ERROR'], '', {
           duration: 3000,
           panelClass: ['error-snackbar']
         });
+         });
       });
     }
   }
@@ -161,5 +196,12 @@ export class RegisterClientComponent {
   clickEvent(event: MouseEvent) {
     this.hide.set(!this.hide());
     event.stopPropagation();
+  }
+
+  changeLanguage(lang: string) {
+    console.log(lang)
+    this.selectedValue = lang;
+    this.translate.use(lang);
+    this.storageService.setItem("language", lang)
   }
 }

@@ -9,8 +9,8 @@
           <div class="row pe-2 mt-2">
             <div class="col-12 d-flex flex-row justify-content-end">
               <mat-form-field>
-                <mat-label i18n>Idioma</mat-label>
-                <mat-select [(ngModel)]="selectedValue" name="food">
+                <mat-label i18n>{{ 'IDIOMA' | translate }}</mat-label>
+                <mat-select [(ngModel)]="selectedValue" name="food" (selectionChange)="changeLanguage(selectedValue)">
                   @for (language of languages; track language) {
                     <mat-option [value]="language.value">{{language.viewValue}}</mat-option>
                   }
@@ -21,16 +21,16 @@
           <form id="register-client" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div class="row">
               <div class="col-12 text-center">
-                <h2 class="title-text-color" i18n>Registro</h2>
+                <h2 class="title-text-color">{{ 'REGISTRATION' | translate }}</h2>
               </div>
             </div>
             <div class="container-form-components">
               <div class="row mt-3">
                 <div class="col-12">
                   <mat-form-field appearance="outline" class="w-100">
-                    <mat-label i18n>Nombre Completo</mat-label>
+                    <mat-label i18n>{{ 'FULL_NAME' | translate }}</mat-label>
                     <input matInput
-                           placeholder="Coloque su nombre completo"
+                           [placeholder]="'FULL_NAME_PLACEHOLDER' | translate"
                            formControlName="nombre_empresa"
                            required
                            (blur)="updateErrorRequiredMessage('nombre_empresa')"
@@ -45,9 +45,9 @@
               <div class="row mt-3">
                 <div class="col-12">
                   <mat-form-field appearance="outline" class="w-100">
-                    <mat-label i18n>Email</mat-label>
+                    <mat-label i18n>{{ 'EMAIL' | translate }}</mat-label>
                     <input matInput
-                           placeholder="Coloque su correo electrónico"
+                           [placeholder]="'EMAIL_PLACEHOLDER' | translate"
                            formControlName="email"
                            required
                            (blur)="updateErrorRequiredMessage('email')"
@@ -62,11 +62,11 @@
               <div class="row mt-3">
                 <div class="col-12">
                   <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Tipo de documento</mat-label>
-                    <mat-select formControlName="tipo_identificacion" placeholder="Coloque el tipo de su documento" required (blur)="updateErrorRequiredMessage('tipo_identificacion')" id="tipo_documento">
-                      <mat-option value="1">NIT</mat-option>
-                      <mat-option value="2">Cédula de ciudadanía</mat-option>
-                      <mat-option value="3">Cédula de extranjería</mat-option>
+                    <mat-label>{{ 'IDENTITY_TYPE' | translate }}</mat-label>
+                    <mat-select formControlName="tipo_identificacion" [placeholder]="'IDENTITY_TYPE_PLACEHOLDER' | translate" required (blur)="updateErrorRequiredMessage('tipo_identificacion')" id="tipo_documento">
+                      <mat-option value="1">{{ 'CC' | translate }}</mat-option>
+                      <mat-option value="3">NIT</mat-option>
+                      <mat-option value="2">{{ 'CE' | translate }}</mat-option>
                     </mat-select>
                     @if (registerForm.get("tipo_identificacion")?.invalid) {
                       <mat-error>{{getErrorRequiredMessage('tipo_identificacion')}}</mat-error>
@@ -77,9 +77,9 @@
               <div class="row mt-3">
                 <div class="col-12">
                   <mat-form-field appearance="outline" class="w-100">
-                    <mat-label i18n>Número de documento</mat-label>
+                    <mat-label i18n>{{ 'IDENTITY_NUMBER' | translate }}</mat-label>
                     <input matInput
-                           placeholder="Coloque el número de su documento"
+                           [placeholder]="'IDENTITY_NUMBER_PLACEHOLDER' | translate"
                            formControlName="numero_identificacion"
                            required
                            (blur)="updateErrorRequiredMessage('numero_identificacion')"
@@ -94,9 +94,9 @@
               <div class="row mt-3">
                 <div class="col-12">
                   <mat-form-field appearance="outline" class="w-100">
-                    <mat-label i18n>Sector</mat-label>
+                    <mat-label i18n>{{ 'SECTOR' | translate }}</mat-label>
                     <input matInput
-                           placeholder="Coloque el sector de su empresa"
+                           [placeholder]="'SECTOR_PLACEHOLDER' | translate"
                            formControlName="sector"
                            required
                            (blur)="updateErrorRequiredMessage('sector')"
@@ -111,9 +111,9 @@
               <div class="row mt-3">
                 <div class="col-12">
                   <mat-form-field appearance="outline" class="w-100">
-                    <mat-label i18n>Teléfono</mat-label>
+                    <mat-label i18n>{{ 'PHONE' | translate }}</mat-label>
                     <input matInput
-                           placeholder="Coloque su teléfono"
+                           [placeholder]="'PHONE_PLACEHOLDER' | translate"
                            formControlName="telefono"
                            required
                            (blur)="updateErrorRequiredMessage('telefono')"
@@ -128,9 +128,9 @@
               <div class="row mt-3">
                 <div class="col-12">
                   <mat-form-field appearance="outline" class="w-100">
-                    <mat-label i18n>País</mat-label>
+                    <mat-label i18n>{{ 'COUNTRY' | translate }}</mat-label>
                     <input matInput
-                           placeholder="Coloque el país donde se encuentra su empresa"
+                           [placeholder]="'COUNTRY_PLACEHOLDER' | translate"
                            formControlName="pais"
                            required
                            (blur)="updateErrorRequiredMessage('pais')"
@@ -145,9 +145,9 @@
               <div class="row mt-3">
                 <div class="col-12">
                   <mat-form-field appearance="outline" class="w-100">
-                    <mat-label i18n>Usuario</mat-label>
+                    <mat-label i18n>{{ 'USUARIO' | translate }}</mat-label>
                     <input matInput
-                           placeholder="Coloque su usuario"
+                           [placeholder]="'USER_PLACEHOLDER' | translate"
                            formControlName="usuario"
                            required
                            (blur)="updateErrorRequiredMessage('usuario')"
@@ -162,9 +162,9 @@
               <div class="row mt-3">
                 <div class="col-12">
                   <mat-form-field appearance="outline" class="w-100">
-                    <mat-label i18n>Contraseña</mat-label>
+                    <mat-label i18n>{{ 'CONTRASENA' | translate }}</mat-label>
                     <input matInput
-                           placeholder="Coloque su contraseña"
+                           [placeholder]="'PASSWORD_PLACEHOLDER' | translate"
                            formControlName="contrasena"
                            [type]="hide() ? 'password' : 'text'"
                            required
@@ -190,9 +190,9 @@
               <div class="row mt-3">
                 <div class="col-12">
                   <mat-form-field appearance="outline" class="w-100">
-                    <mat-label i18n>Confirmar contraseña</mat-label>
+                    <mat-label i18n>{{ 'CONFIRM_PASSWORD' | translate }}</mat-label>
                     <input matInput
-                           placeholder="Confirme su contraseña"
+                           [placeholder]="'CONFIRM_PASSWORD_PLACEHOLDER' | translate"
                            formControlName="confirmar_contrasena"
                            [type]="hide() ? 'password' : 'text'"
                            required
@@ -223,7 +223,7 @@
                     [disabled]="!registerForm.valid"
                     i18n
                   >
-                    REGISTRAR
+                  {{ 'REGISTER' | translate }}
                   </button>
                 </div>
               </div>

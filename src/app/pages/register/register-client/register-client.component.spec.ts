@@ -9,6 +9,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EventEmitter } from '@angular/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 
 class MockRegisterService {
   registerClient() {
@@ -25,8 +27,24 @@ describe('RegisterClientComponent', () => {
   let fixture: ComponentFixture<RegisterClientComponent>;
   let registerService: RegisterService;
   let router: Router;
+  let translateService: any;
+  let translateServiceMock: any;
 
   beforeEach(async () => {
+
+    translateService = jasmine.createSpyObj('TranslateService', ['use', 'get']);
+    translateServiceMock = {
+      currentLang: 'es',
+      onLangChange: new EventEmitter<LangChangeEvent>(),
+      use: translateService.get,
+      get: translateService.get.and.returnValue(of('')),
+      onTranslationChange: new EventEmitter(),
+      onDefaultLangChange: new EventEmitter()
+    };
+
+    translateServiceMock.get.and.returnValue(of({})); 
+    translateServiceMock.use.and.returnValue(of({}));
+
     await TestBed.configureTestingModule({
       imports: [
         RegisterClientComponent,
@@ -36,11 +54,12 @@ describe('RegisterClientComponent', () => {
         MatFormFieldModule,
         MatInputModule,
         MatSelectModule,
-        BrowserAnimationsModule,
+        BrowserAnimationsModule
       ],
       providers: [
         { provide: RegisterService, useClass: MockRegisterService },
         { provide: Router, useClass: MockRouter },
+        { provide: TranslateService, useValue: translateServiceMock }  
       ],
     }).compileComponents();
   });

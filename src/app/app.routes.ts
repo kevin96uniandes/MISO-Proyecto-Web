@@ -25,11 +25,11 @@ export const routes: Routes = [
       { path: 'user-query', component: UserQueryComponent },
       { path: 'incident', component: FormComponent },
       { path: 'ranking', component: RankingComponent },
-      { path: 'list/agents', component: ListAgentsComponent }
+      { path: 'list/agents', component: ListAgentsComponent },
+      { path: 'register/agent', component: RegisterAgentComponent }
     ]
   },
   { path: 'register/client', component: RegisterClientComponent },
-  { path: 'register/agent', component: RegisterAgentComponent },
   { path: '', redirectTo:'/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' }
 ];

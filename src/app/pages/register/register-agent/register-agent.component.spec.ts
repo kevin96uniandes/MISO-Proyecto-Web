@@ -9,6 +9,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EventEmitter } from '@angular/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { StorageService } from '../../../common/storage.service';
 
 class MockRegisterService {
   registerClient() {
@@ -26,10 +29,29 @@ class MockRouter {
 describe('RegisterAgentComponent', () => {
   let component: RegisterAgentComponent;
   let fixture: ComponentFixture<RegisterAgentComponent>;
+  let mockStorageService: jasmine.SpyObj<StorageService>;
   let registerService: RegisterService;
   let router: Router;
+  let translateService: any;
+  let translateServiceMock: any;
 
   beforeEach(async () => {
+    mockStorageService = jasmine.createSpyObj('StorageService', ['getItem']);
+    mockStorageService.getItem.and.returnValue(JSON.stringify({ id_company: 2})); 
+
+    translateService = jasmine.createSpyObj('TranslateService', ['use', 'get']);
+    translateServiceMock = {
+      currentLang: 'es',
+      onLangChange: new EventEmitter<LangChangeEvent>(),
+      use: translateService.get,
+      get: translateService.get.and.returnValue(of('')),
+      onTranslationChange: new EventEmitter(),
+      onDefaultLangChange: new EventEmitter()
+    };
+
+    translateServiceMock.get.and.returnValue(of({})); 
+    translateServiceMock.use.and.returnValue(of({}));
+
     await TestBed.configureTestingModule({
       imports: [
         RegisterAgentComponent,
@@ -44,6 +66,9 @@ describe('RegisterAgentComponent', () => {
       providers: [
         { provide: RegisterService, useClass: MockRegisterService },
         { provide: Router, useClass: MockRouter },
+        { provide: TranslateService, useValue: translateServiceMock },
+        { provide: StorageService, useValue: mockStorageService },
+
       ],
     }).compileComponents();
   });
@@ -63,14 +88,15 @@ describe('RegisterAgentComponent', () => {
   it('should initialize the registerForm with empty values', () => {
     const registerForm = component.registerForm;
     expect(registerForm).toBeDefined();
-    expect(registerForm.get('nombre_completo')?.value).toEqual('');
+    expect(registerForm.get('nombres')?.value).toEqual('');
     expect(registerForm.get('correo_electronico')?.value).toEqual('');
     expect(registerForm.get('tipo_identificacion')?.value).toEqual('');
   });
 
   it('should make the registerForm invalid when fields are empty', () => {
     component.registerForm.patchValue({
-      nombre_completo: '',
+      nombres: '',
+      apellidos: '',
       correo_electronico: '',
       tipo_identificacion: '',
       numero_identificacion: '',
@@ -84,7 +110,8 @@ describe('RegisterAgentComponent', () => {
 
   it('should make the registerForm valid when all fields are correctly filled', () => {
     component.registerForm.patchValue({
-      nombre_completo: 'Test User',
+      nombres: 'tests',
+      apellidos: 'users',
       correo_electronico: 'test@example.com',
       tipo_identificacion: '1',
       numero_identificacion: '12345678',
@@ -109,7 +136,8 @@ describe('RegisterAgentComponent', () => {
   it('should call registerAgent on RegisterService when form is valid', () => {
     spyOn(registerService, 'registerAgent').and.callThrough();
     component.registerForm.patchValue({
-      nombre_completo: 'Test User',
+      nombres: 'Test User',
+      apellidos: 'Users',
       correo_electronico: 'test@example.com',
       tipo_identificacion: '1',
       numero_identificacion: '12345678',
@@ -124,7 +152,8 @@ describe('RegisterAgentComponent', () => {
 
   it('should navigate to /login on successful registration', () => {
     component.registerForm.patchValue({
-      nombre_completo: 'Test User',
+      nombres: 'Test User',
+      apellidos: 'Users',
       correo_electronico: 'test@example.com',
       tipo_identificacion: '1',
       numero_identificacion: '12345678',
@@ -134,14 +163,15 @@ describe('RegisterAgentComponent', () => {
       confirmar_contrasena: 'Password1',
     });
     component.onSubmit();
-    expect(router.navigate).toHaveBeenCalledWith(['/login']);
+    expect(router.navigate).toHaveBeenCalledWith(['/dashboard/list/agents']);
   });
 
   it('should show an error message on registration failure', () => {
     spyOn(registerService, 'registerAgent').and.returnValue(throwError({ error: 'Error' }));
     spyOn(component, 'updateErrorRequiredMessage');
     component.registerForm.patchValue({
-      nombre_completo: 'Test User',
+      nombres: 'Test User',
+      apellidos: 'Users',
       correo_electronico: 'test@example.com',
       tipo_identificacion: '1',
       numero_identificacion: '12345678',

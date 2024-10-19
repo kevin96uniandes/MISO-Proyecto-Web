@@ -22,10 +22,10 @@ export class RegisterService {
   }
 
   registerAgent(registerAgent: RegisterAgent): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/user/register/agent`, { "nombre_completo": registerAgent.nombre_completo,
+    return this.http.post<any>(`${this.apiUrl}/user/register/agent`, { "nombres": registerAgent.nombres, "apellidos": registerAgent.nombres,
       "correo_electronico": registerAgent.correo_electronico, "tipo_identificacion": registerAgent.tipo_identificacion,
       "numero_identificacion": registerAgent.numero_identificacion, "telefono": registerAgent.telefono, "usuario": registerAgent.usuario,
-      "contrasena": registerAgent.contrasena, "confirmar_contrasena": registerAgent.confirmar_contrasena});
+      "contrasena": registerAgent.contrasena, "confirmar_contrasena": registerAgent.confirmar_contrasena, "id_empresa": registerAgent.id_empresa});
   }
 }
 

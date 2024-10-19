@@ -20,10 +20,11 @@ jobs:
       run: npm install
     - name: Pruebas unitarias y cobertura de código
       run: |
-        # npm ci
-        # npm run test:prod
+        npm ci
+        npm run test:prod
 
   merge-develop:
+    if: ${{ contains(github.event.head_commit.message, 'release') || contains(github.event.head_commit.message, 'develop') }}
     needs: workflow_angular
     runs-on: ubuntu-latest
     steps:

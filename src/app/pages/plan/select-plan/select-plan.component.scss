@@ -1,0 +1,126 @@
+@import "../../../../theme/custom-colors";
+@import "../../../../theme/custom-style";
+@import "../../../../theme/custom-components-classes";
+
+.container-login {
+  height: 100vh !important;
+}
+
+.container-components {
+  height: 100vh !important;
+}
+
+.container-components > .row {
+  height: 100vh;
+}
+
+.container-right {
+  background-color: $abcall-primary-color;
+}
+
+/*Contenedor de todos los componentes de la derecha*/
+.container-right > div{
+  background-color: white;
+  height: 95%;
+  width: 95% !important;
+  border-radius: 10px;
+}
+
+/*Formulario*/
+.container-right > div > form > div:nth-child(2){
+  padding: 0% 20% 11% 20%;
+}
+
+.container-form-components {
+  margin-top: 60px;
+}
+
+.plan-card {
+  padding: 20px;
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 87%;
+}
+
+mat-card-title {
+  font-weight: bold;
+  font-family: 'Roboto';
+  color: #126173;
+  font-size: 1.25em;
+}
+
+.active-plan {
+  background-color: #e0f7fa;
+  padding: 5px;
+  border-radius: 5px;
+  color: #00796b;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.currency-selector {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+mat-card > mat-card-content > p{
+  font-family: 'Roboto';
+  color: black;
+  font-size: 0.75em;
+  margin-top: 4%;
+}
+
+h2 {
+  font-size: 48px;
+  font-weight: 400;
+  color: black;
+  font-family: 'Roboto';
+
+  .price-symbol {
+    font-size: 48px;
+    font-weight: 400;
+  }
+
+  .price-amount {
+    font-size: 48px;
+    font-weight: 400;
+  }
+
+  .price-unit {
+    font-size: 28px;
+    font-weight: 300;
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 4%;
+}
+
+.icon-list-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-family: 'Roboto';
+  font-size: 0.875em;
+}
+
+#color-eye {
+  margin-right: 8px;
+  color: $abcall-primary-color;;
+}
+
+mat-card > mat-card-actions > button{
+  font-weight: bold;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.938em;
+  border-radius: 0.25em;
+}

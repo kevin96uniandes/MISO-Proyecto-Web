@@ -4,14 +4,29 @@
 
 
   .btn-form-primary {
-    background-color:#82BDAE !important; /* Aplica el color de fondo */
+    background-color:#407F7F !important; /* Aplica el color de fondo */
     color: #fff !important; /* Aplica el color del texto */
     border-style: groove;
-    border-color: gray;
+    border-color: #d2cece;
+    width: 225px;
   }
 
   .btn-form-secondary {
     background-color: #fff !important; /* Aplica el color de fondo */
-    color: #82BDAE !important; /* Aplica el color del texto */
-    border-color: #82BDAE;
+    color:  #407F7F !important; /* Aplica el color del texto */
+    border-color: #407F7F;
+    width: 225px;
+  }
+
+  .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);  /* Fondo semi-transparente */
+    z-index: 1000;  /* Para que el spinner esté por encima de otros elementos */
   }

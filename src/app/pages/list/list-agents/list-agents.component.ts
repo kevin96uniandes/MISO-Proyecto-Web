@@ -1,4 +1,4 @@
-import { Component, ViewChild, NgModule, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, NgModule, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
@@ -6,26 +6,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSortModule, MatSort } from '@angular/material/sort';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ListService } from '../list.service';
+import { StorageService } from '../../../common/storage.service';
 
 export interface Agente {
-  identificacion: string;
-  nombreCompleto: string;
-  correoElectronico: string;
+  nombre_usuario: string;
+  numero_identificacion: string;
+  nombre_completo: string;
   telefono: string;
+  correo_electronico: string;
 }
-
-const AGENTES_DATA: Agente[] = [
-  { identificacion: '7719271793', nombreCompleto: 'Celestina Muffin', correoElectronico: 'mdone1@ft.com', telefono: '7859224631' },
-  { identificacion: '5028391440', nombreCompleto: 'Melisent Done', correoElectronico: 'mjog@gmail.com', telefono: '1912271818' },
-  { identificacion: '5016423245', nombreCompleto: 'Goldia Castagna', correoElectronico: 'gcastagna2@e-recht24.de', telefono: '0588155659' },
-  { identificacion: '7466293565', nombreCompleto: 'Wyatan Sacco', correoElectronico: 'wsacco3@furl.net', telefono: '0767189159' },
-  { identificacion: '6929037893', nombreCompleto: 'Merilee Higgonet', correoElectronico: 'mhiggonet4@pinterest.com', telefono: '2319392521' },
-  { identificacion: '7806754067', nombreCompleto: 'Jemima Moseley', correoElectronico: 'jmoseley5@cornell.edu', telefono: '1443313017' },
-  { identificacion: '3691614221', nombreCompleto: 'Florance Emeline', correoElectronico: 'femeline6@oracle.com', telefono: '1234567890' },
-  { identificacion: '3571446240', nombreCompleto: 'Berni Cossam', correoElectronico: 'bcossam7@geocities.com', telefono: '6017968912' },
-  { identificacion: '1986410595', nombreCompleto: 'Gabey Dripps', correoElectronico: 'gdripps8@prnewswire.com', telefono: '3226883887' },
-  { identificacion: '5003653514', nombreCompleto: 'Giorgi Kilsby', correoElectronico: 'gkilsby9@jigsy.com', telefono: '8266419752' },
-];
 
 @Component({
   selector: 'app-list-agents',
@@ -37,38 +28,59 @@ const AGENTES_DATA: Agente[] = [
     MatIconModule,
     MatSortModule,
     FormsModule,
+    TranslateModule
   ],
   templateUrl: './list-agents.component.html',
   styleUrls: ['./list-agents.component.scss']
 })
 export class ListAgentsComponent implements AfterViewInit {
-  displayedColumns: string[] = ['acciones', 'identificacion', 'nombreCompleto', 'correoElectronico', 'telefono'];
-  dataSource = new MatTableDataSource<Agente>(AGENTES_DATA);
+  displayedColumns: string[] = ['acciones', 'nombreUsuario', 'identificacion', 'nombreCompleto', 'correoElectronico', 'telefono'];
+  dataAgents!: MatTableDataSource<Agente>
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private translate: TranslateService,
+    private listAgentService: ListService,
+    private storageService: StorageService,
+    private cdr: ChangeDetectorRef
   ) { }
   ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
+
+    let decoded = JSON.parse(this.storageService.getItem("decodedToken")!!);
+    console.log(decoded["id_company"]);
+
+    let empresa_id = decoded["id_company"];
+
+    this.listAgentService.getAgentsByIdCompany(empresa_id).subscribe({
+      next: (agents: Agente[]) => {
+        console.log(agents);
+
+        this.dataAgents = new MatTableDataSource<Agente>(agents);
+        this.dataAgents.paginator = this.paginator;
+        this.dataAgents.sort = this.sort;
+
+        this.cdr.detectChanges();
+      }
+    })
+
   }
 
   ngOnInit() {
-    this.dataSource.sort = this.sort;
   }
 
   createAgent() {
-    this.router.navigate(['/register/agent']);
+    this.router.navigate(['/dashboard/register/agent']);
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataAgents.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    if (this.dataAgents.paginator) {
+      this.dataAgents.paginator.firstPage();
     }
   }
 }

@@ -1,11 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChild, LOCALE_ID, Inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { StorageService } from '../../../common/storage.service';
 
 @Component({
   selector: 'app-upload-files',
   standalone: true,
   imports: [
+    TranslateModule,
     CommonModule,
     MatIconModule
   ],
@@ -20,6 +23,17 @@ export class UploadFilesComponent {
 
   @Output() filesChanged = new EventEmitter<File[]>();
   @ViewChild('fileInput') fileInput!: any;
+
+  constructor(
+    private storageService: StorageService,
+    private translate: TranslateService,
+    @Inject(LOCALE_ID) private locale: string
+  ) { }
+
+  ngOnInit(): void {
+    const lang = this.storageService.getItem("language")
+    this.translate.use(lang || 'es')
+  }
 
   onFileSelected(event: Event) {
     event.preventDefault();
@@ -56,8 +70,13 @@ export class UploadFilesComponent {
       );
 
       const lengthValidFiles = uniqueFiles.filter(file => {
+
         if(file.size >= this.MAX_SIZE){
-          this.errorMessage += `El archivo ${file.name} excede el tamaño máximo permitido de 25 MB. <br/> `;
+
+          this.translate.get(['FILE_SIZE_ERROR'], { fileName: file.name}).subscribe(translations => {
+            this.errorMessage += translations['FILE_SIZE_ERROR']
+          });
+
           return false;
         }
         return true;
@@ -66,7 +85,9 @@ export class UploadFilesComponent {
       this.files.push(...lengthValidFiles);
       this.emitFiles();
     }else{
-      this.errorMessage += `Has superado el limite de archivos por incidente`;
+      this.translate.get(['FILE_LIMIT_EXCEEDED']).subscribe(translations => {
+        this.errorMessage += translations['FILE_LIMIT_EXCEEDED']
+      });
     }
   }
 

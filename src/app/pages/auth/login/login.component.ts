@@ -6,15 +6,16 @@ import {MatSelectModule} from '@angular/material/select';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import {MatButtonModule} from '@angular/material/button';
 import {NgOptimizedImage} from "@angular/common";
-import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import { StorageService } from '../../../common/storage.service';
 import Swal from 'sweetalert2';
 import {AuthService} from "../auth.service";
-import {Router} from "@angular/router";
+import {Router, RouterModule} from "@angular/router";
 import {EMPTY, merge} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {Login} from "./login";
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 interface Language {
   value: string;
@@ -34,6 +35,7 @@ interface Language {
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
+    TranslateModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
@@ -48,13 +50,19 @@ export class LoginComponent {
   error: string = "";
   helper = new JwtHelperService();
 
+  ngOnInit(){
+    const lang = this.storageService.getItem("language")
+    this.selectedValue = lang || 'es';
+    this.translate.use(this.selectedValue)
+  }
+
   constructor(
     private loginService: AuthService,
     private storageService: StorageService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private translate: TranslateService
   ) {
-    this.selectedValue = "es";
 
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]],
@@ -86,9 +94,11 @@ export class LoginComponent {
             this.router.navigate([`dashboard`]);
           },
         error: (err) => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Usuario o contraseña incorrectos',
+          this.translate.get(['USER_PASSWORD_INCORRECT']).subscribe(translations => { 
+            Swal.fire({
+              icon: 'error',
+              title: translations['USER_PASSWORD_INCORRECT'],
+            });
           });
         }
       })
@@ -114,6 +124,16 @@ export class LoginComponent {
   clickEvent(event: MouseEvent) {
     this.hide.set(!this.hide());
     event.stopPropagation();
+  }
+  changeLanguage(lang: string) {
+    console.log(lang)
+    this.selectedValue = lang;
+    this.translate.use(lang);
+    this.storageService.setItem("language", lang)
+  }
+
+  goToRegister(){
+    this.router.navigate([`/register/client`]);
   }
 
 }

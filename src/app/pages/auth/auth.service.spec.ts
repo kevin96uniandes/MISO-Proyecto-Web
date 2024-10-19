@@ -63,12 +63,10 @@ describe('LoginService', () => {
       expect(response).toEqual(mockResponse);
     });
 
-    // Simula la solicitud HTTP
     const req = httpMock.expectOne(`${environment.apiUrl}/user/auth/validate-token`);
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual({ token: `Bearer ${mockToken}` });
 
-    // Responde a la solicitud HTTP
     req.flush(mockResponse);
   });
 

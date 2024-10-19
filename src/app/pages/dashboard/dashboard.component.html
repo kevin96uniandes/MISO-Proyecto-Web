@@ -4,37 +4,37 @@
       <a mat-list-item routerLink="/perfil" class="menu-item text-center">
         <mat-icon matListIcon><img ngSrc="../../../../assets/images/logo.svg" alt="logo" height="50" width="50"></mat-icon>
       </a>
-      <a mat-list-item routerLink="/perfil" class="menu-item text-center">
+      <a *ngIf="currentMenuUser.perfil" mat-list-item routerLink="/perfil" class="menu-item text-center">
         <mat-icon matListIcon class="sidebar-color-item">account_circle</mat-icon>
-        <span matLine class="sidebar-color-item">Perfil</span>
+        <span matLine class="sidebar-color-item">{{ 'PERFIL' | translate }}</span>
       </a>
-      <a mat-list-item routerLink="/incidencias" class="menu-item text-center">
+      <a *ngIf="currentMenuUser.incidentes" mat-list-item [routerLink]="['/dashboard/user-query']" class="menu-item text-center" id="incident-dashboard">
         <mat-icon matListIcon class="sidebar-color-item">build</mat-icon>
-        <span matLine class="sidebar-color-item">Incidencias</span>
+        <span matLine class="sidebar-color-item">{{ 'INCIDENTS' | translate }}</span>
       </a>
-      <a mat-list-item routerLink="/agentes" class="menu-item text-center">
+      <a *ngIf="currentMenuUser.agentes" mat-list-item [routerLink]="['/dashboard/list/agents']" class="menu-item text-center">
         <mat-icon matListIcon class="sidebar-color-item">person</mat-icon>
-        <span matLine class="sidebar-color-item">Agentes</span>
+        <span matLine class="sidebar-color-item">{{ 'AGENTS' | translate }}</span>
       </a>
-      <a mat-list-item routerLink="/planes" class="menu-item text-center active">
+      <a *ngIf="currentMenuUser.planes" mat-list-item [routerLink]="['/dashboard/plans']" class="menu-item text-center active">
         <mat-icon matListIcon class="sidebar-color-item">store</mat-icon>
-        <span matLine class="sidebar-color-item">Planes</span>
+        <span matLine class="sidebar-color-item">{{ 'PLANS' | translate }}</span>
       </a>
-      <a mat-list-item routerLink="/dashboard" class="menu-item text-center">
+      <a *ngIf="currentMenuUser.dashboard" mat-list-item routerLink="/dashboard" class="menu-item text-center">
         <mat-icon matListIcon class="sidebar-color-item">dashboard</mat-icon>
-        <span matLine class="sidebar-color-item">Dashboard</span>
+        <span matLine class="sidebar-color-item">{{ 'DASHBOARD' | translate }}</span>
       </a>
-      <a mat-list-item routerLink="/reportes" class="menu-item text-center">
+      <a *ngIf="currentMenuUser.reportes" mat-list-item routerLink="/reportes" class="menu-item text-center">
         <mat-icon matListIcon class="sidebar-color-item">description</mat-icon>
-        <span matLine class="sidebar-color-item">Reportes</span>
+        <span matLine class="sidebar-color-item">{{ 'REPORTS' | translate }}</span>
       </a>
-      <a mat-list-item routerLink="/facturas" class="menu-item text-center">
+      <a *ngIf="currentMenuUser.facturas" mat-list-item routerLink="/facturas" class="menu-item text-center">
         <mat-icon matListIcon class="sidebar-color-item">receipt</mat-icon>
-        <span matLine class="sidebar-color-item">Facturas</span>
+        <span matLine class="sidebar-color-item">{{ 'INVOICES' | translate }}</span>
       </a>
-      <a mat-list-item routerLink="/facturas" class="menu-item text-center ">
+      <a  *ngIf="currentMenuUser.salir" mat-list-item routerLink="/facturas" class="menu-item text-center ">
         <mat-icon matListIcon class="text-danger">logout</mat-icon>
-        <span matLine class="text-danger">Salir</span>
+        <span matLine class="text-danger">{{ 'LOGOUT' | translate }}</span>
       </a>
     </mat-nav-list>
   </mat-drawer>

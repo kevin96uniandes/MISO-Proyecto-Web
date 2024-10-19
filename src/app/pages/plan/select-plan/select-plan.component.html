@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-6">
-      <h4 class="title-text-color title-size">Elige tu plan:</h4>
+      <h4 class="title-text-color title-size">{{ 'CHOOSE_YOUR_PLAN' | translate }}:</h4>
     </div>
     <div class="col-6" style="text-align: right; margin-top: 1%">
       <mat-form-field appearance="fill">
-        <mat-label>Cambio de moneda</mat-label>
+        <mat-label>{{ 'CURRENCY_EXCHANGE' | translate }}</mat-label>
         <mat-select [(value)]="selectedCurrency">
-          <mat-option value="COP">COP - Peso colombiano</mat-option>
-          <mat-option value="USD">USD - Dólar estadounidense</mat-option>
+          <mat-option value="COP">{{ 'COLOMBIAN_PESO' | translate }}</mat-option>
+          <mat-option value="USD">{{ 'UNITED_STATES_DOLLAR' | translate }}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -20,42 +20,42 @@
         <mat-grid-tile>
           <mat-card class="plan-card">
             <mat-card-header>
-              <mat-card-title>Plan Emprendedor</mat-card-title>
-              <div *ngIf="isActivePlan(1)" class="active-tag">Activo</div>
+              <mat-card-title>{{ 'ENTREPRENEURIAL_PLAN' | translate }}</mat-card-title>
+              <div *ngIf="isActivePlan(1)" class="active-tag">{{ 'ACTIVE' | translate }}</div>
             </mat-card-header>
             <mat-card-content>
-              <p>Ideal para empresas que desean ofrecer servicios de atención telefónica personalizada y mejorar la experiencia del cliente.</p>
+              <p>{{ 'DESCRIPTION_ENTREPRENEURIAL_PLAN' | translate }}.</p>
               <h2>
                 <span class="price-symbol">$</span><span class="price-amount">{{ getPrice1() }}</span>
-                <span class="price-unit">{{ selectedCurrency === 'COP' ? 'mil/mes' : '/mes' }}</span>
+                <span class="price-unit">{{ selectedCurrency === 'COP' ? ('THOUSAND_MONTH' | translate) : ('MONTH' | translate) }}</span>
               </h2>
               <ul>
                 <li class="icon-list-item">
-                  <mat-icon id="color-eye">check_circle</mat-icon> Registro de PQRs (Preguntas, Quejas, Reclamos)
+                  <mat-icon id="color-eye">check_circle</mat-icon> {{ 'FEATURE_ONE_PLAN_ONE' | translate }}
                 </li>
                 <li class="icon-list-item">
-                  <mat-icon id="color-eye">check_circle</mat-icon> Base de conocimientos de la empresa
+                  <mat-icon id="color-eye">check_circle</mat-icon> {{ 'FEATURE_TWO_PLAN_ONE' | translate }}
                 </li>
                 <li class="icon-list-item">
-                  <mat-icon id="color-eye">check_circle</mat-icon> Automatización del proceso de escalamiento
+                  <mat-icon id="color-eye">check_circle</mat-icon> {{ 'FEATURE_THREE_PLAN_ONE' | translate }}
                 </li>
                 <li class="icon-list-item">
-                  <mat-icon id="color-eye">check_circle</mat-icon> Asignación automática de incidentes
+                  <mat-icon id="color-eye">check_circle</mat-icon> {{ 'FEATURE_FOUR_PLAN_ONE' | translate }}
                 </li>
                 <li class="icon-list-item">
-                  <mat-icon id="color-eye">check_circle</mat-icon> Notificación de solución al cliente por varios canales
+                  <mat-icon id="color-eye">check_circle</mat-icon> {{ 'FEATURE_FIVE_PLAN_ONE' | translate }}
                 </li>
                 <li class="icon-list-item">
-                  <mat-icon id="color-eye">check_circle</mat-icon> Reportes e interacción con incidentes abiertos
+                  <mat-icon id="color-eye">check_circle</mat-icon> {{ 'FEATURE_SIX_PLAN_ONE' | translate }}
                 </li>
                 <li class="icon-list-item">
-                  <mat-icon id="color-eye">check_circle</mat-icon> Monitoreo continuo de incidentes
+                  <mat-icon id="color-eye">check_circle</mat-icon> {{ 'FEATURE_SEVEN_PLAN_ONE' | translate }}
                 </li>
               </ul>
             </mat-card-content>
             <mat-card-actions>
               <button *ngIf="!isActivePlan(1)" mat-flat-button class="btn-abc-primary w-100 obtener-btn" i18n (click)="openDialog('Plan Emprendedor', 1)">
-                OBTENER
+                {{ 'OBTAIN' | translate }}
               </button>
             </mat-card-actions>
           </mat-card>
@@ -65,39 +65,39 @@
         <mat-grid-tile>
           <mat-card class="plan-card">
             <mat-card-header>
-              <mat-card-title>Plan Empresario</mat-card-title>
-              <div *ngIf="isActivePlan(2)" class="active-tag">Activo</div>
+              <mat-card-title>{{ 'BUSINESS_PLAN' | translate }}</mat-card-title>
+              <div *ngIf="isActivePlan(2)" class="active-tag">{{ 'ACTIVE' | translate }}</div>
             </mat-card-header>
             <mat-card-content>
-              <p>Ideal para empresas que desean ofrecer múltiples canales de comunicación y mejorar la satisfacción de sus clientes.</p>
+              <p>{{ 'DESCRIPTION_BUSINESS_PLAN' | translate }}</p>
               <h2>
                 <span class="price-symbol">$</span><span class="price-amount">{{ getPrice2() }}</span>
-                <span class="price-unit">{{ selectedCurrency === 'COP' ? 'mil/mes' : '/mes' }}</span>
+                <span class="price-unit">{{ selectedCurrency === 'COP' ? ('THOUSAND_MONTH' | translate) : ('MONTH' | translate) }}</span>
               </h2>
               <ul>
                 <li class="icon-list-item">
-                  <mat-icon id="color-eye">check_circle</mat-icon> Multicanalidad: línea telefónica, correo electrónico, chatbot y app móvil
+                  <mat-icon id="color-eye">check_circle</mat-icon> {{ 'FEATURE_ONE_PLAN_TWO' | translate }}
                 </li>
                 <li class="icon-list-item">
-                  <mat-icon id="color-eye">check_circle</mat-icon> Registro de PQRs a través de todos los canales
+                  <mat-icon id="color-eye">check_circle</mat-icon> {{ 'FEATURE_TWO_PLAN_TWO' | translate }}
                 </li>
                 <li class="icon-list-item">
-                  <mat-icon id="color-eye">check_circle</mat-icon> Automatización del proceso de escalamiento
+                  <mat-icon id="color-eye">check_circle</mat-icon> {{ 'FEATURE_THREE_PLAN_TWO' | translate }}
                 </li>
                 <li class="icon-list-item">
-                  <mat-icon id="color-eye">check_circle</mat-icon> Llamadas de salida para telemercadeo y encuestas
+                  <mat-icon id="color-eye">check_circle</mat-icon> {{ 'FEATURE_FOUR_PLAN_TWO' | translate }}
                 </li>
                 <li class="icon-list-item">
-                  <mat-icon id="color-eye">check_circle</mat-icon> Tablero de control para análisis de comportamiento e incidentes
+                  <mat-icon id="color-eye">check_circle</mat-icon> {{ 'FEATURE_FIVE_PLAN_TWO' | translate }}
                 </li>
                 <li class="icon-list-item">
-                  <mat-icon id="color-eye">check_circle</mat-icon> Indicadores de gestión y niveles de servicio
+                  <mat-icon id="color-eye">check_circle</mat-icon> {{ 'FEATURE_SIX_PLAN_TWO' | translate }}
                 </li>
               </ul>
             </mat-card-content>
             <mat-card-actions>
               <button *ngIf="!isActivePlan(2)" mat-flat-button class="btn-abc-primary w-100" i18n (click)="openDialog('Plan Empresario', 2)">
-                OBTENER
+                {{ 'OBTAIN' | translate }}
               </button>
             </mat-card-actions>
           </mat-card>
@@ -107,42 +107,42 @@
         <mat-grid-tile>
           <mat-card class="plan-card">
             <mat-card-header>
-              <mat-card-title>Plan Empresario Plus</mat-card-title>
-              <div *ngIf="isActivePlan(3)" class="active-tag">Activo</div>
+              <mat-card-title>{{ 'BUSINESS_PLAN' | translate }} Plus</mat-card-title>
+              <div *ngIf="isActivePlan(3)" class="active-tag">{{ 'ACTIVE' | translate }}</div>
             </mat-card-header>
             <mat-card-content>
-              <p>Ideal para empresas que desean aprovechar inteligencia artificial y analítica predictiva para mejorar la experiencia de sus clientes.</p>
+              <p>{{ 'DESCRIPTION_BUSINESS_PLUS_PLAN' | translate }}</p>
               <h2>
                 <span class="price-symbol">$</span><span class="price-amount">{{ getPrice3() }}</span>
-                <span class="price-unit">{{ selectedCurrency === 'COP' ? 'mil/mes' : '/mes' }}</span>
+                <span class="price-unit">{{ selectedCurrency === 'COP' ? ('THOUSAND_MONTH' | translate) : ('MONTH' | translate) }}</span>
               </h2>
               <ul>
                 <li class="icon-list-item">
-                  <mat-icon id="color-eye">check_circle</mat-icon> Multicanalidad: línea telefónica, correo electrónico, chatbot y app móvil
+                  <mat-icon id="color-eye">check_circle</mat-icon> {{ 'FEATURE_ONE_PLAN_TWO' | translate }}
                 </li>
                 <li class="icon-list-item">
-                  <mat-icon id="color-eye">check_circle</mat-icon> Registro de PQRs con analítica predictiva
+                  <mat-icon id="color-eye">check_circle</mat-icon> {{ 'FEATURE_ONE_PLAN_THREE' | translate }}
                 </li>
                 <li class="icon-list-item">
-                  <mat-icon id="color-eye">check_circle</mat-icon> Respuestas automáticas basadas en IA generativa
+                  <mat-icon id="color-eye">check_circle</mat-icon> {{ 'FEATURE_TWO_PLAN_THREE' | translate }}
                 </li>
                 <li class="icon-list-item">
-                  <mat-icon id="color-eye">check_circle</mat-icon> Modelos de predicción de riesgo en tiempo real
+                  <mat-icon id="color-eye">check_circle</mat-icon> {{ 'FEATURE_THREE_PLAN_THREE' | translate }}
                 </li>
                 <li class="icon-list-item">
-                  <mat-icon id="color-eye">check_circle</mat-icon> Tablero de control con analítica avanzada y predicción
+                  <mat-icon id="color-eye">check_circle</mat-icon> {{ 'FEATURE_FOUR_PLAN_THREE' | translate }}
                 </li>
                 <li class="icon-list-item">
-                  <mat-icon id="color-eye">check_circle</mat-icon> Importación de datos de clientes para entrenar modelos
+                  <mat-icon id="color-eye">check_circle</mat-icon> {{ 'FEATURE_FIVE_PLAN_THREE' | translate }}
                 </li>
                 <li class="icon-list-item">
-                  <mat-icon id="color-eye">check_circle</mat-icon> Llamadas de salida para telemercadeo y encuestas
+                  <mat-icon id="color-eye">check_circle</mat-icon> {{ 'FEATURE_FOUR_PLAN_TWO' | translate }}
                 </li>
               </ul>
             </mat-card-content>
             <mat-card-actions>
               <button *ngIf="!isActivePlan(3)" mat-flat-button class="btn-abc-primary w-100" i18n (click)="openDialog('Plan Empresario Plus', 3)">
-                OBTENER
+                {{ 'OBTAIN' | translate }}
               </button>
             </mat-card-actions>
           </mat-card>

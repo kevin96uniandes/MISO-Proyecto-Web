@@ -1,8 +1,8 @@
-<h2 mat-dialog-title>Selección de plan:</h2>
+<h2 mat-dialog-title>{{ 'PLAN_SELECTION' | translate }}</h2>
 <mat-dialog-content>
-  <p>¿Está seguro que desea seleccionar el <strong>{{selectedPlan}}</strong>?</p>
+  <p>{{ 'QUESTION' | translate }} <strong>{{selectedPlan}}</strong>?</p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-flat-button class="btn-abc-primary" (click)="onReject()" id="btn-rechazar">RECHAZAR</button>
-  <button mat-flat-button class="btn-abc-primary" (click)="onAccept()" id="btn-aceptar">ACEPTAR</button>
+  <button mat-flat-button class="btn-abc-primary" (click)="onReject()" id="btn-rechazar">{{ 'DECLINE' | translate }}</button>
+  <button mat-flat-button class="btn-abc-primary" (click)="onAccept()" id="btn-aceptar">{{ 'ACCEPT' | translate }}</button>
 </mat-dialog-actions>

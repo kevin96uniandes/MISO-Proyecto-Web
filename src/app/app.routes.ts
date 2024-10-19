@@ -11,6 +11,7 @@ import { UserQueryComponent } from './pages/incident/user-query/user-query.compo
 import { ListAgentsComponent } from './pages/list/list-agents/list-agents.component';
 import { SelectPlanComponent } from './pages/plan/select-plan/select-plan.component';
 import { RegisterClientComponent } from './pages/register/register-client/register-client.component';
+import { RegisterAgentComponent } from './pages/register/register-agent/register-agent.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },

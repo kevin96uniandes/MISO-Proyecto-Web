@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { StorageService } from '../../../common/storage.service';
 import { PlanService } from '../plan.service';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-select-plan',
@@ -21,7 +22,8 @@ import { CommonModule } from '@angular/common';
     MatFormFieldModule,
     MatSelectModule,
     MatIconModule,
-    CommonModule
+    CommonModule,
+    BrowserAnimationsModule
   ],
   templateUrl: './select-plan.component.html',
   styleUrls: ['./select-plan.component.scss']

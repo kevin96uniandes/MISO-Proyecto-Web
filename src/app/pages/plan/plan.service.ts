@@ -20,5 +20,9 @@ export class PlanService {
   updateContract( updateContract: Plan): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}update/contract`, {"empresa_id": updateContract.empresa_id, "new_plan_id": updateContract.new_plan_id});
   }
+
+  createContract( updateContract: Plan): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}contract`, {"empresa_id": updateContract.empresa_id, "plan_id": updateContract.new_plan_id});
+  }
 }
 

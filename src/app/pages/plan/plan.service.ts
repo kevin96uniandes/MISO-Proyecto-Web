@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import { Contract } from './select-plan/Contract';
+import { Plan } from './select-plan/plan';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class PlanService {
     return this.http.get(`${this.baseUrl}get/${empresaId}`);
   }
 
-  updateContract( updateContract: Contract): Observable<any> {
+  updateContract( updateContract: Plan): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}update/contract`, {"empresa_id": updateContract.empresa_id, "new_plan_id": updateContract.new_plan_id});
   }
 }

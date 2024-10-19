@@ -1,12 +1,13 @@
 export class Plan {
-    nombre_plan: String;
-    precio: Number;
+  empresa_id: Number;
+  new_plan_id: Number;
 
-    constructor(
-      nombre_plan: String,
-      precio: Number
-    ){
-      this.nombre_plan = nombre_plan;
-      this.precio = precio;
-    }
+  constructor(
+    empresa_id: Number,
+    new_plan_id: Number
+
+  ){
+    this.empresa_id = empresa_id;
+    this.new_plan_id = new_plan_id;
+  }
 }

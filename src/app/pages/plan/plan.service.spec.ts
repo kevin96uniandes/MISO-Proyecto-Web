@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { PlanService } from './plan.service';
 import { environment } from '../../../environments/environment';
-import { Contract } from './select-plan/Contract';
+import { Plan } from './select-plan/plan';
 
 describe('PlanService', () => {
   let service: PlanService;
@@ -43,7 +43,7 @@ describe('PlanService', () => {
   describe('#updateContract', () => {
     it('should update the contract and return an Observable<any>', () => {
       const dummyResponse = { success: true };
-      const updateContract: Contract = { empresa_id: 123, new_plan_id: 456 };
+      const updateContract: Plan = { empresa_id: 123, new_plan_id: 456 };
 
       service.updateContract(updateContract).subscribe(response => {
         expect(response).toEqual(dummyResponse);

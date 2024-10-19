@@ -6,7 +6,7 @@
     <div class="col-6" style="text-align: right; margin-top: 1%">
       <mat-form-field appearance="fill">
         <mat-label>Cambio de moneda</mat-label>
-        <mat-select>
+        <mat-select [(value)]="selectedCurrency">
           <mat-option value="COP">COP - Peso colombiano</mat-option>
           <mat-option value="USD">USD - Dólar estadounidense</mat-option>
         </mat-select>
@@ -26,7 +26,8 @@
             <mat-card-content>
               <p>Ideal para empresas que desean ofrecer servicios de atención telefónica personalizada y mejorar la experiencia del cliente.</p>
               <h2>
-                <span class="price-symbol">$</span><span class="price-amount">200</span><span class="price-unit">mil/mes</span>
+                <span class="price-symbol">$</span><span class="price-amount">{{ getPrice1() }}</span>
+                <span class="price-unit">{{ selectedCurrency === 'COP' ? 'mil/mes' : '/mes' }}</span>
               </h2>
               <ul>
                 <li class="icon-list-item">
@@ -70,7 +71,8 @@
             <mat-card-content>
               <p>Ideal para empresas que desean ofrecer múltiples canales de comunicación y mejorar la satisfacción de sus clientes.</p>
               <h2>
-                <span class="price-symbol">$</span><span class="price-amount">300</span><span class="price-unit">mil/mes</span>
+                <span class="price-symbol">$</span><span class="price-amount">{{ getPrice2() }}</span>
+                <span class="price-unit">{{ selectedCurrency === 'COP' ? 'mil/mes' : '/mes' }}</span>
               </h2>
               <ul>
                 <li class="icon-list-item">
@@ -111,7 +113,8 @@
             <mat-card-content>
               <p>Ideal para empresas que desean aprovechar inteligencia artificial y analítica predictiva para mejorar la experiencia de sus clientes.</p>
               <h2>
-                <span class="price-symbol">$</span><span class="price-amount">500</span><span class="price-unit">mil/mes</span>
+                <span class="price-symbol">$</span><span class="price-amount">{{ getPrice3() }}</span>
+                <span class="price-unit">{{ selectedCurrency === 'COP' ? 'mil/mes' : '/mes' }}</span>
               </h2>
               <ul>
                 <li class="icon-list-item">

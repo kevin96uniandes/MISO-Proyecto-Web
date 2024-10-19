@@ -29,6 +29,13 @@ import { CommonModule } from '@angular/common';
 export class SelectPlanComponent implements OnInit {
 
   activePlanId: number | null = null;
+  selectedCurrency: string = 'COP';
+  price1COP: number = 200;
+  price1USD: number = 47;
+  price2COP: number = 300;
+  price2USD: number = 70;
+  price3COP: number = 500;
+  price3USD: number = 118;
 
   constructor(
     public dialog: MatDialog,
@@ -80,5 +87,17 @@ export class SelectPlanComponent implements OnInit {
         console.log('Selección cancelada');
       }
     });
+  }
+
+  getPrice1(): number {
+    return this.selectedCurrency === 'COP' ? this.price1COP : this.price1USD;
+  }
+
+  getPrice2(): number {
+    return this.selectedCurrency === 'COP' ? this.price2COP : this.price2USD;
+  }
+
+  getPrice3(): number {
+    return this.selectedCurrency === 'COP' ? this.price3COP : this.price3USD;
   }
 }

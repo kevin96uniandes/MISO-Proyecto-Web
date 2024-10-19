@@ -3,11 +3,16 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PlanDialogComponent } from './plan-dialog.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { of } from 'rxjs';
+import { StorageService } from '../../../common/storage.service';
 
 describe('PlanDialogComponent', () => {
   let component: PlanDialogComponent;
   let fixture: ComponentFixture<PlanDialogComponent>;
   let dialogRefMock: any;
+  let translateService: TranslateService;
+  let storageServiceMock: any;
 
   const mockDialogData = {
     plan: 'Plan Básico',
@@ -20,19 +25,32 @@ describe('PlanDialogComponent', () => {
       close: jasmine.createSpy('close')
     };
 
+    storageServiceMock = {
+      getItem: jasmine.createSpy('getItem').and.returnValue('es')
+    };
+
     await TestBed.configureTestingModule({
-      imports: [MatButtonModule, NoopAnimationsModule, PlanDialogComponent],
+      imports: [
+        MatButtonModule,
+        NoopAnimationsModule,
+        TranslateModule.forRoot(),  // Use the real TranslateModule
+        PlanDialogComponent
+      ],
       providers: [
         { provide: MatDialogRef, useValue: dialogRefMock },
-        { provide: MAT_DIALOG_DATA, useValue: mockDialogData }
+        { provide: MAT_DIALOG_DATA, useValue: mockDialogData },
+        { provide: StorageService, useValue: storageServiceMock }  // Provide StorageService mock
       ]
     }).compileComponents();
+
+    // Inject TranslateService for later use
+    translateService = TestBed.inject(TranslateService);
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PlanDialogComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges(); // Esto asegura que las plantillas se rendericen
+    fixture.detectChanges(); // This ensures the templates render
   });
 
   it('should create the component', () => {

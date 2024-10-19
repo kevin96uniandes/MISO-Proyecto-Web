@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Selección de plan:</h2>
+<mat-dialog-content>
+  <p>¿Está seguro que desea seleccionar el <strong>{{selectedPlan}}</strong>?</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-flat-button class="btn-abc-primary" (click)="onReject()" id="btn-rechazar">RECHAZAR</button>
+  <button mat-flat-button class="btn-abc-primary" (click)="onAccept()" id="btn-aceptar">ACEPTAR</button>
+</mat-dialog-actions>

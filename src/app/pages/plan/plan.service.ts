@@ -21,3 +21,4 @@ export class PlanService {
     return this.http.post<any>(`${this.baseUrl}update/contract`, {"empresa_id": updateContract.empresa_id, "new_plan_id": updateContract.new_plan_id});
   }
 }
+

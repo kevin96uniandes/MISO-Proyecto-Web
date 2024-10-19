@@ -92,6 +92,7 @@ export class FormComponent {
       let decoded = JSON.parse(this.storageService.getItem("decodedToken")!!);
       console.log(decoded["id"]);
 
+      formData.append('user_id', decoded["id"]);
       formData.append('person_id', this.person?.id ? this.person.id.toString() : '');
 
       this.incidentService.createIncident(formData).subscribe({

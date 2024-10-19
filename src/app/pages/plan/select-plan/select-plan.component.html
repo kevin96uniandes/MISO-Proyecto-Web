@@ -21,6 +21,7 @@
           <mat-card class="plan-card">
             <mat-card-header>
               <mat-card-title>Plan Emprendedor</mat-card-title>
+              <div *ngIf="isActivePlan(1)" class="active-tag">Activo</div>
             </mat-card-header>
             <mat-card-content>
               <p>Ideal para empresas que desean ofrecer servicios de atención telefónica personalizada y mejorar la experiencia del cliente.</p>
@@ -64,6 +65,7 @@
           <mat-card class="plan-card">
             <mat-card-header>
               <mat-card-title>Plan Empresario</mat-card-title>
+              <div *ngIf="isActivePlan(2)" class="active-tag">Activo</div>
             </mat-card-header>
             <mat-card-content>
               <p>Ideal para empresas que desean ofrecer múltiples canales de comunicación y mejorar la satisfacción de sus clientes.</p>
@@ -104,6 +106,7 @@
           <mat-card class="plan-card">
             <mat-card-header>
               <mat-card-title>Plan Empresario Plus</mat-card-title>
+              <div *ngIf="isActivePlan(3)" class="active-tag">Activo</div>
             </mat-card-header>
             <mat-card-content>
               <p>Ideal para empresas que desean aprovechar inteligencia artificial y analítica predictiva para mejorar la experiencia de sus clientes.</p>

@@ -115,7 +115,7 @@ ul {
 
 #color-eye {
   margin-right: 8px;
-  color: $abcall-primary-color;;
+  color: $abcall-primary-color;
 }
 
 mat-card > mat-card-actions > button{
@@ -123,4 +123,16 @@ mat-card > mat-card-actions > button{
   font-family: 'Lato', sans-serif;
   font-size: 0.938em;
   border-radius: 0.25em;
+}
+
+.active-tag{
+  background-color: rgba(130, 189, 174, 0.3);
+  font-family: 'Roboto';
+  color: #126173;
+  font-size: 0.813em;
+  border: 1px solid $abcall-primary-color;
+  border-radius: 6.25em;
+  padding: 0 4%;
+  align-content: center;
+  margin-left: 10%;
 }

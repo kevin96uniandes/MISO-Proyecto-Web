@@ -53,7 +53,7 @@
               </ul>
             </mat-card-content>
             <mat-card-actions>
-              <button mat-flat-button class="btn-abc-primary w-100" i18n (click)="openDialog('Plan Emprendedor')">
+              <button *ngIf="!isActivePlan(1)" mat-flat-button class="btn-abc-primary w-100 obtener-btn" i18n (click)="openDialog('Plan Emprendedor', 1)">
                 OBTENER
               </button>
             </mat-card-actions>
@@ -94,7 +94,7 @@
               </ul>
             </mat-card-content>
             <mat-card-actions>
-              <button mat-flat-button class="btn-abc-primary w-100" i18n (click)="openDialog('Plan Emprendedor')">
+              <button *ngIf="!isActivePlan(2)" mat-flat-button class="btn-abc-primary w-100" i18n (click)="openDialog('Plan Empresario', 2)">
                 OBTENER
               </button>
             </mat-card-actions>
@@ -138,7 +138,7 @@
               </ul>
             </mat-card-content>
             <mat-card-actions>
-              <button mat-flat-button class="btn-abc-primary w-100" i18n (click)="openDialog('Plan Emprendedor')">
+              <button *ngIf="!isActivePlan(3)" mat-flat-button class="btn-abc-primary w-100" i18n (click)="openDialog('Plan Empresario Plus', 3)">
                 OBTENER
               </button>
             </mat-card-actions>

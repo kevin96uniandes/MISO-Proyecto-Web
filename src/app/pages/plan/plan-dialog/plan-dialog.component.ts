@@ -15,21 +15,26 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class PlanDialogComponent {
   selectedPlan: any;
+  empresaId: any;
+  newPlanId: any;
 
   constructor(
     public dialogRef: MatDialogRef<PlanDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.selectedPlan = this.data.plan;
+    this.empresaId = this.data.empresa;
+    this.newPlanId = this.data.id;
   }
-
 
   onReject(): void {
     this.dialogRef.close(false);
   }
 
   onAccept(): void {
-    this.dialogRef.close(true);
+    this.dialogRef.close({
+      planId: this.newPlanId,
+      empresaId: this.empresaId
+    });
   }
-
 }

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -10,7 +10,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { StorageService } from '../../../common/storage.service';
 import { PlanService } from '../plan.service';
 import { CommonModule } from '@angular/common';
-
 
 @Component({
   selector: 'app-select-plan',
@@ -43,12 +42,10 @@ export class SelectPlanComponent implements OnInit {
 
     this.planService.getActivePlan(empresaId).subscribe(
       (response) => {
-        console.log('Plan activo')
         this.activePlanId = response.plan_id;
         console.log('Plan activo' + this.activePlanId)
       },
       (error) => {
-        console.log('No hay plan')
         console.error('Error al obtener el plan activo:', error);
         this.activePlanId = null;
       }
@@ -56,22 +53,32 @@ export class SelectPlanComponent implements OnInit {
   }
 
   isActivePlan(planId: number): boolean {
-    console.log('El plan es' + planId + 'this ' + this.activePlanId)
-    return this.activePlanId === planId;
+    return this.activePlanId == planId;
   }
 
-  openDialog(planName: string): void {
+  openDialog(planName: string, planId: number): void {
+    let decoded = JSON.parse(this.storageService.getItem("decodedToken")!!);
+    const empresaId = decoded["id_company"];
     const dialogRef = this.dialog.open(PlanDialogComponent, {
-      data: { plan: planName }
+      data: { plan: planName, id: planId, empresa: empresaId }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('Plan seleccionado:', planName);
+        const contractUpdate = {
+          empresa_id: result.empresaId,
+          new_plan_id: result.planId
+        };
+
+        this.planService.updateContract(contractUpdate).subscribe(response => {
+          console.log('Plan actualizado correctamente', response);
+          this.activePlanId = response['plan_id'];
+        }, error => {
+          console.error('Error al actualizar el plan', error);
+        });
       } else {
         console.log('Selección cancelada');
       }
     });
   }
-
 }

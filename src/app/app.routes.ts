@@ -34,7 +34,7 @@ export const routes: Routes = [
   { path: 'plans', component: SelectPlanComponent },
   { path: 'register/client', component: RegisterClientComponent },
   { path: '', redirectTo:'/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/login' } 
+  { path: '**', redirectTo: '/login' }
 ];
 
 @NgModule({

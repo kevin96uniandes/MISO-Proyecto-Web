@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Person } from '../auth/person';
 import { Incident } from './incident';
-import { Call } from './calls';
+import { Call } from '../call/calls';
 import { Product } from './product';
 
 @Injectable({
@@ -39,4 +39,8 @@ export class IncidentService {
   getProductsByPerson(idPerson: number) {
      return this.httpClient.get<Product[]>(this.personUrl+`/${idPerson}/products`)
    }
+
+  getIncidents() {
+    return this.httpClient.get<Incident[]>(this.incidentUrl+`all`)
+  }
 }

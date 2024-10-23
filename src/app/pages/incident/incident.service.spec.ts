@@ -4,7 +4,7 @@ import { IncidentService } from './incident.service';
 import { environment } from '../../../environments/environment';
 import { Person } from '../auth/person';
 import { Incident } from './incident';
-import { Call } from './calls';
+import { Call } from '../call/calls';
 import { Product } from './product';
 import { provideHttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

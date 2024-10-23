@@ -155,5 +155,19 @@
   "PLAN_SELECTION": "Plan Selection:",
   "QUESTION": "Are you sure you want to select the",
   "DECLINE": "DECLINE",
-  "ACCEPT": "ACEPTAR"
+  "ACCEPT": "ACEPTAR",
+  "REPORT_INCIDENT": "REPORT INCIDENCE",
+  "INCIDENTS_LIST": "Incidents list",
+  "INCIDENT_IDENTIFIER": "Incident identifier",
+  "IDENTITY_NUMBER_CLIENT": "Client Document Number",
+  "CLEAN_FILTER": "Clean Filter",
+  "SEARCH_INCIDENT": "Search",
+  "OPEN": "Open",
+  "DISMISSED": "Dismissed",
+  "ESCALATED": "Escalated",
+  "CLOSED_SATISFACTORILY": "Closed Satisfactorily",
+  "CLOSED_UNSATISFACTORILY": "Closed Unsatisfactorily",
+  "REOPENED": "Reopened",
+  "IDENTIFICATOR": "Identifier",
+  "TYPE": "Type"
 }

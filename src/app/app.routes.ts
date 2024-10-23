@@ -12,6 +12,7 @@ import { ListAgentsComponent } from './pages/list/list-agents/list-agents.compon
 import { SelectPlanComponent } from './pages/plan/select-plan/select-plan.component';
 import { RegisterClientComponent } from './pages/register/register-client/register-client.component';
 import { RegisterAgentComponent } from './pages/register/register-agent/register-agent.component';
+import { ListComponent } from './pages/incident/list/list.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
@@ -26,6 +27,7 @@ export const routes: Routes = [
       { path: 'user-query', component: UserQueryComponent },
       { path: 'incident', component: FormComponent },
       { path: 'ranking', component: RankingComponent },
+      { path: 'incident/list', component: ListComponent },
       { path: 'list/agents', component: ListAgentsComponent },
       { path: 'register/agent', component: RegisterAgentComponent },
       { path: 'plans', component: SelectPlanComponent }

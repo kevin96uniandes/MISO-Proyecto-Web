@@ -1,0 +1,87 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: right; margin-top: 1%">
+          <button id="report-incident-button" i18n mat-raised-button class="btn-form-primary" style="margin-left: 10px">{{ 'REPORT_INCIDENT' | translate }}</button>
+        </div>
+      </div> 
+      <div class="row" style="margin-top: 1%">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <h3 id="list-incident-title" class="title title-right">{{ 'INCIDENTS_LIST' | translate }}</h3>
+      </div>
+      <div class="row" style="margin-left: 1%;margin-top: 1%">
+        <div class="col-lg-4 col-md-12 col-sm-12">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>{{ 'INCIDENT_IDENTIFIER' | translate }}</mat-label>
+                <input [(ngModel)]="filterCodeIncident" id="incident-identifies" matInput [placeholder]="'INCIDENT_IDENTIFIER' | translate">
+              </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>{{ 'IDENTITY_NUMBER_CLIENT' | translate }}</mat-label>
+                <input [(ngModel)]="filterIdentityNumber" id="identity-number-client" matInput [placeholder]="'IDENTITY_NUMBER_CLIENT' | translate">
+              </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12">
+            <mat-form-field appearance="outline" class="w-100" id="identity-type-person">
+                <mat-label>{{ 'STATUS' | translate }}</mat-label>
+                <mat-select [(ngModel)]="filterStatus">
+                  <mat-option value="1">{{ 'OPEN' | translate }}</mat-option>
+                  <mat-option value="2">{{ 'DISMISSED' | translate }}</mat-option>
+                  <mat-option value="3">{{ 'ESCALATED' | translate }}</mat-option>
+                  <mat-option value="4">{{ 'CLOSED_SATISFACTORILY' | translate }}</mat-option>
+                  <mat-option value="5">{{ 'CLOSED_UNSATISFACTORILY' | translate }}</mat-option>
+                  <mat-option value="6">{{ 'REOPENED' | translate }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: center; margin-bottom: 10px">
+            <button i18n mat-raised-button id="clear-filter" (click)="clearFilters()" class="btn-form-secondary" style="width: 180px;">{{ 'CLEAN_FILTER' | translate }}</button>
+            <button i18n id="filter" mat-raised-button (click)="applyFilters()" class="btn-form-primary" style="margin-left: 10px">{{ 'SEARCH_INCIDENT' | translate }}</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top: 1%">
+          <table mat-table [dataSource]="dataIncident" matSort class="mat-elevation-z8">
+            <!-- Columna de Acciones -->
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef> {{ 'ACTIONS' | translate }} </th>
+              <td mat-cell *matCellDef="let incident">
+                <button mat-icon-button aria-label="Ver detalles" id="detail-agent">
+                  <mat-icon id="color-eye">visibility</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="identificator">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: center;">{{ 'IDENTIFICATOR' | translate }} </th>
+              <td mat-cell *matCellDef="let incident" style="text-align: center;"> {{incident.codigo}} </td>
+            </ng-container>
+            <!-- Columna de Identificación -->
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: center;">{{ 'STATUS' | translate }} </th>
+              <td mat-cell *matCellDef="let incident" style="text-align: center;"> {{incident.estado_id | incidentStatus }} </td>
+            </ng-container>   
+            <ng-container matColumnDef="type">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: center;"> {{ 'TYPE' | translate }} </th>
+              <td mat-cell *matCellDef="let incident" style="text-align: center;"> {{incident.tipo_id | incidentType }} </td>
+            </ng-container>
+            <ng-container matColumnDef="identiyNumberClient">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: center;"> {{ 'IDENTITY_NUMBER_CLIENT' | translate }} </th>
+              <td mat-cell *matCellDef="let incident" style="text-align: center;"> {{incident.person.numero_identificacion}} </td>
+            </ng-container>
+            <ng-container matColumnDef="clientName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: center;"> {{ 'NAME_PLACEHOLDER' | translate }} </th>
+                <td mat-cell *matCellDef="let incident" style="text-align: center;"> {{incident.person.nombres}} {{incident.person.apellidos}} </td>
+              </ng-container>
+              <ng-container matColumnDef="openingDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: center;"> {{ 'OPENING_DATE' | translate }} </th>
+                <td mat-cell *matCellDef="let incident" style="text-align: center;"> {{incident.fecha_creacion | date: 'dd/MM/yyyy'}} </td>
+              </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+      </div>
+</div>

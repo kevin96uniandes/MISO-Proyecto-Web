@@ -7,7 +7,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Product } from '../product';
-import { Call } from '../calls';
+import { Call } from '../../call/calls';
 import { Incident } from '../incident';
 import { Person } from '../../auth/person';
 import { Router } from '@angular/router';

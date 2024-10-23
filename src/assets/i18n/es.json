@@ -157,5 +157,20 @@
     "PLAN_SELECTION": "Selección de plan:",
     "QUESTION": "¿Está seguro que desea seleccionar el",
     "DECLINE": "RECHAZAR",
-    "ACCEPT": "ACEPTAR"
+    "ACCEPT": "ACEPTAR",
+    "REPORT_INCIDENT": "REPORTAR INCIDENCIA",
+    "INCIDENTS_LIST": "Listado de incidencias",
+    "INCIDENT_IDENTIFIER": "Identificador de incidencia",
+    "IDENTITY_NUMBER_CLIENT": "Numero documento cliente",
+    "CLEAN_FILTER": "LIMPIAR FILTRO",    
+    "SEARCH_INCIDENT": "BUSCAR",
+    "OPEN": "Abierto",
+    "DISMISSED": "Desestimado",
+    "ESCALATED": "Escalado",
+    "CLOSED_SATISFACTORILY": "Cerrado Satisfactoriamente",
+    "CLOSED_UNSATISFACTORILY": "Cerrado Insatisfactoriamente",
+    "REOPENED": "Reaperturado",
+    "IDENTIFICATOR": "Identificador",
+    "TYPE": "Tipo"
+
 }

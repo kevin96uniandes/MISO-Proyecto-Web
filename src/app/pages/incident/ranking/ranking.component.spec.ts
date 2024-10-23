@@ -9,7 +9,7 @@ import { IncidentService } from '../incident.service';
 import { RankingComponent } from './ranking.component';
 import { Person } from '../../auth/person';
 import { Product } from '../product';
-import { Call } from '../calls';
+import { Call } from '../../call/calls';
 import { Incident } from '../incident';
 import { TranslateService, TranslateModule, LangChangeEvent } from '@ngx-translate/core';
 import { StorageService } from '../../../common/storage.service';

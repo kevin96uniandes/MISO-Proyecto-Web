@@ -5,7 +5,7 @@
     "CONTRASENA": "Password",
     "REGISTRARSE": "SING UP",
     "INGRESAR": "LOG IN",
-    "USER_QUERY_TITLE": "User Information Query",
+    "USER_QUERY_TITLE": "User Data Query",
   "USER_QUERY_DETAIL": "Enter your document type and number",
   "IDENTITY_TYPE": "Document Type",
   "IDENTITY_NUMBER": "Document Number",

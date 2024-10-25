@@ -28,6 +28,6 @@ describe('login form', () => {
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();
     cy.wait(100);
-    cy.url().should('eq', Cypress.config('baseUrl') + 'dashboard/home');
+    cy.url().should('eq', Cypress.config('baseUrl') + '/dashboard/home');
   });
 })

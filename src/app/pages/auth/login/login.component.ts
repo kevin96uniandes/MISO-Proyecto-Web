@@ -94,7 +94,7 @@ export class LoginComponent {
             this.router.navigate([`dashboard`]);
           },
         error: (err) => {
-          this.translate.get(['USER_PASSWORD_INCORRECT']).subscribe(translations => { 
+          this.translate.get(['USER_PASSWORD_INCORRECT']).subscribe(translations => {
             Swal.fire({
               icon: 'error',
               title: translations['USER_PASSWORD_INCORRECT'],

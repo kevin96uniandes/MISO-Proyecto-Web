@@ -12,6 +12,7 @@ import { ListAgentsComponent } from './pages/list/list-agents/list-agents.compon
 import { SelectPlanComponent } from './pages/plan/select-plan/select-plan.component';
 import { RegisterClientComponent } from './pages/register/register-client/register-client.component';
 import { RegisterAgentComponent } from './pages/register/register-agent/register-agent.component';
+import { CallrecorddetailsComponent } from './pages/incident/callrecorddetails/callrecorddetails.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
@@ -28,10 +29,12 @@ export const routes: Routes = [
       { path: 'ranking', component: RankingComponent },
       { path: 'list/agents', component: ListAgentsComponent },
       { path: 'register/agent', component: RegisterAgentComponent },
-      { path: 'plans', component: SelectPlanComponent }
+      { path: 'plans', component: SelectPlanComponent },
+      { path: 'details-call', component: CallrecorddetailsComponent }
     ]
   },
   { path: 'register/client', component: RegisterClientComponent },
+  { path: 'details-call', component: CallrecorddetailsComponent },
   { path: '', redirectTo:'/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' }
 ];

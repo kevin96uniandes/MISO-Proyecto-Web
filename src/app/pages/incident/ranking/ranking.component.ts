@@ -46,8 +46,9 @@ export class RankingComponent implements AfterViewInit {
   dataProducts!: MatTableDataSource<Product>;
   dataCalls!: MatTableDataSource<Call>;
   dataIncidents!: MatTableDataSource<Incident>;
+  selectedCall: Call | null = null;
 
-  constructor(private incidentService: IncidentService, 
+  constructor(private incidentService: IncidentService,
     private router: Router,
     private storageService: StorageService,
     private translate: TranslateService,
@@ -76,7 +77,7 @@ export class RankingComponent implements AfterViewInit {
       }
     })
 
-    
+
     this.incidentService.getCallsByIdPerson(this.person.id).subscribe({
       next: (calls: Call[]) => {
         this.dataCalls = new MatTableDataSource<Call>(calls);
@@ -100,8 +101,16 @@ export class RankingComponent implements AfterViewInit {
     this.router.navigate(['/dashboard/incident'], { state: { person: this.person } });
   }
 
-  watchCallDetail(call: Call) {
-    console.log(call)
+  watchCallDetail(callId: number) {
+    this.incidentService.getCallById(callId).subscribe({
+      next: (call: Call) => {
+        this.selectedCall = call;
+        console.log(this.selectedCall);
+      },
+      error: (err) => {
+        console.error('Error al obtener los detalles de la llamada', err);
+      }
+    });
   }
 
   watchIncidentDetail(incident: Incident) {

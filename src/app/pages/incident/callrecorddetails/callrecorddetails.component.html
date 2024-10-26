@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <div class="row">
+    <h4 class="title-text-color title-size">{{ 'VIEW_CALL_RECORDS' | translate }}</h4>
+  </div>
+  <div class="row">
+    <div class="col-4"> &nbsp; </div>
+    <div class="col-4" style="margin-top: 100px;">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label i18n>{{ 'NAME_RECORDING' | translate }}</mat-label>
+        <input matInput [placeholder]="'NAME_RECORDING' | translate" formControlName="nombre_grabacion" id="nombre_grabacion" readonly>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label i18n>{{ 'DURATION' | translate }}</mat-label>
+        <input matInput [placeholder]="'DURATION' | translate" formControlName="duracion" id="duracion" readonly>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label i18n>{{ 'CALL_DATE' | translate }}</mat-label>
+        <input matInput [placeholder]="'CALL_DATE' | translate" formControlName="fecha_hora_llamada" id="fecha_hora_llamada" readonly>
+      </mat-form-field>
+      <audio controls class="audio-player" *ngIf="audioSource">
+        <source [src]="audioSource" type="audio/mpeg" />
+        {{ 'AUDIO_NO_SUPPORT' | translate }}.
+      </audio>
+      <div style="text-align: center;">
+        <button i18n mat-raised-button id="go-back" class="btn-form-secondary" (click)="goBack()">{{ 'GO_BACK' | translate }}</button>
+      </div>
+    </div>
+    <div class="col-4"> &nbsp; </div>
+  </div>
+</div>

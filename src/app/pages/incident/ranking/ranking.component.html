@@ -65,7 +65,7 @@
           <ng-container matColumnDef="watch">
             <th mat-header-cell *matHeaderCellDef style="text-align: center;"> {{ 'WATCH' | translate }} </th>
             <td mat-cell *matCellDef="let call" style="text-align: center;">
-              <button mat-icon-button class="search-button" (click)="watchCallDetail(call)" [attr.aria-label]="'SEARCH' | translate">
+              <button mat-icon-button class="search-button" (click)="watchCallDetail(call.id)" [attr.aria-label]="'SEARCH' | translate">
                 <mat-icon>search</mat-icon>
               </button>
             </td>

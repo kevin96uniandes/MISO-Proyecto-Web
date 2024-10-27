@@ -42,23 +42,15 @@ export class CallrecorddetailsComponent implements OnInit {
     this.translate.use(lang || 'es')
 
     const selectedCall = history.state?.call;
-    this.callForm = this.fb.group({
-      nombre_grabacion: [selectedCall.nombre_grabacion],
-      duracion: [selectedCall.duracion],
-      fecha_hora_llamada: [selectedCall.fecha_hora_llamada]
-    });
-    this.audioSource = "https://storage.googleapis.com/abcall-bucket/incident-calls/" + selectedCall.nombre_grabacion
+    if (selectedCall) {
+      this.callForm = this.fb.group({
+        nombre_grabacion: [selectedCall.nombre_grabacion],
+        duracion: [selectedCall.duracion],
+        fecha_hora_llamada: [selectedCall.fecha_hora_llamada]
+      });
+      this.audioSource = "https://storage.googleapis.com/abcall-bucket/incident-calls/" + selectedCall.nombre_grabacion
+    }
   }
-
-  /*getCallDetails(): void {
-    console.log(this.selectedCall);
-    this.callForm.patchValue({
-      nombre_grabacion: this.selectedCall?.nombre_grabacion,
-      duracion: this.selectedCall?.duracion,
-      fecha_hora_llamada: this.selectedCall?.fecha_hora_llamada
-    });
-    this.audioSource = "https://storage.cloud.google.com/abcall-bucket/incident-calls/" + this.selectedCall?.nombre_grabacion
-  }*/
 
   goBack() {
     this.location.back()

@@ -39,4 +39,8 @@ export class IncidentService {
   getProductsByPerson(idPerson: number) {
      return this.httpClient.get<Product[]>(this.personUrl+`/${idPerson}/products`)
    }
+
+  getCallById(callId: number) {
+    return this.httpClient.get<Call>(this.incidentUrl+`call/${callId}`);
+  }
 }

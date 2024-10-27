@@ -157,5 +157,8 @@
     "PLAN_SELECTION": "Selección de plan:",
     "QUESTION": "¿Está seguro que desea seleccionar el",
     "DECLINE": "RECHAZAR",
-    "ACCEPT": "ACEPTAR"
+    "ACCEPT": "ACEPTAR",
+    "VIEW_CALL_RECORDS": "Ver registro de llamadas",
+    "NAME_RECORDING": "Nombre de la grabación",
+    "AUDIO_NO_SUPPORT": "Tu navegador no soporta el elemento de audio"
 }

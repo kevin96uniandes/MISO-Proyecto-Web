@@ -155,5 +155,8 @@
   "PLAN_SELECTION": "Plan Selection:",
   "QUESTION": "Are you sure you want to select the",
   "DECLINE": "DECLINE",
-  "ACCEPT": "ACEPTAR"
+  "ACCEPT": "ACEPTAR",
+  "VIEW_CALL_RECORDS": "View call records",
+  "NAME_RECORDING": "Name of the recording",
+  "AUDIO_NO_SUPPORT": "Your browser does not support the audio element"
 }

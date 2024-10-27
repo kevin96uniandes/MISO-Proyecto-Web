@@ -23,7 +23,7 @@ import { CommonModule, Location } from '@angular/common';
   ],
 })
 export class CallrecorddetailsComponent implements OnInit {
-  callForm: FormGroup;
+  callForm!: FormGroup;
   audioSource: string = '';
 
   constructor(
@@ -34,48 +34,32 @@ export class CallrecorddetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
   ) {
-    this.callForm = this.fb.group({
-      nombre_grabacion: [''],
-      duracion: [''],
-      fecha_hora_llamada: ['']
-    });
+
   }
 
   ngOnInit(): void {
     const lang = this.storageService.getItem("language")
     this.translate.use(lang || 'es')
 
-    const callId = this.route.snapshot.params['id'];
-    this.getCallDetails(callId);
+    const selectedCall = history.state?.call;
+    this.callForm = this.fb.group({
+      nombre_grabacion: [selectedCall.nombre_grabacion],
+      duracion: [selectedCall.duracion],
+      fecha_hora_llamada: [selectedCall.fecha_hora_llamada]
+    });
+    //this.audioSource = "https://storage.cloud.google.com/abcall-bucket/incident-calls/" + selectedCall.nombre_grabacion + "?authuser=1"
+    this.audioSource = "https://storage.cloud.google.com/abcall-bucket/incident-calls/llamada_1.mp3_INC03181_2024-10-26%2002%3A00%3A06.594736?authuser=1"
   }
 
-  getCallDetails(callId: number): void {
-    this.incidentService.getCallById(callId).subscribe(
-      (call: Call) => {
-        this.callForm.patchValue({
-          nombre_grabacion: call.nombre_grabacion,
-          duracion: call.duracion,
-          fecha_hora_llamada: call.fecha_hora_llamada
-        });
-        this.audioSource = "https://storage.cloud.google.com/abcall-bucket/incident-calls/" + call.nombre_grabacion
-      },
-      (error) => {
-        console.error('Error al obtener los detalles de la llamada', error);
-      }
-    );
-  }
-
-  get nombreGrabacionControl(): FormControl {
-    return this.callForm.get('nombre_grabacion') as FormControl;
-  }
-
-  get duracionControl(): FormControl {
-    return this.callForm.get('duracion') as FormControl;
-  }
-
-  get fechaHoraLlamadaControl(): FormControl {
-    return this.callForm.get('fecha_hora_llamada') as FormControl;
-  }
+  /*getCallDetails(): void {
+    console.log(this.selectedCall);
+    this.callForm.patchValue({
+      nombre_grabacion: this.selectedCall?.nombre_grabacion,
+      duracion: this.selectedCall?.duracion,
+      fecha_hora_llamada: this.selectedCall?.fecha_hora_llamada
+    });
+    this.audioSource = "https://storage.cloud.google.com/abcall-bucket/incident-calls/" + this.selectedCall?.nombre_grabacion
+  }*/
 
   goBack() {
     this.location.back()

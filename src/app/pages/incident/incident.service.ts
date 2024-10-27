@@ -41,6 +41,6 @@ export class IncidentService {
    }
 
   getCallById(callId: number) {
-    return this.httpClient.get<Call>(this.incidentUrl+`calls/${callId}`);
+    return this.httpClient.get<Call>(this.incidentUrl+`call/${callId}`);
   }
 }

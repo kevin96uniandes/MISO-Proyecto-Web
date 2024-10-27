@@ -106,6 +106,7 @@ export class RankingComponent implements AfterViewInit {
       next: (call: Call) => {
         this.selectedCall = call;
         console.log(this.selectedCall);
+        this.router.navigate(['/dashboard/details-call'], { state: { call: this.selectedCall } });
       },
       error: (err) => {
         console.error('Error al obtener los detalles de la llamada', err);

@@ -5,6 +5,7 @@ import { Person } from '../auth/person';
 import { Incident } from './incident';
 import { Call } from '../call/calls';
 import { Product } from './product';
+import { History } from './history';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +41,19 @@ export class IncidentService {
      return this.httpClient.get<Product[]>(this.personUrl+`/${idPerson}/products`)
    }
 
+   getIncidentById(idIncident: string | number) {
+    return this.httpClient.get<Incident>(this.incidentUrl+`get/${idIncident}`)
+  }
+
   getIncidents() {
     return this.httpClient.get<Incident[]>(this.incidentUrl+`all`)
+  }
+
+  getHistoryByIncident(idIncident: string | number) {
+    return this.httpClient.get<History[]>(this.incidentUrl+`history/${idIncident}`)
+  }
+
+  updateIncident(idIncident: Number, formData: FormData) {
+    return this.httpClient.put(this.incidentUrl+`update/${idIncident}`,formData)
   }
 }

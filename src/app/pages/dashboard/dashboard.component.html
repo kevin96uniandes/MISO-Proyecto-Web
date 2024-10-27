@@ -8,7 +8,7 @@
         <mat-icon matListIcon class="sidebar-color-item">account_circle</mat-icon>
         <span matLine class="sidebar-color-item">{{ 'PERFIL' | translate }}</span>
       </a>
-      <a *ngIf="currentMenuUser.incidentes" mat-list-item [routerLink]="['/dashboard/user-query']" class="menu-item text-center" id="incident-dashboard">
+      <a *ngIf="currentMenuUser.incidentes" mat-list-item [routerLink]="['/dashboard/incident/list']" class="menu-item text-center" id="incident-dashboard">
         <mat-icon matListIcon class="sidebar-color-item">build</mat-icon>
         <span matLine class="sidebar-color-item">{{ 'INCIDENTS' | translate }}</span>
       </a>

@@ -19,8 +19,8 @@ export class TranslateDocumentTypePipe implements PipeTransform {
    console.log(this.lang)
 }
 
-  transform(value: string): string {
+  transform(value: any): string {
     const language = this.lang.startsWith('en') ? 'en' : 'es'; 
-    return identityType[language][value] || value; 
+    return identityType[language][`${value}`] || `${value}`; 
   }
 }

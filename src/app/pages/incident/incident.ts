@@ -1,3 +1,4 @@
+import { User } from "../auth/user";
 import { Person } from "../auth/person";
 
 export interface Incident {
@@ -14,6 +15,8 @@ export interface Incident {
     persona_id: number;                 
     estado_id: number;  
     tipo_id: number;  
-    person?: Person                         
+    person?: Person;
+    usuario_creador?: User
+    usuario_asignado?: User                                                
   }
   

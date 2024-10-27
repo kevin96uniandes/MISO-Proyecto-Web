@@ -18,8 +18,8 @@ export class IncidentStatusPipe implements PipeTransform {
 }
 
 
-  transform(value: string): string {
+  transform(value: any): string {
     const language = this.lang.startsWith('en') ? 'en' : 'es'; 
-    return incidentStatus[language][value] || value; 
+    return incidentStatus[language][`${value}`] || `${value}`; 
   }
 }

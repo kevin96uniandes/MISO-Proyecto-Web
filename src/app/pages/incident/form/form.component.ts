@@ -7,7 +7,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { IncidentService } from '../incident.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UploadFilesComponent } from '../upload-files/upload-files.component';
-import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2';
 import { Person } from '../../auth/person';
 import { StorageService } from '../../../common/storage.service';
@@ -76,10 +76,11 @@ export class FormComponent {
   }
 
   createIncident() {
-    this.isLoading = true;
     const formData = new FormData()
 
     if (!this.incidentForm.invalid) {
+      this.isLoading = true;
+
       Object.keys(this.incidentForm.controls).forEach(key => {
         const controlValue = this.incidentForm.get(key)?.value;
         formData.append(key, controlValue);

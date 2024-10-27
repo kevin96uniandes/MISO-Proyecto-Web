@@ -57,6 +57,7 @@ export class UserQueryComponent {
         }
       },
       error: (error) => {
+        console.log(error)
         Swal.fire({
           icon: 'error',
           title: 'Se ha presentado un error a la hora de consultar el ranking del usuario',

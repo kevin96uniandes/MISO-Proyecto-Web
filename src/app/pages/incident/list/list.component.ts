@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { IncidentService } from '../incident.service';
 import { IncidentTypePipe } from '../pipe/incident-type.pipe';
 import { IncidentStatusPipe } from '../pipe/incident-status.pipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -46,7 +47,8 @@ export class ListComponent implements AfterViewInit {
 
   constructor(
     private incidentService: IncidentService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private route: Router
   ) {}
 
   ngAfterViewInit(): void { 
@@ -103,5 +105,12 @@ export class ListComponent implements AfterViewInit {
     this.applyFilters()
   }
 
+  goToIncidentDetail(id: number){
+    this.route.navigate(['/dashboard/incident/detail/', id]);
+  }
+
+  goToUserQuery(){
+    this.route.navigate(['/dashboard/user-query/']);
+  }
 
 }

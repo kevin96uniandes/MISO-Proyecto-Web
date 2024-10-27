@@ -18,7 +18,7 @@ export class InicidentChannelPipe implements PipeTransform {
 }
 
 
-  transform(value: string): string {
+  transform(value: string | number): string {
     const language = this.lang.startsWith('en') ? 'en' : 'es'; 
     return incidentChannel[language][value] || value; 
   }

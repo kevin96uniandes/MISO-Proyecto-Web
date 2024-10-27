@@ -18,9 +18,9 @@ export class IncidentTypePipe implements PipeTransform {
 }
 
 
-  transform(value: string): string {
+  transform(value: string | number): string {
     const language = this.lang.startsWith('en') ? 'en' : 'es'; 
-    return incidentType[language][value] || value; 
+    return incidentType[language][`${value}`] || `${value}`; 
   }
 
 }

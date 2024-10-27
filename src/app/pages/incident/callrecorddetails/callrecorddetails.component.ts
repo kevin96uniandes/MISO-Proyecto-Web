@@ -47,8 +47,7 @@ export class CallrecorddetailsComponent implements OnInit {
       duracion: [selectedCall.duracion],
       fecha_hora_llamada: [selectedCall.fecha_hora_llamada]
     });
-    //this.audioSource = "https://storage.cloud.google.com/abcall-bucket/incident-calls/" + selectedCall.nombre_grabacion + "?authuser=1"
-    this.audioSource = "https://storage.cloud.google.com/abcall-bucket/incident-calls/llamada_1.mp3_INC03181_2024-10-26%2002%3A00%3A06.594736?authuser=1"
+    this.audioSource = "https://storage.googleapis.com/abcall-bucket/incident-calls/" + selectedCall.nombre_grabacion
   }
 
   /*getCallDetails(): void {

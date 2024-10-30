@@ -1,19 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { TranslateModule } from '@ngx-translate/core';
-import { Incident } from '../incident';
+import { Incident } from '../interfaces/incident';
 import { MatSort } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
 import { IncidentService } from '../incident.service';
 import { IncidentTypePipe } from '../pipe/incident-type.pipe';
 import { IncidentStatusPipe } from '../pipe/incident-status.pipe';
 import { Router } from '@angular/router';
+import { StorageService } from '../../../common/storage.service';
 
 @Component({
   selector: 'app-list',
@@ -38,6 +38,7 @@ export class ListComponent implements AfterViewInit {
   filterCodeIncident!: string;  
   filterIdentityNumber!: string;
   filterStatus!: number;
+  isAgentUser: boolean = false;
 
   displayedColumns: string[] = ['actions', 'identificator', 'status', 'type', 'identiyNumberClient', 'clientName','openingDate'];
   dataIncident!: MatTableDataSource<Incident>
@@ -48,8 +49,15 @@ export class ListComponent implements AfterViewInit {
   constructor(
     private incidentService: IncidentService,
     private cdr: ChangeDetectorRef,
+    private storageService: StorageService,
     private route: Router
-  ) {}
+  ) {
+    
+    let decoded = JSON.parse(this.storageService.getItem("decodedToken")!!);
+    console.log(decoded["user_type"]);
+
+    this.isAgentUser = (decoded["user_type"] === "agente")
+  }
 
   ngAfterViewInit(): void { 
 

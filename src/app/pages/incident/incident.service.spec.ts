@@ -3,9 +3,9 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { IncidentService } from './incident.service';
 import { environment } from '../../../environments/environment';
 import { Person } from '../auth/person';
-import { Incident } from './incident';
+import { Incident } from './interfaces/incident';
 import { Call } from '../call/calls';
-import { Product } from './product';
+import { Product } from './interfaces/product';
 import { provideHttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 

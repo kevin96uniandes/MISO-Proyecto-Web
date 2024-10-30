@@ -1,5 +1,5 @@
-import { User } from "../auth/user";
-import { Person } from "../auth/person";
+import { User } from "../../auth/user";
+import { Person } from "../../auth/person";
 
 export interface Incident {
     id: number;                         

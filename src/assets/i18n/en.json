@@ -5,7 +5,7 @@
     "CONTRASENA": "Password",
     "REGISTRARSE": "SING UP",
     "INGRESAR": "LOG IN",
-    "USER_QUERY_TITLE": "User Information Query",
+    "USER_QUERY_TITLE": "User Data Query",
   "USER_QUERY_DETAIL": "Enter your document type and number",
   "IDENTITY_TYPE": "Document Type",
   "IDENTITY_NUMBER": "Document Number",
@@ -80,6 +80,7 @@
   "UPDATE_INCIDENT_SUCCESS_MESSAGE": "The incident {{codigo}} has been successfully updated",
   "CONFIRM_BUTTON_TEXT": "OK",
   "SAVE_INCIDENT_ERROR_MESSAGE": "There was an error creating the issue, please contact the administrator.",
+  "UPDATE_INCIDENT_ERROR_MESSAGE": "There was an error updating the issue, please contact the administrator.",
   "FILE_SIZE_ERROR": "The file {{fileName}} exceeds the maximum allowed size of 25 MB. <br/>",
   "FILE_LIMIT_EXCEEDED": "You have exceeded the file limit per incident",
   "PERFIL": "Profile",
@@ -174,6 +175,10 @@
   "MANAGE_INCIDENT": "MANAGE INCIDENT",
   "ASSIGNED_TO": "Assigned to",
   "SAVE": "SAVE",
-  "CANCEL": "CANCEL"
- 
+  "CANCEL": "CANCEL",
+  "VIEW_CALL_RECORDS": "View call records",
+  "NAME_RECORDING": "Name of the recording",
+  "AUDIO_NO_SUPPORT": "Your browser does not support the audio element",
+  "ESCALATE_AGENT": "To escalate you must assign the issue to another agent",
+  "INVALID_AGENT": "Please select a valid agent"
 }

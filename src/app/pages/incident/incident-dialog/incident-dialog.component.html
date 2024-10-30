@@ -5,20 +5,37 @@
             <mat-form-field appearance="outline" class="w-100" id="status-incident-managment">
                 <mat-label>{{ 'STATUS' | translate }}</mat-label>
                 <mat-select formControlName="status">
-                  <mat-option value="1">{{ 'OPEN' | translate }}</mat-option>
-                  <mat-option value="2">{{ 'DISMISSED' | translate }}</mat-option>
-                  <mat-option value="3">{{ 'ESCALATED' | translate }}</mat-option>
-                  <mat-option value="4">{{ 'CLOSED_SATISFACTORILY' | translate }}</mat-option>
-                  <mat-option value="5">{{ 'CLOSED_UNSATISFACTORILY' | translate }}</mat-option>
-                  <mat-option value="6">{{ 'REOPENED' | translate }}</mat-option>
+                  <mat-option value="1" *ngIf="((incidentStatus == '1') || !isClosed)">{{ 'OPEN' | translate }}</mat-option>
+                  <mat-option value="2" *ngIf="((incidentStatus == '2') || !isClosed)">{{ 'DISMISSED' | translate }}</mat-option>
+                  <mat-option value="3" *ngIf="(((incidentStatus == '3') || !isClosed) && hasMoreThanOneAgent)">{{ 'ESCALATED' | translate }}</mat-option>
+                  <mat-option value="4" *ngIf="((incidentStatus == '4') || !isClosed)">{{ 'CLOSED_SATISFACTORILY' | translate }}</mat-option>
+                  <mat-option value="5" *ngIf="((incidentStatus == '5') || !isClosed)">{{ 'CLOSED_UNSATISFACTORILY' | translate }}</mat-option>
+                  <mat-option value="6" *ngIf="((incidentStatus == '6') || isClosed)">{{ 'REOPENED' | translate }}</mat-option>
                 </mat-select>
               </mat-form-field>
+              <div class="alert alert-danger alert-dismissible fade show" *ngIf="(incidentManagementForm.get('status')!.hasError('required') && incidentManagementForm.get('status')!.touched)">
+                {{ 'REQUIRED_INCIDENT_DETAIL' | translate }}
+                </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12">
             <mat-form-field appearance="outline" class="w-100">
                 <mat-label>{{ 'ASSIGNED_TO' | translate }}</mat-label>
-                <input id="assignet_to_dialog" formControlName="assignetTo" matInput [placeholder]="'ASSIGNED_TO' | translate">
+                <input id="assignet_to_dialog" formControlName="assignedTo" [matAutocomplete]="auto" matInput [placeholder]="'ASSIGNED_TO' | translate">
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayAgentName">
+                    <mat-option *ngFor="let agente of filteredAgents | async" [value]="agente">
+                      {{ agente.nombre_completo }}
+                    </mat-option>
+                  </mat-autocomplete>
               </mat-form-field>
+              <div class="alert alert-danger alert-dismissible fade show" *ngIf="(incidentManagementForm.get('assignedTo')!.hasError('required') && incidentManagementForm.get('assignedTo')!.touched)">
+                {{ 'REQUIRED_INCIDENT_DETAIL' | translate }}
+                </div>
+                <div class="alert alert-danger alert-dismissible fade show" *ngIf="(incidentManagementForm.get('assignedTo')!.hasError('mustChange') && incidentManagementForm.get('assignedTo')!.touched)">
+                    {{ 'ESCALATE_AGENT' | translate }}
+                </div>
+                <div class="alert alert-danger alert-dismissible fade show" *ngIf="(incidentManagementForm.get('assignedTo')!.hasError('invalidAgent') && incidentManagementForm.get('assignedTo')!.touched)">
+                    {{ 'INVALID_AGENT' | translate }}
+                </div>
         </div>
     </div>
     <div class="row">
@@ -38,7 +55,7 @@
     <app-upload-files (filesChanged)="onFilesChanged($event)"></app-upload-files>
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: center; margin-bottom: 10px">
-            <button i18n (click)="onCancel()" mat-raised-button id="go-back" class="btn-form-secondary" style="width: 180px;">{{ 'CANCEL' | translate }}</button>
+            <button i18n type="button" (click)="onCancel()" mat-raised-button id="go-back" class="btn-form-secondary" style="width: 180px;">{{ 'CANCEL' | translate }}</button>
             <button i18n type="submit" id="update-incident" mat-raised-button class="btn-form-primary" style="margin-left: 10px">{{ 'SAVE' | translate }}</button>
         </div>
     </div>

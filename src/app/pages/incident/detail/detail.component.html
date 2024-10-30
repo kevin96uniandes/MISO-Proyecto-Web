@@ -169,9 +169,12 @@
       </div>
       <div class="row" style="margin-top: 1%">
         <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: center; margin-bottom: 10px">
-            <button i18n mat-raised-button id="go-back" class="btn-form-secondary" style="width: 180px;">{{ 'GO_BACK' | translate }}</button>
-            <button i18n id="manage-incident" (click)="openManagementIncidence()" mat-raised-button class="btn-form-primary" style="margin-left: 10px">{{ 'MANAGE_INCIDENT' | translate }}</button>
+            <button i18n mat-raised-button id="go-back" (click)="goBack()" class="btn-form-secondary" style="width: 180px;">{{ 'GO_BACK' | translate }}</button>
+            <button i18n id="manage-incident" *ngIf="isAgentUser" (click)="openManagementIncidence()" mat-raised-button class="btn-form-primary" style="margin-left: 10px">{{ 'MANAGE_INCIDENT' | translate }}</button>
         </div>
     </div>
   </form>
+</div>
+<div *ngIf="isLoading" class="loading-overlay">
+  <mat-spinner></mat-spinner>
 </div>

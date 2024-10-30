@@ -1,5 +1,5 @@
 import { CommonModule, Location } from '@angular/common';
-import { Component, Inject, LOCALE_ID } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, LOCALE_ID } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -42,6 +42,7 @@ export class FormComponent {
     private router: Router,
     private location: Location,
     private translate: TranslateService,
+    private cdr: ChangeDetectorRef,
     @Inject(LOCALE_ID) private locale: string
   ) { }
 
@@ -111,7 +112,7 @@ export class FormComponent {
               confirmButtonColor: '#82BDAE'
             }).then((result) => {
               if (result.isConfirmed) {
-                this.router.navigate(['/dashboard/user-query'])
+                this.router.navigate(['/dashboard/incident/list'])
               }
             });
           });
@@ -130,6 +131,13 @@ export class FormComponent {
           })
         }
       });
+    }else{
+      Object.values(this.incidentForm.controls).forEach(control => {
+        control.markAsTouched();
+        control.updateValueAndValidity();
+      });
+
+      this.cdr.detectChanges()
     }
   }
 }

@@ -5,7 +5,7 @@
     "CONTRASENA": "Contraseña",
     "REGISTRARSE": "REGISTRARSE",
     "INGRESAR": "INGRESAR",
-    "USER_QUERY_TITLE": "Consulta información del usuario",
+    "USER_QUERY_TITLE": "Consulta datos del usuario",
     "USER_QUERY_DETAIL": "Ingresa tu tipo y número de documento",
     "IDENTITY_TYPE": "Tipo de documento",
     "IDENTITY_NUMBER": "Número de documento",
@@ -81,6 +81,7 @@
     "UPDATE_INCIDENT_SUCCESS_MESSAGE": "Se ha actualizado la incidencia {{codigo}} con éxito",
     "CONFIRM_BUTTON_TEXT": "Aceptar",
     "SAVE_INCIDENT_ERROR_MESSAGE": "Se ha presentado un error a la hora de crear la incidencia, porfavor contacte con el administrador",
+    "UPDATE_INCIDENT_ERROR_MESSAGE": "Se ha presentado un error a la hora de actualizar la incidencia, porfavor contacte con el administrador",
     "FILE_SIZE_ERROR": " El archivo {{fileName}} excede el tamaño máximo permitido de 25 MB. <br/>",
     "FILE_LIMIT_EXCEEDED": "Has superado el límite de archivos por incidente",
     "PERFIL": "Perfil",
@@ -176,5 +177,10 @@
     "MANAGE_INCIDENT": "GESTIONAR INCIDENCIA",
     "ASSIGNED_TO": "Asignado a",
     "SAVE": "GUARDAR",
-    "CANCEL": "CANCELAR"
+    "CANCEL": "CANCELAR",
+    "VIEW_CALL_RECORDS": "Ver registro de llamadas",
+    "NAME_RECORDING": "Nombre de la grabación",
+    "AUDIO_NO_SUPPORT": "Tu navegador no soporta el elemento de audio",
+    "ESCALATE_AGENT": "Para escalar debe asignar la incidencia a otro agente",
+    "INVALID_AGENT": "Porfavor seleccione un agente valido"
 }

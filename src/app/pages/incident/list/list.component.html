@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: right; margin-top: 1%">
-          <button id="report-incident-button" i18n mat-raised-button (click)="goToUserQuery()" class="btn-form-primary" style="margin-left: 10px">{{ 'REPORT_INCIDENT' | translate }}</button>
+          <button id="report-incident-button" *ngIf="isAgentUser" i18n mat-raised-button (click)="goToUserQuery()" class="btn-form-primary" style="margin-left: 10px">{{ 'REPORT_INCIDENT' | translate }}</button>
         </div>
       </div> 
       <div class="row" style="margin-top: 1%">

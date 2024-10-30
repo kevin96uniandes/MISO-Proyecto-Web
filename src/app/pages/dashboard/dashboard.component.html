@@ -32,7 +32,7 @@
         <mat-icon matListIcon class="sidebar-color-item">receipt</mat-icon>
         <span matLine class="sidebar-color-item">{{ 'INVOICES' | translate }}</span>
       </a>
-      <a  *ngIf="currentMenuUser.salir" mat-list-item routerLink="/facturas" class="menu-item text-center ">
+      <a  *ngIf="currentMenuUser.salir" (click)="logOut()" mat-list-item routerLink="/facturas" class="menu-item text-center ">
         <mat-icon matListIcon class="text-danger">logout</mat-icon>
         <span matLine class="text-danger">{{ 'LOGOUT' | translate }}</span>
       </a>

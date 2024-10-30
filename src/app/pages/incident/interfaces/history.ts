@@ -1,4 +1,4 @@
-import { User } from "../auth/user";
+import { User } from "../../auth/user";
 import { Evidence } from "./evidence";
 
 export interface History {

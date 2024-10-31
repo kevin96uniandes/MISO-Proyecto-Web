@@ -20,9 +20,6 @@ export class TokenService {
       let token = this.storageService.getItem("token");
       if (token) {
         this.authService.validateToken(token).subscribe({
-          next: () => {
-            // Token is valid; no action needed
-          },
           error: () => {
             this.stopTokenValidationCheck();  // Detenemos el intervalo en caso de error
             this.storageService.clear();

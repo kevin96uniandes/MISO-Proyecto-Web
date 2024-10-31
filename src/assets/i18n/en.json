@@ -180,5 +180,9 @@
   "NAME_RECORDING": "Name of the recording",
   "AUDIO_NO_SUPPORT": "Your browser does not support the audio element",
   "ESCALATE_AGENT": "To escalate you must assign the issue to another agent",
-  "INVALID_AGENT": "Please select a valid agent"
+  "INVALID_AGENT": "Please select a valid agent",
+  "OBSERVATION_INCIDENCE":"Observations of the incidence",
+  "DATE": "Date",
+  "MANAGEMENT_BY": "Management by",
+  "MANAGE_INCIDENT_TITLE": "Manage Incident"
 }

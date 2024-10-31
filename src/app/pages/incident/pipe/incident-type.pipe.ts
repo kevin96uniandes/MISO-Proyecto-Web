@@ -1,14 +1,12 @@
-import { Pipe, PipeTransform, Inject } from '@angular/core';
-import { LOCALE_ID } from '@angular/core';
+import { Inject, LOCALE_ID, Pipe, PipeTransform } from '@angular/core';
 import { StorageService } from '../../../common/storage.service';
-import { identityType } from './pipe-resources';
-
+import { incidentType } from './pipe-resources';
 
 @Pipe({
-  name: 'translateDocumentType',
-  standalone: true,
+  name: 'incidentType',
+  standalone: true
 })
-export class TranslateDocumentTypePipe implements PipeTransform {
+export class IncidentTypePipe implements PipeTransform {
 
   lang:any
 
@@ -19,8 +17,10 @@ export class TranslateDocumentTypePipe implements PipeTransform {
    console.log(this.lang)
 }
 
-  transform(value: any): string {
+
+  transform(value: string | number): string {
     const language = this.lang.startsWith('en') ? 'en' : 'es'; 
-    return identityType[language][`${value}`] || `${value}`; 
+    return incidentType[language][`${value}`] || `${value}`; 
   }
+
 }

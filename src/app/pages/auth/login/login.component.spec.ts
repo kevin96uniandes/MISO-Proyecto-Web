@@ -134,4 +134,18 @@ describe('LoginComponent', () => {
     expect(storageService.setItem).toHaveBeenCalledWith('token', response.token);
 
   });
+  it('should change language and store it', () => {
+    const language = 'es';
+
+    component.changeLanguage(language);
+
+    expect(component.selectedValue).toBe(language);
+    expect(storageService.setItem).toHaveBeenCalledWith('language', language);
+  });
+
+  it('should navigate to the register page', () => {
+    component.goToRegister();
+
+    expect(router.navigate).toHaveBeenCalledWith(['/register/client']);
+  });
 });

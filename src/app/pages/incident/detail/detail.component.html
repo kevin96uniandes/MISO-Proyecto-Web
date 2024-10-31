@@ -1,0 +1,180 @@
+<div class="container-fluid">
+  <form>
+    <div class="row">
+      <div class="col-12 text-center">
+        <h4 class="title-text-color title-size">
+          {{ "CONTACT_INFORMATION" | translate }}
+        </h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>{{ "NAME" | translate }}</mat-label>
+          <input id="name-person" [value]="incident.person?.nombres" matInput readonly />
+        </mat-form-field>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>{{ "LASTNAME" | translate }}</mat-label>
+          <input
+            id="lastname-person"
+            [value]="incident.person?.apellidos"
+            matInput
+            readonly
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>{{ "EMAIL" | translate }}</mat-label>
+          <input
+            id="email-person"
+            [value]="incident.person?.correo_electronico"
+            matInput
+            readonly
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>{{ "IDENTITY_TYPE" | translate }}</mat-label>
+          <input
+            id="identity-type-person"
+            [value]="incident.person?.tipo_identificacion | translateDocumentType"
+            matInput
+            readonly
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>{{ "IDENTITY_NUMBER" | translate }}</mat-label>
+          <input
+            id="identity-number-person"
+            [value]="incident.person?.numero_identificacion"
+            matInput
+            readonly
+            [placeholder]="'REQUIRED_IDENTITY_TYPE_PLACEHOLDER' | translate"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>{{ "CELLPHONE" | translate }}</mat-label>
+          <input
+            id="cellphone-person"
+            [value]="incident.person?.telefono"
+            matInput
+            readonly
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <h4 id="incident-detail-title" class="title-text-color title-size">
+          {{ "INCIDENT_DETAIL" | translate }}
+        </h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>{{ "INCIDENT_DETAIL" | translate }}</mat-label>
+          <input
+            id="email-person"
+            [value]="incident.tipo_id | incidentType"
+            matInput
+            readonly
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>{{ "STATUS" | translate }}</mat-label>
+          <input
+            id="incident-channel"
+            [value]="incident.estado_id | incidentStatus"
+            matInput
+            readonly
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>{{ "ASSIGNED_TO" | translate }}</mat-label>
+          <input
+            id="incident-channel"
+            [value]="incident.usuario_asignado?.persona?.nombres + ' ' + incident.usuario_asignado?.persona?.apellidos"
+            matInput
+            readonly
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{ "INCIDENT_SUBJECT" | translate }}</mat-label>
+            <input
+              id="asunto_incidencia"
+              [value]="incident.asunto"
+              matInput
+              readonly/>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{ "INCIDENT_DETAIL" | translate }}</mat-label>
+            <textarea
+              id="detalle_incidencia"
+              [value]="incident.descripcion"
+              matInput
+              style="height: 150px"
+              readonly
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header style="background-color: #82BDAE !important;">
+              <mat-panel-title style="color: white">Observaciones de la incidencia</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="observations">
+              <mat-card *ngFor="let history of histories" class="custom-card">
+                <mat-card-content>
+                  <p><strong>Fecha: </strong>{{history.fecha_creacion | date: 'dd/MM/yyyy'}}</p>
+                  <p><strong>Gestión hecha por: </strong>{{history.usuario_creador?.persona?.nombres}} {{history.usuario_creador?.persona?.apellidos}}</p>
+                  <p>{{history.observaciones}}</p>
+                  <ul *ngIf="history.evidence">
+                    <li *ngFor="let file of history.evidence">
+                      <a [href]="'https://storage.cloud.google.com/abcall-bucket/incident-files/'+file.nombre_adjunto+'?authuser=1'" download="{{file.nombre_adjunto}}" class="file-link">
+                        <mat-icon>attach_file</mat-icon>
+                        {{ file.nombre_adjunto }}
+                      </a>
+                    </li>
+                  </ul>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </mat-expansion-panel>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 1%">
+        <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: center; margin-bottom: 10px">
+            <button i18n mat-raised-button id="go-back" (click)="goBack()" class="btn-form-secondary" style="width: 180px;">{{ 'GO_BACK' | translate }}</button>
+            <button i18n id="manage-incident" *ngIf="isAgentUser" (click)="openManagementIncidence()" mat-raised-button class="btn-form-primary" style="margin-left: 10px">{{ 'MANAGE_INCIDENT' | translate }}</button>
+        </div>
+    </div>
+  </form>
+</div>
+<div *ngIf="isLoading" class="loading-overlay">
+  <mat-spinner></mat-spinner>
+</div>

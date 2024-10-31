@@ -3,11 +3,13 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { IncidentService } from './incident.service';
 import { environment } from '../../../environments/environment';
 import { Person } from '../auth/person';
-import { Incident } from './incident';
-import { Call } from './calls';
-import { Product } from './product';
+import { Incident } from './interfaces/incident';
+import { Call } from '../call/calls';
+import { Product } from './interfaces/product';
 import { provideHttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { History } from './interfaces/history';
+import { Agente } from '../auth/user';
 
 describe('IncidentService', () => {
   let service: IncidentService;
@@ -15,6 +17,7 @@ describe('IncidentService', () => {
   
   const incidentUrl = environment.incidentUrl;
   const personUrl = environment.apiUrl + '/user/person';
+  const userUrl: string = environment.apiUrl + '/user/';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -51,7 +54,7 @@ describe('IncidentService', () => {
   it('should get incidents by person ID', () => {
     const personId = 1;
     const mockIncidents: Incident[] = [
-      { id: 1, codigo: 'INC001', descripcion: 'Descripción 1', asunto: 'Asunto 1', fecha_creacion: new Date(), fecha_actualizacion: new Date(), canal_id: 1, usuario_creador_id: 1, usuario_asignado_id: 1, persona_id: 1, estado_id: 1, tipo_id: 1 }
+      { id: 1, codigo: 'INC001', descripcion: 'Descripción 1', asunto: 'Asunto 1', fecha_creacion: new Date(), fecha_actualizacion: new Date(), canal_nombre: 1, canal_id: 1, usuario_creador_id: 1, usuario_asignado_id: 1, persona_id: 1, estado_id: 1, tipo_id: 1 }
     ];
 
     service.getIncidentByIdPerson(personId).subscribe(incidents => {
@@ -119,5 +122,91 @@ describe('IncidentService', () => {
     const req = httpMock.expectOne(`${personUrl}/${personId}/products`);
     expect(req.request.method).toBe('GET');
     req.flush(mockProducts);
+  });
+  it('should get incidents', () => {
+    const mockIncidents: Incident[] = [
+      { id: 1, codigo: 'INC001', descripcion: 'Descripción 1', asunto: 'Asunto 1', fecha_creacion: new Date(), fecha_actualizacion: new Date(), canal_nombre: 1, canal_id: 1, usuario_creador_id: 1, usuario_asignado_id: 1, persona_id: 1, estado_id: 1, tipo_id: 1 }
+    ];
+
+
+    service.getIncidents().subscribe(incident => {
+      expect(incident).toEqual(mockIncidents);
+    });
+
+    const req = httpMock.expectOne(incidentUrl+`all`);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockIncidents);
+  });
+  it('should get incident by id', () => {
+    const idIncident = 1
+    const mockIncident: Incident= 
+      { id: 1, codigo: 'INC001', descripcion: 'Descripción 1', asunto: 'Asunto 1', fecha_creacion: new Date(), fecha_actualizacion: new Date(), canal_nombre: 1, canal_id: 1, usuario_creador_id: 1, usuario_asignado_id: 1, persona_id: 1, estado_id: 1, tipo_id: 1 };
+
+
+    service.getIncidentById(idIncident).subscribe(incident => {
+      expect(incident).toEqual(mockIncident);
+    });
+
+    const req = httpMock.expectOne(incidentUrl+`get/${idIncident}`);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockIncident);
+  });
+  it('should get history by incident', () => {
+    const idIncident = 1
+    const mockHistory: History[] = [
+      { id: '1',estado_id: 1, fecha_creacion: '', incidencia_id: 1, observaciones: '', usuario_asignado_id: 1, usuario_creador_id: 1 }
+    ];
+
+
+    service.getHistoryByIncident(idIncident).subscribe(history => {
+      expect(history).toEqual(mockHistory);
+    });
+
+    const req = httpMock.expectOne(incidentUrl+`history/${idIncident}`);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockHistory);
+  });
+  it('should get call by id', () => {
+    const callId = 1
+    const mockCall: Call = 
+      { id: 1, duracion: '', fecha_actualizacion: new Date(), fecha_creacion: new Date(), fecha_hora_llamada: new Date(), incidencia_id: 1, nombre_grabacion: '', persona_id: 1, usuario_id: 1 };
+
+
+    service.getCallById(callId).subscribe(call => {
+      expect(call).toEqual(mockCall);
+    });
+
+    const req = httpMock.expectOne(incidentUrl+`call/${callId}`);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockCall);
+  });
+  it('should get agents avaiable', () => {
+    const companyId = 1
+    const mockAgent: Agente[] = [ 
+      { id: 1, nombre_completo: '', nombre_usuario: ''}
+    ];
+
+    service.getAgentsAvaiables(companyId).subscribe(agent => {
+      expect(agent).toEqual(mockAgent);
+    });
+
+    const req = httpMock.expectOne(userUrl+`agent/${companyId}`);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockAgent);
+  });
+  it('should update incident', () => {
+    const incidentId = 1
+    const mockIncident: Incident=
+      { id: 1, codigo: 'INC001', descripcion: 'Descripción 1', asunto: 'Asunto 1', fecha_creacion: new Date(), fecha_actualizacion: new Date(), canal_nombre: 1, canal_id: 1, usuario_creador_id: 1, usuario_asignado_id: 1, persona_id: 1, estado_id: 1, tipo_id: 1 }
+    
+    const mockFormData = new FormData();
+
+    service.updateIncident(incidentId, mockFormData).subscribe(incident => {
+      expect(incident).toEqual(mockIncident);
+    });
+
+    const req = httpMock.expectOne(incidentUrl+`update/${incidentId}`);
+    expect(req.request.method).toBe('PUT');
+    req.flush(mockIncident);
   });
 });

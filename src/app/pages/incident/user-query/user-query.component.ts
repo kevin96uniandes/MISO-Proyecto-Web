@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -33,6 +33,7 @@ export class UserQueryComponent {
   private storageService: StorageService,
   private translate: TranslateService,
   private incidentService: IncidentService,
+  private cdr: ChangeDetectorRef,
   private router: Router){}
 
   ngOnInit(): void { 
@@ -47,22 +48,33 @@ export class UserQueryComponent {
   }
 
   userQuery(){
-    this.incidentService.getPersonByIdentity(this.userQueryForm.get('identityType')?.value, this.userQueryForm.get('identityNumber')?.value)
-    .subscribe({
-      next: (person: Person) => {
-        if (!person || Object.keys(person).length === 0) { 
-          this.router.navigate(['/dashboard/incident']);
-        }else{
-          this.router.navigate(['/dashboard/ranking'], { state: { person: person } });
+    console.log(this.userQueryForm);
+    if (!this.userQueryForm.invalid) { 
+      this.incidentService.getPersonByIdentity(this.userQueryForm.get('identityType')?.value, this.userQueryForm.get('identityNumber')?.value)
+      .subscribe({
+        next: (person: Person) => {
+          if (!person || Object.keys(person).length === 0) { 
+            this.router.navigate(['/dashboard/incident']);
+          }else{
+            this.router.navigate(['/dashboard/ranking'], { state: { person: person } });
+          }
+        },
+        error: (error) => {
+          console.log(error)
+          Swal.fire({
+            icon: 'error',
+            title: 'Se ha presentado un error a la hora de consultar el ranking del usuario',
+          });
         }
-      },
-      error: (error) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Se ha presentado un error a la hora de consultar el ranking del usuario',
-        });
-      }
-    })
+      })
+    }else{
+      Object.values(this.userQueryForm.controls).forEach(control => {
+        control.markAsTouched();
+        control.updateValueAndValidity();
+      });
+
+      this.cdr.detectChanges()
+    }
   }
 
 }

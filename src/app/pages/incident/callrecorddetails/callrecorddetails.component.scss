@@ -1,0 +1,51 @@
+@import "../../../../theme/custom-colors";
+@import "../../../../theme/custom-style";
+
+.container-login {
+  height: 100vh !important;
+}
+
+.container-components {
+  height: 100vh !important;
+}
+
+.container-components > .row {
+  height: 100vh;
+}
+
+.container-right {
+  background-color: $abcall-primary-color;
+}
+
+/*Contenedor de todos los componentes de la derecha*/
+.container-right > div{
+  background-color: white;
+  height: 95%;
+  width: 95% !important;
+  border-radius: 10px;
+}
+
+/*Formulario*/
+.container-right > div > form > div:nth-child(2){
+  padding: 0% 20% 11% 20%;
+}
+
+.container-form-components {
+  margin-top: 60px;
+}
+
+.audio-player {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-form-secondary {
+  background-color: transparent;
+  color:  $abcall-primary-color;
+  border-color: $abcall-primary-color;
+  width: 50%;
+  font-family: 'Roboto';
+  border-radius: 0.25em;
+  padding: 10px 0;
+}
+

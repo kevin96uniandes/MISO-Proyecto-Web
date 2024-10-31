@@ -1,0 +1,38 @@
+@import "../../../../theme/custom-colors";
+@import "../../../../theme/custom-style";
+@import "../../../../theme/custom-components-classes";
+
+.btn-form-primary {
+    background-color:#407F7F !important; /* Aplica el color de fondo */
+    color: #fff !important; /* Aplica el color del texto */
+    border-style: groove;
+    border-color: #d2cece;
+    width: 225px;
+  }
+
+  .title-right {
+    margin-left: 2%;
+}
+
+.title {
+    color: #126173;
+    font-weight: bold;
+    font-family: "Lato", sans-serif;
+}
+
+.btn-form-secondary {
+    background-color: #fff !important; /* Aplica el color de fondo */
+    color:  #407F7F !important; /* Aplica el color del texto */
+    border-color: #407F7F;
+    width: 225px;
+  }
+
+  #detail-agent{
+    border: transparent;
+    background: transparent;
+  }
+  
+  #color-eye {
+    color: $abcall-primary-color;
+  }
+  

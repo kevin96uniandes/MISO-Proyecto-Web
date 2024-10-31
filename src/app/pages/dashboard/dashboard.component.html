@@ -8,7 +8,7 @@
         <mat-icon matListIcon class="sidebar-color-item">account_circle</mat-icon>
         <span matLine class="sidebar-color-item">{{ 'PERFIL' | translate }}</span>
       </a>
-      <a *ngIf="currentMenuUser.incidentes" mat-list-item [routerLink]="['/dashboard/user-query']" class="menu-item text-center" id="incident-dashboard">
+      <a *ngIf="currentMenuUser.incidentes" mat-list-item [routerLink]="['/dashboard/incident/list']" class="menu-item text-center" id="incident-dashboard">
         <mat-icon matListIcon class="sidebar-color-item">build</mat-icon>
         <span matLine class="sidebar-color-item">{{ 'INCIDENTS' | translate }}</span>
       </a>
@@ -32,7 +32,7 @@
         <mat-icon matListIcon class="sidebar-color-item">receipt</mat-icon>
         <span matLine class="sidebar-color-item">{{ 'INVOICES' | translate }}</span>
       </a>
-      <a  *ngIf="currentMenuUser.salir" mat-list-item routerLink="/facturas" class="menu-item text-center ">
+      <a  *ngIf="currentMenuUser.salir" (click)="logOut()" mat-list-item routerLink="/facturas" class="menu-item text-center ">
         <mat-icon matListIcon class="text-danger">logout</mat-icon>
         <span matLine class="text-danger">{{ 'LOGOUT' | translate }}</span>
       </a>

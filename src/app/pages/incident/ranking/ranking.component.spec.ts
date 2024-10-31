@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
@@ -8,9 +8,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { IncidentService } from '../incident.service';
 import { RankingComponent } from './ranking.component';
 import { Person } from '../../auth/person';
-import { Product } from '../product';
-import { Call } from '../calls';
-import { Incident } from '../incident';
+import { Product } from '../interfaces/product';
+import { Call } from '../../call/calls';
+import { Incident } from '../interfaces/incident';
 import { TranslateService, TranslateModule, LangChangeEvent } from '@ngx-translate/core';
 import { StorageService } from '../../../common/storage.service';
 import { provideHttpClient } from '@angular/common/http';
@@ -28,10 +28,12 @@ describe('RankingComponent', () => {
 
 
   beforeEach(waitForAsync(() => {
-    incidentServiceMock = jasmine.createSpyObj('IncidentService', ['getIncidentByIdPerson', 'getCallsByIdPerson', 'getProductsByPerson']);
+    incidentServiceMock = jasmine.createSpyObj('IncidentService', ['getIncidentByIdPerson', 'getCallsByIdPerson', 'getProductsByPerson','getCallById']);
     incidentServiceMock.getIncidentByIdPerson.and.returnValue(of([]));  
     incidentServiceMock.getCallsByIdPerson.and.returnValue(of([]));    
     incidentServiceMock.getProductsByPerson.and.returnValue(of([]));
+    incidentServiceMock.getCallById.and.returnValue(of([]));
+
 
     routerMock = jasmine.createSpyObj('Router', ['navigate']);
 
@@ -95,6 +97,7 @@ describe('RankingComponent', () => {
         usuario_creador_id: 1, 
         usuario_asignado_id: 2, 
         persona_id: 1, 
+        canal_nombre: 1,
         estado_id: 1, 
         tipo_id: 1 
       }
@@ -154,5 +157,25 @@ describe('RankingComponent', () => {
   it('should navigate to create incident with person data', () => {
     component.createIncident();
     expect(routerMock.navigate).toHaveBeenCalledWith(['/dashboard/incident'], { state: { person: component.person } });
+  });
+  it('should navigate to details-call page with the call data on success', () => {
+    const mockCall: Call = { id: 1, duracion: '', fecha_actualizacion: new Date(), fecha_creacion: new Date(), fecha_hora_llamada: new Date(), incidencia_id: 1, nombre_grabacion: '', persona_id: 1, usuario_id: 1 }; 
+    incidentServiceMock.getCallById.and.returnValue(of(mockCall));
+
+    component.watchCallDetail(1);
+
+    expect(incidentServiceMock.getCallById).toHaveBeenCalledWith(1);
+    expect(component.selectedCall).toEqual(mockCall);
+  });
+
+  it('should log an error message if getCallById fails', () => {
+    const consoleErrorSpy = spyOn(console, 'error');
+    const mockError = new Error('Error al obtener los detalles de la llamada');
+    incidentServiceMock.getCallById.and.returnValue(throwError(mockError));
+
+    component.watchCallDetail(1);
+
+    expect(incidentServiceMock.getCallById).toHaveBeenCalledWith(1);
+    expect(consoleErrorSpy).toHaveBeenCalledWith('Error al obtener los detalles de la llamada', mockError);
   });
 });

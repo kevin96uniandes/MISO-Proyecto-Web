@@ -16,6 +16,7 @@ describe('UserQueryComponent', () => {
   let fixture: ComponentFixture<UserQueryComponent>;
   let incidentServiceSpy: jasmine.SpyObj<IncidentService>;
   let routerSpy: jasmine.SpyObj<Router>;
+  let formBuilder: FormBuilder;
   let translateService: any;
   let translateServiceMock: any;
 
@@ -53,6 +54,13 @@ describe('UserQueryComponent', () => {
     component = fixture.componentInstance;
     incidentServiceSpy = TestBed.inject(IncidentService) as jasmine.SpyObj<IncidentService>;
     routerSpy = TestBed.inject(Router) as jasmine.SpyObj<Router>;
+    formBuilder = TestBed.inject(FormBuilder);
+
+    component.userQueryForm = formBuilder.group({
+      identityType: ['1'], 
+      identityNumber: ['12345678']
+    });
+    
     fixture.detectChanges();
   });
 
@@ -67,7 +75,12 @@ describe('UserQueryComponent', () => {
   });
 
   it('should navigate to /dashboard/incident if person is not found', () => {
-    component.ngOnInit();
+    component.userQueryForm = formBuilder.group({
+      identityType: ['1'], 
+      identityNumber: ['12345678']
+    });
+    
+    fixture.detectChanges();
     incidentServiceSpy.getPersonByIdentity.and.returnValue(of({} as Person));
 
     component.userQuery();
@@ -77,6 +90,13 @@ describe('UserQueryComponent', () => {
   });
 
   it('should navigate to /dashboard/ranking with person data if person is found', () => {
+    component.userQueryForm = formBuilder.group({
+      identityType: ['1'], 
+      identityNumber: ['12345678']
+    });
+    
+    fixture.detectChanges();
+    
     const mockPerson: Person = { 
       id: 1, 
       nombres: 'John',
@@ -89,7 +109,6 @@ describe('UserQueryComponent', () => {
       fecha_actualizacion: new Date('2024-01-01') 
   };
   
-    component.ngOnInit();
     incidentServiceSpy.getPersonByIdentity.and.returnValue(of(mockPerson));
 
     component.userQuery();
@@ -100,7 +119,12 @@ describe('UserQueryComponent', () => {
 
   it('should show an error message if the service call fails', () => {
     spyOn(Swal, 'fire');
-    component.ngOnInit();
+    component.userQueryForm = formBuilder.group({
+      identityType: ['1'], 
+      identityNumber: ['12345678']
+    });
+    
+    fixture.detectChanges();
     incidentServiceSpy.getPersonByIdentity.and.returnValue(throwError(() => new Error('Service error')));
 
     component.userQuery();
@@ -110,5 +134,14 @@ describe('UserQueryComponent', () => {
       icon: 'error',
       title: 'Se ha presentado un error a la hora de consultar el ranking del usuario',
     }));
+  });
+  it('should mark all controls as touched and update validity if form is invalid', () => {
+    // Configuramos el formulario como inválido
+    component.userQueryForm.controls['identityType'].setValue('');
+    component.userQueryForm.controls['identityNumber'].setValue('');
+
+    component.userQuery();
+
+    expect(incidentServiceSpy.getPersonByIdentity).not.toHaveBeenCalled();
   });
 });

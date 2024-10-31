@@ -4,10 +4,11 @@ import { StorageService } from '../../../common/storage.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { IncidentService } from '../incident.service';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Call } from '../calls';
 import { CommonModule, Location } from '@angular/common';
+import { User } from '../../auth/user';
 
 @Component({
   selector: 'app-callrecorddetails',
@@ -19,12 +20,14 @@ import { CommonModule, Location } from '@angular/common';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatAutocompleteModule,
     CommonModule
   ],
 })
 export class CallrecorddetailsComponent implements OnInit {
   callForm!: FormGroup;
   audioSource: string = '';
+  agents: User[] = []
 
   constructor(
     private translate: TranslateService,

@@ -1,5 +1,5 @@
 import { CommonModule, Location } from '@angular/common';
-import { Component, Inject, LOCALE_ID } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, LOCALE_ID } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -7,7 +7,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { IncidentService } from '../incident.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UploadFilesComponent } from '../upload-files/upload-files.component';
-import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2';
 import { Person } from '../../auth/person';
 import { StorageService } from '../../../common/storage.service';
@@ -42,6 +42,7 @@ export class FormComponent {
     private router: Router,
     private location: Location,
     private translate: TranslateService,
+    private cdr: ChangeDetectorRef,
     @Inject(LOCALE_ID) private locale: string
   ) { }
 
@@ -76,10 +77,11 @@ export class FormComponent {
   }
 
   createIncident() {
-    this.isLoading = true;
     const formData = new FormData()
 
     if (!this.incidentForm.invalid) {
+      this.isLoading = true;
+
       Object.keys(this.incidentForm.controls).forEach(key => {
         const controlValue = this.incidentForm.get(key)?.value;
         formData.append(key, controlValue);
@@ -110,7 +112,7 @@ export class FormComponent {
               confirmButtonColor: '#82BDAE'
             }).then((result) => {
               if (result.isConfirmed) {
-                this.router.navigate(['/dashboard/user-query'])
+                this.router.navigate(['/dashboard/incident/list'])
               }
             });
           });
@@ -129,6 +131,13 @@ export class FormComponent {
           })
         }
       });
+    }else{
+      Object.values(this.incidentForm.controls).forEach(control => {
+        control.markAsTouched();
+        control.updateValueAndValidity();
+      });
+
+      this.cdr.detectChanges()
     }
   }
 }

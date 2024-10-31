@@ -1,4 +1,4 @@
-import { Component, ViewChild, NgModule, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
@@ -9,14 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ListService } from '../list.service';
 import { StorageService } from '../../../common/storage.service';
-
-export interface Agente {
-  nombre_usuario: string;
-  numero_identificacion: string;
-  nombre_completo: string;
-  telefono: string;
-  correo_electronico: string;
-}
+import { Agente } from '../../auth/user';
 
 @Component({
   selector: 'app-list-agents',
@@ -66,9 +59,6 @@ export class ListAgentsComponent implements AfterViewInit {
       }
     })
 
-  }
-
-  ngOnInit() {
   }
 
   createAgent() {

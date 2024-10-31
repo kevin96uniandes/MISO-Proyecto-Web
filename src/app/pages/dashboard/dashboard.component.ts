@@ -67,4 +67,8 @@ export class DashboardComponent {
     console.log(this.currentMenuUser);
 
   }
+
+  logOut(){
+    sessionStorage.clear();
+  }
 }

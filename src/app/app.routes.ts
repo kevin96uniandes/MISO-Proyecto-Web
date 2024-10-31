@@ -12,7 +12,10 @@ import { ListAgentsComponent } from './pages/list/list-agents/list-agents.compon
 import { SelectPlanComponent } from './pages/plan/select-plan/select-plan.component';
 import { RegisterClientComponent } from './pages/register/register-client/register-client.component';
 import { RegisterAgentComponent } from './pages/register/register-agent/register-agent.component';
+import { ListComponent } from './pages/incident/list/list.component';
+import { DetailComponent } from './pages/incident/detail/detail.component';
 import { CallrecorddetailsComponent } from './pages/incident/callrecorddetails/callrecorddetails.component';
+import { RoleGuard } from './pages/dashboard/role.guard';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
@@ -24,9 +27,11 @@ export const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: 'home', component: HomeComponent },
       { path: '**', redirectTo: 'dashboard/home' },
-      { path: 'user-query', component: UserQueryComponent },
-      { path: 'incident', component: FormComponent },
-      { path: 'ranking', component: RankingComponent },
+      { path: 'user-query', component: UserQueryComponent, canActivate: [RoleGuard], data: { role: 'agente' }  },
+      { path: 'incident', component: FormComponent, canActivate: [RoleGuard], data: { role: 'agente' } },
+      { path: 'ranking', component: RankingComponent, canActivate: [RoleGuard], data: { role: 'agente' } },
+      { path: 'incident/list', component: ListComponent },
+      { path: 'incident/detail/:id', component: DetailComponent },
       { path: 'list/agents', component: ListAgentsComponent },
       { path: 'register/agent', component: RegisterAgentComponent },
       { path: 'plans', component: SelectPlanComponent },

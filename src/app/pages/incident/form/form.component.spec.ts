@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 import { of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { LangChangeEvent, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { EventEmitter } from '@angular/core';
+import { ChangeDetectorRef, EventEmitter } from '@angular/core';
 
 describe('FormComponent', () => {
 
@@ -26,8 +26,7 @@ describe('FormComponent', () => {
   let mockRouter: jasmine.SpyObj<Router>;
   let translateServiceMock: any;
   let translateService: any;
-
-
+  let cdr: ChangeDetectorRef;
 
   beforeEach(async () => {
 
@@ -59,6 +58,7 @@ describe('FormComponent', () => {
         { provide: Router, useValue: mockRouter },
         { provide: TranslateService, useValue: translateServiceMock },  
         { provide: StorageService, useValue: mockStorageService },
+        ChangeDetectorRef,
         provideHttpClient(),
         provideHttpClientTesting(),
         {
@@ -72,6 +72,7 @@ describe('FormComponent', () => {
 
     fixture = TestBed.createComponent(FormComponent);
     component = fixture.componentInstance;
+    cdr = TestBed.inject(ChangeDetectorRef);
     fixture.detectChanges();
   });
 
@@ -356,5 +357,14 @@ it('should call createIncident and display error message on failure', () => {
     icon: 'error',
     title: 'Se ha presentado un error a la hora de crear la incidencia',
   }));
+});
+it('should mark controls as touched and call detectChanges if the form is invalid', () => {
+  spyOn(component.incidentForm.controls['incidentType'], 'markAsTouched');
+  spyOn(component.incidentForm.controls['incidentType'], 'updateValueAndValidity');
+
+  component.createIncident();
+
+  expect(component.incidentForm.controls['incidentType'].markAsTouched).toHaveBeenCalled();
+  expect(component.incidentForm.controls['incidentType'].updateValueAndValidity).toHaveBeenCalled();
 });
 });

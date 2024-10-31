@@ -48,6 +48,7 @@ export class UserQueryComponent {
   }
 
   userQuery(){
+    console.log(this.userQueryForm);
     if (!this.userQueryForm.invalid) { 
       this.incidentService.getPersonByIdentity(this.userQueryForm.get('identityType')?.value, this.userQueryForm.get('identityNumber')?.value)
       .subscribe({

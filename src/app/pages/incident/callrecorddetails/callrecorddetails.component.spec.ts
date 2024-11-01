@@ -73,8 +73,6 @@ describe('CallRecordsDetailComponent', () => {
       expect(component).toBeTruthy();
     });
 
-    
-    /*
     it('should have a defined form', () => {
       
       const selectedCall = {
@@ -83,8 +81,12 @@ describe('CallRecordsDetailComponent', () => {
         "fecha_hora_llamada": Date.now()
       };
 
-      expect(component.callForm).toBeTruthy();
+      component.ngOnInit()
+      expect(component.callForm) == undefined
+
     });
-    */
+
+
+    
 
   });

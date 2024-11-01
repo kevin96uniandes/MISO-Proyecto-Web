@@ -74,7 +74,6 @@ describe('CallRecordsDetailComponent', () => {
     });
 
     it('should have a defined form', () => {
-      
       const selectedCall = {
         "nombre_grabacion": "the best record",
         "duracion": "120",
@@ -82,11 +81,20 @@ describe('CallRecordsDetailComponent', () => {
       };
 
       component.ngOnInit()
+      
       expect(component.callForm) == undefined
 
     });
 
+    /*
+    it('should have fields in the form', () => {
+      const form = component.callForm;
+      expect(form.get('nombre_grabacion')).toBeDefined();
+      expect(form.get('duracion')).toBeDefined();
+      expect(form.get('fecha_hora_llamada')).toBeDefined();
 
-    
+    });
+    */
+
 
   });

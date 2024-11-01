@@ -15,10 +15,10 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <mat-grid-list cols="3">
+      <mat-grid-list cols="3" rowHeight="1:2" [gutterSize]="'10px'">
         <!-- Plan Emprendedor -->
         <mat-grid-tile>
-          <mat-card class="plan-card">
+          <mat-card >
             <mat-card-header>
               <mat-card-title>{{ 'ENTREPRENEURIAL_PLAN' | translate }}</mat-card-title>
               <div *ngIf="isActivePlan(1)" class="active-tag" id="active-tag">{{ 'ACTIVE' | translate }}</div>
@@ -63,7 +63,7 @@
 
         <!-- Plan Empresario -->
         <mat-grid-tile>
-          <mat-card class="plan-card">
+          <mat-card >
             <mat-card-header>
               <mat-card-title>{{ 'BUSINESS_PLAN' | translate }}</mat-card-title>
               <div *ngIf="isActivePlan(2)" class="active-tag" id="active-tag">{{ 'ACTIVE' | translate }}</div>
@@ -105,7 +105,7 @@
 
         <!-- Plan Empresario Plus -->
         <mat-grid-tile>
-          <mat-card class="plan-card">
+          <mat-card >
             <mat-card-header>
               <mat-card-title>{{ 'BUSINESS_PLAN' | translate }} Plus</mat-card-title>
               <div *ngIf="isActivePlan(3)" class="active-tag" id="active-tag">{{ 'ACTIVE' | translate }}</div>

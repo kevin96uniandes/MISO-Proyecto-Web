@@ -65,10 +65,10 @@ export class DashboardComponent {
 
     this.currentMenuUser = this.menuUsers[userType]
     console.log(this.currentMenuUser);
-
   }
 
   logOut(){
     sessionStorage.clear();
+    this.tokenService.stopTokenValidationCheck();
   }
 }

@@ -13,7 +13,6 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
       Technology: "WEB"
     }
   });
-
   return next(clonedReq);
 };
 

@@ -155,7 +155,7 @@
                   <p>{{history.observaciones}}</p>
                   <ul *ngIf="history.evidence">
                     <li *ngFor="let file of history.evidence">
-                      <a [href]="'https://storage.cloud.google.com/abcall-bucket/incident-files/'+file.nombre_adjunto+'?authuser=1'" download="{{file.nombre_adjunto}}" class="file-link">
+                      <a [href]="'https://storage.cloud.google.com/abcall-bucket/incident-files/'+file.nombre_adjunto+''" download="{{file.nombre_adjunto}}" class="file-link" target="_blank">
                         <mat-icon>attach_file</mat-icon>
                         {{ file.nombre_adjunto }}
                       </a>

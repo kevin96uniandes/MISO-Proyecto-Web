@@ -10,12 +10,12 @@ export class DashboardGuard implements CanActivate {
   constructor(private storageService: StorageService, private router: Router) {}
 
   canActivate(): boolean {
-    const token = this.storageService.getItem('token'); // Verifica si hay un token
+    const token = this.storageService.getItem('token'); 
     if (token) {
-      return true; // Permite el acceso a la ruta si hay un token
+      return true; 
     } else {
-      this.router.navigate(['/login']); // Redirige a login si no hay token
-      return false; // Bloquea el acceso
+      this.router.navigate(['/login']); 
+      return false; 
     }
   }
 }

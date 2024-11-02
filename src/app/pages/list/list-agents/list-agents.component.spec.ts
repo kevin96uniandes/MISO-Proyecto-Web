@@ -26,6 +26,7 @@ describe('ListAgentsComponent', () => {
 
   const mockAgents = [
     {
+      id: 1,
       nombre_usuario: 'user1',
       numero_identificacion: '123',
       nombre_completo: 'User One',
@@ -33,6 +34,7 @@ describe('ListAgentsComponent', () => {
       correo_electronico: 'user1@example.com',
     },
     {
+      id: 2,
       nombre_usuario: 'user2',
       numero_identificacion: '456',
       nombre_completo: 'User Two',

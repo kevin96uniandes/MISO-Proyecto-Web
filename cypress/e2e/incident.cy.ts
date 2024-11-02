@@ -2,8 +2,8 @@ describe('user query form', () => {
   it('Login success', () => {
     // login del usuario exitoso
     cy.visit('/');
-    const username = "sa";
-    const password= "123456";
+     const username = "meli-agent";
+    const password= "Meli2024@";
     cy.get("#txt-username").type(username);
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();
@@ -11,13 +11,18 @@ describe('user query form', () => {
 
     // menu
     cy.get("#incident-dashboard").click();
-    cy.get("#user-query-title").should('have.text', `Consulta información del usuario`); 
+    cy.wait(100);
+
+    cy.get("#report-incident-button").click();
+    cy.wait(100);
+
+    cy.get("#user-query-title").should('have.text', `Consulta datos del usuario`); 
 
   });
   it('go to create incident user not exist', () => {
     cy.visit('/');
-    const username = "sa";
-    const password= "123456";
+     const username = "meli-agent";
+    const password= "Meli2024@";
     cy.get("#txt-username").type(username);
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();
@@ -26,6 +31,9 @@ describe('user query form', () => {
     const identityNumber = '00000000'
     cy.get("#incident-dashboard").click();
     cy.wait(200);
+
+    cy.get("#report-incident-button").click();
+    cy.wait(100);
   
     cy.get('#identity-number').type(identityNumber, { force: true });
     cy.wait(100);
@@ -43,8 +51,8 @@ describe('user query form', () => {
   });
   it('create incident user not exist', () => {
     cy.visit('/');
-    const username = "sa";
-    const password= "123456";
+     const username = "meli-agent";
+    const password= "Meli2024@";
     cy.get("#txt-username").type(username);
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();
@@ -53,6 +61,9 @@ describe('user query form', () => {
     const identityNumber = '00000000'
     cy.get("#incident-dashboard").click();
     cy.wait(200);
+
+    cy.get("#report-incident-button").click();
+    cy.wait(100);
   
     cy.get('#identity-number').type(identityNumber, { force: true });
     cy.wait(100);
@@ -114,8 +125,8 @@ describe('user query form', () => {
   });
   it('go to ranking success', () => {
     cy.visit('/');
-    const username = "sa";
-    const password= "123456";
+     const username = "meli-agent";
+    const password= "Meli2024@";
     cy.get("#txt-username").type(username);
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();
@@ -123,6 +134,9 @@ describe('user query form', () => {
 
     const identityNumber = '1030661927'
     cy.get("#incident-dashboard").click();
+    cy.wait(100);
+
+    cy.get("#report-incident-button").click();
     cy.wait(100);
   
     cy.get('#identity-number').type(identityNumber, { force: true });
@@ -138,8 +152,8 @@ describe('user query form', () => {
   });
   it('go to create incident by ranking', () => {
     cy.visit('/');
-    const username = "sa";
-    const password= "123456";
+     const username = "meli-agent";
+    const password= "Meli2024@";
     cy.get("#txt-username").type(username);
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();
@@ -148,6 +162,9 @@ describe('user query form', () => {
     const identityNumber = '1030661927'
     cy.get("#incident-dashboard").click();
     cy.wait(200);
+
+    cy.get("#report-incident-button").click();
+    cy.wait(100);
   
     cy.get('#identity-number').type(identityNumber, { force: true });
     cy.wait(100);
@@ -166,10 +183,11 @@ describe('user query form', () => {
 
     cy.get("#incident-detail-title").should('have.text', `Datos de tu incidencia`); 
   });
+  
   it('create incident by ranking', () => {
     cy.visit('/');
-    const username = "sa";
-    const password= "123456";
+     const username = "meli-agent";
+    const password= "Meli2024@";
     cy.get("#txt-username").type(username);
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();
@@ -178,6 +196,9 @@ describe('user query form', () => {
     const identityNumber = '1030661927'
     cy.get("#incident-dashboard").click();
     cy.wait(200);
+
+    cy.get("#report-incident-button").click();
+    cy.wait(100);
   
     cy.get('#identity-number').type(identityNumber, { force: true });
     cy.wait(100);
@@ -217,8 +238,8 @@ describe('user query form', () => {
   });
   it('go back from create incident to ranking', () => {
     cy.visit('/');
-    const username = "sa";
-    const password= "123456";
+     const username = "meli-agent";
+    const password= "Meli2024@";
     cy.get("#txt-username").type(username);
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();
@@ -227,6 +248,9 @@ describe('user query form', () => {
     const identityNumber = '1030661927'
     cy.get("#incident-dashboard").click();
     cy.wait(200);
+
+    cy.get("#report-incident-button").click();
+    cy.wait(100);
   
     cy.get('#identity-number').type(identityNumber, { force: true });
     cy.wait(100);
@@ -245,5 +269,95 @@ describe('user query form', () => {
 
     cy.get("#go-back").click();
     cy.wait(100);
+  });
+  it('go to incident list clean filter', () => {
+    cy.visit('/');
+     const username = "meli-agent";
+    const password= "Meli2024@";
+    cy.get("#txt-username").type(username);
+    cy.get("#txt-password").type(password);
+    cy.get("#btn-signin").click();
+    cy.wait(100);
+
+    const identityNumber = '1030661927'
+    cy.get("#incident-dashboard").click();
+    cy.wait(100);
+  
+    cy.get('#incident-identifies').type(identityNumber, { force: true });
+    cy.wait(100);
+
+    cy.get('#identity-number-client').type(identityNumber, { force: true });
+    cy.wait(100);
+
+    cy.get('#status-incident-person').click();
+    cy.wait(100);
+
+    cy.get('mat-option[value="1"]').click();
+    cy.wait(100);
+
+    cy.get("#clear-filter").click();
+  });
+  it('go to incident list filter and detail', () => {
+    cy.visit('/');
+     const username = "meli-agent";
+    const password= "Meli2024@";
+    cy.get("#txt-username").type(username);
+    cy.get("#txt-password").type(password);
+    cy.get("#btn-signin").click();
+    cy.wait(100);
+
+    const identityNumber = '1030661927'
+    cy.get("#incident-dashboard").click();
+    cy.wait(100);
+  
+    cy.get('#identity-number-client').type(identityNumber, { force: true });
+    cy.wait(100);
+
+    cy.get("#filter").click();
+    cy.wait(100);
+
+    cy.get('table tbody tr').first().find('#detail-incident').click();
+    cy.wait(100);
+
+    cy.get("#comments-panel").click();
+    cy.wait(100);
+  });
+  it('go to incident list detail and manage indcident', () => {
+    cy.visit('/');
+     const username = "meli-agent";
+    const password= "Meli2024@";
+    cy.get("#txt-username").type(username);
+    cy.get("#txt-password").type(password);
+    cy.get("#btn-signin").click();
+    cy.wait(100);
+
+    const identityNumber = '1030661927'
+    cy.get("#incident-dashboard").click();
+    cy.wait(100);
+  
+    cy.get('#identity-number-client').type(identityNumber, { force: true });
+    cy.wait(100);
+
+    cy.get("#filter").click();
+    cy.wait(100);
+
+    cy.get('table tbody tr').first().find('#detail-incident').click();
+    cy.wait(100);
+
+    cy.get("#manage-incident").click();
+    cy.wait(100);
+
+    cy.get('#status-incident-managment').click();
+    cy.wait(100);
+
+    cy.get('mat-option[value="5"]').click();
+    cy.wait(100);
+
+    cy.get('#detalle_incidencia_dialog').type('Este es el comentario de la incidencias', { force: true });
+    cy.wait(100);
+
+    cy.get('#update-incident').click();
+    cy.wait(100);
+    
   });
 })

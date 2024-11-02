@@ -6,9 +6,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { Product } from '../product';
-import { Call } from '../calls';
-import { Incident } from '../incident';
+import { Product } from '../interfaces/product';
+import { Call } from '../../call/calls';
+import { Incident } from '../interfaces/incident';
 import { Person } from '../../auth/person';
 import { Router } from '@angular/router';
 import { TranslateDocumentTypePipe } from '../pipe/translate-document-type.pipe';
@@ -46,8 +46,9 @@ export class RankingComponent implements AfterViewInit {
   dataProducts!: MatTableDataSource<Product>;
   dataCalls!: MatTableDataSource<Call>;
   dataIncidents!: MatTableDataSource<Incident>;
+  selectedCall: Call | null = null;
 
-  constructor(private incidentService: IncidentService, 
+  constructor(private incidentService: IncidentService,
     private router: Router,
     private storageService: StorageService,
     private translate: TranslateService,
@@ -76,7 +77,7 @@ export class RankingComponent implements AfterViewInit {
       }
     })
 
-    
+
     this.incidentService.getCallsByIdPerson(this.person.id).subscribe({
       next: (calls: Call[]) => {
         this.dataCalls = new MatTableDataSource<Call>(calls);
@@ -100,11 +101,20 @@ export class RankingComponent implements AfterViewInit {
     this.router.navigate(['/dashboard/incident'], { state: { person: this.person } });
   }
 
-  watchCallDetail(call: Call) {
-    console.log(call)
+  watchCallDetail(callId: number) {
+    this.incidentService.getCallById(callId).subscribe({
+      next: (call: Call) => {
+        this.selectedCall = call;
+        console.log(this.selectedCall);
+        this.router.navigate(['/dashboard/details-call'], { state: { call: this.selectedCall } });
+      },
+      error: (err) => {
+        console.error('Error al obtener los detalles de la llamada', err);
+      }
+    });
   }
 
   watchIncidentDetail(incident: Incident) {
-    console.log(incident)
+    this.router.navigate(['/dashboard/incident/detail/', incident.id]);
   }
 }

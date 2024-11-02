@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { ListService } from './list.service';
 import { HttpClientTestingModule, HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { environment } from '../../../environments/environment';
-import { Agente } from './list-agents/list-agents.component';
 import { provideHttpClient } from '@angular/common/http';
+import { Agente } from '../auth/user';
 
 describe('ListService', () => {
   let service: ListService;
@@ -30,6 +30,7 @@ describe('ListService', () => {
   it('should fetch agents by company ID', () => {
     const mockAgents: Agente[] = [
       {
+        id: 1,
         nombre_usuario: 'user1',
         numero_identificacion: '123',
         nombre_completo: 'User One',
@@ -37,6 +38,7 @@ describe('ListService', () => {
         correo_electronico: 'user1@example.com',
       },
       {
+        id: 2,
         nombre_usuario: 'user2',
         numero_identificacion: '456',
         nombre_completo: 'User Two',

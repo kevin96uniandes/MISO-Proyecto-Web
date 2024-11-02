@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
   providedIn: 'root',
 })
 export class TokenService {
-
+  private tokenValidationInterval: any;
 
   constructor(
     private storageService: StorageService,
@@ -16,18 +16,29 @@ export class TokenService {
   ) {}
 
   startTokenValidationCheck() {
-    setInterval(() => {
+    this.tokenValidationInterval = setInterval(() => {
       let token = this.storageService.getItem("token");
       if (token) {
         this.authService.validateToken(token).subscribe({
           error: () => {
+            this.stopTokenValidationCheck();  // Detenemos el intervalo en caso de error
             this.storageService.clear();
             this.router.navigate(["login"]);
           }
-        })
-      }else {
+        });
+      } else {
+        this.stopTokenValidationCheck();  // Detenemos el intervalo si no hay token
         this.router.navigate(["login"]);
       }
     }, 6000);
+  }
+
+  // Método para detener el intervalo
+  stopTokenValidationCheck() {
+    if (this.tokenValidationInterval) {
+      clearInterval(this.tokenValidationInterval);
+      this.tokenValidationInterval = null;
+      this.router.navigate(["login"]);
+    }
   }
 }

@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule, Location } from '@angular/common';
 import { User } from '../../auth/user';
+import { Call } from '../../call/calls';
 
 @Component({
   selector: 'app-callrecorddetails',
@@ -27,7 +28,8 @@ import { User } from '../../auth/user';
 export class CallrecorddetailsComponent implements OnInit {
   callForm!: FormGroup;
   audioSource: string = '';
-  agents: User[] = []
+  agents: User[] = [];
+  selectedCall!: Call;
 
   constructor(
     private translate: TranslateService,
@@ -44,14 +46,17 @@ export class CallrecorddetailsComponent implements OnInit {
     const lang = this.storageService.getItem("language")
     this.translate.use(lang || 'es')
 
-    const selectedCall = history.state?.call;
-    if (selectedCall) {
+    if(history.state){
+      this.selectedCall = history.state?.call;
+    }
+    
+    if (this.selectedCall) {
       this.callForm = this.fb.group({
-        nombre_grabacion: [selectedCall.nombre_grabacion],
-        duracion: [selectedCall.duracion],
-        fecha_hora_llamada: [selectedCall.fecha_hora_llamada]
+        nombre_grabacion: [this.selectedCall.nombre_grabacion],
+        duracion: [this.selectedCall.duracion],
+        fecha_hora_llamada: [this.selectedCall.fecha_hora_llamada]
       });
-      this.audioSource = "https://storage.googleapis.com/abcall-bucket/incident-calls/" + selectedCall.nombre_grabacion
+      this.audioSource = "https://storage.googleapis.com/abcall-bucket/incident-calls/" + this.selectedCall.nombre_grabacion
     }
   }
 

@@ -1,0 +1,123 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12" style="text-align: right; margin-top: 1%">
+          <mat-form-field appearance="fill">
+            <mat-label>{{ 'CURRENCY_EXCHANGE' | translate }}</mat-label>
+            <mat-select (selectionChange)="onCurrencyChange()" [(ngModel)]="currency">
+              <mat-option value="COP">{{ 'COLOMBIAN_PESO' | translate }}</mat-option>
+              <mat-option value="USD">{{ 'UNITED_STATES_DOLLAR' | translate }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    <div class="container">
+        <div class="filter">
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'INVOICE_DATE' | translate }}</mat-label>
+              <mat-select [(ngModel)]="month">
+                <mat-option value="1">{{ 'JANUARY' | translate }}</mat-option>
+                <mat-option value="2">{{ 'FEBRUARY' | translate }}</mat-option>
+                <mat-option value="3">{{ 'MARCH' | translate }}</mat-option>
+                <mat-option value="4">{{ 'APRIL' | translate }}</mat-option>
+                <mat-option value="5">{{ 'MAY' | translate }}</mat-option>
+                <mat-option value="6">{{ 'JUNE' | translate }}</mat-option>
+                <mat-option value="7">{{ 'JULY' | translate }}</mat-option>
+                <mat-option value="8">{{ 'AUGUST' | translate }}</mat-option>
+                <mat-option value="9">{{ 'SEPTEMBER' | translate }}</mat-option>
+                <mat-option value="10">{{ 'OCTOBER' | translate }}</mat-option>
+                <mat-option value="11">{{ 'NOVEMBER' | translate }}</mat-option>
+                <mat-option value="12">{{ 'DECEMBER' | translate }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button  class="btn-form-primary" style="margin-left: 1%" color="primary" (click)="getInvoice()">{{ 'GENERATE_INVOICE' | translate }}</button>
+        </div>
+        <div id="invoice-card-div" class="invoice-card-div">
+            <mat-card class="invoice-card">
+                <mat-card-content>
+                    <div class="row"> 
+                        <div class="col-12" style="text-align: left">
+                            <h2 class="total-pagar">{{ 'TOTAL_PAYABLE' | translate }}</h2>
+                        </div>
+                    </div>
+                    <div class="row"> 
+                        <div class="col-12" style="text-align: left">
+                            <h1 class="monto">{{ invoice.valor_pagar | number:'1.0-0'}}</h1>
+                        </div>
+                    </div>
+                    <div class="row"> 
+                        <div class="col-12" style="text-align: left">
+                            <p><strong>{{ 'PAYMENT_DATE' | translate }}: </strong>{{ invoice.fecha_pago }}</p>
+                        </div>
+                    </div>
+                    <div class="row"> 
+                        <div class="col-12" style="text-align: left">
+                            <p><strong>{{ 'PRICE_PER_PLAN' | translate }}: </strong>{{ invoice.plan_precio_total | number:'1.0-0'}}</p>
+                        </div>
+                    </div>
+                    <div class="row"> 
+                        <div class="col-12" style="text-align: left">
+                            <p><strong>{{ 'STATUS' | translate }}: </strong>{{ invoice.estado_factura }}</p>
+                        </div>
+                    </div>
+                    <div class="row"> 
+                        <div class="col-12" style="text-align: left">
+                            <h3>{{ 'INCIDENTS' | translate }}:</h3>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 1%">
+                        <div class="col-4">
+                            <strong>{{ 'INCIDENT_CHANNEL' | translate }}</strong>
+                        </div>
+                        <div class="col-4">
+                            <strong>{{ 'NUMBER' | translate }}</strong>
+                        </div>
+                        <div class="col-4">
+                            <strong>{{ 'PRICE' | translate }}</strong>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 1%">
+                        <div class="col-4">
+                            {{ 'INCIDENT_CHANNEL_CALL' | translate }}
+                        </div>
+                        <div class="col-4">
+                            {{ invoice.numero_incidencia_llamadas }}
+                        </div>
+                        <div class="col-4">
+                            {{ invoice.incidencia_llamadas_precio_total | number:'1.0-0' }}
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 1%">
+                        <div class="col-4">
+                            {{ 'INCIDENT_CHANNEL_EMAIL' | translate }}
+                        </div>
+                        <div class="col-4">
+                            {{ invoice.numero_incidencia_correo }}
+                        </div>
+                        <div class="col-4">
+                            {{ invoice.incidencia_correo_precio_total | number:'1.0-0' }}
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 1%">
+                        <div class="col-4">
+                            {{ 'INCIDENT_CHANNEL_APP' | translate }}
+                        </div>
+                        <div class="col-4">
+                            {{ invoice.numero_incidencia_movil }}
+                        </div>
+                        <div class="col-4">
+                            {{ invoice.incidencia_movil_precio_total | number:'1.0-0' }}
+                        </div>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions style="margin:auto">
+                    <button color="accent" class="btn-form-secondary" (click)="openInvoiceFile()">
+                    <mat-icon class="download-icon">download</mat-icon>
+                    {{ 'DOWNLOAD' | translate }}
+                    </button>
+                    <button class="btn-form-primary" (click)="goToPayment()" style="margin-left: 1%">{{ 'PAY' | translate }}</button>
+                    <button class="btn-form-third" style="margin-left: 1%" (click)="openSendEmailDialog()">{{ 'SEND_EMAIL' | translate }}</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,402 @@
+<div class="container">
+  <div class="row payment-method header">
+    <div class="col-lg-9 col-md-12 col-sm-12">
+      <div>
+        <mat-checkbox
+          (change)="onCreditCardChange($event)"
+          [(ngModel)]="isCreditCard"
+          [disabled]="isCreditCard"
+          class="check-style"
+          style="margin-top: 5px"
+        >
+          <label class="payment-method-check-text">{{
+            "CREDIT_CARD" | translate
+          }}</label>
+        </mat-checkbox>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-12 col-sm-12">
+      <img
+        src="assets/images/logo-visa.png"
+        alt="Visa"
+        class="payment-icon"
+        style="margin-left: 30%"
+      />
+      <img
+        src="assets/images/logo-mastercard.png"
+        alt="Mastercard"
+        class="payment-icon-master"
+      />
+      <img src="assets/images/logo-mnp.png" alt="mnp" class="payment-icon" />
+    </div>
+  </div>
+  <div id="credit-card-form" style="margin-top: 2%">
+    <form [formGroup]="creditCardForm" *ngIf="isCreditCard">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{ "CREDIT_CARD_NUMBER" | translate }}</mat-label>
+            <input
+              formControlName="creditCardNumber"
+              id="credit-card-number"
+              matInput
+              [placeholder]="'CREDIT_CARD_NUMBER' | translate"
+            />
+          </mat-form-field>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              creditCardForm.get('creditCardNumber')!.hasError('required') &&
+              creditCardForm.get('creditCardNumber')!.touched
+            "
+          >
+            {{ "CREDIT_CARD_NUMBER_REQUIRED" | translate }}
+          </div>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              creditCardForm.get('creditCardNumber')!.hasError('minlength') &&
+              creditCardForm.get('creditCardNumber')!.touched
+            "
+          >
+            {{ "CREDIT_CARD_NUMBER_MINLENGTH" | translate }}
+          </div>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              creditCardForm.get('creditCardNumber')!.hasError('maxlength') &&
+              creditCardForm.get('creditCardNumber')!.touched
+            "
+          >
+            {{ "CREDIT_CARD_NUMBER_MAXLENGTH" | translate }}
+          </div>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              creditCardForm.get('creditCardNumber')!.hasError('pattern') &&
+              creditCardForm.get('creditCardNumber')!.touched
+            "
+          >
+            {{ "CREDIT_CARD_NUMBER_FORMAT" | translate }}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{ "TITLE_NAME" | translate }}</mat-label>
+            <input
+              formControlName="ownerName"
+              id="owner-name"
+              matInput
+              [placeholder]="'TITLE_NAME' | translate"
+            />
+          </mat-form-field>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              creditCardForm.get('ownerName')!.hasError('required') &&
+              creditCardForm.get('ownerName')!.touched
+            "
+          >
+            {{ "TITLE_NAME_REQUIRED" | translate }}
+          </div>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              creditCardForm.get('ownerName')!.hasError('minlength') &&
+              creditCardForm.get('ownerName')!.touched
+            "
+          >
+            {{ "TITLE_NAME_MINLENGTH" | translate }}
+          </div>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              creditCardForm.get('ownerName')!.hasError('maxlength') &&
+              creditCardForm.get('ownerName')!.touched
+            "
+          >
+            {{ "TITLE_NAME_MAXLENGTH" | translate }}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{ "EXPIRATION_DATE" | translate }}</mat-label>
+            <input
+              formControlName="expirationDate"
+              id="expiration-date"
+              matInput
+              maxlength="5"
+              placeholder="MM/YY"
+            />
+          </mat-form-field>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              creditCardForm.get('expirationDate')!.hasError('required') &&
+              creditCardForm.get('expirationDate')!.touched
+            "
+          >
+            {{ "EXPIRATION_DATE_REQUIRED" | translate }}
+          </div>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              creditCardForm.get('expirationDate')!.hasError('pattern') &&
+              creditCardForm.get('expirationDate')!.touched
+            "
+          >
+            {{ "EXPIRATION_DATE_INVALID_FORMAT" | translate }}
+          </div>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              creditCardForm.get('expirationDate')!.hasError('dateInPast') &&
+              creditCardForm.get('expirationDate')!.touched
+            "
+          >
+            {{ "EXPIRATION_DATE_EXPIRED" | translate }}
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>CVV</mat-label>
+            <input
+              formControlName="cvv"
+              id="cvv"
+              maxlength="3"
+              matInput
+              placeholder="CVV"
+            />
+          </mat-form-field>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              creditCardForm.get('cvv')!.hasError('required') &&
+              creditCardForm.get('cvv')!.touched
+            "
+          >
+            {{ "CVV_REQUIRED" | translate }}
+          </div>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              creditCardForm.get('cvv')!.hasError('pattern') &&
+              creditCardForm.get('cvv')!.touched
+            "
+          >
+            {{ "CVV_INVALID_FORMAT" | translate }}
+          </div>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              creditCardForm.get('cvv')!.hasError('invalidLength') &&
+              creditCardForm.get('cvv')!.touched
+            "
+          >
+            {{ "CVV_INVALID_LENGTH" | translate }}
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="row payment-method">
+    <div class="col-11" style="margin-top: 5px">
+      <mat-checkbox
+        (change)="onPseChange($event)"
+        [(ngModel)]="isPse"
+        [disabled]="isPse"
+        class="check-style"
+      >
+        <label class="payment-method-check-text">PSE</label>
+      </mat-checkbox>
+    </div>
+    <div class="col-1">
+      <img src="assets/images/logo-pse.png" alt="PSE" class="payment-icon" />
+    </div>
+  </div>
+  <div id="pse-form" style="margin-top: 2%">
+    <form [formGroup]="pseForm" *ngIf="isPse">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{ "TITLE_NAME" | translate }}</mat-label>
+            <input
+              formControlName="ownerName"
+              id="owner-name"
+              matInput
+              [placeholder]="'TITLE_NAME' | translate"
+            />
+          </mat-form-field>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              pseForm.get('ownerName')!.hasError('required') &&
+              pseForm.get('ownerName')!.touched
+            "
+          >
+            {{ "TITLE_NAME_REQUIRED" | translate }}
+          </div>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              pseForm.get('ownerName')!.hasError('minlength') &&
+              pseForm.get('ownerName')!.touched
+            "
+          >
+            {{ "TITLE_NAME_MINLENGTH" | translate }}
+          </div>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              pseForm.get('ownerName')!.hasError('maxlength') &&
+              pseForm.get('ownerName')!.touched
+            "
+          >
+            {{ "TITLE_NAME_MAXLENGTH" | translate }}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <mat-form-field
+            appearance="outline"
+            class="w-100"
+            id="identity-type-person"
+          >
+            <mat-label>{{ "IDENTITY_TYPE" | translate }}</mat-label>
+            <mat-select formControlName="identityType">
+              <mat-option value="1">{{ "CC" | translate }}</mat-option>
+              <mat-option value="2">{{ "CE" | translate }}</mat-option>
+              <mat-option value="4">{{ "PASAPORTE" | translate }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              pseForm.get('identityType')!.hasError('required') &&
+              pseForm.get('identityType')!.touched
+            "
+          >
+            {{ "IDENTITY_TYPE_REQUIRED" | translate }}
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{ "IDENTITY_NUMBER_REQUIRED" | translate }}</mat-label>
+            <input
+              formControlName="identityNumber"
+              id="identityNumber"
+              matInput
+              [placeholder]="'IDENTITY_NUMBER_REQUIRED' | translate"
+            />
+          </mat-form-field>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              pseForm.get('identityNumber')!.hasError('required') &&
+              pseForm.get('identityNumber')!.touched
+            "
+          >
+            {{ "IDENTITY_NUMBER_REQUIRED" | translate }}
+          </div>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              pseForm.get('identityNumber')!.hasError('minlength') &&
+              pseForm.get('identityNumber')!.touched
+            "
+          >
+            {{ "IDENTITY_NUMBER_SIZE" | translate }}
+          </div>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              pseForm.get('identityNumber')!.hasError('maxlength') &&
+              pseForm.get('identityNumber')!.touched
+            "
+          >
+            {{ "IDENTITY_NUMBER_SIZE" | translate }}
+          </div>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              pseForm.get('identityNumber')!.hasError('pattern') &&
+              pseForm.get('identityNumber')!.touched
+            "
+          >
+            {{ "IDENTITY_NUMBER_FORMAT" | translate }}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <mat-form-field appearance="outline" class="w-100" id="type-person">
+            <mat-label>{{ "TYPE_PERSON" | translate }}</mat-label>
+            <mat-select formControlName="personType">
+              <mat-option value="1">Natural</mat-option>
+              <mat-option value="2">{{ "JURIDICAL" | translate }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              pseForm.get('personType')!.hasError('required') &&
+              pseForm.get('personType')!.touched
+            "
+          >
+            {{ "TYPE_PERSON_REQUIRED" | translate }}
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <mat-form-field appearance="outline" class="w-100" id="type-person">
+            <mat-label>{{ "CHOOSE_BANK" | translate }}</mat-label>
+            <mat-select formControlName="bank">
+              <mat-option value="1">Caja Social</mat-option>
+              <mat-option value="2">Davivienda</mat-option>
+              <mat-option value="3">BBVA</mat-option>
+              <mat-option value="4">Bancolombia</mat-option>
+              <mat-option value="5">Scotiabank</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              pseForm.get('bank')!.hasError('required') &&
+              pseForm.get('bank')!.touched
+            "
+          >
+            {{ "IDENTITY_TYPE_REQUIRED" | translate }}
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    <div
+      class="col-lg-12 col-md-12 col-sm-12"
+      style="text-align: center; margin-bottom: 10px"
+    >
+      <button
+        mat-raised-button
+        id="go-back"
+        class="btn-form-secondary"
+        style="width: 180px"
+      >
+      {{ "CANCEL" | translate }}
+      </button>
+      <button
+        id="make-payment"
+        mat-raised-button
+        class="btn-form-primary"
+        style="margin-left: 10px"
+        (click)="payInvoice()"
+      >
+      {{ "PAY" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

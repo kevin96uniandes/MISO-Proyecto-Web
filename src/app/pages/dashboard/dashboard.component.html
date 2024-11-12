@@ -20,7 +20,7 @@
         <mat-icon matListIcon class="sidebar-color-item">store</mat-icon>
         <span matLine class="sidebar-color-item">{{ 'PLANS' | translate }}</span>
       </a>
-      <a *ngIf="currentMenuUser.dashboard" mat-list-item routerLink="/dashboard" class="menu-item text-center">
+      <a *ngIf="currentMenuUser.dashboard" mat-list-item [routerLink]="['/dashboard/board']" class="menu-item text-center">
         <mat-icon matListIcon class="sidebar-color-item">dashboard</mat-icon>
         <span matLine class="sidebar-color-item">{{ 'DASHBOARD' | translate }}</span>
       </a>

@@ -184,5 +184,12 @@
   "OBSERVATION_INCIDENCE":"Observations of the incidence",
   "DATE": "Date",
   "MANAGEMENT_BY": "Management by",
-  "MANAGE_INCIDENT_TITLE": "Manage Incident"
+  "MANAGE_INCIDENT_TITLE": "Manage Incident",
+  "BOARD_INCIDENTS": "Dashboard",
+  "PHONE_CALL": "Phone call",
+  "MOBILE_APP": "Mobile App",
+  "START_DATE": "Start date",
+  "END_DATE": "End date",
+  "FILTER": "FILTER",
+  "COMMUNICATION_CHANNELS": "Communication channels"
 }

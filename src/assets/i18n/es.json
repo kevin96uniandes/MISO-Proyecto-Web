@@ -164,7 +164,7 @@
     "INCIDENTS_LIST": "Listado de incidencias",
     "INCIDENT_IDENTIFIER": "Identificador de incidencia",
     "IDENTITY_NUMBER_CLIENT": "Numero documento cliente",
-    "CLEAN_FILTER": "LIMPIAR FILTRO",    
+    "CLEAN_FILTER": "LIMPIAR FILTRO",
     "SEARCH_INCIDENT": "BUSCAR",
     "OPEN": "Abierto",
     "DISMISSED": "Desestimado",
@@ -186,5 +186,12 @@
     "OBSERVATION_INCIDENCE":"Observaciones de la incidencia",
     "DATE": "Fecha",
     "MANAGEMENT_BY": "Gestión hecha por",
-    "MANAGE_INCIDENT_TITLE": "Gestionar Incidencia"
+    "MANAGE_INCIDENT_TITLE": "Gestionar Incidencia",
+    "BOARD_INCIDENTS": "Tablero de control de incidentes",
+    "PHONE_CALL": "Llamada Telefónica",
+    "MOBILE_APP": "App móvil",
+    "START_DATE": "Fecha inicio",
+    "END_DATE": "Fecha fin",
+    "FILTER": "FILTRAR",
+    "COMMUNICATION_CHANNELS": "Canales de comunicación"
 }

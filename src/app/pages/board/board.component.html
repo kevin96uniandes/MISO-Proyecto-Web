@@ -80,4 +80,21 @@
       </mat-card>
     </div>
   </div>
+  <div class="row">
+    <div class="col-1">&nbsp;</div>
+    <div class="col-4">
+      <div id="chart">
+        <apx-chart
+          [series]="chartOptions.series"
+          [chart]="chartOptions.chart"
+          [labels]="chartOptions.labels"
+          [responsive]="chartOptions.responsive"
+          [title]="chartOptions.title">
+        </apx-chart>
+      </div>
+    </div>
+    <div class="col-2">&nbsp;</div>
+    <div class="col-4">&nbsp;</div>
+    <div class="col-1">&nbsp;</div>
+  </div>
 </div>

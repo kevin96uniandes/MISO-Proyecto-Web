@@ -14,7 +14,18 @@ import { Boardfilter } from './interfaces/boardfilter';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { filter } from 'rxjs';
+import { ApexChart, ApexNonAxisChartSeries, ApexResponsive, ApexTitleSubtitle } from 'ng-apexcharts';
+import { Incident } from './interfaces/incident';
+import { NgApexchartsModule } from 'ng-apexcharts';
+
+const estadoMap: { [key: string]: string } = {
+  "1": "Abierto",
+  "2": "Desestimado",
+  "3": "Escalado",
+  "4": "Cerrado Satisfactoriamente",
+  "5": "Cerrado Insatisfactoriamente",
+  "6": "Reaperturado"
+};
 
 @Component({
   selector: 'app-board',
@@ -30,7 +41,8 @@ import { filter } from 'rxjs';
     ReactiveFormsModule,
     CommonModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    NgApexchartsModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [provideNativeDateAdapter()]
@@ -39,9 +51,18 @@ export class BoardComponent implements OnInit {
   filterForm: FormGroup;
   incidentPercentage: Boardpercentage | null = null;
   incidentSummary: Incidentsummary | null = null;
+
   phoneCallPercentage: number = 0;
   emailPercentage: number = 0;
   appPercentage: number = 0;
+
+  public chartOptions: {
+    series: ApexNonAxisChartSeries;
+    chart: ApexChart;
+    labels: string[];
+    responsive: ApexResponsive[];
+    title: ApexTitleSubtitle;
+  };
 
   constructor(
     private fb: FormBuilder,
@@ -56,12 +77,45 @@ export class BoardComponent implements OnInit {
       start_date: [''],
       end_date: ['']
     });
+    this.chartOptions = {
+      series: [],
+      chart: {
+        type: 'pie',
+      },
+      labels: [],
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }
+      ],
+      title: {
+        text: 'Distribución de Incidentes por Estado',
+        align: 'center',
+        offsetY: 13,
+        style: {
+          fontSize: '1.25em',
+          fontWeight: 'bold',
+          color: '#126173',
+          fontFamily: 'Roboto'
+        }
+      }
+    };
   }
 
   ngOnInit(): void {
     const lang = this.storageService.getItem("language")
     this.translate.use(lang || 'es')
     this.getIncidentPercentage(this.filterForm.value);
+    this.getIncidentSummary(this.filterForm.value);
+
   }
 
   onSubmit() {
@@ -90,11 +144,46 @@ export class BoardComponent implements OnInit {
     this.boardService.getIncidentSummary(filters).subscribe(
       (response) => {
         this.incidentSummary = response;
+        this.updateChartData(response.incidentes);
         console.log('Resumen de incidentes:', response);
       },
       (error) => {
         console.error('Error al obtener el resumen de incidentes:', error);
       }
     );
+  }
+
+  private updateChartData(incidentes: Incident[]): void {
+    const estadoCounts: { [key: string]: number } = {};
+    const estadoFiltradoCodigo = String(this.filterForm.value.state);
+    const estadoFiltrado = estadoMap[estadoFiltradoCodigo];
+
+    console.log('Estado filtrado', estadoFiltrado);
+
+    incidentes.forEach((incident) => {
+      const estadoKey = String(incident.estado).trim();
+      estadoCounts[estadoKey] = (estadoCounts[estadoKey] || 0) + 1;
+      console.log(`Estados count en el foreach (clave: "${estadoKey}")`, estadoCounts[estadoKey]);
+    });
+    console.log('Estados count', estadoCounts);
+    console.log('Valor específico de estadoFiltrado:', estadoCounts[estadoFiltrado]);
+
+    if (estadoFiltrado && estadoCounts[estadoFiltrado]) {
+      this.chartOptions = {
+        ...this.chartOptions,
+        series: [estadoCounts[estadoFiltrado]],
+        labels: [estadoFiltrado]
+      };
+      console.log('Entra en el estado filtrado');
+    } else {
+      this.chartOptions = {
+        ...this.chartOptions,
+        series: Object.values(estadoCounts),
+        labels: Object.keys(estadoCounts)
+      };
+      console.log('Entra en todos los estados');
+    }
+
+    this.cdr.markForCheck();
   }
 }

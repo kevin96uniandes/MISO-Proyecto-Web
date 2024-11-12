@@ -14,7 +14,7 @@ import { Boardfilter } from './interfaces/boardfilter';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { ApexChart, ApexNonAxisChartSeries, ApexResponsive, ApexTitleSubtitle } from 'ng-apexcharts';
+import { ApexAxisChartSeries, ApexChart, ApexNonAxisChartSeries, ApexResponsive, ApexStroke, ApexTitleSubtitle, ApexXAxis } from 'ng-apexcharts';
 import { Incident } from './interfaces/incident';
 import { NgApexchartsModule } from 'ng-apexcharts';
 
@@ -56,12 +56,20 @@ export class BoardComponent implements OnInit {
   emailPercentage: number = 0;
   appPercentage: number = 0;
 
-  public chartOptions: {
+  public chartOptionsPie: {
     series: ApexNonAxisChartSeries;
     chart: ApexChart;
     labels: string[];
     responsive: ApexResponsive[];
     title: ApexTitleSubtitle;
+  };
+
+  public chartOptionsLine: {
+    series: ApexAxisChartSeries;
+    chart: ApexChart;
+    xaxis: ApexXAxis;
+    title: ApexTitleSubtitle;
+    stroke: ApexStroke;
   };
 
   constructor(
@@ -77,7 +85,7 @@ export class BoardComponent implements OnInit {
       start_date: [''],
       end_date: ['']
     });
-    this.chartOptions = {
+    this.chartOptionsPie = {
       series: [],
       chart: {
         type: 'pie',
@@ -106,6 +114,30 @@ export class BoardComponent implements OnInit {
           color: '#126173',
           fontFamily: 'Roboto'
         }
+      }
+    };
+    this.chartOptionsLine = {
+      series: [],
+      chart: {
+        type: 'line',
+        height: 350
+      },
+      xaxis: {
+        categories: []
+      },
+      title: {
+        text: 'Incidentes por Estado y Fecha de Actualización',
+        align: 'center',
+        offsetY: 13,
+        style: {
+          fontSize: '1.25em',
+          fontWeight: 'bold',
+          color: '#126173',
+          fontFamily: 'Roboto'
+        }
+      },
+      stroke: {
+        curve: 'smooth'
       }
     };
   }
@@ -157,32 +189,60 @@ export class BoardComponent implements OnInit {
     const estadoCounts: { [key: string]: number } = {};
     const estadoFiltradoCodigo = String(this.filterForm.value.state);
     const estadoFiltrado = estadoMap[estadoFiltradoCodigo];
-
-    console.log('Estado filtrado', estadoFiltrado);
+    const fechaEstadoCounts: { [fecha: string]: { [estado: string]: number } } = {};
 
     incidentes.forEach((incident) => {
       const estadoKey = String(incident.estado).trim();
       estadoCounts[estadoKey] = (estadoCounts[estadoKey] || 0) + 1;
-      console.log(`Estados count en el foreach (clave: "${estadoKey}")`, estadoCounts[estadoKey]);
+      const fecha = incident.fecha_actualizacion.split('T')[0];
+
+      if (!fechaEstadoCounts[fecha]) {
+        fechaEstadoCounts[fecha] = {};
+      }
+      fechaEstadoCounts[fecha][estadoKey] = (fechaEstadoCounts[fecha][estadoKey] || 0) + 1;
     });
-    console.log('Estados count', estadoCounts);
-    console.log('Valor específico de estadoFiltrado:', estadoCounts[estadoFiltrado]);
+
+    const fechas = Object.keys(fechaEstadoCounts).sort();
+
+    let seriesData;
+    if (estadoFiltrado && estadoCounts[estadoFiltrado]) {
+      seriesData = [{
+        name: estadoFiltrado,
+        data: fechas.map((fecha) => fechaEstadoCounts[fecha][estadoFiltrado] || 0)
+      }];
+      this.chartOptionsLine.title.text = `Incidentes de ${estadoFiltrado} por Fecha`;
+    } else {
+      seriesData = Object.keys(estadoMap).map((codigo) => {
+        const estado = estadoMap[codigo];
+        return {
+          name: estado,
+          data: fechas.map((fecha) => fechaEstadoCounts[fecha][estado] || 0)
+        };
+      });
+      this.chartOptionsLine.title.text = 'Incidentes por Estado y Fecha de Actualización';
+    }
 
     if (estadoFiltrado && estadoCounts[estadoFiltrado]) {
-      this.chartOptions = {
-        ...this.chartOptions,
+      this.chartOptionsPie = {
+        ...this.chartOptionsPie,
         series: [estadoCounts[estadoFiltrado]],
         labels: [estadoFiltrado]
       };
-      console.log('Entra en el estado filtrado');
     } else {
-      this.chartOptions = {
-        ...this.chartOptions,
+      this.chartOptionsPie = {
+        ...this.chartOptionsPie,
         series: Object.values(estadoCounts),
         labels: Object.keys(estadoCounts)
       };
-      console.log('Entra en todos los estados');
     }
+
+    this.chartOptionsLine = {
+      ...this.chartOptionsLine,
+      series: seriesData,
+      xaxis: {
+        categories: fechas
+      }
+    };
 
     this.cdr.markForCheck();
   }

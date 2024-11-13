@@ -37,7 +37,7 @@ export const routes: Routes = [
       { path: 'register/agent', component: RegisterAgentComponent },
       { path: 'plans', component: SelectPlanComponent },
       { path: 'details-call', component: CallrecorddetailsComponent },
-      { path: 'profile', component: ClientProfileComponent, canActivate: [RoleGuard], data: { role: 'agente' }},
+      { path: 'profile', component: ClientProfileComponent}
     ]
   },
   { path: 'register/client', component: RegisterClientComponent },

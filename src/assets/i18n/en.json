@@ -191,5 +191,10 @@
   "START_DATE": "Start date",
   "END_DATE": "End date",
   "FILTER": "FILTER",
-  "COMMUNICATION_CHANNELS": "Communication channels"
+  "COMMUNICATION_CHANNELS": "Communication channels",
+  "TITLE_PIE_CHART": "Distribution of incidents by state",
+  "TITLE_LINES_CHART": "Incidents by Status and Update Date",
+  "TABLE_INCIDENTS": "Table of incidents",
+  "CODE": "Code",
+  "UPDATE_DATE": "Update date"
 }

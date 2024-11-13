@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, ViewChild, NgZone } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { StorageService } from '../../common/storage.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -17,6 +17,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { ApexAxisChartSeries, ApexChart, ApexNonAxisChartSeries, ApexResponsive, ApexStroke, ApexTitleSubtitle, ApexXAxis } from 'ng-apexcharts';
 import { Incident } from './interfaces/incident';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { MatTableModule, MatTableDataSource } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 
 const estadoMap: { [key: string]: string } = {
   "1": "Abierto",
@@ -25,6 +28,12 @@ const estadoMap: { [key: string]: string } = {
   "4": "Cerrado Satisfactoriamente",
   "5": "Cerrado Insatisfactoriamente",
   "6": "Reaperturado"
+};
+
+const canalMap: { [key: string]: string } = {
+  "1": "Llamada Telefónica",
+  "2": "Correo Electrónico",
+  "3": "App Movil"
 };
 
 @Component({
@@ -42,13 +51,16 @@ const estadoMap: { [key: string]: string } = {
     CommonModule,
     MatCardModule,
     MatIconModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [provideNativeDateAdapter()]
 })
 export class BoardComponent implements OnInit {
-  filterForm: FormGroup;
+  filterForm!: FormGroup;
   incidentPercentage: Boardpercentage | null = null;
   incidentSummary: Incidentsummary | null = null;
 
@@ -56,7 +68,13 @@ export class BoardComponent implements OnInit {
   emailPercentage: number = 0;
   appPercentage: number = 0;
 
-  public chartOptionsPie: {
+  displayedColumns: string[] = ['codigo', 'estado', 'canal', 'tipo', 'fecha_actualizacion'];
+  dataSource = new MatTableDataSource<Incident>();
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  public chartOptionsPie!: {
     series: ApexNonAxisChartSeries;
     chart: ApexChart;
     labels: string[];
@@ -64,7 +82,7 @@ export class BoardComponent implements OnInit {
     title: ApexTitleSubtitle;
   };
 
-  public chartOptionsLine: {
+  public chartOptionsLine!: {
     series: ApexAxisChartSeries;
     chart: ApexChart;
     xaxis: ApexXAxis;
@@ -77,74 +95,98 @@ export class BoardComponent implements OnInit {
     private translate: TranslateService,
     private storageService: StorageService,
     private boardService: BoardService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private zone: NgZone
   ) {
+  }
+
+  ngOnInit(): void {
     this.filterForm = this.fb.group({
       canal_id: [''],
       state: [''],
       start_date: [''],
       end_date: ['']
     });
-    this.chartOptionsPie = {
-      series: [],
-      chart: {
-        type: 'pie',
-      },
-      labels: [],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: 'bottom'
+
+    this.translate.get(['TITLE_PIE_CHART', 'TITLE_LINES_CHART']).subscribe(translations => {
+      const titlePieChart = translations['TITLE_PIE_CHART'];
+      const titleLinesChart = translations['TITLE_LINES_CHART'];
+      this.chartOptionsPie = {
+        series: [],
+        chart: {
+          type: 'pie',
+        },
+        labels: [],
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+              chart: {
+                width: 200
+              },
+              legend: {
+                position: 'bottom'
+              }
             }
           }
+        ],
+        title: {
+          text: titlePieChart,
+          align: 'center',
+          offsetY: 13,
+          style: {
+            fontSize: '1.25em',
+            fontWeight: 'bold',
+            color: '#126173',
+            fontFamily: 'Roboto'
+          }
         }
-      ],
-      title: {
-        text: 'Distribución de Incidentes por Estado',
-        align: 'center',
-        offsetY: 13,
-        style: {
-          fontSize: '1.25em',
-          fontWeight: 'bold',
-          color: '#126173',
-          fontFamily: 'Roboto'
-        }
-      }
-    };
-    this.chartOptionsLine = {
-      series: [],
-      chart: {
-        type: 'line',
-        height: 350
-      },
-      xaxis: {
-        categories: []
-      },
-      title: {
-        text: 'Incidentes por Estado y Fecha de Actualización',
-        align: 'center',
-        offsetY: 13,
-        style: {
-          fontSize: '1.25em',
-          fontWeight: 'bold',
-          color: '#126173',
-          fontFamily: 'Roboto'
-        }
-      },
-      stroke: {
-        curve: 'smooth'
-      }
-    };
-  }
+      };
 
-  ngOnInit(): void {
+      this.chartOptionsLine = {
+        series: [],
+        chart: {
+          type: 'line',
+          height: 350
+        },
+        xaxis: {
+          categories: []
+        },
+        title: {
+          text: 'Incidentes por Estado y Fecha de Actualización',
+          align: 'center',
+          offsetY: 13,
+          style: {
+            fontSize: '1.25em',
+            fontWeight: 'bold',
+            color: '#126173',
+            fontFamily: 'Roboto'
+          }
+        },
+        stroke: {
+          curve: 'smooth'
+        }
+      };
+    });
+
     const lang = this.storageService.getItem("language")
     this.translate.use(lang || 'es')
+
+    this.dataSource.filterPredicate = (data: Incident, filter: string) => {
+      const filters: Boardfilter = JSON.parse(filter);
+
+      const canalName = canalMap[filters.canal_id];
+      const isCanalValid = !filters.canal_id || data.canal === canalName;
+
+      const estadoName = estadoMap[String(filters.state)];
+      const isStateValid = !filters.state || data.estado === estadoName;
+
+      const isDateValid = (!filters.start_date || new Date(data.fecha_actualizacion) >= new Date(filters.start_date)) &&
+                          (!filters.end_date || new Date(data.fecha_actualizacion) <= new Date(filters.end_date));
+
+      return isCanalValid && isStateValid && isDateValid;
+    };
+
     this.getIncidentPercentage(this.filterForm.value);
     this.getIncidentSummary(this.filterForm.value);
 
@@ -154,6 +196,8 @@ export class BoardComponent implements OnInit {
     const filters: Boardfilter = this.filterForm.value;
     this.getIncidentPercentage(filters);
     this.getIncidentSummary(filters);
+
+    this.dataSource.filter = JSON.stringify(filters);
   }
 
   private getIncidentPercentage(filters: Boardfilter) {
@@ -176,6 +220,12 @@ export class BoardComponent implements OnInit {
     this.boardService.getIncidentSummary(filters).subscribe(
       (response) => {
         this.incidentSummary = response;
+
+        this.dataSource.data = response.incidentes;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.dataSource.filter = JSON.stringify(filters);
+
         this.updateChartData(response.incidentes);
         console.log('Resumen de incidentes:', response);
       },
@@ -245,5 +295,12 @@ export class BoardComponent implements OnInit {
     };
 
     this.cdr.markForCheck();
+  }
+
+  clearFilters(): void {
+    this.filterForm.reset();
+    this.getIncidentPercentage(this.filterForm.value);
+    this.getIncidentSummary(this.filterForm.value);
+    this.dataSource.filter = '';
   }
 }

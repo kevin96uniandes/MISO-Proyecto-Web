@@ -47,11 +47,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-5">&nbsp;</div>
+      <div class="col-4">&nbsp;</div>
       <div class="col-2">
         <button mat-flat-button class="btn-abc-primary w-100" type="submit" color="primary">{{ 'FILTER' | translate }}</button>
       </div>
-      <div class="col-5">&nbsp;</div>
+      <div class="col-2">
+        <button mat-flat-button class="btn-abc-primary w-100" color="primary" (click)="clearFilters()">{{ 'CLEAN_FILTER' | translate }}</button>
+      </div>
+      <div class="col-4">&nbsp;</div>
     </div>
   </form>
   <div class="row">
@@ -106,5 +109,41 @@
       </div>
     </div>
     <div class="col-1">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-12 title-text-color" style="font-size: 1.25em; margin-bottom: 15px;">{{ 'TABLE_INCIDENTS' | translate }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="codigo">
+          <th mat-header-cell *matHeaderCellDef> {{ 'CODE' | translate }} </th>
+          <td mat-cell *matCellDef="let incident"> {{ incident.codigo }} </td>
+        </ng-container>
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef> {{ 'STATUS' | translate }} </th>
+          <td mat-cell *matCellDef="let incident"> {{ incident.estado }} </td>
+        </ng-container>
+        <ng-container matColumnDef="canal">
+          <th mat-header-cell *matHeaderCellDef> {{ 'INCIDENT_CHANNEL' | translate }} </th>
+          <td mat-cell *matCellDef="let incident"> {{ incident.canal }} </td>
+        </ng-container>
+        <ng-container matColumnDef="tipo">
+          <th mat-header-cell *matHeaderCellDef> {{ 'INCIDENT_TYPE' | translate }} </th>
+          <td mat-cell *matCellDef="let incident"> {{ incident.tipo }} </td>
+        </ng-container>
+        <ng-container matColumnDef="fecha_actualizacion">
+          <th mat-header-cell *matHeaderCellDef> {{ 'UPDATE_DATE' | translate }} </th>
+          <td mat-cell *matCellDef="let incident"> {{ incident.fecha_actualizacion | date: 'yyyy-MM-dd' }} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
   </div>
 </div>

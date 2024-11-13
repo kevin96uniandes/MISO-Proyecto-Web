@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-profile',
+  standalone: true,
   templateUrl: './client-profile.component.html',
   styleUrls: ['./client-profile.component.css']
 })
-export class ClientProfileComponent implements OnInit {
+export class ClientProfileComponent implements AfterViewInit {
 
-  constructor() { }
 
-  ngOnInit() {
+  constructor(
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) { }
+
+  ngAfterViewInit() {
+    console.log("Hello")
   }
 
 }

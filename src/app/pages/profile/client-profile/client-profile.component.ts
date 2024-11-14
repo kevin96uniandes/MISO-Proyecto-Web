@@ -27,7 +27,7 @@ import { ProfileService } from '../profile.service';
 })
 export class ClientProfileComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['Código', 'Descripción', 'Identificación', 'Nombre completo', 'Correo electronico', '6'];
+  displayedColumns: string[] = ['acciones', 'code', 'description', 'subject', 'createdAt', 'updatedAt'];
   dataIncidents!: MatTableDataSource<Incident>
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -45,7 +45,7 @@ export class ClientProfileComponent implements AfterViewInit {
   ngAfterViewInit() {
     let decoded = JSON.parse(this.storageService.getItem("decodedToken")!!);
     
-    this.profileService.getIncidencesByUserId(2).subscribe({
+    this.profileService.getIncidencesByUserId(1).subscribe({
       next: (incidents: Incident[]) => {
         
         this.dataIncidents = new MatTableDataSource<Incident>(incidents);

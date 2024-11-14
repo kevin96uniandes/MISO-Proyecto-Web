@@ -8,7 +8,7 @@ import { Incident } from '../incident/interfaces/incident';
 })
 export class ProfileService {
 
-  private incidentUrl: string = environment.apiUrl + '/incident/';
+  private incidentUrl: string = environment.incidentUrl;
 
   constructor(private httpClient: HttpClient) { }
 

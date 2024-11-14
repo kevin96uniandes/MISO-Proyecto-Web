@@ -149,7 +149,6 @@ export class DashboardComponent implements AfterViewChecked {
             );
           },
           error: () => {
-            // En caso de error, también ocultar el ícono
             this.isLoading = false;
           }
       })

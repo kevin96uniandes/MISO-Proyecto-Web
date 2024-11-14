@@ -182,5 +182,9 @@
     "NAME_RECORDING": "Nombre de la grabación",
     "AUDIO_NO_SUPPORT": "Tu navegador no soporta el elemento de audio",
     "ESCALATE_AGENT": "Para escalar debe asignar la incidencia a otro agente",
-    "INVALID_AGENT": "Porfavor seleccione un agente valido"
+    "INVALID_AGENT": "Porfavor seleccione un agente valido",
+    "OBSERVATION_INCIDENCE":"Observaciones de la incidencia",
+    "DATE": "Fecha",
+    "MANAGEMENT_BY": "Gestión hecha por",
+    "MANAGE_INCIDENT_TITLE": "Gestionar Incidencia"
 }

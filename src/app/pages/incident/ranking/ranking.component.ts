@@ -115,6 +115,6 @@ export class RankingComponent implements AfterViewInit {
   }
 
   watchIncidentDetail(incident: Incident) {
-    console.log(incident)
+    this.router.navigate(['/dashboard/incident/detail/', incident.id]);
   }
 }

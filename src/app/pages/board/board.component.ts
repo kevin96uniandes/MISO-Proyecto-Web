@@ -200,7 +200,7 @@ export class BoardComponent implements OnInit {
     this.dataSource.filter = JSON.stringify(filters);
   }
 
-  private getIncidentPercentage(filters: Boardfilter) {
+  getIncidentPercentage(filters: Boardfilter) {
     this.boardService.getIncidentPercentage(filters).subscribe(
       (response) => {
         this.incidentPercentage = response;
@@ -216,7 +216,7 @@ export class BoardComponent implements OnInit {
     );
   }
 
-  private getIncidentSummary(filters: Boardfilter) {
+  getIncidentSummary(filters: Boardfilter) {
     this.boardService.getIncidentSummary(filters).subscribe(
       (response) => {
         this.incidentSummary = response;
@@ -235,7 +235,7 @@ export class BoardComponent implements OnInit {
     );
   }
 
-  private updateChartData(incidentes: Incident[]): void {
+  updateChartData(incidentes: Incident[]): void {
     const estadoCounts: { [key: string]: number } = {};
     const estadoFiltradoCodigo = String(this.filterForm.value.state);
     const estadoFiltrado = estadoMap[estadoFiltradoCodigo];

@@ -45,7 +45,7 @@ export class ClientProfileComponent implements AfterViewInit {
   ngAfterViewInit() {
     let decoded = JSON.parse(this.storageService.getItem("decodedToken")!!);
     
-    this.profileService.getIncidencesByUserId(1).subscribe({
+    this.profileService.getIncidences().subscribe({
       next: (incidents: Incident[]) => {
         
         this.dataIncidents = new MatTableDataSource<Incident>(incidents);

@@ -13,8 +13,8 @@ export class ProfileService {
   constructor(private httpClient: HttpClient) { }
 
   
-  getIncidencesByUserId(idUser: Number){
-    return this.httpClient.get<Incident[]>(this.incidentUrl+`person/${idUser}`)
+  getIncidences(){
+    return this.httpClient.get<Incident[]>(this.incidentUrl+`all`)
   }
 
 }

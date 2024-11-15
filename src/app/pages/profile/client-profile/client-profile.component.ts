@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
@@ -31,7 +31,8 @@ import { Agente } from '../../auth/user';
     TranslateModule,
     MatCardModule, 
     MatChipsModule, 
-    MatProgressBarModule
+    MatProgressBarModule,
+    RouterModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './client-profile.component.html',

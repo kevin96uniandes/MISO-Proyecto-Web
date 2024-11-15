@@ -181,4 +181,3 @@ export class DashboardComponent implements AfterViewChecked {
     );
   }
 }
-

@@ -337,8 +337,8 @@
           <mat-form-field appearance="outline" class="w-100" id="type-person">
             <mat-label>{{ "TYPE_PERSON" | translate }}</mat-label>
             <mat-select formControlName="personType">
-              <mat-option value="1">Natural</mat-option>
-              <mat-option value="2">{{ "JURIDICAL" | translate }}</mat-option>
+              <mat-option value="Natural">Natural</mat-option>
+              <mat-option [value]="'JURIDICAL' | translate">{{ "JURIDICAL" | translate }}</mat-option>
             </mat-select>
           </mat-form-field>
           <div
@@ -355,11 +355,11 @@
           <mat-form-field appearance="outline" class="w-100" id="type-person">
             <mat-label>{{ "CHOOSE_BANK" | translate }}</mat-label>
             <mat-select formControlName="bank">
-              <mat-option value="1">Caja Social</mat-option>
-              <mat-option value="2">Davivienda</mat-option>
-              <mat-option value="3">BBVA</mat-option>
-              <mat-option value="4">Bancolombia</mat-option>
-              <mat-option value="5">Scotiabank</mat-option>
+              <mat-option value="Caja Social">Caja Social</mat-option>
+              <mat-option value="Davivienda">Davivienda</mat-option>
+              <mat-option value="BBVA">BBVA</mat-option>
+              <mat-option value="Bancolombia">Bancolombia</mat-option>
+              <mat-option value="Scotiabank">Scotiabank</mat-option>
             </mat-select>
           </mat-form-field>
           <div

@@ -111,7 +111,7 @@ export class DetailInvoiceComponent {
     }
 
     goToPayment(){
-      this.router.navigate(['/dashboard/invoice/payment-method']);    
+      this.router.navigate([`/dashboard/invoice/payment-method/${this.invoice.id}`]);    
     }
 
     openInvoiceFile(){
@@ -137,6 +137,8 @@ export class DetailInvoiceComponent {
 
         this.lang = 'es'
         this.translate.use(this.lang)
+        this.storageService.setItem("language", this.lang)
+
       }
 
       if(this.currency === 'USD'){
@@ -148,6 +150,7 @@ export class DetailInvoiceComponent {
 
         this.lang = 'en'
         this.translate.use(this.lang)
+        this.storageService.setItem("language", this.lang)
 
       }
     }

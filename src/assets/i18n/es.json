@@ -217,6 +217,7 @@
     "TYPE_PERSON_REQUIRED": "El tipo de persona es requerido",
     "JURIDICAL": "Juridica",
     "CHOOSE_BANK": "Elige un banco",
+    "BANK": "Banco",
     "BANK_REQUIRED": "El banco es requerido",
     "PRICE": "Precio",
     "CALLS": "Llamadas",
@@ -235,5 +236,6 @@
     "DECEMBER": "Diciembre",
     "INVOICE_DATE": "Fecha de factura",
     "SEND": "ENVIAR",
-    "CLOSE_UPPERCASE": "CERRAR"
+    "CLOSE_UPPERCASE": "CERRAR",
+    "TITLE_PAYMENT_PROCESS": "El sistema ha procesado en pago con exito."
 }

@@ -6,6 +6,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { InvoiceService } from '../invoice.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PaymentDialogComponent } from '../payment-dialog/payment-dialog.component';
+import { StorageService } from '../../../common/storage.service';
 
 
 @Component({
@@ -30,14 +35,24 @@ export class PaymentMethodComponent {
   pseForm!: FormGroup
   isPse!: boolean
   isCreditCard!: boolean
+  idInvoice!: string
 
   constructor(private formBuilder: FormBuilder,
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
+    private route: ActivatedRoute,
+    private router: Router,
+    private storageService: StorageService,
+    private invoiceService: InvoiceService,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit() {
     this.isCreditCard = true
+    this.idInvoice = this.route.snapshot.paramMap.get('invoice_id')!;
+
+    const lang = this.storageService.getItem("language")
+    this.translate.use(lang || 'es')
 
     this.creditCardForm = this.formBuilder.group({
       creditCardNumber: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(16), Validators.pattern('^[0-9]*$')]],
@@ -97,18 +112,47 @@ export class PaymentMethodComponent {
   }
 
   payInvoice() {
+    let paymentMethodId = 0
+
     if (this.isPse) {
       if (!this.pseForm.invalid) {
         console.log(this.pseForm)
+        paymentMethodId = 1
       }else{
         this.showFormErrors(this.pseForm)
       }
     } else if (this.isCreditCard) {
       if (!this.creditCardForm.invalid) {
         console.log(this.creditCardForm)
+        paymentMethodId = 2
       }else{
         this.showFormErrors(this.creditCardForm)
       }
+    }
+    if(paymentMethodId != 0){
+      this.invoiceService.payInvoice(this.idInvoice, paymentMethodId).subscribe({
+        next: (response) => {
+          console.log(response)
+          const dialogRef = this.dialog.open(PaymentDialogComponent, {
+            width: '700px',
+            height: '320px',
+            maxWidth: '700px',
+            disableClose: true,
+            data: {
+              isPse: this.isPse,
+              isCreditCard: this.isCreditCard,
+              pseData: this.pseForm.value,
+              creditCardData: this.creditCardForm.value
+            }
+          });
+  
+          dialogRef.afterClosed().subscribe({
+            next: (response) => {
+              this.router.navigate(['/dashboard/invoice'])
+            }
+           })
+        }
+      })
     }
   }
 

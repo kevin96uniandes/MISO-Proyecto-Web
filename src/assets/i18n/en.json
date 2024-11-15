@@ -214,6 +214,7 @@
   "TYPE_PERSON": "Type person",
   "TYPE_PERSON_REQUIRED": "Person type is required",
   "CHOOSE_BANK": "Choose a bank",
+  "BANK": "Bank",
   "BANK_REQUIRED": "Bank is required",
   "PRICE": "Price",
   "CALLS": "Calls",
@@ -232,5 +233,7 @@
   "DECEMBER": "December",
   "INVOICE_DATE": "Invoice Date",
   "SEND": "SEND",
-  "CLOSE_UPPERCASE": "CLOSE"
+  "CLOSE_UPPERCASE": "CLOSE",
+  "JURIDICAL": "Juridical",
+  "TITLE_PAYMENT_PROCESS": "The system has successfully processed the payment."
 }

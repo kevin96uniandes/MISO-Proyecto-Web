@@ -39,7 +39,7 @@ export const routes: Routes = [
       { path: 'plans', component: SelectPlanComponent, data: { role: 'cliente' }  },
       { path: 'details-call', component: CallrecorddetailsComponent },
       { path: 'invoice', component: DetailInvoiceComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  },
-      { path: 'invoice/payment-method', component: PaymentMethodComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  }
+      { path: 'invoice/payment-method/:invoice_id', component: PaymentMethodComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  }
     ]
   },
   { path: 'register/client', component: RegisterClientComponent },

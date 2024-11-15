@@ -25,4 +25,14 @@ export class InvoiceService {
   sendInvoicePdfFile(request: any){
     return this.httpClient.post(this.invoiceUrl+`send-email`, request)
   }
+
+  payInvoice(idInvoice: string, paymentMethodId: number){
+
+    const request = {
+      "id_invoice": idInvoice,
+      "payment_method_id": paymentMethodId
+    } 
+
+    return this.httpClient.post(this.invoiceUrl+`pay`, request)
+  }
 }

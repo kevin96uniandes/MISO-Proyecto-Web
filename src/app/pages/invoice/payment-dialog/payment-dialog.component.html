@@ -1,0 +1,64 @@
+<mat-dialog-content>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <h1 class="title">
+                {{"TITLE_PAYMENT_PROCESS" | translate}}
+            </h1>
+        </div>
+    </div>
+    <div *ngIf="isCreditCard">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <h5><strong i18n>{{ "CREDIT_CARD_NUMBER" | translate}}: </strong>{{ creditCardData.creditCardNumber }}</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <h5><strong i18n>{{ "TITLE_NAME" | translate}}: </strong>{{ creditCardData.ownerName }}</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <h5><strong i18n>{{ "EXPIRATION_DATE" | translate}}: </strong>{{ creditCardData.expirationDate }}</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <h5><strong i18n>CVV: </strong>{{ creditCardData.cvv }}</h5>
+            </div>
+        </div>    
+    </div>
+    <div *ngIf="isPse">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <h5><strong i18n>{{ "TITLE_NAME" | translate}}: </strong>{{ pseData.ownerName }}</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <h5><strong i18n>{{ "IDENTITY_TYPE" | translate}}: </strong>{{ pseData.identityType | translateDocumentType}}</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <h5><strong i18n>{{ "IDENTITY_NUMBER" | translate}}: </strong>{{ pseData.identityNumber }}</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <h5><strong i18n>{{ "TYPE_PERSON" | translate}}: </strong>{{ pseData.personType}}</h5>
+            </div>
+        </div> 
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <h5><strong i18n>{{ "BANK" | translate}}: </strong>{{ pseData.bank }}</h5>
+            </div>
+        </div>    
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: center; margin-bottom: 10px">
+            <button i18n type="button" (click)="onClose()" mat-raised-button id="go-back" class="btn-form-secondary" style="width: 180px;">{{ 'CANCEL' | translate }}</button>
+        </div>
+    </div>
+</mat-dialog-content>
+

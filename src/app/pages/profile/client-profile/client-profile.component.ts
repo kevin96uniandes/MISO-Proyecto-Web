@@ -27,7 +27,7 @@ import { ProfileService } from '../profile.service';
 })
 export class ClientProfileComponent implements AfterViewInit {
 
-  response: any | null = null;
+  userResponse: any | null = null;
 
   displayedColumns: string[] = ['acciones', 'code', 'description', 'subject', 'createdAt', 'updatedAt'];
   dataIncidents!: MatTableDataSource<Incident>
@@ -63,12 +63,11 @@ export class ClientProfileComponent implements AfterViewInit {
 
     this.profileService.getUser(userId).subscribe(
       (response) => {
-        this.response = response;
-        console.log(response)
+        this.userResponse = response;
       },
       (error) => {
         console.error('Error al obtener el plan activo:', error);
-        this.response = null;
+        this.userResponse = null;
       }
     );
 

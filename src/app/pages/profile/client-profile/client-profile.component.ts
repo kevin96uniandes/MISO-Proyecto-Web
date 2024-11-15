@@ -10,6 +10,11 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Incident } from '../../incident/interfaces/incident';
 import { StorageService } from '../../../common/storage.service';
 import { ProfileService } from '../profile.service';
+import {ChangeDetectionStrategy } from '@angular/core';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatCardModule} from '@angular/material/card';
+import {MatChipsModule} from '@angular/material/chips';
+
 
 @Component({
   selector: 'app-client-profile',
@@ -21,13 +26,34 @@ import { ProfileService } from '../profile.service';
     MatIconModule,
     MatSortModule,
     FormsModule,
-    TranslateModule],
+    TranslateModule,
+    MatCardModule, 
+    MatChipsModule, 
+    MatProgressBarModule
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './client-profile.component.html',
   styleUrls: ['./client-profile.component.css']
 })
 export class ClientProfileComponent implements AfterViewInit {
 
+  longText = `The Chihuahua is a Mexican breed of toy dog. It is named for the
+  Mexican state of Chihuahua and is among the smallest of all dog breeds. It is
+  usually kept as a companion animal or for showing.`;
+
+  documentTypes = {
+    1: "Cédula de ciudadania",
+    2: "Cédula de extrangería"
+  }
+
   userResponse: any | null = null;
+  userName: string | null = null;
+  documentType: string | null = null;
+  documentTypeString: string | null = null;
+  documentNumber: string | null = null;
+  lastUpdate: string | null = null;
+  phone: string | null = null;
+  email: string | null = null;
 
   displayedColumns: string[] = ['acciones', 'code', 'description', 'subject', 'createdAt', 'updatedAt'];
   dataIncidents!: MatTableDataSource<Incident>
@@ -63,7 +89,14 @@ export class ClientProfileComponent implements AfterViewInit {
 
     this.profileService.getUser(userId).subscribe(
       (response) => {
+        console.log(response)
         this.userResponse = response;
+        this.userName = this.userResponse["nombre_usuario"]
+        this.documentType = this.userResponse["persona"]["tipo_identificacion"]
+        this.documentNumber = this.userResponse["persona"]["numero_identificacion"]   
+        this.lastUpdate = this.userResponse["fecha_actualizacion"]
+        this.phone = this.userResponse["persona"]["telefono"]
+        this.email = this.userResponse["persona"]["correo_electronico"]
       },
       (error) => {
         console.error('Error al obtener el plan activo:', error);

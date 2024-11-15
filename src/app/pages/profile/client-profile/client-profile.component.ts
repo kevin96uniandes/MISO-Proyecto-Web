@@ -27,6 +27,8 @@ import { ProfileService } from '../profile.service';
 })
 export class ClientProfileComponent implements AfterViewInit {
 
+  response: any | null = null;
+
   displayedColumns: string[] = ['acciones', 'code', 'description', 'subject', 'createdAt', 'updatedAt'];
   dataIncidents!: MatTableDataSource<Incident>
 
@@ -44,7 +46,9 @@ export class ClientProfileComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     let decoded = JSON.parse(this.storageService.getItem("decodedToken")!!);
-    
+
+    let userId = decoded["id"];
+
     this.profileService.getIncidences().subscribe({
       next: (incidents: Incident[]) => {
         
@@ -55,6 +59,18 @@ export class ClientProfileComponent implements AfterViewInit {
         this.cdr.detectChanges();
       }
     })
+
+
+    this.profileService.getUser(userId).subscribe(
+      (response) => {
+        this.response = response;
+        console.log(response)
+      },
+      (error) => {
+        console.error('Error al obtener el plan activo:', error);
+        this.response = null;
+      }
+    );
 
   }
 

@@ -10,10 +10,12 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Incident } from '../../incident/interfaces/incident';
 import { StorageService } from '../../../common/storage.service';
 import { ProfileService } from '../profile.service';
+import { ListService } from '../../list/list.service';
 import {ChangeDetectionStrategy } from '@angular/core';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCardModule} from '@angular/material/card';
 import {MatChipsModule} from '@angular/material/chips';
+import { Agente } from '../../auth/user';
 
 
 @Component({
@@ -37,9 +39,7 @@ import {MatChipsModule} from '@angular/material/chips';
 })
 export class ClientProfileComponent implements AfterViewInit {
 
-  longText = `The Chihuahua is a Mexican breed of toy dog. It is named for the
-  Mexican state of Chihuahua and is among the smallest of all dog breeds. It is
-  usually kept as a companion animal or for showing.`;
+  dataAgents!: MatTableDataSource<Agente>
 
   documentTypes = {
     1: "Cédula de ciudadania",
@@ -58,6 +58,8 @@ export class ClientProfileComponent implements AfterViewInit {
   displayedColumns: string[] = ['acciones', 'code', 'description', 'subject', 'createdAt', 'updatedAt'];
   dataIncidents!: MatTableDataSource<Incident>
 
+  agentDisplayedColumns: string[] = ['acciones', 'nombreUsuario', 'identificacion', 'nombreCompleto', 'correoElectronico', 'telefono'];
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -67,13 +69,16 @@ export class ClientProfileComponent implements AfterViewInit {
     private translate: TranslateService,
     private storageService: StorageService,
     private cdr: ChangeDetectorRef,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private listAgentService: ListService,
+    
   ) { }
 
   ngAfterViewInit() {
     let decoded = JSON.parse(this.storageService.getItem("decodedToken")!!);
-
+    
     let userId = decoded["id"];
+    
 
     this.profileService.getIncidences().subscribe({
       next: (incidents: Incident[]) => {
@@ -103,6 +108,20 @@ export class ClientProfileComponent implements AfterViewInit {
         this.userResponse = null;
       }
     );
+
+    let empresa_id = decoded["id_company"];
+
+    this.listAgentService.getAgentsByIdCompany(empresa_id).subscribe({
+      next: (agents: Agente[]) => {
+        console.log(agents);
+
+        this.dataAgents = new MatTableDataSource<Agente>(agents);
+        this.dataAgents.paginator = this.paginator;
+        this.dataAgents.sort = this.sort;
+
+        this.cdr.detectChanges();
+      }
+    })
 
   }
 

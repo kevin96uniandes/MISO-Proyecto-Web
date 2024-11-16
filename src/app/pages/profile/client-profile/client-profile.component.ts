@@ -100,7 +100,15 @@ export class ClientProfileComponent implements AfterViewInit {
         console.log(response)
         this.userResponse = response;
         this.userName = this.userResponse["nombre_usuario"]
-        this.documentType = this.userResponse["persona"]["tipo_identificacion"]
+        
+        if (this.userResponse["persona"]["tipo_identificacion"] == 1) {
+          this.documentType = "Cédula de ciudadania"
+        }else if (this.userResponse["persona"]["tipo_identificacion"] == 2) {
+          this.documentType = "NIT"
+        }else if (this.userResponse["persona"]["tipo_identificacion"] == 3){
+          this.documentType = "Cédula de extrangeria"
+        }
+
         this.documentNumber = this.userResponse["persona"]["numero_identificacion"]   
         this.lastUpdate = this.userResponse["fecha_actualizacion"]
         this.phone = this.userResponse["persona"]["telefono"]

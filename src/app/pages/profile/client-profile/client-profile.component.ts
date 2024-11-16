@@ -128,4 +128,8 @@ export class ClientProfileComponent implements AfterViewInit {
 
   }
 
+  goToIncidentDetail(id: number){
+    this.router.navigate(['/dashboard/incident/detail/', id]);
+  }
+
 }

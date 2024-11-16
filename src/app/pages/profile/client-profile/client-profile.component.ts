@@ -36,14 +36,17 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     RouterModule,
     MatButtonToggleModule
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './client-profile.component.html',
   styleUrls: ['./client-profile.component.css']
 })
 export class ClientProfileComponent implements AfterViewInit {
 
-  dataAgents!: MatTableDataSource<Agente>
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
+  dataIncidences!: MatTableDataSource<Incident>
+  dataAgents!: MatTableDataSource<Agente>
+  
   documentTypes = {
     1: "Cédula de ciudadania",
     2: "Cédula de extrangería"
@@ -62,10 +65,6 @@ export class ClientProfileComponent implements AfterViewInit {
   dataIncidents!: MatTableDataSource<Incident>
 
   agentDisplayedColumns: string[] = ['acciones', 'nombreUsuario', 'identificacion', 'nombreCompleto', 'correoElectronico', 'telefono'];
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-
 
   constructor(
     private router: Router,
@@ -140,4 +139,12 @@ export class ClientProfileComponent implements AfterViewInit {
     this.router.navigate(['/dashboard/incident/detail/', id]);
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataAgents.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataAgents.paginator) {
+      this.dataAgents.paginator.firstPage();
+    }
+  }
 }

@@ -82,3 +82,79 @@
 .mdc-list-item.mdc-list-item--with-one-line {
   height: auto !important;
 }
+
+/* Menú IA */
+.menu-container {
+  height: 100vh;
+}
+
+.menu-drawer {
+  width: 25%;
+}
+
+.chat-drawer {
+  width: 25%;
+}
+
+.chat-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 8px; /* Reduce el padding para aprovechar mejor el espacio */
+  box-sizing: border-box; /* Asegura que el padding no aumente el tamaño total */
+}
+
+.responses {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-bottom: 30px;
+  margin-bottom: 8px;
+  padding-right: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bubble-ia {
+  display: flex;
+  flex-direction: row;
+  padding: 6px;
+  background-color: #f1f1f1;
+  margin-bottom: 6px;
+  border-radius: 4px;
+  max-width: 70%;
+  float: right;
+}
+
+.bubble-user {
+  display: flex;
+  flex-direction: row;
+  padding: 6px;
+  background-color: rgba($abcall-primary-color, 0.2);
+  margin-bottom: 6px;
+  border-radius: 4px;
+  max-width: 80%;
+  float: left;
+}
+
+button.mat-icon-button {
+  min-width: auto; /* Asegura que el botón mantenga su tamaño de ícono */
+  padding: 8px; /* Reduce el padding si el botón es demasiado grande */
+}
+
+.floating-button {
+  position: fixed;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.ia-icon{
+  width: 56px;
+}
+
+.loading-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0; /* Ajusta el margen según tus necesidades */
+}

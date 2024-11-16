@@ -17,6 +17,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatChipsModule} from '@angular/material/chips';
 import { Agente } from '../../auth/user';
 
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-client-profile',
@@ -33,6 +34,7 @@ import { Agente } from '../../auth/user';
     MatChipsModule, 
     MatProgressBarModule,
     RouterModule,
+    MatButtonToggleModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './client-profile.component.html',

@@ -88,7 +88,7 @@ describe('ListService', () => {
       es_activo: true
     };
 
-    
+  
     const userId = 1;
 
     service.getUser(userId).subscribe(user => {

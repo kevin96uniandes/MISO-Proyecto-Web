@@ -12,6 +12,13 @@ import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { EventEmitter } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 
 describe('ClientProfileComponent', () => {
@@ -21,10 +28,30 @@ describe('ClientProfileComponent', () => {
   let translateService: any;
   let translateServiceMock: any;
   let storageServiceMock: jasmine.SpyObj<StorageService>;
+  let profileServiceMock: jasmine.SpyObj<ProfileService>;
 
-  beforeEach(waitForAsync(() => {
+  const mockAgents = [
+    {
+      id: 1,
+      nombre_usuario: 'user1',
+      numero_identificacion: '123',
+      nombre_completo: 'User One',
+      telefono: '123456789',
+      correo_electronico: 'user1@example.com',
+    },
+    {
+      id: 2,
+      nombre_usuario: 'user2',
+      numero_identificacion: '456',
+      nombre_completo: 'User Two',
+      telefono: '987654321',
+      correo_electronico: 'user2@example.com',
+    }
+  ];
+
+  beforeEach(async () =>  {
     
-    const listServiceSpy = jasmine.createSpyObj('ListService', ['getAgentsByIdCompany']);
+    const profileServiceSpy = jasmine.createSpyObj('ProfileService', ['getAgentsByIdCompany']);
     const storageServiceSpy = jasmine.createSpyObj('StorageService', ['getItem']);
     translateService = jasmine.createSpyObj('TranslateService', ['use', 'get']);
 
@@ -41,30 +68,40 @@ describe('ClientProfileComponent', () => {
     translateServiceMock.use.and.returnValue(of({}));
 
     
-
-    TestBed.configureTestingModule({
-      imports: [ ClientProfileComponent, NoopAnimationsModule, ],
+    await TestBed.configureTestingModule({
+      imports: [ 
+        ClientProfileComponent, 
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatInputModule,
+        MatIconModule,
+        FormsModule,
+        RouterTestingModule,
+        NoopAnimationsModule,
+      ],
       providers: [
         { provide: TranslateService, useValue: translateServiceMock },
-        { provide: ProfileService, useValue: listServiceSpy },
+        { provide: ProfileService, useValue: profileServiceSpy },
         { provide: StorageService, useValue: storageServiceSpy },
         { provide: ActivatedRoute, useValue: {} },
        ]
-    })
-    
-    .compileComponents();
-  }));
+    }).compileComponents();
+  
+  profileServiceMock = TestBed.inject(ProfileService) as jasmine.SpyObj<ProfileService>;
+  storageServiceMock = TestBed.inject(StorageService) as jasmine.SpyObj<StorageService>;
+  storageServiceMock.getItem.and.returnValue(JSON.stringify({ id_company: 2 }));
+  profileServiceMock.getAgentsByIdCompany.and.returnValue(of(mockAgents));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ClientProfileComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-  /*
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-  */
+  fixture = TestBed.createComponent(ClientProfileComponent);
+  component = fixture.componentInstance;
+  router = TestBed.inject(Router);
+  fixture.detectChanges();
 
+});
+  
+it('should create', () => {
+  expect(component).toBeTruthy();
+});
   
 });

@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { environment } from '../../../environments/environment';
 import { provideHttpClient } from '@angular/common/http';
-import { Agente, User } from '../auth/user';
+import { User } from '../auth/user';
 import { ProfileService } from './profile.service';
 import { Incident } from '../incident/interfaces/incident';
 

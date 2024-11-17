@@ -9,6 +9,9 @@ import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { StorageService } from '../../../common/storage.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+import { EventEmitter } from '@angular/core';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 
 describe('ClientProfileComponent', () => {
@@ -25,8 +28,22 @@ describe('ClientProfileComponent', () => {
     const storageServiceSpy = jasmine.createSpyObj('StorageService', ['getItem']);
     translateService = jasmine.createSpyObj('TranslateService', ['use', 'get']);
 
+    translateServiceMock = {
+      currentLang: 'es',
+      onLangChange: new EventEmitter<LangChangeEvent>(),
+      use: translateService.get,
+      get: translateService.get.and.returnValue(of('')),
+      onTranslationChange: new EventEmitter(),
+      onDefaultLangChange: new EventEmitter()
+    };
+
+    translateServiceMock.get.and.returnValue(of({})); 
+    translateServiceMock.use.and.returnValue(of({}));
+
+    
+
     TestBed.configureTestingModule({
-      imports: [ ClientProfileComponent ],
+      imports: [ ClientProfileComponent, NoopAnimationsModule, ],
       providers: [
         { provide: TranslateService, useValue: translateServiceMock },
         { provide: ProfileService, useValue: listServiceSpy },

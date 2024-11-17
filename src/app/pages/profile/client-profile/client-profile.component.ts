@@ -64,6 +64,8 @@ export class ClientProfileComponent implements AfterViewInit {
 
   agentDisplayedColumns: string[] = ['acciones', 'nombreUsuario', 'identificacion', 'nombreCompleto', 'correoElectronico', 'telefono'];
 
+  selectedValue: string = '';
+  
   constructor(
     private router: Router,
     private translate: TranslateService,
@@ -71,8 +73,12 @@ export class ClientProfileComponent implements AfterViewInit {
     private cdr: ChangeDetectorRef,
     private profileService: ProfileService
   ) { }
-
+  
   ngAfterViewInit() {
+    const lang = this.storageService.getItem("language")
+    this.selectedValue = lang || 'es';
+    this.translate.use(this.selectedValue)
+
     let decoded = JSON.parse(this.storageService.getItem("decodedToken")!!);
     
     let userId = decoded["id"];

@@ -28,7 +28,7 @@
 
     <div class="col-lg-8 col-md-8 col-sm-8" style="margin-top: 1%">
       <h6 class="title-text-color title-size">{{ 'Listado de incidencias' | translate }}</h6>
-      <table mat-table [dataSource]="dataIncidents" matSort class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataIncidents" matSort class="mat-elevation-z8" id="incidences-table">
         <ng-container matColumnDef="acciones">
           <th mat-header-cell *matHeaderCellDef> {{ 'ACTIONS' | translate }} </th>
           <td mat-cell *matCellDef="let element">
@@ -39,27 +39,27 @@
         </ng-container>
         
         <ng-container matColumnDef="code">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CODE' | translate }} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header id="th-code">{{ 'CODE' | translate }} </th>
           <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
         </ng-container>
 
         <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'DESCRIPTION' | translate }} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header id="th-description">{{ 'DESCRIPTION' | translate }} </th>
           <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
         </ng-container>
 
         <ng-container matColumnDef="subject">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SUBJECT' | translate }} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header id="th-subject">{{ 'SUBJECT' | translate }} </th>
           <td mat-cell *matCellDef="let element"> {{element.asunto}} </td>
         </ng-container>
 
         <ng-container matColumnDef="createdAt">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CREATED_AT' | translate }} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header id="th-created-at">{{ 'CREATED_AT' | translate }} </th>
           <td mat-cell *matCellDef="let element"> {{element.fecha_creacion}} </td>
         </ng-container>
         
         <ng-container matColumnDef="updatedAt">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'UPDATED_AT' | translate }} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header id="th-updated-at"> {{ 'UPDATED_AT' | translate }} </th>
           <td mat-cell *matCellDef="let element"> {{element.fecha_actualizacion}} </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -100,9 +100,9 @@
     
     <div class="col-lg-8 col-md-8 col-sm-8" style="margin-top: 1%">
       <h6 class="title-text-color title-size">{{ 'Listado de agentes' | translate }}</h6>
-      <table mat-table [dataSource]="dataAgents" matSort class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataAgents" matSort class="mat-elevation-z8" id="agents-table">
         <ng-container matColumnDef="acciones">
-          <th mat-header-cell *matHeaderCellDef> {{ 'ACTIONS' | translate }} </th>
+          <th mat-header-cell *matHeaderCellDef id="th-actions-agent"> {{ 'ACTIONS' | translate }} </th>
           <td mat-cell *matCellDef="let element">
             <button mat-icon-button aria-label="Ver detalles" id="detail-agent">
               <mat-icon id="color-eye" style="color: #82BDAE;">visibility</mat-icon>
@@ -110,25 +110,25 @@
           </td>
         </ng-container>
         <ng-container matColumnDef="nombreUsuario">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'USER' | translate }} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header id="th-user">{{ 'USER' | translate }} </th>
           <td mat-cell *matCellDef="let element"> {{element.nombre_usuario}} </td>
         </ng-container>
         <!-- Columna de Identificación -->
         <ng-container matColumnDef="identificacion">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'IDENTIFICATION' | translate }} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header id="th-identification-agent">{{ 'IDENTIFICATION' | translate }} </th>
           <td mat-cell *matCellDef="let element"> {{element.numero_identificacion}} </td>
         </ng-container>
         <!-- Columna de Nombre completo -->
         <ng-container matColumnDef="nombreCompleto">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'FULL_NAME' | translate }} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header id="th-fullname">{{ 'FULL_NAME' | translate }} </th>
           <td mat-cell *matCellDef="let element"> {{element.nombre_completo}} </td>
         </ng-container>
         <ng-container matColumnDef="correoElectronico">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'EMAIL' | translate }} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header id="th-email"> {{ 'EMAIL' | translate }} </th>
           <td mat-cell *matCellDef="let element"> {{element.correo_electronico}} </td>
         </ng-container>
         <ng-container matColumnDef="telefono">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'PHONE' | translate }} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header id="th-phone"> {{ 'PHONE' | translate }} </th>
           <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="agentDisplayedColumns"></tr>

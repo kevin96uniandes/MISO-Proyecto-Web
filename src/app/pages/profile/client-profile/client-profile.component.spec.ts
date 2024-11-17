@@ -8,6 +8,7 @@ import { ProfileService } from '../profile.service';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { StorageService } from '../../../common/storage.service';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 
 describe('ClientProfileComponent', () => {
@@ -30,6 +31,7 @@ describe('ClientProfileComponent', () => {
         { provide: TranslateService, useValue: translateServiceMock },
         { provide: ProfileService, useValue: listServiceSpy },
         { provide: StorageService, useValue: storageServiceSpy },
+        { provide: ActivatedRoute, useValue: {} },
        ]
     })
     

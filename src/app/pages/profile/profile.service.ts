@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Incident } from '../incident/interfaces/incident';
-import { User } from '../auth/user';
+import { Agente, User } from '../auth/user';
 
 
 @Injectable({
@@ -22,6 +22,10 @@ export class ProfileService {
 
   getUser(userId: Number){
     return this.httpClient.get<User>(this.userUrl+`get/${userId}`)
+  }
+
+  getAgentsByIdCompany(idCompany: Number){
+    return this.httpClient.get<Agente[]>(this.userUrl+`agent/${idCompany}`)
   }
 
 }

@@ -10,8 +10,6 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Incident } from '../../incident/interfaces/incident';
 import { StorageService } from '../../../common/storage.service';
 import { ProfileService } from '../profile.service';
-import { ListService } from '../../list/list.service';
-import {ChangeDetectionStrategy } from '@angular/core';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCardModule} from '@angular/material/card';
 import {MatChipsModule} from '@angular/material/chips';
@@ -71,9 +69,7 @@ export class ClientProfileComponent implements AfterViewInit {
     private translate: TranslateService,
     private storageService: StorageService,
     private cdr: ChangeDetectorRef,
-    private profileService: ProfileService,
-    private listAgentService: ListService,
-    
+    private profileService: ProfileService
   ) { }
 
   ngAfterViewInit() {
@@ -121,7 +117,7 @@ export class ClientProfileComponent implements AfterViewInit {
 
     let empresa_id = decoded["id_company"];
 
-    this.listAgentService.getAgentsByIdCompany(empresa_id).subscribe({
+    this.profileService.getAgentsByIdCompany(empresa_id).subscribe({
       next: (agents: Agente[]) => {
         console.log(agents);
 

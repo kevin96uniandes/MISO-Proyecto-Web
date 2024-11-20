@@ -16,6 +16,8 @@ import { ListComponent } from './pages/incident/list/list.component';
 import { DetailComponent } from './pages/incident/detail/detail.component';
 import { CallrecorddetailsComponent } from './pages/incident/callrecorddetails/callrecorddetails.component';
 import { RoleGuard } from './pages/dashboard/role.guard';
+import { DetailInvoiceComponent } from './pages/invoice/detail-invoice/detail-invoice.component';
+import { PaymentMethodComponent } from './pages/invoice/payment-method/payment-method.component';
 import { BoardComponent } from './pages/board/board.component';
 
 export const routes: Routes = [
@@ -33,10 +35,13 @@ export const routes: Routes = [
       { path: 'ranking', component: RankingComponent, canActivate: [RoleGuard], data: { role: 'agente' } },
       { path: 'incident/list', component: ListComponent },
       { path: 'incident/detail/:id', component: DetailComponent },
-      { path: 'list/agents', component: ListAgentsComponent },
-      { path: 'register/agent', component: RegisterAgentComponent },
-      { path: 'plans', component: SelectPlanComponent },
+      { path: 'list/agents', component: ListAgentsComponent, data: { role: 'cliente' }  },
+      { path: 'register/agent', component: RegisterAgentComponent, data: { role: 'cliente' }  },
+      { path: 'plans', component: SelectPlanComponent, data: { role: 'cliente' }  },
       { path: 'details-call', component: CallrecorddetailsComponent },
+      { path: 'invoice', component: DetailInvoiceComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  },
+      { path: 'invoice/payment-method/:invoice_id', component: PaymentMethodComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  }
+      { path: 'list/agents', component: ListAgentsComponent },
       { path: 'board', component: BoardComponent}
     ]
   },

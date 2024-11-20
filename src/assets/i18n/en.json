@@ -248,5 +248,7 @@
   "TITLE_LINES_CHART": "Incidents by Status and Update Date",
   "TABLE_INCIDENTS": "Table of incidents",
   "CODE": "Code",
-  "UPDATE_DATE": "Update date"
+  "UPDATE_DATE": "Update date",
+  "CLIENT_INFORMATION": "Client information",
+  "CHANGE_PASSWORD": "Change password"
 }

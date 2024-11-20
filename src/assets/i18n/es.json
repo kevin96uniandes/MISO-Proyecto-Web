@@ -250,5 +250,7 @@
     "TITLE_LINES_CHART": "Incidentes por Estado y Fecha de Actualización",
     "TABLE_INCIDENTS": "Tabla de incidentes",
     "CODE": "Código",
-    "UPDATE_DATE": "Fecha de actualización"
+    "UPDATE_DATE": "Fecha de actualización",
+    "CLIENT_INFORMATION": "Información de cliente",
+    "CHANGE_PASSWORD": "Cambio de contraseña"
 }

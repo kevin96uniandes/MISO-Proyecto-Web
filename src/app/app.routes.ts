@@ -16,6 +16,7 @@ import { ListComponent } from './pages/incident/list/list.component';
 import { DetailComponent } from './pages/incident/detail/detail.component';
 import { CallrecorddetailsComponent } from './pages/incident/callrecorddetails/callrecorddetails.component';
 import { RoleGuard } from './pages/dashboard/role.guard';
+import { ClientProfileComponent } from './pages/profile/client-profile/client-profile.component';
 import { DetailInvoiceComponent } from './pages/invoice/detail-invoice/detail-invoice.component';
 import { PaymentMethodComponent } from './pages/invoice/payment-method/payment-method.component';
 import { BoardComponent } from './pages/board/board.component';
@@ -39,6 +40,7 @@ export const routes: Routes = [
       { path: 'register/agent', component: RegisterAgentComponent, data: { role: 'cliente' }  },
       { path: 'plans', component: SelectPlanComponent, data: { role: 'cliente' }  },
       { path: 'details-call', component: CallrecorddetailsComponent },
+      { path: 'profile', component: ClientProfileComponent},
       { path: 'invoice', component: DetailInvoiceComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  },
       { path: 'invoice/payment-method/:invoice_id', component: PaymentMethodComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  }
       { path: 'list/agents', component: ListAgentsComponent },

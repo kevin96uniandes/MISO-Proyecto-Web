@@ -1,0 +1,20 @@
+.example-card {
+    max-width: 400px;
+    border-color: #82BDAE;
+  }
+  
+.example-card-footer {
+padding: 16px;
+}
+
+.custom-mat-button-toggle{
+  background-color: #82BDAE;
+  color: white;
+}
+
+
+.custom-register-button{
+  background-color: #82BDAE;
+  color: white;
+  width: 100%
+}

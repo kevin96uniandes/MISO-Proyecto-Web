@@ -198,5 +198,8 @@
     "TITLE_LINES_CHART": "Incidentes por Estado y Fecha de Actualización",
     "TABLE_INCIDENTS": "Tabla de incidentes",
     "CODE": "Código",
-    "UPDATE_DATE": "Fecha de actualización"
+    "UPDATE_DATE": "Fecha de actualización",
+    "CREATE_REPORT": "Crear reporte",
+    "REPORT_NAME": "Nombre del reporte",
+    "MAIL": "ENVIAR POR CORREO"
 }

@@ -17,6 +17,7 @@ import { DetailComponent } from './pages/incident/detail/detail.component';
 import { CallrecorddetailsComponent } from './pages/incident/callrecorddetails/callrecorddetails.component';
 import { RoleGuard } from './pages/dashboard/role.guard';
 import { BoardComponent } from './pages/board/board.component';
+import { ReportComponent } from './pages/report/report.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
@@ -37,11 +38,12 @@ export const routes: Routes = [
       { path: 'register/agent', component: RegisterAgentComponent },
       { path: 'plans', component: SelectPlanComponent },
       { path: 'details-call', component: CallrecorddetailsComponent },
-      { path: 'board', component: BoardComponent}
+      { path: 'board', component: BoardComponent},
+      { path: 'report', component: ReportComponent}
     ]
   },
   { path: 'register/client', component: RegisterClientComponent },
-  { path: 'board', component: BoardComponent},
+  { path: 'report', component: ReportComponent},
   { path: '', redirectTo:'/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' }
 ];

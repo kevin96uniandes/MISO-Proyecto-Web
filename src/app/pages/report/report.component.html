@@ -1,0 +1,68 @@
+<div class="container-fluid">
+  <div class="row">
+    <h4 class="title-text-color title-size title">{{ 'CREATE_REPORT' | translate }}</h4>
+  </div>
+  <form [formGroup]="reportForm">
+    <div class="row">
+      <div class="col-4"> &nbsp; </div>
+      <div class="col-4">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>{{ 'REPORT_NAME' | translate }}</mat-label>
+          <input id="nombre_reporte" formControlName="nombre_reporte" matInput [placeholder]="'REPORT_NAME' | translate">
+        </mat-form-field>
+        <div class="alert alert-danger alert-dismissible fade show" *ngIf="reportForm.get('nombre_reporte')!.hasError('required') && reportForm.get('nombre_reporte')!.touched">
+            {{ 'REQUIRED_NAME' | translate }}
+        </div>
+        <mat-form-field class="w-100 input-date">
+          <mat-label>{{ 'START_DATE' | translate }}</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="fecha_inicio">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="w-100 input-date">
+          <mat-label>{{ 'END_DATE' | translate }}</mat-label>
+          <input matInput [matDatepicker]="picker1" formControlName="fecha_fin">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-100" id="status">
+          <mat-label>{{ 'STATUS' | translate }}</mat-label>
+          <mat-select formControlName="estado_id">
+            <mat-option value="1">{{ 'OPEN' | translate }}</mat-option>
+            <mat-option value="2">{{ 'DISMISSED' | translate }}</mat-option>
+            <mat-option value="3">{{ 'ESCALATED' | translate }}</mat-option>
+            <mat-option value="4">{{ 'CLOSED_SATISFACTORILY' | translate }}</mat-option>
+            <mat-option value="5">{{ 'CLOSED_UNSATISFACTORILY' | translate }}</mat-option>
+            <mat-option value="6">{{ 'REOPENED' | translate }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-100" id="type">
+          <mat-label>{{ 'TYPE' | translate }}</mat-label>
+          <mat-select formControlName="tipo_id">
+            <mat-option value="1">{{ 'REQUEST' | translate }}</mat-option>
+            <mat-option value="2">{{ 'COMPLAIN-CLAIM' | translate }}</mat-option>
+            <mat-option value="3">{{ 'SUGGESTION' | translate }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-100" id="channel">
+          <mat-label>{{ 'INCIDENT_CHANNEL' | translate }}</mat-label>
+          <mat-select formControlName="canal_id">
+            <mat-option value="1">{{ 'PHONE_CALL' | translate }}</mat-option>
+            <mat-option value="2">{{ 'EMAIL' | translate }}</mat-option>
+            <mat-option value="3">{{ 'MOBILE_APP' | translate }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-4"> &nbsp; </div>
+    </div>
+    <div class="row">
+      <div class="col-12 buttons">
+        <button mat-flat-button class="btn-abc-primary button-clean" color="primary" >{{ 'CLEAN_FILTER' | translate }}</button>
+        <button mat-flat-button class="btn-abc-primary button-create" color="primary" (click)="saveReport()">{{ 'CREATE_REPORT' | translate }}</button>
+        <button mat-flat-button class="btn-abc-primary button-email" color="primary">{{ 'MAIL' | translate }}</button>
+      </div>
+    </div>
+  </form>
+</div>

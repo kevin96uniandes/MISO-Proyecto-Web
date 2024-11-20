@@ -24,8 +24,8 @@
         <mat-icon matListIcon class="sidebar-color-item">dashboard</mat-icon>
         <span matLine class="sidebar-color-item">{{ 'DASHBOARD' | translate }}</span>
       </a>
-      <a *ngIf="currentMenuUser.reportes" mat-list-item routerLink="/reportes" class="menu-item text-center">
-        <mat-icon matListIcon class="sidebar-color-item">description</mat-icon>
+      <a *ngIf="currentMenuUser.reportes" mat-list-item [routerLink]="['/dashboard/report']" class="menu-item text-center" id="report-dashboard">
+        <mat-icon matListIcon class="sidebar-color-item">summarize</mat-icon>
         <span matLine class="sidebar-color-item">{{ 'REPORTS' | translate }}</span>
       </a>
       <a *ngIf="currentMenuUser.facturas" mat-list-item routerLink="/facturas" class="menu-item text-center">

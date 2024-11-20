@@ -196,5 +196,8 @@
   "TITLE_LINES_CHART": "Incidents by Status and Update Date",
   "TABLE_INCIDENTS": "Table of incidents",
   "CODE": "Code",
-  "UPDATE_DATE": "Update date"
+  "UPDATE_DATE": "Update date",
+  "CREATE_REPORT": "Create report",
+  "REPORT_NAME": "Report name",
+  "MAIL": "MAIL"
 }

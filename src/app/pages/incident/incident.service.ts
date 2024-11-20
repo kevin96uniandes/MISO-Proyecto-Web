@@ -58,9 +58,8 @@ export class IncidentService {
 
   updateIncident(idIncident: Number, formData: FormData) {
     return this.httpClient.put(this.incidentUrl+`update/${idIncident}`,formData)
-
   }
-  
+
   getCallById(callId: number) {
     return this.httpClient.get<Call>(this.incidentUrl+`call/${callId}`);
   }

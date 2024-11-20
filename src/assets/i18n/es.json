@@ -164,7 +164,7 @@
     "INCIDENTS_LIST": "Listado de incidencias",
     "INCIDENT_IDENTIFIER": "Identificador de incidencia",
     "IDENTITY_NUMBER_CLIENT": "Numero documento cliente",
-    "CLEAN_FILTER": "LIMPIAR FILTRO",    
+    "CLEAN_FILTER": "LIMPIAR FILTRO",
     "SEARCH_INCIDENT": "BUSCAR",
     "OPEN": "Abierto",
     "DISMISSED": "Desestimado",
@@ -238,5 +238,17 @@
     "SEND": "ENVIAR",
     "CLOSE_UPPERCASE": "CERRAR",
     "TITLE_PAYMENT_PROCESS": "El sistema ha procesado en pago con exito.",
-    "SEND_EMAIL_SUCCESS": "Se ha enviado exitosamente la factura al correo {{email}}"
+    "SEND_EMAIL_SUCCESS": "Se ha enviado exitosamente la factura al correo {{email}}",
+    "BOARD_INCIDENTS": "Tablero de control de incidentes",
+    "PHONE_CALL": "Llamada Telefónica",
+    "MOBILE_APP": "App móvil",
+    "START_DATE": "Fecha inicio",
+    "END_DATE": "Fecha fin",
+    "FILTER": "FILTRAR",
+    "COMMUNICATION_CHANNELS": "Canales de comunicación",
+    "TITLE_PIE_CHART": "Distribución de Incidentes por Estado",
+    "TITLE_LINES_CHART": "Incidentes por Estado y Fecha de Actualización",
+    "TABLE_INCIDENTS": "Tabla de incidentes",
+    "CODE": "Código",
+    "UPDATE_DATE": "Fecha de actualización"
 }

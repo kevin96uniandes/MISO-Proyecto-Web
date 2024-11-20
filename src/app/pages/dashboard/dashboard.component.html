@@ -20,7 +20,7 @@
         <mat-icon matListIcon class="sidebar-color-item">store</mat-icon>
         <span matLine class="sidebar-color-item">{{ 'PLANS' | translate }}</span>
       </a>
-      <a *ngIf="currentMenuUser.dashboard" mat-list-item routerLink="/dashboard" class="menu-item text-center">
+      <a *ngIf="currentMenuUser.dashboard" mat-list-item [routerLink]="['/dashboard/board']" class="menu-item text-center" id="incident-board">
         <mat-icon matListIcon class="sidebar-color-item">dashboard</mat-icon>
         <span matLine class="sidebar-color-item">{{ 'DASHBOARD' | translate }}</span>
       </a>
@@ -40,9 +40,75 @@
   </mat-drawer>
   <mat-drawer-content>
     <div class="container-fluid">
+      @if(isVisibleChatbot) {
+        <div class="example-button-container">
+          <button mat-mini-fab aria-label="Icono para abrir el chat" (click)="chatDrawer.toggle()" class="floating-button">
+            <img
+              src="assets/images/inteligencia-artificial.gif"
+              alt="Icono para abrir el chat"
+              class="ia-icon" fill/>
+          </button>
+        </div>
+      }
       <router-outlet></router-outlet>
     </div>
   </mat-drawer-content>
+
+    <mat-drawer #chatDrawer mode="over" position="end" class="chat-drawer">
+        <div class="chat-content">
+          <div class="responses"  #responseContainer>
+            <div
+              *ngFor="let response of responses"
+            >
+              <div [class]="response.type == 'USER' ? 'bubble-user' : 'bubble-ia'">
+                <div *ngIf="response.type == 'USER'" class="me-2">
+                  <mat-icon class="icon">person</mat-icon>
+                </div>
+                <span class="bubble-context">
+                  {{ response.context }}
+                </span>
+                <div *ngIf="response.type == 'IA'" class="ms-2">
+                  <mat-icon class="icon">support_agent</mat-icon>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="isLoading" class="loading-indicator">
+              <mat-spinner></mat-spinner>
+              </div>
+          </div>
+          <form id="chat-ia"
+                [formGroup]="iaPredictionForm"
+                (ngSubmit)="!iaPredictionForm.invalid && sendRequest(iaPredictionForm.value)">
+            <div class="row">
+              <div class="col-12">
+                <mat-form-field appearance="outline" class="w-100">
+                  <div class="d-flex flex-row justify-content-center align-items-center">
+                    <textarea
+                      id="txt-user-input"
+                      matInput
+                      [placeholder]="'CONTRASENA' | translate"
+                      formControlName="context"
+                      cdkTextareaAutosize
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="5"
+                    >
+              </textarea>
+                    <button
+                      mat-mini-fab
+                      color="primary"
+                      type="submit"
+                      aria-label="Send"
+                      [disabled]="!iaPredictionForm.valid"
+                    >
+                      <mat-icon>send</mat-icon>
+                    </button>
+                  </div>
+                </mat-form-field>
+              </div>
+            </div>
+          </form>
+        </div>
+    </mat-drawer>
 </mat-drawer-container>
 
 

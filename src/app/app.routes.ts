@@ -18,6 +18,7 @@ import { CallrecorddetailsComponent } from './pages/incident/callrecorddetails/c
 import { RoleGuard } from './pages/dashboard/role.guard';
 import { DetailInvoiceComponent } from './pages/invoice/detail-invoice/detail-invoice.component';
 import { PaymentMethodComponent } from './pages/invoice/payment-method/payment-method.component';
+import { BoardComponent } from './pages/board/board.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
@@ -40,10 +41,12 @@ export const routes: Routes = [
       { path: 'details-call', component: CallrecorddetailsComponent },
       { path: 'invoice', component: DetailInvoiceComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  },
       { path: 'invoice/payment-method/:invoice_id', component: PaymentMethodComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  }
+      { path: 'list/agents', component: ListAgentsComponent },
+      { path: 'board', component: BoardComponent}
     ]
   },
   { path: 'register/client', component: RegisterClientComponent },
-  { path: 'details-call', component: CallrecorddetailsComponent },
+  { path: 'board', component: BoardComponent},
   { path: '', redirectTo:'/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' }
 ];

@@ -125,8 +125,7 @@ export class DetailInvoiceComponent {
                       title: `${successMessage}`,
                       confirmButtonText: 'OK',
                       confirmButtonColor: '#82BDAE'
-                    })
-  
+                    })  
                    })
                 }
               }

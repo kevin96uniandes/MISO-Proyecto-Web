@@ -59,7 +59,7 @@
     </div>
     <div class="row">
       <div class="col-12 buttons">
-        <button mat-flat-button class="btn-abc-primary button-clean" color="primary" >{{ 'CLEAN_FILTER' | translate }}</button>
+        <button mat-flat-button class="btn-abc-primary button-clean" color="primary" (click)="clearFilters()">{{ 'CLEAN_FILTER' | translate }}</button>
         <button mat-flat-button class="btn-abc-primary button-create" color="primary" (click)="saveReport()">{{ 'CREATE_REPORT' | translate }}</button>
         <button mat-flat-button class="btn-abc-primary button-email" color="primary">{{ 'MAIL' | translate }}</button>
       </div>

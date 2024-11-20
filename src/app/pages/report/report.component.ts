@@ -87,12 +87,28 @@ export class ReportComponent implements OnInit {
         this.snackBar.open('Reporte guardado exitosamente.', 'Cerrar', {
           duration: 3000
         });
+        this.reportForm.reset();
       },
       error: (err) => {
         this.snackBar.open('Error al guardar el reporte. Por favor intenta nuevamente.', 'Cerrar', {
           duration: 3000
         });
       }
+    });
+  }
+
+  clearFilters(): void {
+    this.reportForm.reset({
+      nombre_reporte: '',
+      canal_id: null,
+      estado_id: null,
+      tipo_id: null,
+      fecha_inicio: null,
+      fecha_fin: null
+    });
+
+    this.snackBar.open('Filtros limpios.', 'Cerrar', {
+      duration: 2000
     });
   }
 }

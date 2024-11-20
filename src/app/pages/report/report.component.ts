@@ -85,13 +85,13 @@ export class ReportComponent implements OnInit {
         const blobUrl = URL.createObjectURL(response);
         window.open(blobUrl, '_blank');
         this.snackBar.open('Reporte guardado exitosamente.', 'Cerrar', {
-          duration: 3000
+          duration: 7000
         });
         this.reportForm.reset();
       },
       error: (err) => {
         this.snackBar.open('Error al guardar el reporte. Por favor intenta nuevamente.', 'Cerrar', {
-          duration: 3000
+          duration: 5000
         });
       }
     });

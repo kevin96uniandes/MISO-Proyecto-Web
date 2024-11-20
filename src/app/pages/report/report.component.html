@@ -7,7 +7,7 @@
       <div class="col-4"> &nbsp; </div>
       <div class="col-4">
         <mat-form-field appearance="outline" class="w-100">
-          <mat-label>{{ 'REPORT_NAME' | translate }}</mat-label>
+          <mat-label id="label-nombre">{{ 'REPORT_NAME' | translate }}</mat-label>
           <input id="nombre_reporte" formControlName="nombre_reporte" matInput [placeholder]="'REPORT_NAME' | translate">
         </mat-form-field>
         <div class="alert alert-danger alert-dismissible fade show" *ngIf="reportForm.get('nombre_reporte')!.hasError('required') && reportForm.get('nombre_reporte')!.touched">

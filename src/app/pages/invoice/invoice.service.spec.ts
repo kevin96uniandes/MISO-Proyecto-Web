@@ -51,7 +51,7 @@ describe('InvoiceService', () => {
     const month = '2023-01';
     const empresaId = '12345';
 
-    service.getInvoice(month, empresaId).subscribe((response) => {
+    service.getInvoice(month, empresaId, 'es').subscribe((response) => {
       expect(response).toEqual(mockInvoice);
     });
   });

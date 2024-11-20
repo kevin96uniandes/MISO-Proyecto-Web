@@ -385,6 +385,7 @@
         id="go-back"
         class="btn-form-secondary"
         style="width: 180px"
+        (click)="onCancel()"
       >
       {{ "CANCEL" | translate }}
       </button>
@@ -399,4 +400,7 @@
       </button>
     </div>
   </div>
+</div>
+<div *ngIf="isLoading" class="loading-overlay">
+  <mat-spinner></mat-spinner>
 </div>

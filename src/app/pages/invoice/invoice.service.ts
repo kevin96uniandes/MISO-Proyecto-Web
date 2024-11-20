@@ -12,8 +12,8 @@ export class InvoiceService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getInvoice(month: string, empresa_id: string){
-    return this.httpClient.post<Invoice>(this.invoiceUrl+`create/${month}/${empresa_id}`, {})
+  getInvoice(month: string, empresa_id: string, lang: string){
+    return this.httpClient.post<Invoice>(this.invoiceUrl+`create/${month}/${empresa_id}/${lang}`, {})
   }
 
   getInvoicePdfFile(invoiceId: number, lang: string){

@@ -237,5 +237,6 @@
     "INVOICE_DATE": "Fecha de factura",
     "SEND": "ENVIAR",
     "CLOSE_UPPERCASE": "CERRAR",
-    "TITLE_PAYMENT_PROCESS": "El sistema ha procesado en pago con exito."
+    "TITLE_PAYMENT_PROCESS": "El sistema ha procesado en pago con exito.",
+    "SEND_EMAIL_SUCCESS": "Se ha enviado exitosamente la factura al correo {{email}}"
 }

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { LangChangeEvent, TranslateModule } from '@ngx-translate/core';
 import { EventEmitter } from '@angular/core';
-import Swal from 'sweetalert2';
+import Swal, { SweetAlertResult } from 'sweetalert2';
 import { EmailDialogComponent } from '../email-dialog/email-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -98,7 +98,13 @@ describe('DetailInvoiceComponent', () => {
 
   it('should handle error when getInvoice fails', fakeAsync(() => {
     invoiceServiceSpy.getInvoice.and.returnValue(throwError({ error: { msg: 'Error message' } }));
-    spyOn(Swal, 'fire');
+
+    const swalFireSpy = spyOn(Swal, 'fire').and.returnValue(Promise.resolve({
+      isConfirmed: false,
+      isDenied: false,       
+      isDismissed: true,     
+    } as SweetAlertResult))
+
     storageServiceSpy.getItem.and.returnValue(JSON.stringify({ id_company: 123 }));
 
     component.getInvoice();

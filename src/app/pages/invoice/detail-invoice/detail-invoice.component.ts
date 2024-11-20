@@ -12,7 +12,9 @@ import { StorageService } from '../../../common/storage.service';
 import { Invoice } from '../invoice';
 import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
-import { DecimalPipe } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
+import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
+import { InvoiceStatePipe } from '../pipe/invoice-state.pipe';
 
 @Component({
   selector: 'app-detail-invoice',
@@ -23,8 +25,11 @@ import { DecimalPipe } from '@angular/common';
     TranslateModule,
     MatSelectModule,
     MatIconModule,
+    MatProgressSpinnerModule,
+    InvoiceStatePipe,
     DecimalPipe,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   templateUrl: './detail-invoice.component.html',
   styleUrl: './detail-invoice.component.scss'
@@ -35,8 +40,8 @@ export class DetailInvoiceComponent {
   month!: string
   lang!: string
   currency!: string
-
-  
+  isPaid!: boolean
+  isLoading!: boolean 
   constructor(
     public dialog: MatDialog,
     private translate: TranslateService,
@@ -45,6 +50,8 @@ export class DetailInvoiceComponent {
     private router: Router){}
 
     ngOnInit(){
+      this.isLoading = false
+
       this.lang = this.storageService.getItem("language") ?? 'es'
       this.translate.use(this.lang)
 
@@ -61,10 +68,11 @@ export class DetailInvoiceComponent {
       let decoded = JSON.parse(this.storageService.getItem("decodedToken")!!);  
       let id_company = decoded["id_company"];
 
-      this.invoiceService.getInvoice(this.month, id_company).subscribe({
+      this.invoiceService.getInvoice(this.month, id_company, this.lang).subscribe({
         next: (invoice: Invoice) => {
           console.log(invoice)
           this.invoice = invoice
+          this.isPaid = (invoice.estado_factura === 'Pagado')
           if(this.currency === 'USD'){
            this.onCurrencyChange()
           }
@@ -73,7 +81,13 @@ export class DetailInvoiceComponent {
           Swal.fire({
             icon: 'error',
             title: error.error.msg,
-          });
+          }).then((result) => {
+            if (result.isConfirmed) {
+              if(error.status == 416){
+                this.router.navigate(['/dashboard/plans'])
+              }
+            }
+          });;
           console.log(error);
         } 
       })
@@ -86,26 +100,38 @@ export class DetailInvoiceComponent {
 
        dialogRef.afterClosed().subscribe({
         next: (responseDialog) => {
-          const request = {
-            "email":responseDialog.email,
-            "invoice_id": this.invoice.id,
-            "lang": this.lang
-          }
+          if(responseDialog){
 
-          console.log(request)
+            this.isLoading = true 
 
-          this.invoiceService.sendInvoicePdfFile(request).subscribe({
-            next: (response: any) => {
-              if(response.status_code == 202){
-                Swal.fire({
-                  icon: 'success',
-                  title: `el correo fue enviado con exito a ${responseDialog.email}`,
-                  confirmButtonText: 'OK',
-                  confirmButtonColor: '#82BDAE'
-                })
-              }
+            const request = {
+              "email":responseDialog.email,
+              "invoice_id": this.invoice.id,
+              "lang": this.lang
             }
-          })
+
+            console.log(request)
+
+            this.invoiceService.sendInvoicePdfFile(request).subscribe({
+              next: (response: any) => {
+                if(response.status_code == 202){
+                  this.translate.get(['SEND_EMAIL_SUCCESS'], { email: responseDialog.email }).subscribe(translations => {
+                    const successMessage = translations['SEND_EMAIL_SUCCESS'];
+                    
+                    this.isLoading = false
+  
+                    Swal.fire({
+                      icon: 'success',
+                      title: `${successMessage}`,
+                      confirmButtonText: 'OK',
+                      confirmButtonColor: '#82BDAE'
+                    })
+  
+                   })
+                }
+              }
+            })
+          }
         }
        })
     }

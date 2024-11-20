@@ -1,9 +1,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12" style="text-align: right; margin-top: 1%">
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="fill" id="select-currency">
             <mat-label>{{ 'CURRENCY_EXCHANGE' | translate }}</mat-label>
-            <mat-select (selectionChange)="onCurrencyChange()" [(ngModel)]="currency">
+            <mat-select (selectionChange)="onCurrencyChange()" [(ngModel)]="currency" id="select-currency">
               <mat-option value="COP">{{ 'COLOMBIAN_PESO' | translate }}</mat-option>
               <mat-option value="USD">{{ 'UNITED_STATES_DOLLAR' | translate }}</mat-option>
             </mat-select>
@@ -12,9 +12,9 @@
       </div>
     <div class="container">
         <div class="filter">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" id="select-month">
               <mat-label>{{ 'INVOICE_DATE' | translate }}</mat-label>
-              <mat-select [(ngModel)]="month">
+              <mat-select [(ngModel)]="month" id="select-month">
                 <mat-option value="1">{{ 'JANUARY' | translate }}</mat-option>
                 <mat-option value="2">{{ 'FEBRUARY' | translate }}</mat-option>
                 <mat-option value="3">{{ 'MARCH' | translate }}</mat-option>
@@ -29,7 +29,7 @@
                 <mat-option value="12">{{ 'DECEMBER' | translate }}</mat-option>
               </mat-select>
             </mat-form-field>
-            <button  class="btn-form-primary" style="margin-left: 1%" color="primary" (click)="getInvoice()">{{ 'GENERATE_INVOICE' | translate }}</button>
+            <button  class="btn-form-primary" style="margin-left: 1%" color="primary" id="generate-invoice" (click)="getInvoice()">{{ 'GENERATE_INVOICE' | translate }}</button>
         </div>
         <div id="invoice-card-div" class="invoice-card-div">
             <mat-card class="invoice-card">
@@ -56,7 +56,7 @@
                     </div>
                     <div class="row"> 
                         <div class="col-12" style="text-align: left">
-                            <p><strong>{{ 'STATUS' | translate }}: </strong>{{ invoice.estado_factura }}</p>
+                            <p><strong>{{ 'STATUS' | translate }}: </strong>{{ invoice.estado_factura | invoiceState }}</p>
                         </div>
                     </div>
                     <div class="row"> 
@@ -110,14 +110,17 @@
                     </div>
                 </mat-card-content>
                 <mat-card-actions style="margin:auto">
-                    <button color="accent" class="btn-form-secondary" (click)="openInvoiceFile()">
+                    <button color="accent" class="btn-form-secondary" (click)="openInvoiceFile()" id="download-pdf">
                     <mat-icon class="download-icon">download</mat-icon>
                     {{ 'DOWNLOAD' | translate }}
                     </button>
-                    <button class="btn-form-primary" (click)="goToPayment()" style="margin-left: 1%">{{ 'PAY' | translate }}</button>
-                    <button class="btn-form-third" style="margin-left: 1%" (click)="openSendEmailDialog()">{{ 'SEND_EMAIL' | translate }}</button>
+                    <button class="btn-form-primary" id="pay-invoice" (click)="goToPayment()" [disabled]="isPaid" style="margin-left: 1%">{{ 'PAY' | translate }}</button>
+                    <button class="btn-form-third" style="margin-left: 1%" (click)="openSendEmailDialog()" id="send-email-invoice">{{ 'SEND_EMAIL' | translate }}</button>
                 </mat-card-actions>
             </mat-card>
         </div>
     </div>
 </div>
+<div *ngIf="isLoading" class="loading-overlay">
+    <mat-spinner></mat-spinner>
+  </div>

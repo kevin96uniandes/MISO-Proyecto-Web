@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -11,6 +11,7 @@ import { InvoiceService } from '../invoice.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PaymentDialogComponent } from '../payment-dialog/payment-dialog.component';
 import { StorageService } from '../../../common/storage.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @Component({
@@ -23,6 +24,7 @@ import { StorageService } from '../../../common/storage.service';
     MatInputModule,
     MatSelectModule,
     MatFormFieldModule,
+    MatProgressSpinnerModule,
     FormsModule,
     ReactiveFormsModule
   ],
@@ -36,6 +38,7 @@ export class PaymentMethodComponent {
   isPse!: boolean
   isCreditCard!: boolean
   idInvoice!: string
+  isLoading!: boolean
 
   constructor(private formBuilder: FormBuilder,
     private translate: TranslateService,
@@ -45,9 +48,12 @@ export class PaymentMethodComponent {
     private storageService: StorageService,
     private invoiceService: InvoiceService,
     public dialog: MatDialog,
+    private location: Location
   ) { }
 
   ngOnInit() {
+
+    this.isLoading = false
     this.isCreditCard = true
     this.idInvoice = this.route.snapshot.paramMap.get('invoice_id')!;
 
@@ -111,7 +117,12 @@ export class PaymentMethodComponent {
     }
   }
 
+  onCancel(){
+    this.location.back()
+  }
+
   payInvoice() {
+    this.isLoading = true
     let paymentMethodId = 0
 
     if (this.isPse) {
@@ -132,6 +143,8 @@ export class PaymentMethodComponent {
     if(paymentMethodId != 0){
       this.invoiceService.payInvoice(this.idInvoice, paymentMethodId).subscribe({
         next: (response) => {
+          this.isLoading = false
+
           console.log(response)
           const dialogRef = this.dialog.open(PaymentDialogComponent, {
             width: '700px',
@@ -151,12 +164,19 @@ export class PaymentMethodComponent {
               this.router.navigate(['/dashboard/invoice'])
             }
            })
+        },
+        error: (error) => {
+          this.isLoading = true
+          console.log(error)
         }
       })
     }
   }
 
   showFormErrors(form: FormGroup){
+
+    this.isLoading = false
+
     Object.values(form.controls).forEach(control => {
       control.markAsTouched();
       control.updateValueAndValidity();

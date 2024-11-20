@@ -235,5 +235,6 @@
   "SEND": "SEND",
   "CLOSE_UPPERCASE": "CLOSE",
   "JURIDICAL": "Juridical",
-  "TITLE_PAYMENT_PROCESS": "The system has successfully processed the payment."
+  "TITLE_PAYMENT_PROCESS": "The system has successfully processed the payment.",
+  "SEND_EMAIL_SUCCESS": "the mail was successfully sent to {{email}}"
 }

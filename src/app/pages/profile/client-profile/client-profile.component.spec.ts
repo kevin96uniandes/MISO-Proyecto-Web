@@ -1,8 +1,5 @@
 /* tslint:disable:no-unused-variable */
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
 import { ClientProfileComponent } from './client-profile.component';
 import { ProfileService } from '../profile.service';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
@@ -24,7 +21,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 describe('ClientProfileComponent', () => {
   let component: ClientProfileComponent;
   let fixture: ComponentFixture<ClientProfileComponent>;
-  let router: Router;
   let translateService: any;
   let translateServiceMock: any;
   let storageServiceMock: jasmine.SpyObj<StorageService>;
@@ -49,9 +45,43 @@ describe('ClientProfileComponent', () => {
     }
   ];
 
+  const mockIncidences = [
+    {
+      id: 123,
+      codigo: 'INC-001',
+      descripcion: 'Error in production system',
+      asunto: 'System malfunction',
+      fecha_creacion: new Date('2024-11-19T08:30:00'),
+      fecha_actualizacion: new Date('2024-11-19T10:00:00'),
+      canal_id: 1,
+      canal_nombre: 1,
+      usuario_creador_id: 1,
+      usuario_asignado_id: 1,
+      persona_id: 1,
+      estado_id: 1,
+      tipo_id: 1
+    },
+    {
+      id: 124,
+      codigo: 'INC-002',
+      descripcion: 'Error in production system',
+      asunto: 'System malfunction',
+      fecha_creacion: new Date('2024-11-19T08:30:00'),
+      fecha_actualizacion: new Date('2024-11-19T10:00:00'),
+      canal_id: 1,
+      canal_nombre: 1,
+      usuario_creador_id: 1,
+      usuario_asignado_id: 1,
+      persona_id: 1,
+      estado_id: 1,
+      tipo_id: 1
+    }
+  ]
+
+
   beforeEach(async () =>  {
     
-    const profileServiceSpy = jasmine.createSpyObj('ProfileService', ['getAgentsByIdCompany']);
+    const profileServiceSpy = jasmine.createSpyObj('ProfileService', ['getAgentsByIdCompany', 'getIncidences']);
     const storageServiceSpy = jasmine.createSpyObj('StorageService', ['getItem']);
     translateService = jasmine.createSpyObj('TranslateService', ['use', 'get']);
 
@@ -93,10 +123,12 @@ describe('ClientProfileComponent', () => {
   storageServiceMock.getItem.and.returnValue(JSON.stringify({ id_company: 2 }));
   profileServiceMock.getAgentsByIdCompany.and.returnValue(of(mockAgents));
 
+  profileServiceMock.getIncidences.and.returnValue(of(mockIncidences));
   fixture = TestBed.createComponent(ClientProfileComponent);
   component = fixture.componentInstance;
-  router = TestBed.inject(Router);
   fixture.detectChanges();
+
+
 
 });
   

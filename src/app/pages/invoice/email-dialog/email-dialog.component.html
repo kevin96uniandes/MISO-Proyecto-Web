@@ -1,0 +1,38 @@
+<mat-dialog-content>
+  <div class="title">
+    <h5>
+      {{ 'SEND_EMAIL_TITLE' | translate }}
+    </h5>
+  </div>
+  <div style="margin-top: 5%">
+    <mat-form-field appearance="outline" class="w-100" margin-top="2px">
+      <mat-label>{{ 'EMAIL' | translate }}</mat-label>
+      <input
+        #invoiceEmail
+        id="invoiceEmail"
+        matInput
+        [placeholder]="'EMAIL' | translate"
+      />
+    </mat-form-field>
+    <div
+      class="alert alert-danger alert-dismissible fade show"
+      *ngIf="emptyEmail"
+    >
+      {{ 'REQUIRED_EMAIL' | translate }}
+    </div>
+    <div
+      class="alert alert-danger alert-dismissible fade show"
+      *ngIf="invalidFormatEmail"
+    >
+    {{ 'REQUIRED_EMAIL_FORMAT' | translate }}
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end" style="margin: auto">
+  <button class="btn-form-secondary" (click)="onClose()" id="btn-rechazar">
+    {{ 'CLOSE_UPPERCASE' | translate }}
+  </button>
+  <button class="btn-form-primary" id="send-email-dialog" (click)="sendEmail(invoiceEmail.value)" style="margin-left: 10px">
+    {{ 'SEND' | translate }}
+  </button>
+</mat-dialog-actions>

@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { User } from '../../auth/user';
 
 
 describe('ClientProfileComponent', () => {
@@ -78,10 +79,25 @@ describe('ClientProfileComponent', () => {
     }
   ]
 
+  const mockUser: User = {
+    id: 1,
+    id_persona: 1,
+    id_empresa: 1,
+    id_tipousuario: 1,
+    nombre_usuario: 'jdoe',
+    contrasena: 'securePassword123',
+    fecha_creacion: new Date('2024-01-01T00:00:00'),
+    fecha_actualizacion: new Date('2024-11-16T12:00:00'),
+    es_activo: true
+  };
+
+  const userId = 1;
+
+
 
   beforeEach(async () =>  {
     
-    const profileServiceSpy = jasmine.createSpyObj('ProfileService', ['getAgentsByIdCompany', 'getIncidences']);
+    const profileServiceSpy = jasmine.createSpyObj('ProfileService', ['getAgentsByIdCompany', 'getIncidences', 'getUser']);
     const storageServiceSpy = jasmine.createSpyObj('StorageService', ['getItem']);
     translateService = jasmine.createSpyObj('TranslateService', ['use', 'get']);
 
@@ -121,9 +137,11 @@ describe('ClientProfileComponent', () => {
   profileServiceMock = TestBed.inject(ProfileService) as jasmine.SpyObj<ProfileService>;
   storageServiceMock = TestBed.inject(StorageService) as jasmine.SpyObj<StorageService>;
   storageServiceMock.getItem.and.returnValue(JSON.stringify({ id_company: 2 }));
+  
   profileServiceMock.getAgentsByIdCompany.and.returnValue(of(mockAgents));
-
   profileServiceMock.getIncidences.and.returnValue(of(mockIncidences));
+  profileServiceMock.getUser.and.returnValue(of(mockUser));
+
   fixture = TestBed.createComponent(ClientProfileComponent);
   component = fixture.componentInstance;
   fixture.detectChanges();

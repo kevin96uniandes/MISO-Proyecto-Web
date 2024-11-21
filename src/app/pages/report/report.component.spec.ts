@@ -115,7 +115,7 @@ describe('ReportComponent', () => {
       expect(snackBar.open).toHaveBeenCalledWith(
         'Reporte guardado exitosamente.',
         'Cerrar',
-        { duration: 3000 }
+        { duration: 7000 }
       );
     });
 
@@ -136,7 +136,7 @@ describe('ReportComponent', () => {
       expect(snackBar.open).toHaveBeenCalledWith(
         'Error al guardar el reporte. Por favor intenta nuevamente.',
         'Cerrar',
-        { duration: 3000 }
+        { duration: 5000 }
       );
     });
   });

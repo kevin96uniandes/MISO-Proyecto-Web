@@ -251,6 +251,9 @@
     "TABLE_INCIDENTS": "Tabla de incidentes",
     "CODE": "Código",
     "UPDATE_DATE": "Fecha de actualización",
+    "CREATE_REPORT": "Crear reporte",
+    "REPORT_NAME": "Nombre del reporte",
+    "MAIL": "ENVIAR POR CORREO",
     "CLIENT_INFORMATION": "Información de cliente",
     "CHANGE_PASSWORD": "Cambio de contraseña"
 }

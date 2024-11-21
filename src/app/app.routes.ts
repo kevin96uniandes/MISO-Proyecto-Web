@@ -20,6 +20,7 @@ import { ClientProfileComponent } from './pages/profile/client-profile/client-pr
 import { DetailInvoiceComponent } from './pages/invoice/detail-invoice/detail-invoice.component';
 import { PaymentMethodComponent } from './pages/invoice/payment-method/payment-method.component';
 import { BoardComponent } from './pages/board/board.component';
+import { ReportComponent } from './pages/report/report.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
@@ -39,16 +40,16 @@ export const routes: Routes = [
       { path: 'list/agents', component: ListAgentsComponent, data: { role: 'cliente' }  },
       { path: 'register/agent', component: RegisterAgentComponent, data: { role: 'cliente' }  },
       { path: 'plans', component: SelectPlanComponent, data: { role: 'cliente' }  },
-      { path: 'details-call', component: CallrecorddetailsComponent },
+      { path: 'details-call', component: CallrecorddetailsComponent, data: { role: 'cliente' } },
+      { path: 'board', component: BoardComponent, data: { role: 'cliente' }},
+      { path: 'report', component: ReportComponent, data: { role: 'cliente' }},
       { path: 'profile', component: ClientProfileComponent},
       { path: 'invoice', component: DetailInvoiceComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  },
-      { path: 'invoice/payment-method/:invoice_id', component: PaymentMethodComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  }
-      { path: 'list/agents', component: ListAgentsComponent },
-      { path: 'board', component: BoardComponent}
+      { path: 'invoice/payment-method/:invoice_id', component: PaymentMethodComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  },
+      { path: 'list/agents', component: ListAgentsComponent }
     ]
   },
   { path: 'register/client', component: RegisterClientComponent },
-  { path: 'board', component: BoardComponent},
   { path: '', redirectTo:'/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' }
 ];

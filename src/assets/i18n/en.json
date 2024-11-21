@@ -249,6 +249,9 @@
   "TABLE_INCIDENTS": "Table of incidents",
   "CODE": "Code",
   "UPDATE_DATE": "Update date",
+  "CREATE_REPORT": "Create report",
+  "REPORT_NAME": "Report name",
+  "MAIL": "MAIL",
   "CLIENT_INFORMATION": "Client information",
   "CHANGE_PASSWORD": "Change password"
 }

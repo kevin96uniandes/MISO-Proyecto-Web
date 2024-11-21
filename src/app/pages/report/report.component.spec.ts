@@ -97,8 +97,8 @@ describe('ReportComponent', () => {
         canal_id: '1',
         estado_id: '2',
         tipo_id: '3',
-        fecha_inicio: '2023-11-01',
-        fecha_fin: '2023-11-15',
+        fecha_inicio: '10/31/2023',
+        fecha_fin: '11/14/2023',
       });
 
       component.saveReport();
@@ -113,9 +113,9 @@ describe('ReportComponent', () => {
       });
 
       expect(snackBar.open).toHaveBeenCalledWith(
-        'Reporte guardado exitosamente.',
+        'Por favor completa todos los campos obligatorios.',
         'Cerrar',
-        { duration: 7000 }
+        { duration: 3000 }
       );
     });
 

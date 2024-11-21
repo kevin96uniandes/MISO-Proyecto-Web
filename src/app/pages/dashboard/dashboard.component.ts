@@ -66,7 +66,7 @@ export class DashboardComponent implements AfterViewChecked {
       'agentes': true,
       'planes': true,
       'dashboard': true,
-      'resportes': true,
+      'reportes': true,
       'facturas': true,
       'salir': true
     },

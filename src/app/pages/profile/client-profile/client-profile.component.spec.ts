@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed, fakeAsync, flush, tick} from '@angular/core/testing';
 import { ClientProfileComponent } from './client-profile.component';
 import { ProfileService } from '../profile.service';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { EventEmitter } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { User } from '../../auth/user';
+
 
 
 describe('ClientProfileComponent', () => {
@@ -146,12 +147,23 @@ describe('ClientProfileComponent', () => {
   component = fixture.componentInstance;
   fixture.detectChanges();
 
-
-
 });
   
 it('should create', () => {
   expect(component).toBeTruthy();
 });
-  
+
+it('should fetch agents', () => {
+  expect(profileServiceMock.getAgentsByIdCompany).toHaveBeenCalledWith(2);
+  expect(component.dataAgents.data.length).toBe(2); 
+});
+
+it('should fetch user', () => {
+  expect(profileServiceMock.getUser).toHaveBeenCalled();
+});
+
+it('should fetch incidences', () => {
+  expect(profileServiceMock.getIncidences).toHaveBeenCalled();
+});
+
 });

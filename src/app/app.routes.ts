@@ -42,7 +42,7 @@ export const routes: Routes = [
       { path: 'details-call', component: CallrecorddetailsComponent },
       { path: 'profile', component: ClientProfileComponent},
       { path: 'invoice', component: DetailInvoiceComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  },
-      { path: 'invoice/payment-method/:invoice_id', component: PaymentMethodComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  }
+      { path: 'invoice/payment-method/:invoice_id', component: PaymentMethodComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  },
       { path: 'list/agents', component: ListAgentsComponent },
       { path: 'board', component: BoardComponent}
     ]

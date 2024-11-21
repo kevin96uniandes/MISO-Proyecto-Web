@@ -141,6 +141,7 @@ describe('ReportComponent', () => {
     });
   });
 
+
   describe('clearFilters', () => {
     it('should reset the form and show a confirmation message', () => {
       component.reportForm.setValue({

@@ -92,9 +92,8 @@ export class LoginComponent {
             this.storageService.setItem('decodedToken', JSON.stringify(this.helper.decodeToken(res.token)));
             this.storageService.setItem('token', res.token);
             
-            let decoded = JSON.parse(this.storageService.getItem("decodedToken")!!);
-            let userType = decoded["user_type"];
-
+            let userType = this.helper.decodeToken(res.token)["user_type"];
+            
             console.log(userType)
             if (userType == "cliente"){
               this.router.navigate([`dashboard/profile`]);

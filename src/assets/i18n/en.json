@@ -254,5 +254,7 @@
   "MAIL": "MAIL",
   "CLIENT_INFORMATION": "Client information",
   "CHANGE_PASSWORD": "Change password",
-  "TITLE_DIALOG_MAIL": "Please enter the email address to which you want the report to be sent."
+  "TITLE_DIALOG_MAIL": "Please enter the email address to which you want the report to be sent.",
+  "DESCRIPTION": "Descripción",
+  "CREATED_AT": "Created at"
 }

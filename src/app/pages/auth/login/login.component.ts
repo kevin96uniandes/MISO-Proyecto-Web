@@ -91,7 +91,17 @@ export class LoginComponent {
           next: (res) => {
             this.storageService.setItem('decodedToken', JSON.stringify(this.helper.decodeToken(res.token)));
             this.storageService.setItem('token', res.token);
-            this.router.navigate([`dashboard`]);
+            
+            let decoded = JSON.parse(this.storageService.getItem("decodedToken")!!);
+            let userType = decoded["user_type"];
+
+            console.log(userType)
+            if (userType == "cliente"){
+              this.router.navigate([`dashboard/profile`]);
+            }else{
+              this.router.navigate([`dashboard`]);
+            }
+
           },
         error: (err) => {
           this.translate.get(['USER_PASSWORD_INCORRECT']).subscribe(translations => {

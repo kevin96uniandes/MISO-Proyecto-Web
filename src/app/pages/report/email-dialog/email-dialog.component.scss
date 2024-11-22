@@ -1,0 +1,38 @@
+.title {
+  font-family: 'Roboto';
+  font-size: 1.5em;
+  color: #126173;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 32px;
+}
+
+.button-cancel{
+  background-color: transparent;
+  font-family: 'Roboto';
+  font-size: 0.938em;
+  color: #82A5BD;
+  border-radius: 0.25em;
+  padding: 14px 0;
+  width: 225px;
+  border: 1px #82BDAE solid;
+  margin-right: 20px;
+}
+
+.buttons{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.button-send {
+  background-color: #82BDAE;
+  font-family: 'Roboto';
+  font-size: 0.938em;
+  color: white;
+  border-radius: 0.25em;
+  padding: 14px 0;
+  width: 225px;
+  border-color: #82BDAE;
+  text-transform: uppercase;
+}

@@ -10,6 +10,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { ReportService } from './report.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { EmailDialogComponent } from './email-dialog/email-dialog.component';
 
 @Component({
   selector: 'app-report',
@@ -35,7 +37,8 @@ export class ReportComponent implements OnInit {
     private storageService: StorageService,
     private fb: FormBuilder,
     private reportService: ReportService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -109,6 +112,18 @@ export class ReportComponent implements OnInit {
 
     this.snackBar.open('Filtros limpios.', 'Cerrar', {
       duration: 2000
+    });
+  }
+
+  openEmailDialog(): void {
+    const dialogRef = this.dialog.open(EmailDialogComponent, {
+      width: '792px'
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.snackBar.open(`Correo enviado a: ${result}`, 'Cerrar', { duration: 3000 });
+      }
     });
   }
 }

@@ -40,8 +40,8 @@ export const routes: Routes = [
       { path: 'plans', component: SelectPlanComponent, data: { role: 'cliente' }  },
       { path: 'details-call', component: CallrecorddetailsComponent },
       { path: 'invoice', component: DetailInvoiceComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  },
-      { path: 'invoice/payment-method/:invoice_id', component: PaymentMethodComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  }
-      { path: 'list/agents', component: ListAgentsComponent },
+      { path: 'invoice/payment-method/:invoice_id', component: PaymentMethodComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  },
+      { path: 'list/agents', component: ListAgentsComponent, canActivate: [RoleGuard], data: { role: 'cliente' } },
       { path: 'board', component: BoardComponent}
     ]
   },

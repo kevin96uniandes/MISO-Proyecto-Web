@@ -134,7 +134,6 @@ export class ClientProfileComponent implements AfterViewInit {
       }
     )
 
-
     this.profileService.getAgentsByIdCompany(companyId).subscribe({
       next: (agents: Agente[]) => {
         console.log(agents);

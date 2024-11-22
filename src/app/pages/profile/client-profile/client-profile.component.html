@@ -18,11 +18,6 @@
           <p><b>{{ 'PHONE' | translate }}</b>: {{phone}}</p>
           <p><b>{{ 'EMAIL' | translate }}</b>: {{email}}</p>
         </mat-card-content>
-        <mat-card-footer class="example-card-footer">
-          <mat-chip-set aria-label="Chihuahua traits">
-            <button mat-flat-button id="btn-change-pass" class="custom-register-button">{{ 'CHANGE_PASSWORD' | translate }}</button>
-          </mat-chip-set>
-        </mat-card-footer>
       </mat-card>
     </div>
 
@@ -72,29 +67,28 @@
 
   <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-4" style="margin-top: 1%">
-      <h6 class="title-text-color title-size">{{ 'Acciones' | translate }}</h6>
-    
-      <mat-card class="example-card" appearance="outlined">
-        <mat-card-header>
-          <mat-card-title>
-            <mat-icon matListIcon class="sidebar-color-item">group_work</mat-icon>
-            <span matLine class="sidebar-color-item">{{ 'ACTIONS' | translate }}</span>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
-              <mat-button-toggle class="custom-mat-button-toggle" value="bold" [routerLink]="['/dashboard/plans']" mat-flat-button id="btn-dashboard-plans">{{ 'Planes' | translate }}</mat-button-toggle>
-              <mat-button-toggle class="custom-mat-button-toggle" value="bold" [routerLink]="['/dashboard']" mat-flat-button id="btn-dashboard">{{ 'Dashboard' | translate }}</mat-button-toggle>
-              <mat-button-toggle class="custom-mat-button-toggle" value="bold" [routerLink]="['/reportes']" mat-flat-button id="btn-reports">{{ 'Reportes' | translate }}</mat-button-toggle>
-              <mat-button-toggle class="custom-mat-button-toggle" value="bold" [routerLink]="['/facturas']" mat-flat-button id="btn-shipments">{{ 'Facturas' | translate }}</mat-button-toggle>
-            </mat-button-toggle-group>
+      <div class="row" style="margin-top: 5%;">
+        <div class="col-lg- col-md-1 col-sm-1" style="margin-top: 1%">
+        </div>
 
-        </mat-card-content>
-        <mat-card-footer class="example-card-footer">
-          <mat-chip-set aria-label="Chihuahua traits">            
-          </mat-chip-set>
-        </mat-card-footer>
-      </mat-card>
+        <div class="col-lg-5 col-md-5 col-sm-5" style="margin-top: 1%">
+          <button mat-flat-button id="btn-dashboard-plans" class="custom-register-button" [routerLink]="['/dashboard/plans']">{{ 'PLANS' | translate }}</button>
+          <br>
+          <br> 
+          <button mat-flat-button id="btn-dashboard" class="custom-register-button" [routerLink]="['/dashboard/profile']">{{ 'DASHBOARD' | translate }}</button>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-5" style="margin-top: 1%">
+          <button mat-flat-button id="btn-reports" class="custom-register-button" [routerLink]="['/dashboard/report']">{{ 'REPORTS' | translate }}</button>
+          <br>
+          <br>
+          <button mat-flat-button id="btn-shipments" class="custom-register-button" [routerLink]="['/dashboard/invoice']">{{ 'INVOICES' | translate }}</button>
+        </div>
+
+        <div class="col-lg-1 col-md-1 col-sm-1" style="margin-top: 1%">
+        </div>
+
+      </div>
+      
 
     </div>
     

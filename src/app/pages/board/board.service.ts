@@ -5,6 +5,7 @@ import { Boardfilter } from './interfaces/boardfilter';
 import { Observable } from 'rxjs';
 import { Boardpercentage } from './interfaces/boardpercentage';
 import { Incidentsummary } from './interfaces/boardsummary';
+import {BoardResponse} from "./interfaces/BoardResponse";
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +17,9 @@ export class BoardService {
   private userUrl: string = environment.apiUrl + '/user/';
 
 constructor(private httpClient: HttpClient) { }
-  getIncidentPercentage(filters: Boardfilter): Observable<Boardpercentage> {
+  getIncidentPercentage(filters: Boardfilter): Observable<BoardResponse> {
     const params = this.createHttpParams(filters);
-    return this.httpClient.get<Boardpercentage>(`${this.incidentUrl}channels/percentage`, { params });
+    return this.httpClient.get<BoardResponse>(`${this.incidentUrl}channels/percentage`, { params });
   }
 
   getIncidentSummary(filters: Boardfilter): Observable<Incidentsummary> {

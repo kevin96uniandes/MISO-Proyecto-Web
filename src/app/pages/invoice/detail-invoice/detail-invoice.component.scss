@@ -1,0 +1,58 @@
+.container {
+    text-align: center;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.filter {
+    padding-top: 1%;
+}
+
+.invoice-card-div {
+    margin-inline: auto;
+    width: 50%;
+}
+
+.invoice-card {
+    border: 1px solid #407F7F !important;
+}
+
+.download-icon {
+    font-size: 19px;
+    height: 15px;
+}
+
+.btn-form-primary {
+    background-color:#407F7F !important;
+    color: #fff !important; 
+    border-style: groove;
+    border-color: #d2cece;
+    width: 200px;
+  }
+
+  .btn-form-secondary {
+    background-color: #fff !important; 
+    color:  #407F7F !important; 
+    border-color: #407F7F;
+    width: 200px;
+  }
+
+  .btn-form-third {
+    color: #FFFFFF !important; 
+    background-color: #5D7A8E !important; 
+    border-color: #5D7A8E;
+    width: 200px;
+  }
+
+  .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);  
+    z-index: 1000;  
+  }

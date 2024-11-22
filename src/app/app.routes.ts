@@ -16,6 +16,11 @@ import { ListComponent } from './pages/incident/list/list.component';
 import { DetailComponent } from './pages/incident/detail/detail.component';
 import { CallrecorddetailsComponent } from './pages/incident/callrecorddetails/callrecorddetails.component';
 import { RoleGuard } from './pages/dashboard/role.guard';
+import { ClientProfileComponent } from './pages/profile/client-profile/client-profile.component';
+import { DetailInvoiceComponent } from './pages/invoice/detail-invoice/detail-invoice.component';
+import { PaymentMethodComponent } from './pages/invoice/payment-method/payment-method.component';
+import { BoardComponent } from './pages/board/board.component';
+import { ReportComponent } from './pages/report/report.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
@@ -23,7 +28,7 @@ export const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [DashboardGuard],
-    children: [
+    children: [ 
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: 'home', component: HomeComponent },
       { path: '**', redirectTo: 'dashboard/home' },
@@ -32,14 +37,19 @@ export const routes: Routes = [
       { path: 'ranking', component: RankingComponent, canActivate: [RoleGuard], data: { role: 'agente' } },
       { path: 'incident/list', component: ListComponent },
       { path: 'incident/detail/:id', component: DetailComponent },
-      { path: 'list/agents', component: ListAgentsComponent },
-      { path: 'register/agent', component: RegisterAgentComponent },
-      { path: 'plans', component: SelectPlanComponent },
-      { path: 'details-call', component: CallrecorddetailsComponent }
+      { path: 'register/agent', component: RegisterAgentComponent, data: { role: 'cliente' }  },
+      { path: 'plans', component: SelectPlanComponent, data: { role: 'cliente' }  },
+      { path: 'details-call', component: CallrecorddetailsComponent, data: { role: 'cliente' } },
+      { path: 'board', component: BoardComponent, data: { role: 'cliente' }},
+      { path: 'report', component: ReportComponent, data: { role: 'cliente' }},
+      { path: 'profile', component: ClientProfileComponent},
+      { path: 'invoice', component: DetailInvoiceComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  },
+      { path: 'invoice/payment-method/:invoice_id', component: PaymentMethodComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  },
+      { path: 'list/agents', component: ListAgentsComponent, canActivate: [RoleGuard], data: { role: 'cliente' } },
+      { path: 'board', component: BoardComponent}
     ]
   },
   { path: 'register/client', component: RegisterClientComponent },
-  { path: 'details-call', component: CallrecorddetailsComponent },
   { path: '', redirectTo:'/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' }
 ];

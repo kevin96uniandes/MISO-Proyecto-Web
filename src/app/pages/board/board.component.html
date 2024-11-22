@@ -1,0 +1,149 @@
+<div class="container-fluid">
+  <div class="row">
+    <h4 class="title-text-color title-size title">{{ 'BOARD_INCIDENTS' | translate }}</h4>
+  </div>
+  <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-3">
+        <mat-form-field appearance="outline" class="w-100" id="channel">
+          <mat-label>{{ 'INCIDENT_CHANNEL' | translate }}</mat-label>
+          <mat-select formControlName="canal_id">
+            <mat-option value="1">{{ 'PHONE_CALL' | translate }}</mat-option>
+            <mat-option value="2">{{ 'EMAIL' | translate }}</mat-option>
+            <mat-option value="3">{{ 'MOBILE_APP' | translate }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-3">
+        <mat-form-field appearance="outline" class="w-100" id="status">
+          <mat-label>{{ 'STATUS' | translate }}</mat-label>
+          <mat-select formControlName="state">
+            <mat-option value="1">{{ 'OPEN' | translate }}</mat-option>
+            <mat-option value="2">{{ 'DISMISSED' | translate }}</mat-option>
+            <mat-option value="3">{{ 'ESCALATED' | translate }}</mat-option>
+            <mat-option value="4">{{ 'CLOSED_SATISFACTORILY' | translate }}</mat-option>
+            <mat-option value="5">{{ 'CLOSED_UNSATISFACTORILY' | translate }}</mat-option>
+            <mat-option value="6">{{ 'REOPENED' | translate }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-3">
+        <mat-form-field class="w-100">
+          <mat-label>{{ 'START_DATE' | translate }}</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="start_date">
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-3">
+        <mat-form-field class="w-100">
+          <mat-label>{{ 'END_DATE' | translate }}</mat-label>
+          <input matInput [matDatepicker]="picker1" formControlName="end_date">
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">&nbsp;</div>
+      <div class="col-2">
+        <button mat-flat-button class="btn-abc-primary w-100" type="submit" color="primary">{{ 'FILTER' | translate }}</button>
+      </div>
+      <div class="col-2">
+        <button mat-flat-button class="btn-abc-primary w-100" color="primary" (click)="clearFilters()">{{ 'CLEAN_FILTER' | translate }}</button>
+      </div>
+      <div class="col-4">&nbsp;</div>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col-12 title-text-color" style="font-size: 1.25em;">{{ 'COMMUNICATION_CHANNELS' | translate }}</div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <mat-card class="channel-card email">
+        <h2>Llamada Telefónica</h2>
+        <h1>{{ phoneCallPercentage }} %</h1>
+        <span class="arrow"><mat-icon id="color-eye">arrow_upward</mat-icon></span>
+      </mat-card>
+    </div>
+    <div class="col-4">
+      <mat-card class="channel-card chatbot">
+        <h2>Correo Electrónico</h2>
+        <h1>{{ emailPercentage }} %</h1>
+        <span class="arrow"><mat-icon id="color-eye">arrow_upward</mat-icon></span>
+      </mat-card>
+    </div>
+    <div class="col-4">
+      <mat-card class="channel-card app">
+        <h2>App Movil</h2>
+        <h1>{{ appPercentage }} %</h1>
+        <span class="arrow"><mat-icon id="color-eye">arrow_upward</mat-icon></span>
+      </mat-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1">&nbsp;</div>
+    <div class="col-4">
+      <div id="chart">
+        <apx-chart
+          [series]="chartOptionsPie.series"
+          [chart]="chartOptionsPie.chart"
+          [labels]="chartOptionsPie.labels"
+          [responsive]="chartOptionsPie.responsive"
+          [title]="chartOptionsPie.title">
+        </apx-chart>
+      </div>
+    </div>
+    <div class="col-2">&nbsp;</div>
+    <div class="col-4">
+      <div id="chart">
+        <apx-chart
+          [series]="chartOptionsLine.series"
+          [chart]="chartOptionsLine.chart"
+          [xaxis]="chartOptionsLine.xaxis"
+          [title]="chartOptionsLine.title"
+          [stroke]="chartOptionsLine.stroke">
+        </apx-chart>
+      </div>
+    </div>
+    <div class="col-1">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-12 title-text-color" style="font-size: 1.25em; margin-bottom: 15px;">{{ 'TABLE_INCIDENTS' | translate }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" id="table_incident">
+        <ng-container matColumnDef="codigo">
+          <th mat-header-cell *matHeaderCellDef> {{ 'CODE' | translate }} </th>
+          <td mat-cell *matCellDef="let incident"> {{ incident.codigo }} </td>
+        </ng-container>
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef> {{ 'STATUS' | translate }} </th>
+          <td mat-cell *matCellDef="let incident"> {{ incident.estado }} </td>
+        </ng-container>
+        <ng-container matColumnDef="canal">
+          <th mat-header-cell *matHeaderCellDef> {{ 'INCIDENT_CHANNEL' | translate }} </th>
+          <td mat-cell *matCellDef="let incident"> {{ incident.canal }} </td>
+        </ng-container>
+        <ng-container matColumnDef="tipo">
+          <th mat-header-cell *matHeaderCellDef> {{ 'INCIDENT_TYPE' | translate }} </th>
+          <td mat-cell *matCellDef="let incident"> {{ incident.tipo }} </td>
+        </ng-container>
+        <ng-container matColumnDef="fecha_actualizacion">
+          <th mat-header-cell *matHeaderCellDef> {{ 'UPDATE_DATE' | translate }} </th>
+          <td mat-cell *matCellDef="let incident"> {{ incident.fecha_actualizacion | date: 'yyyy-MM-dd' }} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons id="paginator"></mat-paginator>
+    </div>
+  </div>
+</div>

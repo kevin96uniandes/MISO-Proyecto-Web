@@ -6,34 +6,39 @@
       <h6 class="title-text-color title-size">{{ 'CLIENT_INFORMATION' | translate }}</h6>    
       <mat-card class="example-card" appearance="outlined">
         <mat-card-header>
-          <mat-card-title>
-            <mat-icon matListIcon class="sidebar-color-item">account_circle</mat-icon>
-            <span matLine class="sidebar-color-item">{{ userName }}</span>
+          <mat-card-title class="custom-card-title">
+
+            <div class="row" style="margin-top: 5%;">
+              <div class="col-lg-3 col-md-3 col-sm-3" style="margin-top: 1%">
+                <mat-icon matListIcon class="sidebar-color-item" style="margin-right: 1%;">account_circle</mat-icon>
+              </div>
+              <div class="col-lg-9 col-md-9 col-sm-9" style="margin-top: 1%">
+                <span matLine class="sidebar-color-item">{{ userName }}</span>
+              </div>      
+            </div>
+          
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
+          <br>
           <p><b>{{ 'IDENTITY_TYPE' | translate }}</b>: {{documentType}}</p>
           <p><b>{{ 'IDENTITY_NUMBER' | translate }}</b>: {{documentNumber}}</p>
           <p><b>{{ 'UPDATE_DATE' | translate }}</b>: {{lastUpdate}}</p>
           <p><b>{{ 'PHONE' | translate }}</b>: {{phone}}</p>
           <p><b>{{ 'EMAIL' | translate }}</b>: {{email}}</p>
         </mat-card-content>
-        <mat-card-footer class="example-card-footer">
-          <mat-chip-set aria-label="Chihuahua traits">
-            <button mat-flat-button id="btn-change-pass" class="custom-register-button">{{ 'CHANGE_PASSWORD' | translate }}</button>
-          </mat-chip-set>
-        </mat-card-footer>
       </mat-card>
     </div>
 
     <div class="col-lg-8 col-md-8 col-sm-8" style="margin-top: 1%">
       <h6 class="title-text-color title-size">{{ 'Listado de incidencias' | translate }}</h6>
       <table mat-table [dataSource]="dataIncidents" matSort class="mat-elevation-z8" id="incidences-table">
+        
         <ng-container matColumnDef="acciones">
           <th mat-header-cell *matHeaderCellDef> {{ 'ACTIONS' | translate }} </th>
           <td mat-cell *matCellDef="let element">
-            <button (click)="goToIncidentDetail(element.id)" mat-icon-button aria-label="Ver detalles" id="detail-agent">
-              <mat-icon id="color-eye" style="color: #82BDAE;">visibility</mat-icon>
+            <button (click)="goToIncidentDetail(element.id)" mat-icon-button aria-label="Ver detalles" id="custom-detail-incident">
+              <mat-icon id="custom-color-eye">visibility</mat-icon>
             </button>
           </td>
         </ng-container>
@@ -49,7 +54,7 @@
         </ng-container>
 
         <ng-container matColumnDef="subject">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header id="th-subject">{{ 'SUBJECT' | translate }} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header id="th-subject">{{ 'INCIDENT_SUBJECT' | translate }} </th>
           <td mat-cell *matCellDef="let element"> {{element.asunto}} </td>
         </ng-container>
 
@@ -59,7 +64,7 @@
         </ng-container>
         
         <ng-container matColumnDef="updatedAt">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header id="th-updated-at"> {{ 'UPDATED_AT' | translate }} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header id="th-updated-at"> {{ 'UPDATE_DATE' | translate }} </th>
           <td mat-cell *matCellDef="let element"> {{element.fecha_actualizacion}} </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -72,29 +77,28 @@
 
   <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-4" style="margin-top: 1%">
-      <h6 class="title-text-color title-size">{{ 'Acciones' | translate }}</h6>
-    
-      <mat-card class="example-card" appearance="outlined">
-        <mat-card-header>
-          <mat-card-title>
-            <mat-icon matListIcon class="sidebar-color-item">group_work</mat-icon>
-            <span matLine class="sidebar-color-item">{{ 'ACTIONS' | translate }}</span>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
-              <mat-button-toggle class="custom-mat-button-toggle" value="bold" [routerLink]="['/dashboard/plans']" mat-flat-button id="btn-dashboard-plans">{{ 'Planes' | translate }}</mat-button-toggle>
-              <mat-button-toggle class="custom-mat-button-toggle" value="bold" [routerLink]="['/dashboard']" mat-flat-button id="btn-dashboard">{{ 'Dashboard' | translate }}</mat-button-toggle>
-              <mat-button-toggle class="custom-mat-button-toggle" value="bold" [routerLink]="['/reportes']" mat-flat-button id="btn-reports">{{ 'Reportes' | translate }}</mat-button-toggle>
-              <mat-button-toggle class="custom-mat-button-toggle" value="bold" [routerLink]="['/facturas']" mat-flat-button id="btn-shipments">{{ 'Facturas' | translate }}</mat-button-toggle>
-            </mat-button-toggle-group>
+      <div class="row" style="margin-top: 5%;">
+        <div class="col-lg- col-md-1 col-sm-1" style="margin-top: 1%">
+        </div>
 
-        </mat-card-content>
-        <mat-card-footer class="example-card-footer">
-          <mat-chip-set aria-label="Chihuahua traits">            
-          </mat-chip-set>
-        </mat-card-footer>
-      </mat-card>
+        <div class="col-lg-5 col-md-5 col-sm-5" style="margin-top: 1%">
+          <button mat-flat-button id="btn-dashboard-plans" class="custom-register-button" [routerLink]="['/dashboard/plans']">{{ 'PLANS' | translate }}</button>
+          <br>
+          <br> 
+          <button mat-flat-button id="btn-dashboard" class="custom-register-button" [routerLink]="['/dashboard/profile']">{{ 'DASHBOARD' | translate }}</button>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-5" style="margin-top: 1%">
+          <button mat-flat-button id="btn-reports" class="custom-register-button" [routerLink]="['/dashboard/report']">{{ 'REPORTS' | translate }}</button>
+          <br>
+          <br>
+          <button mat-flat-button id="btn-shipments" class="custom-register-button" [routerLink]="['/dashboard/invoice']">{{ 'INVOICES' | translate }}</button>
+        </div>
+
+        <div class="col-lg-1 col-md-1 col-sm-1" style="margin-top: 1%">
+        </div>
+
+      </div>
+      
 
     </div>
     
@@ -104,8 +108,8 @@
         <ng-container matColumnDef="acciones">
           <th mat-header-cell *matHeaderCellDef id="th-actions-agent"> {{ 'ACTIONS' | translate }} </th>
           <td mat-cell *matCellDef="let element">
-            <button mat-icon-button aria-label="Ver detalles" id="detail-agent">
-              <mat-icon id="color-eye" style="color: #82BDAE;">visibility</mat-icon>
+            <button mat-icon-button aria-label="Ver detalles" id="custom-detail-agent">
+              <mat-icon id="custom-color-eye">visibility</mat-icon>
             </button>
           </td>
         </ng-container>

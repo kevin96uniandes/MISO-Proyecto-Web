@@ -5,6 +5,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { User } from '../auth/user';
 import { ProfileService } from './profile.service';
 import { Incident } from '../incident/interfaces/incident';
+import { Company } from './company';
 
 describe('ListService', () => {
   let service: ProfileService;
@@ -99,4 +100,30 @@ describe('ListService', () => {
     expect(req.request.method).toBe('GET');
     req.flush(mockUser);
   });
+
+
+  it('should fetch a company', () => {
+    const mockCompany: Company = {
+      id: 1,
+      nombre_empresa: "Tech Solutions",
+      numero_identificacion: "123456789",
+      email: "contact@techsolutions.com",
+      sector: "Technology",
+      telefono: "1234567890",
+      pais: "Colombia",
+      fecha_creacion: new Date("2020-01-01T00:00:00Z"),
+      fecha_actualizacion: new Date("2024-11-22T00:00:00Z")
+    };
+
+    const companyId = 1;
+
+    service.getCompanyById(companyId).subscribe(company => {
+      expect(company).toEqual(mockCompany);
+    })
+    
+    const req = httpTestingController.expectOne(`${apiUrl}/user/company/${companyId}`);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockCompany);
+  });
+
 });

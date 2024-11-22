@@ -36,7 +36,24 @@ import { InvoiceStatePipe } from '../pipe/invoice-state.pipe';
 })
 export class DetailInvoiceComponent {
  
-  invoice!: Invoice
+  invoice: Invoice = {
+    "empresa_id": 0,
+    "estado_factura": "",
+    "fecha_actualizacion": "",
+    "fecha_creacion": "",
+    "fecha_pago": "",
+    "id": 0,
+    "incidencia_correo_precio_total": 0,
+    "numero_incidencia_correo": 0,
+    "incidencia_llamadas_precio_total": 0,
+    "numero_incidencia_llamadas": 0,
+    "incidencia_movil_precio_total": 0,
+    "numero_incidencia_movil": 0,
+    "plan_precio_total": 0,
+    "referencia_pago": "",
+    "valor_pagar": 0
+  }
+
   month!: string
   lang!: string
   currency!: string
@@ -81,6 +98,7 @@ export class DetailInvoiceComponent {
           Swal.fire({
             icon: 'error',
             title: error.error.msg,
+            confirmButtonColor: '#82BDAE'
           }).then((result) => {
             if (result.isConfirmed) {
               if(error.status == 416){
@@ -159,7 +177,7 @@ export class DetailInvoiceComponent {
         this.invoice.incidencia_llamadas_precio_total *= dolarValue
         this.invoice.incidencia_movil_precio_total *= dolarValue
         this.invoice.valor_pagar *= dolarValue
-
+        this.invoice.estado_factura = (this.invoice.estado_factura == 'Pending') ? 'Pendiente' : 'Pagado' 
         this.lang = 'es'
         this.translate.use(this.lang)
         this.storageService.setItem("language", this.lang)
@@ -172,6 +190,7 @@ export class DetailInvoiceComponent {
         this.invoice.incidencia_llamadas_precio_total /= dolarValue
         this.invoice.incidencia_movil_precio_total /= dolarValue
         this.invoice.valor_pagar /= dolarValue
+        this.invoice.estado_factura = (this.invoice.estado_factura == 'Pendiente') ? 'Pending' : 'Paid' 
 
         this.lang = 'en'
         this.translate.use(this.lang)

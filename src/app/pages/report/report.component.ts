@@ -39,7 +39,7 @@ export class ReportComponent implements OnInit {
     private fb: FormBuilder,
     private reportService: ReportService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {

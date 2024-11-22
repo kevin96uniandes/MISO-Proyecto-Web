@@ -9,6 +9,7 @@ import { of, throwError } from 'rxjs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { StorageService } from '../../common/storage.service';
+import { EmailDialogComponent } from './email-dialog/email-dialog.component';
 
 describe('ReportComponent', () => {
   let component: ReportComponent;
@@ -103,15 +104,6 @@ describe('ReportComponent', () => {
 
       component.saveReport();
 
-      /*expect(reportService.saveReport).toHaveBeenCalledWith({
-        nombre_reporte: 'Reporte Test',
-        canal_id: '1',
-        estado_id: '2',
-        tipo_id: '3',
-        fecha_inicio: '10/31/2023',
-        fecha_fin: '11/14/2023',
-      });*/
-
       expect(snackBar.open).toHaveBeenCalledWith(
         'Por favor completa todos los campos obligatorios.',
         'Cerrar',
@@ -167,4 +159,72 @@ describe('ReportComponent', () => {
       expect(snackBar.open).toHaveBeenCalledWith('Filtros limpios.', 'Cerrar', { duration: 2000 });
     });
   });
+
+  describe('openEmailDialog', () => {
+    it('should open the email dialog with processed data', () => {
+      component.reportForm.setValue({
+        nombre_reporte: 'Reporte Test',
+        canal_id: '1',
+        estado_id: '2',
+        tipo_id: '3',
+        fecha_inicio: '11/01/2023',
+        fecha_fin: '11/15/2023',
+      });
+
+      const dialogRefSpy = jasmine.createSpyObj({
+        afterClosed: of('test@example.com'),
+      });
+
+      spyOn(component.dialog, 'open').and.returnValue(dialogRefSpy);
+
+      component.openEmailDialog();
+
+      expect(component.dialog.open).toHaveBeenCalledWith(EmailDialogComponent, {
+        width: '792px',
+        data: {
+          nombre_reporte: 'Reporte Test',
+          canal_id: '1',
+          estado_id: '2',
+          tipo_id: '3',
+          fecha_inicio: '11/01/2023',
+          fecha_fin: '11/15/2023',
+          lang: 'es',
+        },
+      });
+
+      expect(snackBar.open).toHaveBeenCalledWith(
+        'Correo enviado a: test@example.com',
+        'Cerrar',
+        { duration: 3000 }
+      );
+    });
+
+    it('should not show a snackbar message if the dialog is closed without a result', () => {
+      component.reportForm.setValue({
+        nombre_reporte: 'Reporte Test',
+        canal_id: '1',
+        estado_id: '2',
+        tipo_id: '3',
+        fecha_inicio: '11/01/2023',
+        fecha_fin: '11/15/2023',
+      });
+
+      const dialogRefSpy = jasmine.createSpyObj({
+        afterClosed: of(null),
+      });
+
+      // Mock dialog open method
+      spyOn(component.dialog, 'open').and.returnValue(dialogRefSpy);
+
+      // Call the method
+      component.openEmailDialog();
+
+      // Verify that the dialog is opened with the correct data
+      expect(component.dialog.open).toHaveBeenCalled();
+
+      // Verify that the snackbar is NOT called
+      expect(snackBar.open).not.toHaveBeenCalled();
+    });
+  });
+
 });

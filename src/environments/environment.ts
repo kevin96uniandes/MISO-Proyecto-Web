@@ -6,3 +6,4 @@ export const environment = {
     reportUrl: 'http://localhost:3006/report/',
     apiUrl: 'http://localhost:3000'
   };
+

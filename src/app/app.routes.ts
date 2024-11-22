@@ -28,7 +28,7 @@ export const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [DashboardGuard],
-    children: [
+    children: [ 
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: 'home', component: HomeComponent },
       { path: '**', redirectTo: 'dashboard/home' },
@@ -37,7 +37,6 @@ export const routes: Routes = [
       { path: 'ranking', component: RankingComponent, canActivate: [RoleGuard], data: { role: 'agente' } },
       { path: 'incident/list', component: ListComponent },
       { path: 'incident/detail/:id', component: DetailComponent },
-      { path: 'list/agents', component: ListAgentsComponent, data: { role: 'cliente' }  },
       { path: 'register/agent', component: RegisterAgentComponent, data: { role: 'cliente' }  },
       { path: 'plans', component: SelectPlanComponent, data: { role: 'cliente' }  },
       { path: 'details-call', component: CallrecorddetailsComponent, data: { role: 'cliente' } },
@@ -46,7 +45,8 @@ export const routes: Routes = [
       { path: 'profile', component: ClientProfileComponent},
       { path: 'invoice', component: DetailInvoiceComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  },
       { path: 'invoice/payment-method/:invoice_id', component: PaymentMethodComponent, canActivate: [RoleGuard], data: { role: 'cliente' }  },
-      { path: 'list/agents', component: ListAgentsComponent }
+      { path: 'list/agents', component: ListAgentsComponent, canActivate: [RoleGuard], data: { role: 'cliente' } },
+      { path: 'board', component: BoardComponent}
     ]
   },
   { path: 'register/client', component: RegisterClientComponent },

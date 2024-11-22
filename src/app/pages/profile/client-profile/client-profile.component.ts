@@ -83,7 +83,6 @@ export class ClientProfileComponent implements AfterViewInit {
     
     let userId = decoded["id"];
     
-
     this.profileService.getIncidences().subscribe({
       next: (incidents: Incident[]) => {
         
@@ -94,7 +93,6 @@ export class ClientProfileComponent implements AfterViewInit {
         this.cdr.detectChanges();
       }
     })
-
 
     this.profileService.getUser(userId).subscribe(
       (response) => {

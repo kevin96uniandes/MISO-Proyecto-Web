@@ -1,0 +1,13 @@
+<div class="title">{{ 'TITLE_DIALOG_MAIL' | translate }}</div>
+<div mat-dialog-content>
+  <form [formGroup]="emailForm">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Correo electrónico</mat-label>
+      <input matInput formControlName="email" placeholder="correo@ejemplo.com" id="email">
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions class="buttons">
+  <button mat-flat-button class="btn-abc-primary button-cancel" color="primary" (click)="onCancel()">{{ 'CANCEL' | translate }}</button>
+  <button mat-flat-button [disabled]="emailForm.invalid" (click)="onSend()" class="btn-abc-primary button-send">{{ 'SEND' | translate }}</button>
+</div>

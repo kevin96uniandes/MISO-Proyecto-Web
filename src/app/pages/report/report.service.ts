@@ -14,4 +14,8 @@ constructor(private httpClient: HttpClient) { }
   saveReport(reportData: any): Observable<any> {
     return this.httpClient.post(this.reportUrl+`generate`, reportData, { responseType: 'blob'});
   }
+
+  sendReportByEmail(reportData: any): Observable<any> {
+    return this.httpClient.post(this.reportUrl+`sendemail`, reportData, { responseType: 'blob'});
+  }
 }

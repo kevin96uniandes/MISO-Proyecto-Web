@@ -255,5 +255,6 @@
     "REPORT_NAME": "Nombre del reporte",
     "MAIL": "ENVIAR POR CORREO",
     "CLIENT_INFORMATION": "Información de cliente",
-    "CHANGE_PASSWORD": "Cambio de contraseña"
+    "CHANGE_PASSWORD": "Cambio de contraseña",
+    "TITLE_DIALOG_MAIL": "Por favor ingrese el correo electrónico al cual desea que llegue el reporte"
 }

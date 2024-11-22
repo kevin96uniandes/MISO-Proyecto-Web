@@ -1,23 +1,141 @@
 <testExecutions version="1">
+  <file path="src/app/pages/dashboard/dashboard.component.spec.ts">
+    <testCase name="DashboardComponent should set language from storage on init" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="DashboardComponent should load currentMenuUser based on user_type from decoded token" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="DashboardComponent debería restablecer el formulario después de enviar la solicitud" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="DashboardComponent debería manejar un error y establecer isLoading en false" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="DashboardComponent should create the component" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="DashboardComponent debería establecer isLoading en true mientras espera la respuesta y en false después" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="DashboardComponent debería añadir una respuesta de usuario y hacer la solicitud cuando el contexto no está vacío" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="DashboardComponent debería manejar el error y establecer activePlanId como null" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="DashboardComponent should start token validation check on init" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="DashboardComponent should show ia chat when active plan is greater than 2" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="DashboardComponent should stop validate token when logout" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+  </file>
+  <file path="src/app/app.component.spec.ts">
+    <testCase name="AppComponent should create the app" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="AppComponent should have the 'ABCall-web' title" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+  </file>
+  <file path="src/app/pages/auth/auth.service.spec.ts">
+    <testCase name="LoginService should fetch incident percentage with correct filters" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="LoginService should be created" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+  </file>
+  <file path="src/app/pages/board/board.component.spec.ts">
+    <testCase name="BoardComponent should get incident percentage data on init" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="BoardComponent should initialize filter form correctly" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="BoardComponent should reset filters and update data on clearFilters" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="BoardComponent should apply filters and update data on form submit" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="BoardComponent should update chart data after getting incident summary" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="BoardComponent should create" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="BoardComponent should get incident summary data on init" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+  </file>
   <file path="src/app/pages/incident/pipe/translate-document-type.pipe.spec.ts">
+    <testCase name="TranslateDocumentTypePipe debería devolver el valor original si no encuentra una traducción" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="TranslateDocumentTypePipe debería crear la pipe" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
     <testCase name="TranslateDocumentTypePipe debería usar el idioma por defecto si no hay valor en storageService" duration="1">
       <skipped message="Skipped"/>
     </testCase>
     <testCase name="TranslateDocumentTypePipe debería traducir &quot;Cédula_Extrangeria&quot; correctamente al inglés" duration="1">
       <skipped message="Skipped"/>
     </testCase>
-    <testCase name="TranslateDocumentTypePipe debería devolver el valor original si no encuentra una traducción" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
     <testCase name="TranslateDocumentTypePipe debería traducir &quot;Cédula_Cuidadania&quot; correctamente al español" duration="1">
       <skipped message="Skipped"/>
     </testCase>
-    <testCase name="TranslateDocumentTypePipe debería crear la pipe" duration="1">
+  </file>
+  <file path="src/app/pages/incident/upload-files/upload-files.component.spec.ts">
+    <testCase name="UploadFilesComponent should create the component" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="UploadFilesComponent should add files when a valid file is selected" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="UploadFilesComponent should not add a file that exceeds the maximum size" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="UploadFilesComponent should add files when files are dropped" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="UploadFilesComponent should remove a file from the list" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="UploadFilesComponent should emit the files list when a file is added or removed" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="UploadFilesComponent should show an error message when the file limit is exceeded" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="UploadFilesComponent should not add duplicate files" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="UploadFilesComponent should clear the file input when removing a file" duration="1">
       <skipped message="Skipped"/>
     </testCase>
   </file>
-  <file path="src/app/pages/incident/pipe/inicident-channel.pipe.spec.ts">
-    <testCase name="InicidentChannelPipe create an instance" duration="1">
+  <file path="src/app/pages/incident/user-query/user-query.component.spec.ts">
+    <testCase name="UserQueryComponent should show an error message if the service call fails" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="UserQueryComponent should mark all controls as touched and update validity if form is invalid" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="UserQueryComponent should navigate to /dashboard/ranking with person data if person is found" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="UserQueryComponent should create" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="UserQueryComponent should initialize the form on ngOnInit" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="UserQueryComponent should navigate to /dashboard/incident if person is not found" duration="1">
       <skipped message="Skipped"/>
     </testCase>
   </file>
@@ -25,68 +143,62 @@
     <testCase name="LoginComponent should initialize the form with two controls" duration="1">
       <skipped message="Skipped"/>
     </testCase>
-    <testCase name="LoginComponent should navigate to the register page" duration="1">
+    <testCase name="LoginComponent should create the component" duration="1">
       <skipped message="Skipped"/>
     </testCase>
     <testCase name="LoginComponent should clear error message when username is valid" duration="1">
       <skipped message="Skipped"/>
     </testCase>
-    <testCase name="LoginComponent should create the component" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="LoginComponent should change language and store it" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
     <testCase name="LoginComponent should set error message when username is required" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="LoginComponent should set error message when password is required" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="LoginComponent should clear error message when password is valid" duration="1">
       <skipped message="Skipped"/>
     </testCase>
     <testCase name="LoginComponent should authenticate successfully, set tokens, and navigate to dashboard" duration="1">
       <skipped message="Skipped"/>
     </testCase>
-    <testCase name="LoginComponent should show error alert when authentication fails" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
     <testCase name="LoginComponent should toggle password visibility on click" duration="1">
       <skipped message="Skipped"/>
     </testCase>
+    <testCase name="LoginComponent should change language and store it" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="LoginComponent should set error message when password is required" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="LoginComponent should navigate to the register page" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="LoginComponent should show error alert when authentication fails" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="LoginComponent should clear error message when password is valid" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
   </file>
-  <file path="src/app/pages/dashboard/dashboard.service.spec.ts">
-    <testCase name="DashboardService should be created" duration="1">
+  <file path="src/app/pages/incident/callrecorddetails/callrecorddetails.component.spec.ts">
+    <testCase name="CallrecorddetailsComponent should set the audio source correctly when selectedCall is available" duration="1">
       <skipped message="Skipped"/>
     </testCase>
-    <testCase name="DashboardService should successfully" duration="1">
+    <testCase name="CallrecorddetailsComponent should create" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="CallrecorddetailsComponent should go back to the previous location" duration="1">
       <skipped message="Skipped"/>
     </testCase>
   </file>
-  <file path="src/app/pages/register/register-client/register-client.component.spec.ts">
-    <testCase name="RegisterClientComponent should call registerClient on RegisterService when form is valid" duration="1">
+  <file path="src/app/pages/incident/detail/detail.component.spec.ts">
+    <testCase name="DetailComponent should handle error on incident update" duration="1">
       <skipped message="Skipped"/>
     </testCase>
-    <testCase name="RegisterClientComponent should show an error when passwords do not match" duration="1">
+    <testCase name="DetailComponent should open management incident dialog and handle success update" duration="1">
       <skipped message="Skipped"/>
     </testCase>
-    <testCase name="RegisterClientComponent should make the registerForm invalid when fields are empty" duration="1">
+    <testCase name="DetailComponent should call goBack and navigate back" duration="1">
       <skipped message="Skipped"/>
     </testCase>
-    <testCase name="RegisterClientComponent should make the registerForm valid when all fields are correctly filled" duration="1">
+    <testCase name="DetailComponent should handle update error in openManagementIncidence" duration="1">
       <skipped message="Skipped"/>
     </testCase>
-    <testCase name="RegisterClientComponent should navigate to /login on successful registration" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="RegisterClientComponent should create" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="RegisterClientComponent should show an error message on registration failure" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="RegisterClientComponent should initialize the registerForm with empty values" duration="1">
+    <testCase name="DetailComponent should initialize data on ngOnInit" duration="1">
       <skipped message="Skipped"/>
     </testCase>
   </file>
@@ -95,370 +207,23 @@
       <skipped message="Skipped"/>
     </testCase>
   </file>
-  <file path="src/app/pages/incident/upload-files/upload-files.component.spec.ts">
-    <testCase name="UploadFilesComponent should add files when files are dropped" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="UploadFilesComponent should add files when a valid file is selected" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="UploadFilesComponent should create the component" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="UploadFilesComponent should not add a file that exceeds the maximum size" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="UploadFilesComponent should not add duplicate files" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="UploadFilesComponent should remove a file from the list" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="UploadFilesComponent should clear the file input when removing a file" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="UploadFilesComponent should show an error message when the file limit is exceeded" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="UploadFilesComponent should emit the files list when a file is added or removed" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-  </file>
-  <file path="src/app/pages/register/register.service.spec.ts">
-    <testCase name="RegisterService should register a agent" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="RegisterService should be created" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="RegisterService should register a client" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-  </file>
-  <file path="src/app/pages/incident/ranking/ranking.component.spec.ts">
-    <testCase name="RankingComponent should create the component" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="RankingComponent should load products data and set paginator" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="RankingComponent should log an error message if getCallById fails" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="RankingComponent should load incidents data and set paginator" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="RankingComponent should navigate to create incident with person data" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="RankingComponent should navigate to details-call page with the call data on success" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="RankingComponent should load calls data and set paginator" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-  </file>
-  <file path="src/app/pages/incident/detail/detail.component.spec.ts">
-    <testCase name="DetailComponent should handle update error in openManagementIncidence" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="DetailComponent should open management incident dialog and handle success update" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="DetailComponent should handle error on incident update" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="DetailComponent should call goBack and navigate back" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="DetailComponent should initialize data on ngOnInit" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-  </file>
-  <file path="src/app/pages/list/list-agents/list-agents.component.spec.ts">
-    <testCase name="ListAgentsComponent should create the component" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="ListAgentsComponent should set paginator and sort after view initialization" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="ListAgentsComponent should fetch agents on init and set the data source" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="ListAgentsComponent should navigate to register agent when createAgent is called" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="ListAgentsComponent should filter data correctly when applyFilter is called" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-  </file>
-  <file path="src/app/pages/incident/form/form.component.spec.ts">
-    <testCase name="FormComponent you should mark the incident subject field as invalid if it is empty." duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent should mark controls as touched and call detectChanges if the form is invalid" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent should mark the identity number field as invalid if the identity number does not have valid formatting" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent should call createIncident and display error message on failure" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent should call createIncident and display success message on successful creation" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the email field as invalid if the size is greater than 100 characters" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent should call location.back when goBack is called" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent should mark the cellphone field as invalid if the identity number does not have valid formatting" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the name field as invalid if the size is less than 2 characters." duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the name field as invalid if it is empty." duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the cellphone field as invalid if it is empty." duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent should update attachedFiles when onFilesChanged is called" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the cellphone field as invalid if the size is less than 2 characters." duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent should have fields in the form" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the incident detail field as invalid if it is empty." duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the incident channel field as invalid if it is empty." duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the incident fype field as invalid if it is empty." duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent should mark the identity number field as invalid if the identity number does not have valid formatting" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the lastName field as invalid if the size is greater than 100 characters" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the identity number field as invalid if it is empty." duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the lastName field as invalid if the size is less than 2 characters." duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the incident subject as invalid if the size is greater than 100 characters" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the incident subject field as invalid if the size is less than 2 characters." duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the lastName field as invalid if it is empty." duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent should have a defined form" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the name field as invalid if the size is greater than 100 characters" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the cellphone as invalid if the size is greater than 100 characters" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the incident detail field as invalid if the size is less than 2 characters." duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the identity number field as invalid if the size is less than 2 characters." duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent should create" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent should mark the email field as invalid if the email does not have valid formatting" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the incident detail as invalid if the size is greater than 100 characters" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the email field as invalid if the size is less than 2 characters." duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the email field as invalid if it is empty." duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the identity number as invalid if the size is greater than 100 characters" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="FormComponent you should mark the identityType field as invalid if it is empty." duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-  </file>
-  <file path="src/app/pages/incident/user-query/user-query.component.spec.ts">
-    <testCase name="UserQueryComponent should mark all controls as touched and update validity if form is invalid" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="UserQueryComponent should create" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="UserQueryComponent should show an error message if the service call fails" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="UserQueryComponent should navigate to /dashboard/ranking with person data if person is found" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="UserQueryComponent should navigate to /dashboard/incident if person is not found" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="UserQueryComponent should initialize the form on ngOnInit" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-  </file>
-  <file path="src/app/pages/register/register-agent/register-agent.component.spec.ts">
-    <testCase name="RegisterAgentComponent should make the registerForm valid when all fields are correctly filled" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="RegisterAgentComponent should make the registerForm invalid when fields are empty" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="RegisterAgentComponent should create" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="RegisterAgentComponent should show an error message on registration failure" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="RegisterAgentComponent should show an error when passwords do not match" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="RegisterAgentComponent should initialize the registerForm with empty values" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="RegisterAgentComponent should navigate to /login on successful registration" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="RegisterAgentComponent should call registerAgent on RegisterService when form is valid" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-  </file>
-  <file path="src/app/pages/incident/incident-dialog/incident-dialog.component.spec.ts">
-    <testCase name="IncidentDialogComponent should create" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="IncidentDialogComponent should close the dialog with form data when saving with a valid form" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="IncidentDialogComponent should call `getAgentsAvaiables` and set `hasMoreThanOneAgent` based on response" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="IncidentDialogComponent should close the dialog with false when cancelling" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="IncidentDialogComponent should mark all controls as touched when saving with invalid form" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="IncidentDialogComponent should initialize filtered agents based on search term" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="IncidentDialogComponent should initialize form with correct values" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-  </file>
-  <file path="src/app/pages/incident/pipe/incident-type.pipe.spec.ts">
-    <testCase name="IncidentTypePipe create an instance" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-  </file>
-  <file path="src/app/pages/incident/pipe/incident-status.pipe.spec.ts">
-    <testCase name="IncidentStatusPipe create an instance" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-  </file>
-  <file path="src/app/pages/plan/plan-dialog/plan-dialog.component.spec.ts">
-    <testCase name="PlanDialogComponent should initialize with injected data" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="PlanDialogComponent should create the component" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="PlanDialogComponent should close the dialog without data when rejected" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="PlanDialogComponent should close the dialog with plan and empresa IDs when accepted" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-  </file>
   <file path="src/app/common/storage.service.spec.ts">
-    <testCase name="StorageService should return null when sessionStorage.getItem throws an error" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="StorageService should clear sessionStorage" duration="1">
+    <testCase name="StorageService should be created" duration="1">
       <skipped message="Skipped"/>
     </testCase>
     <testCase name="StorageService should return null for a non-existing item" duration="1">
       <skipped message="Skipped"/>
     </testCase>
-    <testCase name="StorageService should get an item from sessionStorage" duration="1">
+    <testCase name="StorageService should clear sessionStorage" duration="1">
       <skipped message="Skipped"/>
     </testCase>
     <testCase name="StorageService should set an item in sessionStorage" duration="1">
       <skipped message="Skipped"/>
     </testCase>
-    <testCase name="StorageService should be created" duration="1">
+    <testCase name="StorageService should return null when sessionStorage.getItem throws an error" duration="1">
       <skipped message="Skipped"/>
     </testCase>
-  </file>
-  <file path="src/app/pages/list/list.service.spec.ts">
-    <testCase name="ListService should be created" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="ListService should fetch agents by company ID" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-  </file>
-  <file path="src/app/pages/incident/list/list.component.spec.ts">
-    <testCase name="ListComponent should fetch incidents on initialization" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="ListComponent should apply filters correctly" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="ListComponent should handle error when fetching incidents" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="ListComponent should create" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="ListComponent should navigate to incident detail" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="ListComponent should clear filters" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="ListComponent should set isAgentUser based on decoded token" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="ListComponent should navigate to user query" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-  </file>
-  <file path="src/app/app.component.spec.ts">
-    <testCase name="AppComponent should have the 'ABCall-web' title" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="AppComponent should create the app" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-  </file>
-  <file path="src/app/interceptors/jwt.service.spec.ts">
-    <testCase name="jwtInterceptor should add Authorization header" duration="1">
+    <testCase name="StorageService should get an item from sessionStorage" duration="1">
       <skipped message="Skipped"/>
     </testCase>
   </file>
@@ -468,71 +233,181 @@
     </testCase>
   </file>
   <file path="src/app/common/token.service.spec.ts">
+    <testCase name="TokenService should validate token if present" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
     <testCase name="TokenService should be created" duration="1">
       <skipped message="Skipped"/>
     </testCase>
     <testCase name="TokenService should navigate to login if token is absent" duration="1">
       <skipped message="Skipped"/>
     </testCase>
-    <testCase name="TokenService should validate token if present" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
     <testCase name="TokenService should clear storage and navigate to login if token is invalid" duration="1">
       <skipped message="Skipped"/>
     </testCase>
   </file>
+  <file path="src/app/pages/incident/incident-dialog/incident-dialog.component.spec.ts">
+    <testCase name="IncidentDialogComponent should call `getAgentsAvaiables` and set `hasMoreThanOneAgent` based on response" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="IncidentDialogComponent should close the dialog with false when cancelling" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="IncidentDialogComponent should mark all controls as touched when saving with invalid form" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="IncidentDialogComponent should close the dialog with form data when saving with a valid form" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="IncidentDialogComponent should create" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="IncidentDialogComponent should initialize filtered agents based on search term" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="IncidentDialogComponent should initialize form with correct values" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+  </file>
+  <file path="src/app/pages/incident/form/form.component.spec.ts">
+    <testCase name="FormComponent should create" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the incident subject field as invalid if the size is less than 2 characters." duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent should have a defined form" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the incident subject as invalid if the size is greater than 100 characters" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent should update attachedFiles when onFilesChanged is called" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the incident detail field as invalid if the size is less than 2 characters." duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the email field as invalid if the size is less than 2 characters." duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent should mark the identity number field as invalid if the identity number does not have valid formatting" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the incident fype field as invalid if it is empty." duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the email field as invalid if it is empty." duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the incident detail as invalid if the size is greater than 100 characters" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the incident channel field as invalid if it is empty." duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent should call createIncident and display success message on successful creation" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the incident subject field as invalid if it is empty." duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent should mark the email field as invalid if the email does not have valid formatting" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the email field as invalid if the size is greater than 100 characters" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent should call location.back when goBack is called" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the cellphone as invalid if the size is greater than 100 characters" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent should mark the cellphone field as invalid if the identity number does not have valid formatting" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent should call createIncident and display error message on failure" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the lastName field as invalid if the size is less than 2 characters." duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the cellphone field as invalid if the size is less than 2 characters." duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the cellphone field as invalid if it is empty." duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the lastName field as invalid if the size is greater than 100 characters" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the identityType field as invalid if it is empty." duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent should mark controls as touched and call detectChanges if the form is invalid" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the name field as invalid if the size is greater than 100 characters" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the identity number as invalid if the size is greater than 100 characters" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent should mark the identity number field as invalid if the identity number does not have valid formatting" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the lastName field as invalid if it is empty." duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the identity number field as invalid if it is empty." duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the name field as invalid if the size is less than 2 characters." duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the identity number field as invalid if the size is less than 2 characters." duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the incident detail field as invalid if it is empty." duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent should have fields in the form" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="FormComponent you should mark the name field as invalid if it is empty." duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+  </file>
+  <file path="src/app/interceptors/jwt.service.spec.ts">
+    <testCase name="jwtInterceptor should add Authorization header" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+  </file>
   <file path="src/app/pages/plan/plan.service.spec.ts">
-    <testCase name="PlanService #updateContract should update the contract and return an Observable&lt;any>" duration="1">
+    <testCase name="PlanService should be created" duration="1">
       <skipped message="Skipped"/>
     </testCase>
     <testCase name="PlanService #getActivePlan should return an Observable&lt;any> with the active plan" duration="1">
       <skipped message="Skipped"/>
     </testCase>
-    <testCase name="PlanService should be created" duration="1">
+    <testCase name="PlanService #updateContract should update the contract and return an Observable&lt;any>" duration="1">
       <skipped message="Skipped"/>
     </testCase>
   </file>
-  <file path="src/app/pages/dashboard/dashboard.component.spec.ts">
-    <testCase name="DashboardComponent should set language from storage on init" duration="1">
+  <file path="src/app/pages/incident/pipe/incident-status.pipe.spec.ts">
+    <testCase name="IncidentStatusPipe create an instance" duration="1">
       <skipped message="Skipped"/>
     </testCase>
-    <testCase name="DashboardComponent should create the component" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="DashboardComponent should stop validate token when logout" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="DashboardComponent should start token validation check on init" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="DashboardComponent should load currentMenuUser based on user_type from decoded token" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="DashboardComponent debería añadir una respuesta de usuario y hacer la solicitud cuando el contexto no está vacío" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="DashboardComponent debería restablecer el formulario después de enviar la solicitud" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="DashboardComponent should show ia chat when active plan is greater than 2" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="DashboardComponent debería establecer isLoading en true mientras espera la respuesta y en false después" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="DashboardComponent debería manejar un error y establecer isLoading en false" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="DashboardComponent debería manejar el error y establecer activePlanId como null" duration="152"/>
   </file>
   <file path="src/app/pages/auth/auth.service.spec.ts">
+    <testCase name="LoginService should login successfully" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
     <testCase name="LoginService should validate token successfully" duration="1">
       <skipped message="Skipped"/>
     </testCase>
     <testCase name="LoginService should handle token validation error" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="LoginService should login successfully" duration="1">
       <skipped message="Skipped"/>
     </testCase>
     <testCase name="LoginService should handle login error" duration="1">
@@ -542,17 +417,152 @@
       <skipped message="Skipped"/>
     </testCase>
   </file>
+  <file path="src/app/pages/register/register.service.spec.ts">
+    <testCase name="RegisterService should be created" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterService should register a client" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterService should register a agent" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+  </file>
+  <file path="src/app/pages/incident/list/list.component.spec.ts">
+    <testCase name="ListComponent should handle error when fetching incidents" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="ListComponent should apply filters correctly" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="ListComponent should set isAgentUser based on decoded token" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="ListComponent should create" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="ListComponent should navigate to user query" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="ListComponent should fetch incidents on initialization" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="ListComponent should navigate to incident detail" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="ListComponent should clear filters" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+  </file>
+  <file path="src/app/pages/dashboard/dashboard.service.spec.ts">
+    <testCase name="DashboardService should successfully" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="DashboardService should be created" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+  </file>
+  <file path="src/app/pages/list/list-agents/list-agents.component.spec.ts">
+    <testCase name="ListAgentsComponent should navigate to register agent when createAgent is called" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="ListAgentsComponent should fetch agents on init and set the data source" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="ListAgentsComponent should set paginator and sort after view initialization" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="ListAgentsComponent should create the component" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="ListAgentsComponent should filter data correctly when applyFilter is called" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+  </file>
+  <file path="src/app/pages/incident/pipe/inicident-channel.pipe.spec.ts">
+    <testCase name="InicidentChannelPipe create an instance" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+  </file>
+  <file path="src/app/pages/plan/plan-dialog/plan-dialog.component.spec.ts">
+    <testCase name="PlanDialogComponent should create the component" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="PlanDialogComponent should initialize with injected data" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="PlanDialogComponent should close the dialog without data when rejected" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="PlanDialogComponent should close the dialog with plan and empresa IDs when accepted" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+  </file>
+  <file path="src/app/pages/incident/pipe/incident-type.pipe.spec.ts">
+    <testCase name="IncidentTypePipe create an instance" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+  </file>
+  <file path="src/app/pages/list/list.service.spec.ts">
+    <testCase name="ListService should fetch agents by company ID" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="ListService should be created" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+  </file>
+  <file path="src/app/pages/register/register-agent/register-agent.component.spec.ts">
+    <testCase name="RegisterAgentComponent should make the registerForm valid when all fields are correctly filled" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterAgentComponent should navigate to /login on successful registration" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterAgentComponent should toggle hide signal and stop event propagation" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterAgentComponent should show an error when passwords do not match" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterAgentComponent should set REQUIRED_PASSWORD_FORMAT error message for invalid password format" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterAgentComponent should clear the error message if there is no error" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterAgentComponent should call registerAgent on RegisterService when form is valid" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterAgentComponent should create" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterAgentComponent should make the registerForm invalid when fields are empty" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterAgentComponent should initialize the registerForm with empty values" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterAgentComponent should show an error message on registration failure" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterAgentComponent should set REQUIRED_PHONE_FORMAT error message for invalid phone pattern" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterAgentComponent should set REQUIRED_FILE error message for required field" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterAgentComponent should set REQUIRED_PASSWORD_MISMATCH error message for mismatched passwords" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+  </file>
   <file path="src/app/pages/incident/incident.service.spec.ts">
-    <testCase name="IncidentService should get person by identity type and number" duration="1">
+    <testCase name="IncidentService should be created" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="IncidentService should get call by id" duration="1">
       <skipped message="Skipped"/>
     </testCase>
     <testCase name="IncidentService should get agents avaiable" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="IncidentService should get calls by person ID" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="IncidentService should update incident" duration="1">
       <skipped message="Skipped"/>
     </testCase>
     <testCase name="IncidentService should get incidents" duration="1">
@@ -561,22 +571,92 @@
     <testCase name="IncidentService should get products by person ID" duration="1">
       <skipped message="Skipped"/>
     </testCase>
-    <testCase name="IncidentService should get history by incident" duration="1">
+    <testCase name="IncidentService should update incident" duration="1">
       <skipped message="Skipped"/>
     </testCase>
-    <testCase name="IncidentService should get incident by id" duration="1">
-      <skipped message="Skipped"/>
-    </testCase>
-    <testCase name="IncidentService should get call by id" duration="1">
+    <testCase name="IncidentService should create an incident" duration="1">
       <skipped message="Skipped"/>
     </testCase>
     <testCase name="IncidentService should get incidents by person ID" duration="1">
       <skipped message="Skipped"/>
     </testCase>
-    <testCase name="IncidentService should be created" duration="1">
+    <testCase name="IncidentService should get incident by id" duration="1">
       <skipped message="Skipped"/>
     </testCase>
-    <testCase name="IncidentService should create an incident" duration="1">
+    <testCase name="IncidentService should get history by incident" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="IncidentService should get calls by person ID" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="IncidentService should get person by identity type and number" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+  </file>
+  <file path="src/app/pages/incident/ranking/ranking.component.spec.ts">
+    <testCase name="RankingComponent should load calls data and set paginator" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RankingComponent should load products data and set paginator" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RankingComponent should navigate to create incident with person data" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RankingComponent should navigate to details-call page with the call data on success" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RankingComponent should log an error message if getCallById fails" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RankingComponent should create the component" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RankingComponent should load incidents data and set paginator" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+  </file>
+  <file path="src/app/pages/register/register-client/register-client.component.spec.ts">
+    <testCase name="RegisterClientComponent should toggle hide signal and stop event propagation" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterClientComponent should set REQUIRED_PASSWORD_FORMAT error message for invalid password format" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterClientComponent should create" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterClientComponent should clear the error message if there is no error" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterClientComponent should set REQUIRED_PHONE_FORMAT error message for invalid phone pattern" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterClientComponent should set REQUIRED_PASSWORD_MISMATCH error message for mismatched passwords" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterClientComponent should make the registerForm valid when all fields are correctly filled" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterClientComponent should show an error when passwords do not match" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterClientComponent should show an error message on registration failure" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterClientComponent should initialize the registerForm with empty values" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterClientComponent should set REQUIRED_FILE error message for required field" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterClientComponent should make the registerForm invalid when fields are empty" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterClientComponent should call registerClient on RegisterService when form is valid" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="RegisterClientComponent should navigate to /login on successful registration" duration="1">
       <skipped message="Skipped"/>
     </testCase>
   </file>

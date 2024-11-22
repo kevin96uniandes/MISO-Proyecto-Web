@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventEmitter } from '@angular/core';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import {StorageService} from "../../../common/storage.service";
 
 class MockRegisterService {
   registerClient() {
@@ -29,9 +30,10 @@ describe('RegisterClientComponent', () => {
   let router: Router;
   let translateService: any;
   let translateServiceMock: any;
+  let storageService: StorageService
 
   beforeEach(async () => {
-
+    storageService = jasmine.createSpyObj('StorageService', ['setItem'])
     translateService = jasmine.createSpyObj('TranslateService', ['use', 'get']);
     translateServiceMock = {
       currentLang: 'es',
@@ -42,7 +44,7 @@ describe('RegisterClientComponent', () => {
       onDefaultLangChange: new EventEmitter()
     };
 
-    translateServiceMock.get.and.returnValue(of({})); 
+    translateServiceMock.get.and.returnValue(of({}));
     translateServiceMock.use.and.returnValue(of({}));
 
     await TestBed.configureTestingModule({
@@ -59,7 +61,7 @@ describe('RegisterClientComponent', () => {
       providers: [
         { provide: RegisterService, useClass: MockRegisterService },
         { provide: Router, useClass: MockRouter },
-        { provide: TranslateService, useValue: translateServiceMock }  
+        { provide: TranslateService, useValue: translateServiceMock }
       ],
     }).compileComponents();
   });
@@ -179,4 +181,90 @@ describe('RegisterClientComponent', () => {
     component.onSubmit();
     expect(component.updateErrorRequiredMessage).not.toHaveBeenCalled();
   });
+
+  it('should set REQUIRED_FILE error message for required field', () => {
+    const mockFieldName = 'telefono';
+    translateServiceMock.get.and.returnValue(of({ REQUIRED_FILE: 'This field is required' }));
+
+    // Simula el error en el control
+    component.registerForm.get(mockFieldName)?.setErrors({ required: true });
+
+    // Ejecuta la función
+    component.updateErrorRequiredMessage(mockFieldName);
+
+    // Verifica que el mensaje se haya establecido
+    expect(component.errorRequiredMessage.get(mockFieldName)).toBe('This field is required');
+  });
+
+  it('should set REQUIRED_PHONE_FORMAT error message for invalid phone pattern', () => {
+    const mockFieldName = 'telefono';
+    translateServiceMock.get.and.returnValue(of({ REQUIRED_PHONE_FORMAT: 'Invalid phone format' }));
+
+    // Simula el error en el control
+    component.registerForm.get(mockFieldName)?.setErrors({ pattern: true });
+
+    // Ejecuta la función
+    component.updateErrorRequiredMessage(mockFieldName);
+
+    // Verifica que el mensaje se haya establecido
+    expect(component.errorRequiredMessage.get(mockFieldName)).toBe('Invalid phone format');
+  });
+
+  it('should set REQUIRED_PASSWORD_MISMATCH error message for mismatched passwords', () => {
+    const mockFieldName = 'confirmar_contrasena';
+    translateServiceMock.get.and.returnValue(of({ REQUIRED_PASSWORD_MISMATCH: 'Passwords do not match' }));
+
+    // Simula el error en el control
+    component.registerForm.get(mockFieldName)?.setErrors({ mismatch: true });
+
+    // Ejecuta la función
+    component.updateErrorRequiredMessage(mockFieldName);
+
+    // Verifica que el mensaje se haya establecido
+    expect(component.errorRequiredMessage.get(mockFieldName)).toBe('Passwords do not match');
+  });
+
+  it('should set REQUIRED_PASSWORD_FORMAT error message for invalid password format', () => {
+    const mockFieldName = 'contrasena';
+    translateServiceMock.get.and.returnValue(of({ REQUIRED_PASSWORD_FORMAT: 'Invalid password format' }));
+
+    // Simula el error en el control
+    component.registerForm.get(mockFieldName)?.setErrors({ pattern: true });
+
+    // Ejecuta la función
+    component.updateErrorRequiredMessage(mockFieldName);
+
+    // Verifica que el mensaje se haya establecido
+    expect(component.errorRequiredMessage.get(mockFieldName)).toBe('Invalid password format');
+  });
+
+  it('should clear the error message if there is no error', () => {
+    const mockFieldName = 'telefono';
+
+    // Asegura que no hay errores
+    component.registerForm.get(mockFieldName)?.setErrors(null);
+
+    // Ejecuta la función
+    component.updateErrorRequiredMessage(mockFieldName);
+
+    // Verifica que no haya mensaje de error
+    expect(component.errorRequiredMessage.get(mockFieldName)).toBe('');
+  });
+
+  it('should toggle hide signal and stop event propagation', () => {
+    const mockEvent = jasmine.createSpyObj('MouseEvent', ['stopPropagation']);
+
+    // Verifica el valor inicial de la señal
+    expect(component.hide()).toBeTrue();
+
+    // Ejecuta el método
+    component.clickEvent(mockEvent);
+
+    // Verifica que la señal haya cambiado
+    expect(component.hide()).toBeFalse();
+
+    // Verifica que `stopPropagation` se haya llamado
+    expect(mockEvent.stopPropagation).toHaveBeenCalled();
+  });
+
 });

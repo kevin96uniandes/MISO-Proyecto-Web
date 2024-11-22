@@ -61,7 +61,7 @@ describe('BoardComponent', () => {
     storageService = TestBed.inject(StorageService) as jasmine.SpyObj<StorageService>;
 
     storageService.getItem.and.returnValue('es');
-    boardService.getIncidentPercentage.and.returnValue(of({ "Llamada Telefónica": 30, "Correo Electrónico": 40, "App Movil": 30 }));
+    boardService.getIncidentPercentage.and.returnValue(of({"channels": [{"channel":"Llamada Telefónica", "value": 30}, {"channel":"Correo Electrónico", "value": 40}, {"channel":"App Movil", "value": 30} ]}));
     boardService.getIncidentSummary.and.returnValue(of({ incidentes: [], total: 0 }));
   }));
 

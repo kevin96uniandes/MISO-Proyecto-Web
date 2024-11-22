@@ -203,10 +203,20 @@ export class BoardComponent implements OnInit {
   getIncidentPercentage(filters: Boardfilter) {
     this.boardService.getIncidentPercentage(filters).subscribe(
       (response) => {
-        this.incidentPercentage = response;
-        this.phoneCallPercentage = response["Llamada Telefónica"] || 0;
-        this.emailPercentage = response["Correo Electrónico"] || 0;
-        this.appPercentage = response["App Movil"] || 0;
+        console.log(response);
+        this.appPercentage = 0;
+        this.emailPercentage = 0;
+        this.phoneCallPercentage = 0;
+
+        response.channels.forEach((item) => {
+          if (item.channel.startsWith("Llamada")) {
+            this.phoneCallPercentage = item.value;
+          } else if (item.channel.startsWith("Correo")) {
+            this.emailPercentage = item.value;
+          } else {
+            this.appPercentage = item.value;
+          }
+        });
         this.cdr.markForCheck();
         console.log('Porcentaje de incidentes por canal:', response);
       },

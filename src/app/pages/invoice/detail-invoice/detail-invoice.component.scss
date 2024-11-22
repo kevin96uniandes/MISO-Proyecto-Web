@@ -9,8 +9,8 @@
 }
 
 .invoice-card-div {
-    margin-inline: auto;
-    width: 50%;
+  margin-inline: auto;
+  max-width: 90%;
 }
 
 .invoice-card {
@@ -24,22 +24,22 @@
 
 .btn-form-primary {
     background-color:#407F7F !important;
-    color: #fff !important; 
+    color: #fff !important;
     border-style: groove;
     border-color: #d2cece;
     width: 200px;
   }
 
   .btn-form-secondary {
-    background-color: #fff !important; 
-    color:  #407F7F !important; 
+    background-color: #fff !important;
+    color:  #407F7F !important;
     border-color: #407F7F;
     width: 200px;
   }
 
   .btn-form-third {
-    color: #FFFFFF !important; 
-    background-color: #5D7A8E !important; 
+    color: #FFFFFF !important;
+    background-color: #5D7A8E !important;
     border-color: #5D7A8E;
     width: 200px;
   }
@@ -53,6 +53,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.8);  
-    z-index: 1000;  
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 1000;
   }

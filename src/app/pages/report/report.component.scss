@@ -1,0 +1,77 @@
+@import "../../../theme/custom-style";
+@import "../../../theme/custom-colors.scss";
+
+.container-login {
+  height: 100vh !important;
+}
+
+.container-components {
+  height: 100vh !important;
+}
+
+.container-components > .row {
+  height: 100vh;
+}
+
+.container-right {
+  background-color: $abcall-primary-color;
+}
+
+/*Contenedor de todos los componentes de la derecha*/
+.container-right > div{
+  background-color: white;
+  height: 95%;
+  width: 95% !important;
+  border-radius: 10px;
+}
+
+.title{
+  margin: 31px 0 25px 0;
+}
+
+.button-clean{
+  background-color: white;
+  font-family: 'Roboto';
+  font-size: 0.938em;
+  color: #82A5BD;
+  border-radius: 0.25em;
+  padding: 14px 0;
+  width: 225px;
+  border-color: #82BDAE;
+  margin-right: 20px;
+}
+
+.button-create{
+  background-color: #82BDAE;
+  font-family: 'Roboto';
+  font-size: 0.938em;
+  color: white;
+  border-radius: 0.25em;
+  padding: 14px 0;
+  width: 225px;
+  border-color: #82BDAE;
+  margin-right: 20px;
+  text-transform: uppercase;
+}
+
+.button-email{
+  background-color: #82A5BD;
+  font-family: 'Roboto';
+  font-size: 0.938em;
+  color: white;
+  border-radius: 0.25em;
+  padding: 14px 0;
+  width: 225px;
+  border-color: #82BDAE;
+  margin-right: 20px;
+}
+
+.input-date{
+  margin-bottom: 20px;
+}
+
+.buttons{
+  display: flex;
+  justify-content: center;
+  margin-top: 47px;
+}

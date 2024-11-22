@@ -4,7 +4,7 @@
       <a mat-list-item routerLink="/perfil" class="menu-item text-center">
         <mat-icon matListIcon><img ngSrc="../../../../assets/images/logo.svg" alt="logo" height="50" width="50"></mat-icon>
       </a>
-      <a *ngIf="currentMenuUser.perfil" mat-list-item routerLink="/perfil" title="ir a perfil" class="menu-item text-center" aria-label="Ir a Perfil" id="perfil-dashboard">
+      <a *ngIf="currentMenuUser.perfil" mat-list-item [routerLink]="['/dashboard/profile']" class="menu-item text-center" id="profile-dashboard">
         <mat-icon matListIcon class="sidebar-color-item">account_circle</mat-icon>
         <span matLine class="sidebar-color-item">{{ 'PERFIL' | translate }}</span>
       </a>
@@ -24,8 +24,8 @@
         <mat-icon matListIcon class="sidebar-color-item">dashboard</mat-icon>
         <span matLine class="sidebar-color-item">{{ 'DASHBOARD' | translate }}</span>
       </a>
-      <a *ngIf="currentMenuUser.reportes" mat-list-item routerLink="/reportes" class="menu-item text-center">
-        <mat-icon matListIcon class="sidebar-color-item">description</mat-icon>
+      <a *ngIf="currentMenuUser.reportes" mat-list-item [routerLink]="['/dashboard/report']" class="menu-item text-center" id="report-dashboard">
+        <mat-icon matListIcon class="sidebar-color-item">summarize</mat-icon>
         <span matLine class="sidebar-color-item">{{ 'REPORTS' | translate }}</span>
       </a>
       <a *ngIf="currentMenuUser.facturas" mat-list-item [routerLink]="['/dashboard/invoice']" class="menu-item text-center" id="invoice-dashboard">

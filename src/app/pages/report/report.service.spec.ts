@@ -42,4 +42,42 @@ describe('ReportService', () => {
       req.flush(mockBlobResponse);
     });
   });
+
+  describe('sendReportByEmail', () => {
+    it('should call POST and return a Blob response', () => {
+      const mockEmailData = { email: 'test@example.com', reportId: '12345' };
+      const mockBlobResponse = new Blob(['Email sent'], { type: 'text/plain' });
+
+      service.sendReportByEmail(mockEmailData).subscribe((response) => {
+        expect(response).toEqual(mockBlobResponse);
+        expect(response instanceof Blob).toBeTrue();
+      });
+
+      const req = httpMock.expectOne(`${environment.reportUrl}sendemail`);
+      expect(req.request.method).toBe('POST');
+      expect(req.request.body).toEqual(mockEmailData);
+
+      req.flush(mockBlobResponse);
+    });
+
+    it('should handle an error response gracefully', () => {
+      const mockEmailData = { email: 'test@example.com', reportId: '12345' };
+      const mockError = new ErrorEvent('Bad Request');
+
+      service.sendReportByEmail(mockEmailData).subscribe({
+        next: () => fail('Expected an error, not a success response'),
+        error: (error) => {
+          expect(error.status).toBe(400);
+          expect(error.statusText).toBe('Bad Request');
+        },
+      });
+
+      const req = httpMock.expectOne(`${environment.reportUrl}sendemail`);
+      expect(req.request.method).toBe('POST');
+      expect(req.request.body).toEqual(mockEmailData);
+
+      req.error(mockError, { status: 400, statusText: 'Bad Request' });
+    });
+
+  });
 });

@@ -70,4 +70,14 @@ describe('Incidents Dashboard', () => {
       .should('be.visible');
   });
 
+  it('Debe enviar el correo', () => {
+    cy.get('#nombre_reporte').type('Reporte de prueba', { force: true });
+    cy.get('.button-email').click();
+    cy.get('#email').type('hanna860@gmail.com', { force: true });
+    cy.get('.button-send').click();
+    cy.wait(500);
+    cy.get('.button-email')
+      .should('contain', 'ENVIAR POR CORREO')
+      .should('be.visible');
+  });
 });

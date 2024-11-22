@@ -10,6 +10,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { ReportService } from './report.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { EmailDialogComponent } from './email-dialog/email-dialog.component';
 
 @Component({
   selector: 'app-report',
@@ -29,18 +31,20 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ReportComponent implements OnInit {
   reportForm!: FormGroup;
+  lang!: string ;
 
   constructor(
     private translate: TranslateService,
     private storageService: StorageService,
     private fb: FormBuilder,
     private reportService: ReportService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
-    const lang = this.storageService.getItem("language")
-    this.translate.use(lang || 'es')
+    this.lang = this.storageService.getItem("language") || 'es'
+    this.translate.use(this.lang)
 
     this.reportForm = this.fb.group({
       nombre_reporte: ['', Validators.required],
@@ -77,7 +81,8 @@ export class ReportComponent implements OnInit {
       estado_id: formData.estado_id || null,
       tipo_id: formData.tipo_id || null,
       fecha_inicio: formatDate(formData.fecha_inicio),
-      fecha_fin: formatDate(formData.fecha_fin)
+      fecha_fin: formatDate(formData.fecha_fin),
+      lang: this.lang
     };
 
     this.reportService.saveReport(processedData).subscribe({
@@ -109,6 +114,40 @@ export class ReportComponent implements OnInit {
 
     this.snackBar.open('Filtros limpios.', 'Cerrar', {
       duration: 2000
+    });
+  }
+
+  openEmailDialog(): void {
+    const formData = this.reportForm.value;
+
+    const formatDate = (date: string | null) => {
+      if (!date) return null;
+      const d = new Date(date);
+      const month = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      const year = d.getFullYear();
+      return `${month}/${day}/${year}`;
+    };
+
+    const processedData = {
+      ...formData,
+      canal_id: formData.canal_id || null,
+      estado_id: formData.estado_id || null,
+      tipo_id: formData.tipo_id || null,
+      fecha_inicio: formatDate(formData.fecha_inicio),
+      fecha_fin: formatDate(formData.fecha_fin),
+      lang: this.lang
+    };
+
+    const dialogRef = this.dialog.open(EmailDialogComponent, {
+      width: '792px',
+      data: processedData
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.snackBar.open(`Correo enviado a: ${result}`, 'Cerrar', { duration: 3000 });
+      }
     });
   }
 }

@@ -31,6 +31,7 @@ import { EmailDialogComponent } from './email-dialog/email-dialog.component';
 })
 export class ReportComponent implements OnInit {
   reportForm!: FormGroup;
+  lang!: string ;
 
   constructor(
     private translate: TranslateService,
@@ -42,8 +43,8 @@ export class ReportComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const lang = this.storageService.getItem("language")
-    this.translate.use(lang || 'es')
+    this.lang = this.storageService.getItem("language") || 'es'
+    this.translate.use(this.lang)
 
     this.reportForm = this.fb.group({
       nombre_reporte: ['', Validators.required],
@@ -80,7 +81,8 @@ export class ReportComponent implements OnInit {
       estado_id: formData.estado_id || null,
       tipo_id: formData.tipo_id || null,
       fecha_inicio: formatDate(formData.fecha_inicio),
-      fecha_fin: formatDate(formData.fecha_fin)
+      fecha_fin: formatDate(formData.fecha_fin),
+      lang: this.lang
     };
 
     this.reportService.saveReport(processedData).subscribe({
@@ -116,8 +118,30 @@ export class ReportComponent implements OnInit {
   }
 
   openEmailDialog(): void {
+    const formData = this.reportForm.value;
+
+    const formatDate = (date: string | null) => {
+      if (!date) return null;
+      const d = new Date(date);
+      const month = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      const year = d.getFullYear();
+      return `${month}/${day}/${year}`;
+    };
+
+    const processedData = {
+      ...formData,
+      canal_id: formData.canal_id || null,
+      estado_id: formData.estado_id || null,
+      tipo_id: formData.tipo_id || null,
+      fecha_inicio: formatDate(formData.fecha_inicio),
+      fecha_fin: formatDate(formData.fecha_fin),
+      lang: this.lang
+    };
+
     const dialogRef = this.dialog.open(EmailDialogComponent, {
-      width: '792px'
+      width: '792px',
+      data: processedData
     });
 
     dialogRef.afterClosed().subscribe((result) => {

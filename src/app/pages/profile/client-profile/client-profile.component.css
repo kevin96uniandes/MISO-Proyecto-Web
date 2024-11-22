@@ -1,5 +1,5 @@
 .example-card {
-    max-width: 400px;
+    max-width: 100%;
     border-color: #82BDAE;
   }
   
@@ -26,3 +26,11 @@ padding: 16px;
   --md-sys-color-surface-container-low: #FAFDFC;
   --md-sys-color-primary: #191C1C;
 }
+
+.custom-card-title {
+  border-radius: 6px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #82BDAE;
+}
+

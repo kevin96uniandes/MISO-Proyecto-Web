@@ -126,7 +126,7 @@ export class ClientProfileComponent implements AfterViewInit {
         }
 
         this.documentNumber = this.companyResponse["numero_identificacion"]   
-        this.lastUpdate = this.companyResponse["fecha_actualizacion"]
+        this.lastUpdate = this.companyResponse["fecha_actualizacion"].split("T")[0]
         this.phone = this.companyResponse["telefono"]
         this.email = this.companyResponse["email"]
       },

@@ -34,3 +34,18 @@ padding: 16px;
   border-color: #82BDAE;
 }
 
+
+#custom-detail-incident{
+  border: transparent;
+  background: transparent;
+}
+
+#custom-color-eye {
+  color: #82BDAE
+}
+
+
+#custom-detail-agent{
+  border: transparent;
+  background: transparent;
+}

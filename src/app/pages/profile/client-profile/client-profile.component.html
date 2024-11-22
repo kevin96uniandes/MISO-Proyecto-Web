@@ -33,11 +33,12 @@
     <div class="col-lg-8 col-md-8 col-sm-8" style="margin-top: 1%">
       <h6 class="title-text-color title-size">{{ 'Listado de incidencias' | translate }}</h6>
       <table mat-table [dataSource]="dataIncidents" matSort class="mat-elevation-z8" id="incidences-table">
+        
         <ng-container matColumnDef="acciones">
           <th mat-header-cell *matHeaderCellDef> {{ 'ACTIONS' | translate }} </th>
           <td mat-cell *matCellDef="let element">
-            <button (click)="goToIncidentDetail(element.id)" mat-icon-button aria-label="Ver detalles" id="detail-agent">
-              <mat-icon id="color-eye" style="color: #82BDAE;">visibility</mat-icon>
+            <button (click)="goToIncidentDetail(element.id)" mat-icon-button aria-label="Ver detalles" id="custom-detail-incident">
+              <mat-icon id="custom-color-eye">visibility</mat-icon>
             </button>
           </td>
         </ng-container>
@@ -107,8 +108,8 @@
         <ng-container matColumnDef="acciones">
           <th mat-header-cell *matHeaderCellDef id="th-actions-agent"> {{ 'ACTIONS' | translate }} </th>
           <td mat-cell *matCellDef="let element">
-            <button mat-icon-button aria-label="Ver detalles" id="detail-agent">
-              <mat-icon id="color-eye" style="color: #82BDAE;">visibility</mat-icon>
+            <button mat-icon-button aria-label="Ver detalles" id="custom-detail-agent">
+              <mat-icon id="custom-color-eye">visibility</mat-icon>
             </button>
           </td>
         </ng-container>

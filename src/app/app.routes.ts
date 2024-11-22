@@ -28,7 +28,7 @@ export const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [DashboardGuard],
-    children: [
+    children: [ 
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: 'home', component: HomeComponent },
       { path: '**', redirectTo: 'dashboard/home' },

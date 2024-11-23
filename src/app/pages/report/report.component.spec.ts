@@ -167,8 +167,8 @@ describe('ReportComponent', () => {
         canal_id: '1',
         estado_id: '2',
         tipo_id: '3',
-        fecha_inicio: '2023-11-01',
-        fecha_fin: '2023-11-15',
+        fecha_inicio: '2023-10-31',
+        fecha_fin: '2023-11-14',
       });
 
       const dialogRefSpy = jasmine.createSpyObj({

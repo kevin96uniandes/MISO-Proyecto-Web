@@ -142,8 +142,8 @@ describe('BoardComponent', () => {
     const expectedFilters = {
       canal_id: 1,
       estado_id: 2,
-      fecha_inicio: '2022-12-31', // Ajustado por el componente
-      fecha_fin: '2023-12-30'    // Ajustado por el componente
+      fecha_inicio: '2023-01-01', // Ajustado por el componente
+      fecha_fin: '2023-12-31'    // Ajustado por el componente
     };
 
     // Configura el formulario

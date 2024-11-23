@@ -74,9 +74,9 @@ describe('BoardComponent', () => {
     fixture.detectChanges();
     expect(component.filterForm.value).toEqual({
       canal_id: '',
-      state: '',
-      start_date: '',
-      end_date: ''
+      estado_id: '',
+      fecha_inicio: '',
+      fecha_fin: ''
     });
   });
 
@@ -130,28 +130,49 @@ describe('BoardComponent', () => {
 
   it('should apply filters and update data on form submit', () => {
     fixture.detectChanges();
+
     const filterValues = {
       canal_id: 1,
-      state: 2,
-      start_date: '2023-01-01',
-      end_date: '2023-12-31'
+      estado_id: 2,
+      fecha_inicio: '2023-01-01',
+      fecha_fin: '2023-12-31'
     };
+
+    // Valores esperados después del ajuste en el componente
+    const expectedFilters = {
+      canal_id: 1,
+      estado_id: 2,
+      fecha_inicio: '2023-01-01', // Ajustado por el componente
+      fecha_fin: '2023-12-31'    // Ajustado por el componente
+    };
+
+    // Configura el formulario
     component.filterForm.setValue(filterValues);
 
+    // Ejecuta el submit
     component.onSubmit();
 
-    expect(boardService.getIncidentPercentage).toHaveBeenCalledWith(filterValues);
-    expect(boardService.getIncidentSummary).toHaveBeenCalledWith(filterValues);
+    // Captura todas las llamadas al servicio
+    const calls = boardService.getIncidentPercentage.calls.allArgs();
+
+    // Verifica la segunda llamada (con las fechas ajustadas)
+    const actualFilters = calls[1][0]; // Segunda llamada
+    expect(actualFilters).toEqual(expectedFilters);
+
+    // Verifica que se llamó el segundo servicio con los mismos filtros ajustados
+    const summaryCalls = boardService.getIncidentSummary.calls.allArgs();
+    const actualSummaryFilters = summaryCalls[1][0]; // Segunda llamada
+    expect(actualSummaryFilters).toEqual(expectedFilters);
   });
 
   it('should reset filters and update data on clearFilters', () => {
     fixture.detectChanges();
     component.clearFilters();
     expect(component.filterForm.value).toEqual({
-      canal_id: null, // Expect null instead of ''
-      state: null,    // Expect null instead of ''
-      start_date: null, // Expect null instead of ''
-      end_date: null   // Expect null instead of ''
+      canal_id: null,
+      estado_id: null,
+      fecha_inicio: null,
+      fecha_fin: null
     });
     expect(boardService.getIncidentPercentage).toHaveBeenCalled();
     expect(boardService.getIncidentSummary).toHaveBeenCalled();

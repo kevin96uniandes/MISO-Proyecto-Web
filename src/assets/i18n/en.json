@@ -255,6 +255,7 @@
   "CLIENT_INFORMATION": "Client information",
   "CHANGE_PASSWORD": "Change password",
   "TITLE_DIALOG_MAIL": "Please enter the email address to which you want the report to be sent.",
+  "QUESTION_IA": "What can I help with?",
   "DESCRIPTION": "Descripción",
   "CREATED_AT": "Created at",
   "AGENTS_LIST": "Agents list"

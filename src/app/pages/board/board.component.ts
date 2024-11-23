@@ -153,7 +153,7 @@ export class BoardComponent implements OnInit {
           categories: []
         },
         title: {
-          text: 'Incidentes por Estado y Fecha de Actualización',
+          text: titleLinesChart,
           align: 'center',
           offsetY: 13,
           style: {

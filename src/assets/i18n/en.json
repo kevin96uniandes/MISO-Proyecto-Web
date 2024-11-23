@@ -256,5 +256,6 @@
   "CHANGE_PASSWORD": "Change password",
   "TITLE_DIALOG_MAIL": "Please enter the email address to which you want the report to be sent.",
   "DESCRIPTION": "Descripción",
-  "CREATED_AT": "Created at"
+  "CREATED_AT": "Created at",
+  "AGENTS_LIST": "Agents list"
 }

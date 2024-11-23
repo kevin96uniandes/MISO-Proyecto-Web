@@ -179,6 +179,7 @@ describe('ReportComponent', () => {
 
       component.openEmailDialog();
 
+      // Verificar que el diálogo se abrió con los datos ajustados
       expect(component.dialog.open).toHaveBeenCalledWith(EmailDialogComponent, {
         width: '792px',
         data: {
@@ -186,12 +187,13 @@ describe('ReportComponent', () => {
           canal_id: '1',
           estado_id: '2',
           tipo_id: '3',
-          fecha_inicio: '2023-10-31',
-          fecha_fin: '2023-11-14',
+          fecha_inicio: '2023-10-31', // Fecha ajustada
+          fecha_fin: '2023-11-14',    // Fecha ajustada
           lang: 'es',
         },
       });
 
+      // Verificar que se muestra un mensaje de éxito después de cerrar el diálogo
       expect(snackBar.open).toHaveBeenCalledWith(
         'Correo enviado a: test@example.com',
         'Cerrar',

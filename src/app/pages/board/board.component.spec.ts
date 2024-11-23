@@ -137,21 +137,33 @@ describe('BoardComponent', () => {
       fecha_inicio: '2023-01-01',
       fecha_fin: '2023-12-31'
     };
-    component.filterForm.setValue(filterValues);
 
+    // Valores esperados después del ajuste en el componente
     const expectedFilters = {
       canal_id: 1,
       estado_id: 2,
-      fecha_inicio: '2022-12-31',
-      fecha_fin: '2023-12-30'
+      fecha_inicio: '2022-12-31', // Ajustado por el componente
+      fecha_fin: '2023-12-30'    // Ajustado por el componente
     };
 
+    // Configura el formulario
+    component.filterForm.setValue(filterValues);
+
+    // Ejecuta el submit
     component.onSubmit();
 
-    expect(boardService.getIncidentPercentage).toHaveBeenCalledWith(expectedFilters);
-    expect(boardService.getIncidentSummary).toHaveBeenCalledWith(expectedFilters);
-  });
+    // Captura todas las llamadas al servicio
+    const calls = boardService.getIncidentPercentage.calls.allArgs();
 
+    // Verifica la segunda llamada (con las fechas ajustadas)
+    const actualFilters = calls[1][0]; // Segunda llamada
+    expect(actualFilters).toEqual(expectedFilters);
+
+    // Verifica que se llamó el segundo servicio con los mismos filtros ajustados
+    const summaryCalls = boardService.getIncidentSummary.calls.allArgs();
+    const actualSummaryFilters = summaryCalls[1][0]; // Segunda llamada
+    expect(actualSummaryFilters).toEqual(expectedFilters);
+  });
 
   it('should reset filters and update data on clearFilters', () => {
     fixture.detectChanges();

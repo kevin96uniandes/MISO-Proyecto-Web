@@ -31,7 +31,7 @@
     </div>
 
     <div class="col-lg-8 col-md-8 col-sm-8" style="margin-top: 1%">
-      <h6 class="title-text-color title-size">{{ 'Listado de incidencias' | translate }}</h6>
+      <h6 class="title-text-color title-size">{{ 'INCIDENTS_LIST' | translate }}</h6>
       <table mat-table [dataSource]="dataIncidents" matSort class="mat-elevation-z8" id="incidences-table">
         
         <ng-container matColumnDef="acciones">
@@ -103,7 +103,7 @@
     </div>
     
     <div class="col-lg-8 col-md-8 col-sm-8" style="margin-top: 1%">
-      <h6 class="title-text-color title-size">{{ 'Listado de agentes' | translate }}</h6>
+      <h6 class="title-text-color title-size">{{ 'AGENTS_LIST' | translate }}</h6>
       <table mat-table [dataSource]="dataAgents" matSort class="mat-elevation-z8" id="agents-table">
         <ng-container matColumnDef="acciones">
           <th mat-header-cell *matHeaderCellDef id="th-actions-agent"> {{ 'ACTIONS' | translate }} </th>

@@ -257,5 +257,8 @@
     "CLIENT_INFORMATION": "Información de cliente",
     "CHANGE_PASSWORD": "Cambio de contraseña",
     "TITLE_DIALOG_MAIL": "Por favor ingrese el correo electrónico al cual desea que llegue el reporte",
-    "QUESTION_IA": "En qué te puedo ayudar?"
+    "QUESTION_IA": "En qué te puedo ayudar?",
+    "DESCRIPTION": "Descripción",
+    "CREATED_AT": "Fecha de creación",
+    "AGENTS_LIST": "Listado de agentes"
 }

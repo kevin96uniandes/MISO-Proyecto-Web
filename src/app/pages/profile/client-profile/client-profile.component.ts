@@ -51,6 +51,7 @@ export class ClientProfileComponent implements AfterViewInit {
   }
 
   userResponse: any | null = null;
+  companyResponse: any | null = null;
   userName: string | null = null;
   documentType: string | null = null;
   documentTypeString: string | null = null;
@@ -58,6 +59,8 @@ export class ClientProfileComponent implements AfterViewInit {
   lastUpdate: string | null = null;
   phone: string | null = null;
   email: string | null = null;
+  companyId: number | null = null;
+  userType: string | null = null;
 
   displayedColumns: string[] = ['acciones', 'code', 'description', 'subject', 'createdAt', 'updatedAt'];
   dataIncidents!: MatTableDataSource<Incident>
@@ -81,9 +84,10 @@ export class ClientProfileComponent implements AfterViewInit {
 
     let decoded = JSON.parse(this.storageService.getItem("decodedToken")!!);
     
-    let userId = decoded["id"];
-    
 
+    let userId = decoded["id"];
+    this.userType = decoded["user_type"]
+    
     this.profileService.getIncidences().subscribe({
       next: (incidents: Incident[]) => {
         
@@ -95,25 +99,11 @@ export class ClientProfileComponent implements AfterViewInit {
       }
     })
 
-
     this.profileService.getUser(userId).subscribe(
       (response) => {
         console.log(response)
         this.userResponse = response;
         this.userName = this.userResponse["nombre_usuario"]
-        
-        if (this.userResponse["persona"]["tipo_identificacion"] == 1) {
-          this.documentType = "Cédula de ciudadania"
-        }else if (this.userResponse["persona"]["tipo_identificacion"] == 2) {
-          this.documentType = "NIT"
-        }else if (this.userResponse["persona"]["tipo_identificacion"] == 3){
-          this.documentType = "Cédula de extrangeria"
-        }
-
-        this.documentNumber = this.userResponse["persona"]["numero_identificacion"]   
-        this.lastUpdate = this.userResponse["fecha_actualizacion"]
-        this.phone = this.userResponse["persona"]["telefono"]
-        this.email = this.userResponse["persona"]["correo_electronico"]
       },
       (error) => {
         console.error('Error al obtener el plan activo:', error);
@@ -121,9 +111,33 @@ export class ClientProfileComponent implements AfterViewInit {
       }
     );
 
-    let empresa_id = decoded["id_company"];
+    let companyId = decoded["id_company"];
 
-    this.profileService.getAgentsByIdCompany(empresa_id).subscribe({
+    this.profileService.getCompanyById(companyId).subscribe(
+      (response) => {
+        console.log(response)
+        this.companyResponse = response;
+
+        if (this.companyResponse["tipo_identificacion"] == 1) {
+          this.documentType = "Cédula de ciudadania"
+        }else if (this.companyResponse["tipo_identificacion"] == 2) {
+          this.documentType = "NIT"
+        }else if (this.companyResponse["tipo_identificacion"] == 3){
+          this.documentType = "Cédula de extrangeria"
+        }
+
+        this.documentNumber = this.companyResponse["numero_identificacion"]   
+        this.lastUpdate = this.companyResponse["fecha_actualizacion"].split("T")[0]
+        this.phone = this.companyResponse["telefono"]
+        this.email = this.companyResponse["email"]
+      },
+      (error) => {
+        console.error('Error al obtener el plan activo:', error);
+        this.userResponse = null;
+      }
+    )
+
+    this.profileService.getAgentsByIdCompany(companyId).subscribe({
       next: (agents: Agente[]) => {
         console.log(agents);
 

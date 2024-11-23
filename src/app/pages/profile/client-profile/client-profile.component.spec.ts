@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { User } from '../../auth/user';
+import { Company } from '../company';
 
 
 
@@ -92,13 +93,25 @@ describe('ClientProfileComponent', () => {
     es_activo: true
   };
 
+  const mockCompany: Company = {
+    id: 1,
+    nombre_empresa: "Tech Solutions",
+    numero_identificacion: "123456789",
+    email: "contact@techsolutions.com",
+    sector: "Technology",
+    telefono: "1234567890",
+    pais: "Colombia",
+    fecha_creacion: new Date("2020-01-01T00:00:00Z"),
+    fecha_actualizacion: new Date("2024-11-22T00:00:00Z")
+  };
+  
   const userId = 1;
 
 
 
   beforeEach(async () =>  {
     
-    const profileServiceSpy = jasmine.createSpyObj('ProfileService', ['getAgentsByIdCompany', 'getIncidences', 'getUser']);
+    const profileServiceSpy = jasmine.createSpyObj('ProfileService', ['getAgentsByIdCompany', 'getIncidences', 'getUser', 'getCompanyById']);
     const storageServiceSpy = jasmine.createSpyObj('StorageService', ['getItem']);
     translateService = jasmine.createSpyObj('TranslateService', ['use', 'get']);
 
@@ -137,11 +150,13 @@ describe('ClientProfileComponent', () => {
   
   profileServiceMock = TestBed.inject(ProfileService) as jasmine.SpyObj<ProfileService>;
   storageServiceMock = TestBed.inject(StorageService) as jasmine.SpyObj<StorageService>;
+
   storageServiceMock.getItem.and.returnValue(JSON.stringify({ id_company: 2 }));
   
   profileServiceMock.getAgentsByIdCompany.and.returnValue(of(mockAgents));
   profileServiceMock.getIncidences.and.returnValue(of(mockIncidences));
   profileServiceMock.getUser.and.returnValue(of(mockUser));
+  profileServiceMock.getCompanyById.and.returnValue(of(mockCompany))
 
   fixture = TestBed.createComponent(ClientProfileComponent);
   component = fixture.componentInstance;
@@ -164,6 +179,10 @@ it('should fetch user', () => {
 
 it('should fetch incidences', () => {
   expect(profileServiceMock.getIncidences).toHaveBeenCalled();
+});
+
+it('should fetch company', () => {
+  expect(profileServiceMock.getCompanyById).toHaveBeenCalled();
 });
 
 });

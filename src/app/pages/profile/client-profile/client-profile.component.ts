@@ -16,6 +16,8 @@ import {MatChipsModule} from '@angular/material/chips';
 import { Agente } from '../../auth/user';
 
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { TranslateDocumentTypePipe } from '../../incident/pipe/translate-document-type.pipe';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-client-profile',
@@ -32,7 +34,9 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatChipsModule, 
     MatProgressBarModule,
     RouterModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    CommonModule,
+    TranslateDocumentTypePipe
   ],
   templateUrl: './client-profile.component.html',
   styleUrls: ['./client-profile.component.css']

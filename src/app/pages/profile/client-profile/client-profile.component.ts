@@ -60,6 +60,7 @@ export class ClientProfileComponent implements AfterViewInit {
   phone: string | null = null;
   email: string | null = null;
   companyId: number | null = null;
+  userType: string | null = null;
 
   displayedColumns: string[] = ['acciones', 'code', 'description', 'subject', 'createdAt', 'updatedAt'];
   dataIncidents!: MatTableDataSource<Incident>
@@ -83,7 +84,9 @@ export class ClientProfileComponent implements AfterViewInit {
 
     let decoded = JSON.parse(this.storageService.getItem("decodedToken")!!);
     
+
     let userId = decoded["id"];
+    this.userType = decoded["user_type"]
     
     this.profileService.getIncidences().subscribe({
       next: (incidents: Incident[]) => {

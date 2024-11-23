@@ -258,5 +258,6 @@
     "CHANGE_PASSWORD": "Cambio de contraseña",
     "TITLE_DIALOG_MAIL": "Por favor ingrese el correo electrónico al cual desea que llegue el reporte",
     "DESCRIPTION": "Descripción",
-    "CREATED_AT": "Fecha de creación"
+    "CREATED_AT": "Fecha de creación",
+    "AGENTS_LIST": "Listado de agentes"
 }

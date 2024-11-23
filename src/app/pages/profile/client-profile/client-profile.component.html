@@ -82,16 +82,32 @@
           </div>
   
           <div class="col-lg-5 col-md-5 col-sm-5" style="margin-top: 1%">
-            <button mat-flat-button id="btn-dashboard-plans" class="custom-register-button" [routerLink]="['/dashboard/plans']">{{ 'PLANS' | translate }}</button>
+            <button mat-flat-button id="btn-dashboard-plans" class="custom-register-button" [routerLink]="['/dashboard/plans']">
+              {{ 'PLANS' | translate }}
+              <br>
+              <mat-icon id="custom-color-eye">card_membership</mat-icon>
+            </button>
             <br>
             <br> 
-            <button mat-flat-button id="btn-dashboard" class="custom-register-button" [routerLink]="['/dashboard/board']">{{ 'DASHBOARD' | translate }}</button>
+            <button mat-flat-button id="btn-dashboard" class="custom-register-button" [routerLink]="['/dashboard/board']">
+              {{ 'DASHBOARD' | translate }}
+              <br>
+              <mat-icon id="custom-color-eye">dashboard</mat-icon>
+            </button>
           </div>
           <div class="col-lg-5 col-md-5 col-sm-5" style="margin-top: 1%">
-            <button mat-flat-button id="btn-reports" class="custom-register-button" [routerLink]="['/dashboard/report']">{{ 'REPORTS' | translate }}</button>
+            <button mat-flat-button id="btn-reports" class="custom-register-button" [routerLink]="['/dashboard/report']">
+              {{ 'REPORTS' | translate }}
+              <br>
+              <mat-icon id="custom-color-eye">assignment</mat-icon>
+            </button>
             <br>
             <br>
-            <button mat-flat-button id="btn-shipments" class="custom-register-button" [routerLink]="['/dashboard/invoice']">{{ 'INVOICES' | translate }}</button>
+            <button mat-flat-button id="btn-shipments" class="custom-register-button" [routerLink]="['/dashboard/invoice']">
+              {{ 'INVOICES' | translate }}
+              <br>
+              <mat-icon id="custom-color-eye">account_balance_wallet</mat-icon>
+            </button>
           </div>
   
           <div class="col-lg-1 col-md-1 col-sm-1" style="margin-top: 1%">

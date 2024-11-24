@@ -95,6 +95,7 @@ export class FormComponent {
       console.log(decoded["id"]);
 
       formData.append('user_id', decoded["id"]);
+      formData.append('id_company', decoded["id_company"]);
       formData.append('person_id', this.person?.id ? this.person.id.toString() : '');
 
       console.log(formData)

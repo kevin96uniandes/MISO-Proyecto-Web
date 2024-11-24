@@ -1,8 +1,8 @@
 describe('Agent Registration Form', () => {
   beforeEach(() => {
     cy.visit('/');
-    const username = "luisa";
-    const password= "Prueba123";
+    const username = "sa";
+    const password= "123456";
     cy.get("#txt-username").type(username);
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();
@@ -16,13 +16,11 @@ describe('Agent Registration Form', () => {
     cy.get('mat-option').contains('Español').click();
     cy.get('#nombre_completo').type('John');
     cy.get('#apellido').type('Doe');
-    cy.get('.mdc-button__label').scrollIntoView().should('be.visible');
   });
 
 
   it('Should show validation errors for required fields', () => {
     cy.get('button').contains('CREAR AGENTE').click();
-    cy.get('form').submit();
     cy.get('#nombre_completo').click({ force: true });
     cy.get('body').click();
     cy.get('mat-error').contains('Campo requerido').should('exist');
@@ -36,7 +34,6 @@ describe('Agent Registration Form', () => {
     cy.get('#contrasena').type('Password123', { force: true });
     cy.get('#confirmar_contrasena').type('Password456', { force: true });
     cy.get('body').click();
-    cy.get('form').submit();
     cy.get('mat-error').contains('Las contraseñas no coinciden').should('exist');
   });
 

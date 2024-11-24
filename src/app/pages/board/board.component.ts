@@ -11,7 +11,7 @@ import { Boardpercentage } from './interfaces/boardpercentage';
 import { Incidentsummary } from './interfaces/boardsummary';
 import { BoardService } from './board.service';
 import { Boardfilter } from './interfaces/boardfilter';
-import { CommonModule } from '@angular/common';
+import {CommonModule, formatDate} from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { ApexAxisChartSeries, ApexChart, ApexNonAxisChartSeries, ApexResponsive, ApexStroke, ApexTitleSubtitle, ApexXAxis } from 'ng-apexcharts';
@@ -103,9 +103,9 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
     this.filterForm = this.fb.group({
       canal_id: [''],
-      state: [''],
-      start_date: [''],
-      end_date: ['']
+      estado_id: [''],
+      fecha_inicio: [''],
+      fecha_fin: ['']
     });
 
     this.translate.get(['TITLE_PIE_CHART', 'TITLE_LINES_CHART']).subscribe(translations => {
@@ -178,11 +178,11 @@ export class BoardComponent implements OnInit {
       const canalName = canalMap[filters.canal_id];
       const isCanalValid = !filters.canal_id || data.canal === canalName;
 
-      const estadoName = estadoMap[String(filters.state)];
-      const isStateValid = !filters.state || data.estado === estadoName;
+      const estadoName = estadoMap[String(filters.estado_id)];
+      const isStateValid = !filters.estado_id || data.estado === estadoName;
 
-      const isDateValid = (!filters.start_date || new Date(data.fecha_actualizacion) >= new Date(filters.start_date)) &&
-                          (!filters.end_date || new Date(data.fecha_actualizacion) <= new Date(filters.end_date));
+      const isDateValid = (!filters.fecha_inicio || new Date(data.fecha_actualizacion) >= new Date(filters.fecha_inicio)) &&
+                          (!filters.fecha_fin || new Date(data.fecha_actualizacion) <= new Date(filters.fecha_fin));
 
       return isCanalValid && isStateValid && isDateValid;
     };
@@ -193,7 +193,10 @@ export class BoardComponent implements OnInit {
   }
 
   onSubmit() {
-    const filters: Boardfilter = this.filterForm.value;
+    let filters: Boardfilter = this.filterForm.value;
+    filters.fecha_inicio = this.formatDate(filters.fecha_inicio)
+    filters.fecha_fin = this.formatDate(filters.fecha_fin)
+    console.log("filters => " + JSON.stringify(filters));
     this.getIncidentPercentage(filters);
     this.getIncidentSummary(filters);
 
@@ -313,4 +316,13 @@ export class BoardComponent implements OnInit {
     this.getIncidentSummary(this.filterForm.value);
     this.dataSource.filter = '';
   }
+
+  formatDate = (date: string) => {
+    if (!date) return "";
+    const d = new Date(date);
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    const year = d.getFullYear();
+    return `${year}-${month}-${day}`;
+  };
 }

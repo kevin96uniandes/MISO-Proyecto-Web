@@ -1,18 +1,18 @@
 export class Boardfilter {
   canal_id: number;
-  state: number;
-  start_date: string;
-  end_date: string;
+  estado_id: number;
+  fecha_inicio: string;
+  fecha_fin: string;
 
   constructor(
     canal_id: number,
-    state: number,
-    start_date: string,
-    end_date: string
+    estado_id: number,
+    fecha_inicio: string,
+    fecha_fin: string
   ){
     this.canal_id = canal_id;
-    this.state = state;
-    this.start_date = start_date;
-    this.end_date = end_date;
+    this.estado_id = estado_id;
+    this.fecha_inicio = fecha_inicio;
+    this.fecha_fin = fecha_fin;
   }
 }

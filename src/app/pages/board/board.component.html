@@ -17,7 +17,7 @@
       <div class="col-3">
         <mat-form-field appearance="outline" class="w-100" id="status">
           <mat-label>{{ 'STATUS' | translate }}</mat-label>
-          <mat-select formControlName="state">
+          <mat-select formControlName="estado_id">
             <mat-option value="1">{{ 'OPEN' | translate }}</mat-option>
             <mat-option value="2">{{ 'DISMISSED' | translate }}</mat-option>
             <mat-option value="3">{{ 'ESCALATED' | translate }}</mat-option>
@@ -30,7 +30,7 @@
       <div class="col-3">
         <mat-form-field class="w-100">
           <mat-label>{{ 'START_DATE' | translate }}</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="start_date">
+          <input matInput [matDatepicker]="picker" formControlName="fecha_inicio">
           <mat-hint>DD/MM/YYYY</mat-hint>
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
@@ -39,7 +39,7 @@
       <div class="col-3">
         <mat-form-field class="w-100">
           <mat-label>{{ 'END_DATE' | translate }}</mat-label>
-          <input matInput [matDatepicker]="picker1" formControlName="end_date">
+          <input matInput [matDatepicker]="picker1" formControlName="fecha_fin">
           <mat-hint>DD/MM/YYYY</mat-hint>
           <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>

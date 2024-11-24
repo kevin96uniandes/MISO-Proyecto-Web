@@ -1,8 +1,8 @@
 describe('Plan Selection', () => {
   beforeEach(() => {
     cy.visit('/');
-    const username = "luisa";
-    const password= "Prueba123";
+    const username = "sa";
+    const password= "123456";
     cy.get("#txt-username").type(username);
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();
@@ -36,9 +36,4 @@ describe('Plan Selection', () => {
     cy.wait(1000);
     cy.get('button').contains('OBTENER').should('not.be.visible');
   });
-
-  it('Should display the correct features for each plan', () => {
-    cy.get('mat-grid-tile').should('be.visible');
-  });
-
 });

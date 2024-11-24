@@ -1,8 +1,8 @@
 describe('Incidents Dashboard', () => {
   beforeEach(() => {
     cy.visit('/');
-    const username = "pruebacliente";
-    const password= "Prueba123";
+    const username = "sa";
+    const password= "123456";
     cy.get("#txt-username").type(username);
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();
@@ -13,8 +13,8 @@ describe('Incidents Dashboard', () => {
   it('should load the page and display all filter fields', () => {
     cy.get('#channel').should('exist');
     cy.get('#status').should('exist');
-    cy.get('[formcontrolname="start_date"]').should('exist');
-    cy.get('[formcontrolname="end_date"]').should('exist');
+    cy.get('[formcontrolname="fecha_inicio"]').should('exist');
+    cy.get('[formcontrolname="fecha_fin"]').should('exist');
   });
 
   it('should apply filters correctly', () => {
@@ -24,7 +24,7 @@ describe('Incidents Dashboard', () => {
     cy.get('#status').click();
     cy.contains('mat-option', 'Abierto').click();
 
-    cy.get('button[type="submit"]').click();
+    cy.get('button[type="submit"]').first().click();
     cy.wait(100);
     cy.get('#paginator').last().scrollIntoView();
 
@@ -41,7 +41,7 @@ describe('Incidents Dashboard', () => {
     cy.get('button').contains('LIMPIAR FILTRO').click();
 
     cy.get('[formcontrolname="canal_id"]').should('have.value', '');
-    cy.get('[formcontrolname="state"]').should('have.value', '');
+    cy.get('[formcontrolname="estado_id"]').should('have.value', '');
   });
 
   it('should paginate through the table', () => {

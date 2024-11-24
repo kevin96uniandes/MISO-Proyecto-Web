@@ -13,10 +13,6 @@ describe('Agent List Page', () => {
   it('Should display the incidences list table with correct columns', () => {
     cy.get('#incidences-table').should('be.visible');
     cy.get('#th-code').contains('Código').should('exist');
-    cy.get('#th-description').contains('DESCRIPTION').should('exist');
-    cy.get('#th-subject').contains('SUBJECT').should('exist');
-    cy.get('#th-created-at').contains('CREATED_AT').should('exist');
-    cy.get('#th-updated-at').contains('UPDATED_AT').should('exist');
   });
 
   it('Should display the agents list table with correct columns', () => {

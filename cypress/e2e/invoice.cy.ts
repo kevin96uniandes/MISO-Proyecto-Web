@@ -2,8 +2,8 @@ describe('invoice form', () => {
     it('open invoice', () => {
         // login del usuario exitoso
         cy.visit('/');
-         const username = "sprint3";
-        const password= "Sprint3@";
+        const username = "sa";
+        const password= "123456";
         cy.get("#txt-username").type(username);
         cy.get("#txt-password").type(password);
         cy.get("#btn-signin").click();
@@ -16,8 +16,8 @@ describe('invoice form', () => {
       it('select currency an generate invoice', () => {
         // login del usuario exitoso
         cy.visit('/');
-         const username = "sprint3";
-        const password= "Sprint3@";
+         const username = "sa";
+        const password= "123456";
         cy.get("#txt-username").type(username);
         cy.get("#txt-password").type(password);
         cy.get("#btn-signin").click();
@@ -37,13 +37,21 @@ describe('invoice form', () => {
       it('select other month an generate invoice', () => {
         // login del usuario exitoso
         cy.visit('/');
-         const username = "sprint3";
-        const password= "Sprint3@";
+         const username = "sa";
+        const password= "123456";
         cy.get("#txt-username").type(username);
         cy.get("#txt-password").type(password);
         cy.get("#btn-signin").click();
         cy.wait(100);
     
+        cy.get("#plans-dashboard").click();
+        cy.wait(300);
+
+        cy.get('button').contains('OBTENER').first().click();
+        cy.wait(300);
+
+        cy.get("#btn-aceptar").click();
+        cy.wait(300);
         // menu
         cy.get("#invoice-dashboard").click();
         cy.wait(300);
@@ -60,8 +68,8 @@ describe('invoice form', () => {
       it('download invoice generate invoice pdf', () => {
         // login del usuario exitoso
         cy.visit('/');
-        const username = "sprint3";
-        const password= "Sprint3@";
+         const username = "sa";
+        const password= "123456";
         cy.get("#txt-username").type(username);
         cy.get("#txt-password").type(password);
         cy.get("#btn-signin").click();
@@ -69,25 +77,16 @@ describe('invoice form', () => {
     
         // menu
         cy.get("#invoice-dashboard").click();
-        cy.wait(300);
-
-        cy.get('#select-month').click();
-        cy.wait(500);
-
-        cy.get('mat-option[value="10"]').click();
-        cy.wait(300);
-
-        cy.get("#generate-invoice").click();
         cy.wait(300);
 
         cy.get("#download-pdf").click();
         cy.wait(300);
-      });
+       });
       it('send invoice by email', () => {
         // login del usuario exitoso
         cy.visit('/');
-        const username = "sprint3";
-        const password= "Sprint3@";
+         const username = "sa";
+        const password= "123456";
         cy.get("#txt-username").type(username);
         cy.get("#txt-password").type(password);
         cy.get("#btn-signin").click();
@@ -109,8 +108,8 @@ describe('invoice form', () => {
       it('payment invoice', () => {
         // login del usuario exitoso
         cy.visit('/');
-        const username = "sprint3";
-        const password= "Sprint3@";
+         const username = "sa";
+        const password= "123456";
         cy.get("#txt-username").type(username);
         cy.get("#txt-password").type(password);
         cy.get("#btn-signin").click();
@@ -132,8 +131,8 @@ describe('invoice form', () => {
       it('payment invoice', () => {
         // login del usuario exitoso
         cy.visit('/');
-        const username = "sprint3";
-        const password= "Sprint3@";
+         const username = "sa";
+        const password= "123456";
         cy.get("#txt-username").type(username);
         cy.get("#txt-password").type(password);
         cy.get("#btn-signin").click();
@@ -142,16 +141,7 @@ describe('invoice form', () => {
         // menu
         cy.get("#invoice-dashboard").click();
         cy.wait(300);
-
-        cy.get('#select-month').click();
-        cy.wait(300);
-
-        cy.get('mat-option[value="9"]').click();
-        cy.wait(300);
-
-        cy.get("#generate-invoice").click();
-        cy.wait(500);
-
+        
         cy.get("#pay-invoice").click();
         cy.wait(300);
 

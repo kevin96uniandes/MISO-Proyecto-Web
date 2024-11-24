@@ -2,8 +2,8 @@ describe('user query form', () => {
   it('Login success', () => {
     // login del usuario exitoso
     cy.visit('/');
-     const username = "meli-agent";
-    const password= "Meli2024@";
+     const username = "test_agent";
+    const password= "123456";
     cy.get("#txt-username").type(username);
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();
@@ -21,8 +21,8 @@ describe('user query form', () => {
   });
   it('go to create incident user not exist', () => {
     cy.visit('/');
-     const username = "meli-agent";
-    const password= "Meli2024@";
+    const username = "test_agent";
+    const password= "123456";
     cy.get("#txt-username").type(username);
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();
@@ -51,8 +51,8 @@ describe('user query form', () => {
   });
   it('create incident user not exist', () => {
     cy.visit('/');
-     const username = "meli-agent";
-    const password= "Meli2024@";
+    const username = "test_agent";
+    const password= "123456";
     cy.get("#txt-username").type(username);
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();
@@ -125,8 +125,8 @@ describe('user query form', () => {
   });
   it('go to ranking success', () => {
     cy.visit('/');
-     const username = "meli-agent";
-    const password= "Meli2024@";
+    const username = "test_agent";
+    const password= "123456";
     cy.get("#txt-username").type(username);
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();
@@ -152,8 +152,8 @@ describe('user query form', () => {
   });
   it('go to create incident by ranking', () => {
     cy.visit('/');
-     const username = "meli-agent";
-    const password= "Meli2024@";
+    const username = "test_agent";
+    const password= "123456";
     cy.get("#txt-username").type(username);
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();
@@ -186,8 +186,8 @@ describe('user query form', () => {
   
   it('create incident by ranking', () => {
     cy.visit('/');
-     const username = "meli-agent";
-    const password= "Meli2024@";
+    const username = "test_agent";
+    const password= "123456";
     cy.get("#txt-username").type(username);
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();
@@ -238,8 +238,8 @@ describe('user query form', () => {
   });
   it('go back from create incident to ranking', () => {
     cy.visit('/');
-     const username = "meli-agent";
-    const password= "Meli2024@";
+    const username = "test_agent";
+    const password= "123456";
     cy.get("#txt-username").type(username);
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();
@@ -272,8 +272,8 @@ describe('user query form', () => {
   });
   it('go to incident list clean filter', () => {
     cy.visit('/');
-     const username = "meli-agent";
-    const password= "Meli2024@";
+    const username = "test_agent";
+    const password= "123456";
     cy.get("#txt-username").type(username);
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();
@@ -299,8 +299,8 @@ describe('user query form', () => {
   });
   it('go to incident list filter and detail', () => {
     cy.visit('/');
-     const username = "meli-agent";
-    const password= "Meli2024@";
+    const username = "test_agent";
+    const password= "123456";
     cy.get("#txt-username").type(username);
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();
@@ -324,8 +324,8 @@ describe('user query form', () => {
   });
   it('go to incident list detail and manage indcident', () => {
     cy.visit('/');
-     const username = "meli-agent";
-    const password= "Meli2024@";
+    const username = "test_agent";
+    const password= "123456";
     cy.get("#txt-username").type(username);
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();

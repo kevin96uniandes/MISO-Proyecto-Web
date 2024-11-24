@@ -1,8 +1,8 @@
 describe('Agent List Page', () => {
   beforeEach(() => {
     cy.visit('/');
-    const username = "luisa";
-    const password= "Prueba123";
+    const username = "sa";
+    const password= "123456";
     cy.get("#txt-username").type(username);
     cy.get("#txt-password").type(password);
     cy.get("#btn-signin").click();

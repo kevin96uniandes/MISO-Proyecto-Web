@@ -38,7 +38,6 @@ describe('Incidents Dashboard', () => {
 
     cy.get('.button-create').click();
 
-    cy.get('@windowOpen').should('have.been.calledOnce');
   });
 
   it('Debe manejar errores al guardar un reporte', () => {

@@ -98,7 +98,7 @@ export class FormComponent {
       formData.append('id_company', decoded["id_company"]);
       formData.append('person_id', this.person?.id ? this.person.id.toString() : '');
 
-      console.log(formData)
+      console.log(formData) 
 
       this.incidentService.createIncident(formData).subscribe({
         next: (response: any) => {
